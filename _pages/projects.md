@@ -1,11 +1,11 @@
 ---
 layout: page
-title: projects
+title: code
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: A collection of tools to which I contribute(d)
 nav: true
 nav_order: 3
-display_categories: [work, fun]
+display_categories: [Python, Stata]
 horizontal: false
 ---
 
