@@ -32,3 +32,35 @@
 "planck":
   - firstname: ["Max"]
     url: https://en.wikipedia.org/wiki/Max_Planck
+
+"Casajus":
+  - firstname: ["André", "A"]
+    url: https://home.uni-leipzig.de/casajus/
+
+"Akçay":
+  - firstname: ["Yalçın"]
+    url: https://mbs.edu/faculty-and-research/faculty/yalcin-akcay
+
+"Boyacı":
+  - firstname: ["Tamer"]
+    url: https://faculty-research.esmt.berlin/person/tamer-boyaci/bio
+
+"Rémila":
+  - firstname: ["Eric"]
+    url: https://scholar.google.com/citations?user=znSHN2EAAAAJ&hl=en
+
+"Wiese":
+  - firstname: ["Harald"]
+    url: https://www.wifa.uni-leipzig.de/institut-fuer-theoretische-volkswirtschaftslehre/professuren/mikrooekonomik
+
+"Sunder":
+  - firstname: ["Marco"]
+    url: https://www.frankfurt-university.de/en/about-us/faculty-3-business-and-law/contacts-at-faculty-3/professors-at-faculty-3/marco-sunder/
+
+"Solal":
+  - firstname: ["Philippe"]
+    url: https://www.gate.cnrs.fr/spip.php?article880&lang=fr
+
+"Béal":
+  - firstname: ["Sylvain"]
+    url: https://sites.google.com/site/bealpage/
