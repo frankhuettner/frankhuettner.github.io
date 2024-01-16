@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2021-01-01
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+I became [member](https://www.journals.elsevier.com/mathematical-social-sciences/editorial-board/f-huettner) of the [editorial board](https://www.journals.elsevier.com/mathematical-social-sciences/editorial-board) of [Mathematical Social Sciences](https://www.journals.elsevier.com/mathematical-social-sciences). What an honor!
