@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I moved my website to [GitHub](https://github.com/frankhuettner/frankhuettner.github.io) 
+I moved my website to [GitHub](https://github.com/frankhuettner/frankhuettner.github.io)
