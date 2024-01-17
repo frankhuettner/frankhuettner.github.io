@@ -1,66 +1,35 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
-
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
-
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
-
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
-
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
-
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
-
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
-
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
-
-"planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
-
 "casajus":
   - firstname: ["André", "A"]
     url: https://home.uni-leipzig.de/casajus/
 
-"Akçay":
+"akçay":
   - firstname: ["Yalçın"]
     url: https://mbs.edu/faculty-and-research/faculty/yalcin-akcay
 
-"Boyacı":
+"boyacı":
   - firstname: ["Tamer"]
     url: https://faculty-research.esmt.berlin/person/tamer-boyaci/bio
 
-"Rémila":
+"rémila":
   - firstname: ["Eric"]
     url: https://scholar.google.com/citations?user=znSHN2EAAAAJ&hl=en
 
-"Wiese":
+"wiese":
   - firstname: ["Harald"]
     url: https://www.wifa.uni-leipzig.de/institut-fuer-theoretische-volkswirtschaftslehre/professuren/mikrooekonomik
 
-"Sunder":
+"sunder":
   - firstname: ["Marco"]
     url: https://www.frankfurt-university.de/en/about-us/faculty-3-business-and-law/contacts-at-faculty-3/professors-at-faculty-3/marco-sunder/
 
-"Solal":
+"solal":
   - firstname: ["Philippe"]
     url: https://www.gate.cnrs.fr/spip.php?article880&lang=fr
 
-"Béal":
+"béal":
   - firstname: ["Sylvain"]
     url: https://sites.google.com/site/bealpage/
+
+"basteck":
+  - firstname: ["Christian"]
+    url: https://sites.google.com/site/christianbasteck/
