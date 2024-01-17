@@ -5,7 +5,7 @@ permalink: /projects/
 description: A collection of tools to which I contribute(d)
 nav: true
 nav_order: 3
-display_categories: [Python, Stata]
+display_categories: [Newsvendor, Python, Stata]
 horizontal: false
 ---
 
