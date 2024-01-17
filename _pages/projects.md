@@ -4,8 +4,8 @@ title: code
 permalink: /projects/
 description: A collection of tools to which I contribute(d)
 nav: true
-nav_order: 3
-display_categories: [Newsvendor, Python, Stata]
+nav_order: 2
+display_categories: [Shapley value, Newsvendor]
 horizontal: false
 ---
 
