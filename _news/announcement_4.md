@@ -1,8 +1,11 @@
 ---
 layout: post
-date: 2023-10-23
+date: 2023-02-01
 inline: true
 related_posts: false
 ---
 
-:sparkles: New working paper "[Coalitional Manipulations and Immunity of the Shapley Value](https://arxiv.org/abs/2310.20415)" with [Christian Basteck](https://sites.google.com/site/christianbasteck/) 
+:sparkles: :sparkles: New working paper 
+"[Random partitions, potential of the Shapley value, and games with externalities](https://arxiv.org/abs/2402.00394)" 
+with [André Casajus](https://www.casajus.de) 
+and [Yukihiko Funaki](https://yfunaki.blogspot.com/) 
