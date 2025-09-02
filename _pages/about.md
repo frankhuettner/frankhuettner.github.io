@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: # "Job: <a href='https://gsb.skku.edu/en/Faculty_Research/GSB_Faculty.do?mode=view&articleNo=72479'>Assistant Professor of Decision Sciences</a>"
+subtitle: # "Job: <a href='https://gsb.skku.edu/en/Faculty_Research/GSB_Faculty.do?mode=view&perId=LZStrC4BQkgpgjg8gigDwEoFcUE4BSBnA5gGwDUAnAVgHUBZXAXhqA%20&'>Assistant Professor of Decision Sciences</a>"
 
 profile:
   align: right
@@ -20,7 +20,7 @@ social: true # includes social icons at the bottom of the page
 Sungkyunkwan University  25-2, Sungkyunkwan-ro, SKK GSB,
 Jongro-gu, Seoul, Korea 03063 -->
 
-Job: [Assistant Professor of Decision Sciences](https://gsb.skku.edu/en/Faculty_Research/GSB_Faculty.do?mode=view&articleNo=72479)
+Job: [Assistant Professor of Decision Sciences](https://gsb.skku.edu/en/Faculty_Research/GSB_Faculty.do?mode=view&perId=LZStrC4BQkgpgjg8gigDwEoFcUE4BSBnA5gGwDUAnAVgHUBZXAXhqA%20&)
 
 ORCİD: [0000-0002-5489-1334](https://orcid.org/0000-0002-5489-1334)
 
