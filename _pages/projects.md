@@ -5,7 +5,7 @@ permalink: /projects/
 description: A collection of tools to which I contribute(d)
 nav: true
 nav_order: 2
-display_categories: [Shapley value, Newsvendor]
+display_categories: [Shapley value, Newsvendor, Teaching & AI]
 horizontal: false
 ---
 
