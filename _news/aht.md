@@ -5,5 +5,14 @@ inline: true
 related_posts: false
 ---
 
-I made a [autohide-toolbar-plugin](https://github.com/frankhuettner/reveal.js-autohide-toolbar) for [reveal.js](https://revealjs.com/) to have a nicer experience when presenting − check out the [DEMO](https://huettner.io/reveal.js-autohide-toolbar/demo/).
-"What is it for?" I hear you saying. Well, html or reveal.js is trivial for LLMs to create. With this plugin, you can use it in practice.
+**New project: an auto-hiding toolbar for [reveal.js](https://revealjs.com).** Draw, highlight,
+drop in text, or pull up a blank whiteboard mid-sentence — from a toolbar that hides until you
+want it, with ink that survives reloads and exports cleanly to PDF. The bigger idea: a reveal.js
+deck is just HTML, so an LLM can build it and you can still annotate live as you talk. WYSIWYG
+editors like [slides.com](https://slides.com),
+[parallax-presentations](https://github.com/jbirky/parallax-presentations), and
+[icp-editor](https://github.com/lucademenego99/icp-editor) are great too — this just makes the
+code path a pleasure to present from. 🚀 [Check out the
+demo](https://huettner.io/reveal.js-autohide-toolbar/demo/) ·
+[source](https://github.com/frankhuettner/reveal.js-autohide-toolbar)
+</content>
