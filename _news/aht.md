@@ -15,4 +15,3 @@ editors like [slides.com](https://slides.com),
 code path a pleasure to present from. 🚀 [Check out the
 demo](https://huettner.io/reveal.js-autohide-toolbar/demo/) ·
 [source](https://github.com/frankhuettner/reveal.js-autohide-toolbar)
-</content>
