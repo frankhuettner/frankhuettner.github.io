@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🎶 I've made a song about Little's Law: ["I Remember That"](https://youtu.be/dj8pBfeFCZY) 
+🎶 I've made a song about Little's Law: ["I Remember That"](https://youtu.be/dj8pBfeFCZY)

@@ -65,12 +65,12 @@ folder that you specify with the `adopath` command.
 and
 <a href="http://www.marco-sunder.de">Marco Sunder</a>, University of Leipzig.
 
-Huettner, F.; Sunder, M. (2012). "Axiomatic arguments for decomposing goodness of fit according to Shapley and Owen values." *Electronic Journal of Statistics*, 6, 1239-1250. <a href="https://doi.org/10.1214/12-EJS710">https://doi.org/10.1214/12-EJS710</a>
+Huettner, F.; Sunder, M. (2012). "Axiomatic arguments for decomposing goodness of fit according to Shapley and Owen values." _Electronic Journal of Statistics_, 6, 1239-1250. <a href="https://doi.org/10.1214/12-EJS710">https://doi.org/10.1214/12-EJS710</a>
 
 ```bibtex
 @article{HueSun2012EJS,
     author  = {Frank Huettner and Marco Sunder},
-    title   = {Axiomatic arguments for decomposing goodness of fit 
+    title   = {Axiomatic arguments for decomposing goodness of fit
                according to Shapley and Owen values},
     journal = {Electronic Journal of Statistics},
     volume  = {6},
