@@ -1,12 +1,9 @@
 name: Deploy admin file manager
 
 # R2-Explorer over the private bucket. Independent of the public site.
+# Manual only. Needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as
+# repository secrets; without them use `npx wrangler deploy` locally.
 on:
-  push:
-    branches: [astro-rebuild]
-    paths:
-      - "admin/**"
-      - ".github/workflows/deploy-admin-worker.yml"
   workflow_dispatch:
 
 permissions:

@@ -2,13 +2,9 @@ name: Deploy private-files Worker
 
 # Deploys only the password-gated file area to Cloudflare. It does not touch
 # the public site, which is served by GitHub Pages.
+# Manual only. Needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as
+# repository secrets; without them use `npx wrangler deploy` locally.
 on:
-  push:
-    branches: [astro-rebuild]
-    paths:
-      - "astro/worker/**"
-      - "astro/wrangler.jsonc"
-      - ".github/workflows/deploy-private-worker.yml"
   workflow_dispatch:
 
 permissions:
