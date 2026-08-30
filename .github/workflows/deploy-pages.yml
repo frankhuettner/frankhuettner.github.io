@@ -3,7 +3,7 @@ name: Deploy site to GitHub Pages
 # MANUAL ONLY, on purpose. This force-pushes to gh-pages, which is what
 # currently serves huettner.io — running it replaces the live site with the
 # Astro build. Leave it manual until you have decided to cut over, then add
-# a `push` trigger on master and delete the old deploy.yml.
+# a `push` trigger on main and delete the old deploy.yml.
 on:
   workflow_dispatch:
 

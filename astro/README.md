@@ -70,7 +70,7 @@ npm run build   # → dist/, including CNAME and .nojekyll
 `.github/workflows/deploy-pages.yml` does this and force-pushes `dist/` to
 `gh-pages`. It is **manual-only (`workflow_dispatch`) on purpose**: that branch
 is what serves huettner.io today, so running it replaces the live site. Once you
-have cut over, give it a `push` trigger on `master` and delete the old
+have cut over, give it a `push` trigger on `main` and delete the old
 al-folio `deploy.yml`.
 
 Two files in `public/` matter for Pages and must not be removed:
