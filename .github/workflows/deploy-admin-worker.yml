@@ -1,0 +1,39 @@
+name: Deploy admin file manager
+
+# R2-Explorer over the private bucket. Independent of the public site.
+on:
+  push:
+    branches: [astro-rebuild]
+    paths:
+      - "admin/**"
+      - ".github/workflows/deploy-admin-worker.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: admin/package-lock.json
+
+      # The dashboard ships inside the package and is uploaded as static
+      # assets, so dependencies must be present before deploying.
+      - run: npm ci
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: admin
+          command: deploy

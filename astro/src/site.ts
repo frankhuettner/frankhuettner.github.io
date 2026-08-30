@@ -6,4 +6,4 @@
  * It lives on a *.workers.dev hostname because attaching huettner.io to a
  * Worker would require moving DNS to Cloudflare — see README.
  */
-export const PRIVATE_AREA_URL = "";
+export const PRIVATE_AREA_URL = "https://huettner-private.dawn-darkness-5c7f.workers.dev/";
