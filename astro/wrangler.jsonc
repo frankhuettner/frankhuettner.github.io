@@ -2,10 +2,24 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "huettner-io",
   "compatibility_date": "2026-08-30",
+
+  // The Worker only handles the protected path; everything else is served
+  // directly from static assets with no Worker invocation.
+  "main": "worker/index.ts",
+
   "assets": {
     "directory": "./dist/",
-    // Serve dist/404.html with a real 404 status for unmatched paths.
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/private", "/private/*"]
+  },
+
+  // Protected files live here, not in the repository (which is public).
+  "r2_buckets": [
+    {
+      "binding": "PRIVATE_FILES",
+      "bucket_name": "huettner-io-private"
+    }
+  ]
 }

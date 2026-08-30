@@ -69,6 +69,46 @@ repository secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 `public/_redirects` keeps old al-folio URLs (`/blog/`, `/cv/`, `/teaching/`,
 `/repositories/`) from 404ing. `public/_headers` sets cache and security headers.
 
+## Password-protected area
+
+`/private/*` is gated by a shared password. Only that path invokes the Worker
+(`run_worker_first` in `wrangler.jsonc`); every other URL is served straight
+from static assets.
+
+**Files live in an R2 bucket, never in this repository — the repo is public,
+so anything committed here is readable by anyone regardless of the gate.**
+
+One-time setup:
+
+```bash
+npx wrangler r2 bucket create huettner-io-private
+npx wrangler secret put PRIVATE_PASSWORD    # the password you hand out
+npx wrangler secret put COOKIE_SECRET       # e.g. openssl rand -hex 32
+```
+
+Uploading a presentation — either drag-and-drop in the Cloudflare dashboard
+(R2 → huettner-io-private), or:
+
+```bash
+npx wrangler r2 object put huettner-io-private/lecture-01.pdf \
+  --file=./lecture-01.pdf --content-type application/pdf
+```
+
+It then appears at `/private/` in the file list, behind the password.
+
+How the gate works: the password is compared in constant time, and on success
+the Worker sets an HMAC-signed, `HttpOnly` `Secure` `SameSite=Lax` cookie that
+carries its own expiry (12 h). Unauthenticated requests get a 401 with the
+login form — never file bytes. Responses are `private, no-store` and
+`X-Robots-Tag: noindex`.
+
+Local development: put `PRIVATE_PASSWORD` and `COOKIE_SECRET` in `.dev.vars`
+(gitignored) and run `npx wrangler dev`, which simulates R2 on disk.
+
+If you would rather have per-person access than a shared password — say,
+anyone with an `@skku.edu` address, with a one-time code by email —
+Cloudflare Access does that in front of the same path with no code at all.
+
 ## Not carried over from al-folio
 
 - **CV page** — `_data/cv.yml` was still Albert Einstein.
