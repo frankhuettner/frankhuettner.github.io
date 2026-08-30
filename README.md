@@ -25,8 +25,14 @@ Deploys are manual:
 
 This was a fork of [al-folio](https://github.com/alshedivat/al-folio) until
 August 2026, when the site was rebuilt on Astro and the al-folio scaffolding
-removed. The old Jekyll site remains in the git history; `LICENSE` is retained
-from that lineage.
+removed. The old Jekyll site remains in the git history.
+
+## Licensing
+
+`LICENSE` splits the repository in two: the **code** is MIT, the **content** —
+the portrait, the paper PDFs, the bibliography and the written text — is not,
+and stays all rights reserved. A single MIT file at the root would have implied
+the photo and the papers were free to reuse, which they are not.
 
 To roll the live site back to the last al-folio build:
 
