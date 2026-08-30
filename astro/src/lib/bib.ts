@@ -62,20 +62,30 @@ function truthy(v: string | undefined): boolean {
   return v === "true" || v === "yes" || v === "1";
 }
 
-function buildLinks(fields: Record<string, unknown>, key: string): { label: string; href: string }[] {
+function buildLinks(fields: Record<string, unknown>): { label: string; href: string }[] {
   const links: { label: string; href: string }[] = [];
   const html = field(fields, "html", "url", "URL");
   const pdf = field(fields, "pdf");
   const arxiv = field(fields, "arxiv", "eprint");
   const doi = field(fields, "doi");
 
+  // Preprints carry a 10.48550/arXiv.* DOI; that is the arXiv link, not a journal.
   const htmlIsArxiv = Boolean(html && /arxiv\.org/i.test(html));
+  const doiIsArxiv = Boolean(doi && /arxiv/i.test(doi));
 
-  if (html && !htmlIsArxiv) links.push({ label: "Journal", href: html });
-  if (pdf) links.push({ label: "PDF", href: pdf.startsWith("http") ? pdf : `/assets/pdf/${pdf}` });
+  // The DOI is the canonical publisher link, and nearly every entry here carries
+  // both `doi` and an `html` that resolves to the same article (13 of them are
+  // literally https://doi.org/<doi>). So prefer the DOI and only fall back to
+  // `html` when there is no usable DOI — otherwise the row shows one destination
+  // twice under two names.
+  if (doi && !doiIsArxiv) links.push({ label: "DOI", href: `https://doi.org/${doi}` });
+  else if (html && !htmlIsArxiv) links.push({ label: "Journal", href: html });
+
   if (arxiv) links.push({ label: "arXiv", href: `https://arxiv.org/abs/${arxiv}` });
   else if (htmlIsArxiv && html) links.push({ label: "arXiv", href: html });
-  if (doi && !html?.includes(doi) && !/arxiv/i.test(doi)) links.push({ label: "DOI", href: `https://doi.org/${doi}` });
+
+  if (pdf) links.push({ label: "PDF", href: pdf.startsWith("http") ? pdf : `/assets/pdf/${pdf}` });
+
   return links;
 }
 
@@ -143,7 +153,7 @@ function loadPapers(): Paper[] {
         .split(",")
         .map((k) => k.trim())
         .filter(Boolean),
-      links: buildLinks(fields, entry.key),
+      links: buildLinks(fields),
       selected: truthy(field(fields, "selected")),
       bibtex: rawEntries.get(entry.key),
     };
