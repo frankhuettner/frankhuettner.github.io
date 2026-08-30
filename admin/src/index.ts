@@ -22,6 +22,14 @@ interface Env {
 
 export default {
   async fetch(request: Request, env: Env, context: ExecutionContext): Promise<Response> {
+    // Keep it out of search results. This stops crawlers, not password
+    // guessing — that is what the credentials are for.
+    if (new URL(request.url).pathname === "/robots.txt") {
+      return new Response("User-agent: *\nDisallow: /\n", {
+        headers: { "Content-Type": "text/plain", "X-Robots-Tag": "noindex, nofollow" },
+      });
+    }
+
     // Fail closed: without credentials configured, serve nothing rather than
     // an unauthenticated file manager.
     if (!env.ADMIN_USER || !env.ADMIN_PASSWORD) {
