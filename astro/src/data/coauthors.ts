@@ -33,6 +33,7 @@ export const coauthors: Record<string, Coauthor[]> = {
   beal: [{ firstNames: ["Sylvain"], url: "https://sites.google.com/site/bealpage/" }],
   basteck: [{ firstNames: ["Christian"], url: "https://sites.google.com/site/christianbasteck/" }],
   funaki: [{ firstNames: ["Yukihiko"], url: "https://yfunaki.blogspot.com/" }],
+  karos: [{ firstNames: ["Dominik"], url: "https://orcid.org/0000-0002-6845-117X" }],
 };
 
 /**
