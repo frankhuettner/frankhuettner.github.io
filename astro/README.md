@@ -120,6 +120,10 @@ npx wrangler r2 object put huettner-io-private/lecture-01.pdf \
 
 It then appears in the file list at the Worker's URL, behind the password.
 
+To link the area from the public site, set `PRIVATE_AREA_URL` in `src/site.ts`
+to the Worker's URL. A discreet "private" link then appears in the footer;
+leave it empty and nothing is rendered.
+
 How the gate works: the password is compared in constant time, and on success
 the Worker sets an HMAC-signed, `HttpOnly` `Secure` `SameSite=Lax` cookie that
 carries its own expiry (12 h). Unauthenticated requests get a 401 with the

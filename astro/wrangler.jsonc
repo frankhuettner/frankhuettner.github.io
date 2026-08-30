@@ -1,29 +1,32 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "huettner-private",
-  "compatibility_date": "2026-08-30",
-  "main": "worker/index.ts",
-
-  // Standalone: the public site stays on GitHub Pages, this Worker hosts only
-  // the protected files. Every request it receives is gated.
-  //
-  // If huettner.io ever moves to Cloudflare DNS, add the block below and this
-  // same Worker serves the files at huettner.io/private instead:
-  //
-  //   "assets": {
-  //     "directory": "./dist/",
-  //     "binding": "ASSETS",
-  //     "not_found_handling": "404-page",
-  //     "html_handling": "auto-trailing-slash",
-  //     "run_worker_first": ["/private", "/private/*"]
-  //   }
-
-  "r2_buckets": [
-    {
-      "binding": "PRIVATE_FILES",
-      "bucket_name": "huettner-io-private"
-    }
-  ],
-
-  "observability": { "enabled": true }
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "huettner-private",
+	"compatibility_date": "2026-08-30",
+	"main": "worker/index.ts",
+	// Standalone: the public site stays on GitHub Pages, this Worker hosts only
+	// the protected files. Every request it receives is gated.
+	//
+	// If huettner.io ever moves to Cloudflare DNS, add the block below and this
+	// same Worker serves the files at huettner.io/private instead:
+	//
+	//   "assets": {
+	//     "directory": "./dist/",
+	//     "binding": "ASSETS",
+	//     "not_found_handling": "404-page",
+	//     "html_handling": "auto-trailing-slash",
+	//     "run_worker_first": ["/private", "/private/*"]
+	//   }
+	"r2_buckets": [
+		{
+			"binding": "PRIVATE_FILES",
+			"bucket_name": "huettner-io-private"
+		},
+		{
+			"bucket_name": "huettner-io-private",
+			"binding": "huettner_io_private"
+		}
+	],
+	"observability": {
+		"enabled": true
+	}
 }

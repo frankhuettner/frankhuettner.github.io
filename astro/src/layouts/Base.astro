@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
+import { PRIVATE_AREA_URL } from "../site";
 
 interface Props {
   title?: string;
@@ -95,7 +96,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <span>
           <a href="https://github.com/frankhuettner">GitHub</a> ·
           <a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·
-          <a href="/rss.xml">RSS</a>
+          <a href="/rss.xml">RSS</a>{
+            PRIVATE_AREA_URL && (
+              <>
+                {" · "}
+                <a href={PRIVATE_AREA_URL} rel="nofollow">
+                  private
+                </a>
+              </>
+            )
+          }
         </span>
       </footer>
     </div>

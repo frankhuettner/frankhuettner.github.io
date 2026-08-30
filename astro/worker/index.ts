@@ -45,6 +45,7 @@ interface R2Objects {
   cursor?: string;
 }
 
+const SITE_URL = "https://huettner.io/";
 const COOKIE = "hio_private";
 const SESSION_SECONDS = 60 * 60 * 12;
 
@@ -121,6 +122,7 @@ function page(title: string, body: string, status = 200): Response {
   li a:hover{color:var(--accent)}
   .size{color:var(--muted);font-size:.78rem;white-space:nowrap}
   .back{display:inline-block;margin-top:1.6rem;color:var(--muted);font-size:.82rem}
+  .empty{display:block;padding:.7rem .2rem;color:var(--muted);font-size:.9rem}
 </style></head><body><main>${body}</main></body></html>`,
     { status, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } },
   );
@@ -136,7 +138,7 @@ function loginPage(error?: string): Response {
        <input type="password" name="password" placeholder="Password" aria-label="Password" autofocus required>
        <button type="submit">Enter</button>
      </form>
-     <a class="back" href="/">← huettner.io</a>`,
+     <a class="back" href="${SITE_URL}">← huettner.io</a>`,
     // 401 either way: the body is a login form, never protected content, so no
     // cache or crawler should treat this response as the resource.
     401,
@@ -149,7 +151,7 @@ function formatSize(bytes: number): string {
   return `${(bytes / 1024 ** 2).toFixed(1)} MB`;
 }
 
-async function listing(env: Env): Promise<Response> {
+async function listing(env: Env, basePath: string): Promise<Response> {
   const items: { key: string; size: number }[] = [];
   let cursor: string | undefined;
 
@@ -165,12 +167,12 @@ async function listing(env: Env): Promise<Response> {
     ? items
         .map(
           (o) =>
-            `<li><a href="/private/${encodeURI(o.key)}"><span>${o.key}</span><span class="size">${formatSize(o.size)}</span></a></li>`,
+            `<li><a href="${basePath}/${encodeURI(o.key)}"><span>${o.key}</span><span class="size">${formatSize(o.size)}</span></a></li>`,
         )
         .join("")
-    : `<li><a><span>No files yet.</span></a></li>`;
+    : `<li><span class="empty">No files yet.</span></li>`;
 
-  return page("Protected", `<h1>Files</h1><p>${items.length} item(s).</p><ul>${rows}</ul><a class="back" href="/">← huettner.io</a>`);
+  return page("Protected", `<h1>Files</h1><p>${items.length} item(s).</p><ul>${rows}</ul><a class="back" href="${SITE_URL}">← huettner.io</a>`);
 }
 
 export default {
@@ -212,10 +214,14 @@ export default {
     if (!(await tokenIsValid(readCookie(request, COOKIE), env.COOKIE_SECRET))) return loginPage();
 
     const key = decodeURIComponent(url.pathname.replace(/^\/private/, "").replace(/^\//, ""));
-    if (!key) return listing(env);
+    // Links must point at wherever this Worker is mounted: the root on its own
+    // hostname, /private when it fronts the site.
+    const basePath = url.pathname.startsWith("/private") ? "/private" : "";
+    if (!key) return listing(env, basePath);
 
     const object = await env.PRIVATE_FILES.get(key);
-    if (!object) return page("Not found", '<h1>Not found</h1><p>No such file.</p><a class="back" href="/private/">← Files</a>', 404);
+    if (!object)
+      return page("Not found", `<h1>Not found</h1><p>No such file.</p><a class="back" href="${basePath}/">← Files</a>`, 404);
 
     return new Response(object.body, {
       headers: {
