@@ -26,20 +26,12 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: "Source Serif 4",
-      cssVariable: "--font-serif",
-      weights: [400, 600, 700],
+      name: "Inter",
+      cssVariable: "--font-sans",
+      weights: [400, 500, 600, 700],
       styles: ["normal", "italic"],
       subsets: ["latin", "latin-ext"],
-      fallbacks: ["Charter", "Georgia", "serif"],
-    },
-    {
-      provider: fontProviders.google(),
-      name: "IBM Plex Mono",
-      cssVariable: "--font-mono",
-      weights: [400, 500],
-      subsets: ["latin", "latin-ext"],
-      fallbacks: ["ui-monospace", "SFMono-Regular", "monospace"],
+      fallbacks: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
     },
   ],
 });

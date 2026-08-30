@@ -49,8 +49,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
 
-    <Font cssVariable="--font-serif" preload />
-    <Font cssVariable="--font-mono" />
+    <Font cssVariable="--font-sans" preload />
 
     <script is:inline>
       // Set the theme before first paint so the page never flashes the wrong one.
@@ -102,11 +101,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </div>
 
     <script is:inline>
-      // Abstract disclosure on publication entries.
+      // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
-        const btn = event.target.closest("[data-abstract-toggle]");
+        const btn = event.target.closest("[data-disclosure]");
         if (!btn) return;
-        const panel = btn.closest(".paper__body")?.querySelector(".paper__abstract");
+        const key = btn.getAttribute("data-disclosure");
+        const panel = btn.closest(".paper__body")?.querySelector(`[data-panel="${key}"]`);
         if (!panel) return;
         const open = btn.getAttribute("aria-expanded") === "true";
         btn.setAttribute("aria-expanded", String(!open));

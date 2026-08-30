@@ -48,7 +48,7 @@ const href = (p: (typeof projects)[number]) => (p.body?.trim() ? `/projects/${p.
 
   .card {
     padding-block: 1.6rem;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--rule-soft);
     max-width: var(--measure);
   }
 
@@ -79,7 +79,8 @@ const href = (p: (typeof projects)[number]) => (p.body?.trim() ? `/projects/${p.
   }
 
   .tag {
-    font-family: var(--font-mono), monospace;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 500;
     font-size: 0.64rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
@@ -91,7 +92,8 @@ const href = (p: (typeof projects)[number]) => (p.body?.trim() ? `/projects/${p.
 
   .card__links {
     margin: 0.7rem 0 0;
-    font-family: var(--font-mono), monospace;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 500;
     font-size: 0.7rem;
     letter-spacing: 0.04em;
   }

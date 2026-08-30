@@ -25,6 +25,9 @@ npm run preview  # serve dist/
 | Publications | `src/data/papers.bib` — plain BibTeX, parsed at build |
 | Images, PDFs, files | `public/assets/…` (URLs preserved from the old site) |
 
+The "BibTeX" disclosure shows the entry verbatim from the source file rather
+than a re-serialisation, so what a visitor copies is what you wrote.
+
 Adding a paper means adding a BibTeX entry. Recognised fields: `title`, `author`,
 `year`, `journal`, `volume`, `number`, `pages`, `doi`, `html`, `pdf`, `arxiv`,
 `abstract`, `keywords`, and `selected={true}` to feature it on the homepage.
@@ -38,14 +41,19 @@ build instead of silently rendering an empty page.
 
 ## Design
 
-Two self-hosted families (Source Serif 4, IBM Plex Mono), downloaded at build
+Palette and type carry over from the al-folio site: near-white `#fdfdfd`, black
+text, the red accent (`#b71c1c` light / `#f35e5e` dark) and the pink dividers
+from `_sass/_variables.scss`. Inter replaces the old Roboto, self-hosted at build
 time by Astro's font pipeline — no CDN, no third-party request at runtime.
+
 Tokens live at the top of `src/styles/global.css`; light and dark palettes are
-defined there and the toggle is set before first paint.
+defined there and the theme is set before first paint. Dense list separators use
+`--rule-soft` so the pink `--rule` stays for section bands, where the original
+used it.
 
 Pages ship **zero JavaScript** apart from two small inline scripts (theme toggle,
-abstract disclosure). Math renders to HTML at build time via KaTeX — no runtime
-MathJax.
+Abstract/BibTeX disclosures). Math renders to HTML at build time via KaTeX — no
+runtime MathJax.
 
 ## Deploy
 

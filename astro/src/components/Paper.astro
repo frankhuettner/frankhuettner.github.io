@@ -17,6 +17,11 @@ const number = paper.number && !/^(none|n\/a)$/i.test(paper.number) ? paper.numb
 const volume = paper.volume ? `${paper.volume}${number ? `(${number})` : ""}` : null;
 const pages = paper.pages && /\d/.test(paper.pages) ? paper.pages.replace(/\s*-{1,3}\s*/, "\u2013") : null;
 
+const disclosures = [
+  paper.abstract ? { key: "abstract", label: "Abstract" } : null,
+  paper.bibtex ? { key: "bibtex", label: "BibTeX" } : null,
+].filter((d) => d !== null);
+
 const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume && pages ? null : status]
   .filter(Boolean)
   .join(", ");
@@ -43,7 +48,7 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
     {citation && <p class="paper__venue">{citation}</p>}
 
     {
-      (paper.links.length > 0 || paper.abstract) && (
+      (paper.links.length > 0 || disclosures.length > 0) && (
         <p class="paper__links">
           {paper.links.map((l, i) => (
             <>
@@ -51,19 +56,28 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
               <a href={l.href}>{l.label}</a>
             </>
           ))}
-          {paper.abstract && (
+          {disclosures.map((d, i) => (
             <>
-              {paper.links.length > 0 && <span class="sep">·</span>}
-              <button type="button" class="abstract-toggle" data-abstract-toggle aria-expanded="false">
-                Abstract
+              {(paper.links.length > 0 || i > 0) && <span class="sep">·</span>}
+              <button type="button" class="disclosure-toggle" data-disclosure={d.key} aria-expanded="false">
+                {d.label}
               </button>
             </>
-          )}
+          ))}
         </p>
       )
     }
 
-    {paper.abstract && <div class="paper__abstract" hidden>{paper.abstract}</div>}
+    {paper.abstract && (
+      <div class="paper__panel paper__abstract" data-panel="abstract" hidden>
+        {paper.abstract}
+      </div>
+    )}
+
+    {paper.bibtex && (
+      <pre class="paper__panel paper__bibtex" data-panel="bibtex" hidden><code>{paper.bibtex}</code></pre>
+    )}
+
   </div>
 </article>
 
@@ -76,7 +90,7 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
   }
 
   .paper + .paper {
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--rule-soft);
   }
 
   .paper--flush {
@@ -114,7 +128,8 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
 
   .paper__links {
     margin-top: 0.5rem;
-    font-family: var(--font-mono), monospace;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 500;
     font-size: 0.7rem;
     letter-spacing: 0.04em;
   }
@@ -124,7 +139,7 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
     color: var(--rule);
   }
 
-  .abstract-toggle {
+  .disclosure-toggle {
     font: inherit;
     background: none;
     border: 0;
@@ -136,18 +151,33 @@ const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume
     text-underline-offset: 0.18em;
   }
 
-  .abstract-toggle[aria-expanded="true"] {
+  .disclosure-toggle[aria-expanded="true"] {
     text-decoration-color: var(--accent);
   }
 
-  .paper__abstract {
+  .paper__panel {
     margin-top: 0.85rem;
+  }
+
+  .paper__abstract {
     padding: 0.85rem 1rem;
     background: var(--bg-soft);
     border-left: 2px solid var(--accent);
     font-size: var(--step--1);
     line-height: 1.55;
     color: var(--ink-muted);
+  }
+
+  .paper__bibtex {
+    padding: 0.85rem 1rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--rule-soft);
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    white-space: pre;
   }
 
   @media (max-width: 46rem) {

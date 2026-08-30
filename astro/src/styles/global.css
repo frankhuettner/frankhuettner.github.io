@@ -1,17 +1,19 @@
 /* ---------------------------------------------------------------------------
-   huettner.io — editorial academic
-   Warm paper, a single oxblood accent, and an asymmetric gutter that carries
-   metadata (years, labels) beside the text column.
+   huettner.io
+   Palette and type carried over from the al-folio site: near-white ground,
+   black text, the red accent (#b71c1c light / #f35e5e dark) and the pink
+   dividers. An asymmetric gutter carries metadata beside the text column.
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #fbfaf6;
-  --bg-soft: #f3f0e9;
-  --ink: #191714;
-  --ink-muted: #6e675a;
-  --rule: #e0dacc;
-  --accent: #8c2f1f;
-  --accent-soft: #f2e7e2;
+  --bg: #fdfdfd;
+  --bg-soft: #ffffff;
+  --ink: #000000;
+  --ink-muted: #828282;
+  --rule: #ffc5c5;
+  --rule-soft: #ececec;
+  --accent: #b71c1c;
+  --accent-soft: #fff2f2;
 
   --measure: 40rem;
   --gutter: 4.5rem;
@@ -29,25 +31,27 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #13120f;
-    --bg-soft: #1c1a16;
-    --ink: #ede9e0;
-    --ink-muted: #9c9485;
-    --rule: #302b24;
-    --accent: #de8368;
-    --accent-soft: #2a1d18;
+    --bg: #1c1c1d;
+    --bg-soft: #212529;
+    --ink: #e8e8e8;
+    --ink-muted: #a3a3a8;
+    --rule: #4a3134;
+    --rule-soft: #313134;
+    --accent: #f35e5e;
+    --accent-soft: #2a1c1c;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #13120f;
-  --bg-soft: #1c1a16;
-  --ink: #ede9e0;
-  --ink-muted: #9c9485;
-  --rule: #302b24;
-  --accent: #de8368;
-  --accent-soft: #2a1d18;
+  --bg: #1c1c1d;
+  --bg-soft: #212529;
+  --ink: #e8e8e8;
+  --ink-muted: #a3a3a8;
+  --rule: #4a3134;
+  --rule-soft: #313134;
+  --accent: #f35e5e;
+  --accent-soft: #2a1c1c;
   color-scheme: dark;
 }
 
@@ -61,9 +65,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-serif), Charter, Georgia, serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: var(--step-0);
-  line-height: 1.62;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -87,9 +91,9 @@ a:hover {
 h1,
 h2,
 h3 {
-  line-height: 1.18;
-  font-weight: 600;
-  letter-spacing: -0.012em;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.022em;
   text-wrap: balance;
   margin: 0;
 }
@@ -117,10 +121,10 @@ h3 {
 }
 
 .label {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-muted);
 }
@@ -165,9 +169,10 @@ h3 {
 .nav a {
   color: var(--ink-muted);
   text-decoration: none;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
@@ -226,7 +231,7 @@ h3 {
 }
 
 .prose code {
-  font-family: var(--font-mono), monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.88em;
   background: var(--bg-soft);
   padding: 0.12em 0.34em;

@@ -17,6 +17,8 @@ export interface Paper {
   keywords: string[];
   links: { label: string; href: string }[];
   selected: boolean;
+  /** The verbatim BibTeX entry, for the "BibTeX" disclosure. */
+  bibtex?: string;
 }
 
 const SELF = "huettner";
@@ -77,9 +79,35 @@ function buildLinks(fields: Record<string, unknown>, key: string): { label: stri
   return links;
 }
 
+/**
+ * Pull each entry back out of the source verbatim, so the BibTeX shown on the
+ * page is exactly what is in papers.bib rather than a re-serialisation.
+ */
+function extractRawEntries(src: string): Map<string, string> {
+  const entries = new Map<string, string>();
+  const header = /@(\w+)\s*\{\s*([^,\s]+)\s*,/g;
+
+  for (let match = header.exec(src); match; match = header.exec(src)) {
+    const start = match.index;
+    let depth = 0;
+
+    for (let i = src.indexOf("{", start); i < src.length; i++) {
+      if (src[i] === "{") depth++;
+      else if (src[i] === "}" && --depth === 0) {
+        entries.set(match[2], src.slice(start, i + 1));
+        break;
+      }
+    }
+  }
+
+  return entries;
+}
+
 function loadPapers(): Paper[] {
   // Strip the Jekyll front-matter fences if the file is ever re-copied verbatim.
-  const bib = parse(raw.replace(/^\s*(---\s*\n)+/, ""));
+  const source = raw.replace(/^\s*(---\s*\n)+/, "");
+  const bib = parse(source);
+  const rawEntries = extractRawEntries(source);
 
   const papers = bib.entries.map((entry): Paper => {
     const fields = entry.fields as Record<string, unknown>;
@@ -117,6 +145,7 @@ function loadPapers(): Paper[] {
         .filter(Boolean),
       links: buildLinks(fields, entry.key),
       selected: truthy(field(fields, "selected")),
+      bibtex: rawEntries.get(entry.key),
     };
   });
 
