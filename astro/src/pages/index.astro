@@ -25,7 +25,7 @@ const fmt = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
     </div>
 
     <figure class="intro__portrait">
-      <img src="/assets/img/prof_pic.jpg" alt="Frank Huettner" width="420" height="420" loading="eager" />
+      <img src="/assets/img/prof_pic.jpg" alt="Frank Huettner" width="1181" height="787" loading="eager" />
     </figure>
   </section>
 
@@ -62,7 +62,7 @@ const fmt = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
 <style>
   .intro {
     display: grid;
-    grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 19rem;
     gap: 3rem;
     align-items: start;
     padding-block: 3.5rem 3rem;
@@ -82,9 +82,11 @@ const fmt = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
   }
 
   .intro__portrait img {
+    display: block;
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
   }
 
   @media (max-width: 52rem) {
@@ -96,7 +98,7 @@ const fmt = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
 
     .intro__portrait {
       order: -1;
-      max-width: 11rem;
+      max-width: 16rem;
     }
   }
 
