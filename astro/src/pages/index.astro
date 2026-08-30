@@ -1,0 +1,162 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Paper from "../components/Paper.astro";
+import { selectedPapers } from "../lib/bib";
+
+const about = await getEntry("pages", "about");
+const { Content } = await render(about!);
+
+const news = (await getCollection("news")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentNews = news.slice(0, 4);
+
+const rendered = await Promise.all(
+  recentNews.map(async (item) => ({ item, Content: (await render(item)).Content })),
+);
+
+const fmt = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
+---
+
+<Base>
+  <section class="intro">
+    <div class="intro__text prose">
+      <h1>Frank Huettner</h1>
+      <Content />
+    </div>
+
+    <figure class="intro__portrait">
+      <img src="/assets/img/prof_pic.jpg" alt="Frank Huettner" width="1181" height="787" loading="eager" />
+    </figure>
+  </section>
+
+  <section class="section">
+    <h2 class="label section__label">news</h2>
+    <div class="section__body">
+      <ul class="news">
+        {
+          rendered.map(({ item, Content: Item }) => (
+            <li class="news__item">
+              <time class="news__date label" datetime={item.data.date.toISOString()}>
+                {fmt.format(item.data.date)}
+              </time>
+              <div class="news__body">
+                <Item />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="more"><a href="/news/">All news →</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="label section__label">selected publications</h2>
+    <div class="section__body">
+      {selectedPapers.map((paper) => <Paper paper={paper} showYear={false} />)}
+      <p class="more"><a href="/publications/">All research papers →</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 19rem;
+    gap: 3rem;
+    align-items: start;
+    padding-block: 3.5rem 3rem;
+  }
+
+  .intro h1 {
+    font-size: var(--step-3);
+    margin: 0.5rem 0 1.4rem;
+  }
+
+  .intro__text :global(p:first-of-type) {
+    margin-top: 0;
+  }
+
+  .intro__portrait {
+    margin: 0;
+  }
+
+  .intro__portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 52rem) {
+    .intro {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+      padding-block: 2.5rem 2rem;
+    }
+
+    .intro__portrait {
+      order: -1;
+      max-width: 16rem;
+    }
+  }
+
+  .section__label {
+    margin-bottom: 1.3rem;
+  }
+
+  .news {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .news__item {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0 var(--rail-gap);
+    padding-block: 1.1rem;
+  }
+
+  .news__item + .news__item {
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .news__date {
+    padding-top: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .news__body :global(p) {
+    margin: 0;
+  }
+
+  .news__body :global(p + p) {
+    margin-top: 0.6rem;
+  }
+
+  @media (max-width: 46rem) {
+    .news__item {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.3rem;
+    }
+  }
+
+  .more {
+    margin-top: 1.6rem;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .more a {
+    text-decoration: none;
+  }
+
+  .more a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

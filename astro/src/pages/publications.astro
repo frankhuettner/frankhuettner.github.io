@@ -1,0 +1,54 @@
+---
+import Base from "../layouts/Base.astro";
+import Paper from "../components/Paper.astro";
+import { papersByYear, papers } from "../lib/bib";
+
+const groups = papersByYear();
+---
+
+<Base title="research" description="Peer-reviewed articles and working papers by Frank Huettner.">
+  <header class="page-head">
+    <p class="label">{papers.length} papers</p>
+    <h1>Research papers</h1>
+    <p>In reverse chronological order. Abstracts expand in place; links go to the journal, a PDF, or arXiv.</p>
+  </header>
+
+  {
+    groups.map((group) => (
+      <section class="section rail">
+        <div class="section__head">
+          <h2 class="label year">{group.year}</h2>
+        </div>
+        <div class="section__body">
+          {group.items.map((paper) => (
+            <Paper paper={paper} showYear={false} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .year {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .section {
+    padding-block: 1.2rem;
+  }
+
+  .section__body > :global(* + *) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 46rem) {
+    .year {
+      position: static;
+    }
+  }
+</style>

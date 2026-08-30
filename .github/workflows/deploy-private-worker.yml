@@ -1,0 +1,35 @@
+name: Deploy private-files Worker
+
+# Deploys only the password-gated file area to Cloudflare. It does not touch
+# the public site, which is served by GitHub Pages.
+# Manual only. Needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as
+# repository secrets; without them use `npx wrangler deploy` locally.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: astro/package-lock.json
+
+      - run: npm ci
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: astro
+          command: deploy

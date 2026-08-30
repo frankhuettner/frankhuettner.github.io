@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "huettner-admin",
+  "compatibility_date": "2026-08-30",
+  "main": "src/index.ts",
+
+  "assets": {
+    "directory": "node_modules/r2-explorer/dashboard",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application",
+    // Must stay scoped to the API routes: with `true`, R2-Explorer cannot
+    // serve its own dashboard assets and every page 500s. The consequence is
+    // that the empty app shell is publicly loadable — every call that touches
+    // the bucket is behind basic auth, so no file name or content is exposed.
+    "run_worker_first": ["/api/*", "/share/*", "/robots.txt"]
+  },
+
+  // The same bucket the reader-facing Worker serves from.
+  "r2_buckets": [
+    {
+      "binding": "huettner_io_private",
+      "bucket_name": "huettner-io-private"
+    }
+  ],
+
+  "observability": { "enabled": true }
+}
