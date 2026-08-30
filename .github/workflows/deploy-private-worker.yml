@@ -1,13 +1,14 @@
-name: Deploy to Cloudflare
+name: Deploy private-files Worker
 
-# Scoped to the rebuild branch until the cutover. After promoting the Astro site,
-# change this to `master` and delete the old `deploy.yml` (GitHub Pages) workflow.
+# Deploys only the password-gated file area to Cloudflare. It does not touch
+# the public site, which is served by GitHub Pages.
 on:
   push:
     branches: [astro-rebuild]
     paths:
-      - "astro/**"
-      - ".github/workflows/deploy-cloudflare.yml"
+      - "astro/worker/**"
+      - "astro/wrangler.jsonc"
+      - ".github/workflows/deploy-private-worker.yml"
   workflow_dispatch:
 
 permissions:
@@ -29,7 +30,6 @@ jobs:
           cache-dependency-path: astro/package-lock.json
 
       - run: npm ci
-      - run: npm run build
 
       - uses: cloudflare/wrangler-action@v3
         with:

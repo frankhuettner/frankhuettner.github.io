@@ -1,11 +1,17 @@
 /**
- * Password gate for /private/*.
+ * Password-gated file area, deployed as a standalone Worker.
  *
- * Only this path runs the Worker (see `run_worker_first` in wrangler.jsonc);
- * every other request is served straight from static assets.
+ * The public site is served by GitHub Pages; this Worker only hosts the
+ * protected files, reachable at its own hostname. It fails closed: every
+ * request it receives is gated, so nothing depends on route configuration
+ * being right.
  *
  * Files live in an R2 bucket, not in the repository — this repo is public, so
  * anything committed here would be readable by anyone regardless of the gate.
+ *
+ * If the domain later moves to Cloudflare, add an `assets` block with
+ * `run_worker_first: ["/private", "/private/*"]` and the ASSETS binding, and
+ * this same code serves /private on huettner.io — see README.
  *
  * Secrets (set with `wrangler secret put <NAME>`, never committed):
  *   PRIVATE_PASSWORD  the shared password handed out to readers
@@ -13,7 +19,8 @@
  */
 
 interface Env {
-  ASSETS: { fetch: (request: Request) => Promise<Response> };
+  /** Present only when the Worker also fronts the static site. */
+  ASSETS?: { fetch: (request: Request) => Promise<Response> };
   PRIVATE_FILES: R2Bucket;
   PRIVATE_PASSWORD: string;
   COOKIE_SECRET: string;
@@ -170,7 +177,9 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    if (!url.pathname.startsWith("/private")) return env.ASSETS.fetch(request);
+    // Only hand a request off to static assets when this Worker is actually
+    // fronting the site; otherwise everything here is protected.
+    if (env.ASSETS && !url.pathname.startsWith("/private")) return env.ASSETS.fetch(request);
 
     if (!env.PRIVATE_PASSWORD || !env.COOKIE_SECRET) {
       return page("Not configured", "<h1>Not configured</h1><p>PRIVATE_PASSWORD and COOKIE_SECRET are not set.</p>", 503);
@@ -184,11 +193,17 @@ export default {
       if (!safeEqual(supplied, env.PRIVATE_PASSWORD)) return loginPage("Wrong password.");
 
       const token = await issueToken(env.COOKIE_SECRET);
+
+      // Scope the cookie to wherever this Worker is mounted: "/" when it runs
+      // standalone on its own hostname, "/private" when it fronts the site —
+      // so it is never sent with requests for public, cacheable pages.
+      const cookiePath = url.pathname.startsWith("/private") ? "/private" : "/";
+
       return new Response(null, {
         status: 303,
         headers: {
           Location: url.pathname,
-          "Set-Cookie": `${COOKIE}=${token}; Path=/private; HttpOnly; Secure; SameSite=Lax; Max-Age=${SESSION_SECONDS}`,
+          "Set-Cookie": `${COOKIE}=${token}; Path=${cookiePath}; HttpOnly; Secure; SameSite=Lax; Max-Age=${SESSION_SECONDS}`,
           "Cache-Control": "no-store",
         },
       });
@@ -196,7 +211,7 @@ export default {
 
     if (!(await tokenIsValid(readCookie(request, COOKIE), env.COOKIE_SECRET))) return loginPage();
 
-    const key = decodeURIComponent(url.pathname.replace(/^\/private\/?/, ""));
+    const key = decodeURIComponent(url.pathname.replace(/^\/private/, "").replace(/^\//, ""));
     if (!key) return listing(env);
 
     const object = await env.PRIVATE_FILES.get(key);

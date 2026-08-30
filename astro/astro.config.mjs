@@ -10,6 +10,16 @@ export default defineConfig({
 
   integrations: [sitemap()],
 
+  // GitHub Pages has no _redirects support, so these are emitted as real
+  // redirect pages at build time. They cover the al-folio URLs that are gone.
+  redirects: {
+    "/blog": "/",
+    "/cv": "/",
+    "/teaching": "/",
+    "/repositories": "/projects",
+    "/dropdown": "/",
+  },
+
   markdown: {
     // Sätteri (Astro 7's default) has no math support, so use the unified
     // pipeline for KaTeX. Math renders at build time — no runtime MathJax.

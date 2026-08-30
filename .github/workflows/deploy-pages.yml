@@ -1,0 +1,35 @@
+name: Deploy site to GitHub Pages
+
+# MANUAL ONLY, on purpose. This force-pushes to gh-pages, which is what
+# currently serves huettner.io — running it replaces the live site with the
+# Astro build. Leave it manual until you have decided to cut over, then add
+# a `push` trigger on master and delete the old deploy.yml.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: astro/package-lock.json
+
+      - run: npm ci
+      - run: npm run build
+
+      # dist/ carries CNAME (huettner.io) and .nojekyll, so the custom domain
+      # survives and Pages does not strip Astro's _astro/ directory.
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: astro/dist

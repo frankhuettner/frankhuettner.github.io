@@ -15,3 +15,6 @@ node_modules/
 output/playwright/
 test-results/
 vendor
+
+# Playwright MCP scratch output
+.playwright-mcp/
