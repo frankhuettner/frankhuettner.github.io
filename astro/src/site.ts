@@ -1,9 +1,13 @@
 /**
  * Site-wide constants.
  *
- * PRIVATE_AREA_URL is the deployed private-files Worker. Leave it empty and no
- * link is rendered; set it and a discreet "private" link appears in the footer.
- * It lives on a *.workers.dev hostname because attaching huettner.io to a
- * Worker would require moving DNS to Cloudflare — see README.
+ * Both point at Worker deployments on *.workers.dev; attaching huettner.io to
+ * them would require moving DNS to Cloudflare — see README. Set either to ""
+ * and its footer link disappears.
  */
+
+/** Reader-facing download area. Shared password. */
 export const PRIVATE_AREA_URL = "https://huettner-private.dawn-darkness-5c7f.workers.dev/";
+
+/** Admin file manager. Separate credentials; only useful to the site owner. */
+export const ADMIN_AREA_URL = "https://huettner-admin.dawn-darkness-5c7f.workers.dev/";

@@ -2,7 +2,7 @@
 import { Font } from "astro:assets";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
-import { PRIVATE_AREA_URL } from "../site";
+import { ADMIN_AREA_URL, PRIVATE_AREA_URL } from "../site";
 
 interface Props {
   title?: string;
@@ -102,6 +102,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 {" · "}
                 <a href={PRIVATE_AREA_URL} rel="nofollow">
                   private
+                </a>
+              </>
+            )
+          }{
+            ADMIN_AREA_URL && (
+              <>
+                {" · "}
+                <a href={ADMIN_AREA_URL} rel="nofollow">
+                  admin
                 </a>
               </>
             )
