@@ -1,11 +1,12 @@
 import { parse } from "@retorquere/bibtex-parser";
 import raw from "../data/papers.bib?raw";
+import { coauthorUrl } from "../data/coauthors";
 
 export interface Paper {
   key: string;
   type: string;
   title: string;
-  authors: { name: string; isSelf: boolean }[];
+  authors: { name: string; isSelf: boolean; url?: string }[];
   year: number;
   yearLabel: string;
   venue: string | null;
@@ -131,7 +132,12 @@ function loadPapers(): Paper[] {
 
     const authors = creators.map((c) => {
       const name = c.name ?? [c.firstName, c.lastName].filter(Boolean).join(" ");
-      return { name, isSelf: (c.lastName ?? "").toLowerCase() === SELF };
+      const isSelf = (c.lastName ?? "").toLowerCase() === SELF;
+      return {
+        name,
+        isSelf,
+        url: isSelf ? undefined : coauthorUrl(c.firstName ?? "", c.lastName ?? ""),
+      };
     });
 
     return {
