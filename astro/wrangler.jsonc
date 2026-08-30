@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "huettner-io",
+  "compatibility_date": "2026-08-30",
+  "assets": {
+    "directory": "./dist/",
+    // Serve dist/404.html with a real 404 status for unmatched paths.
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

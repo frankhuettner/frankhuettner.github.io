@@ -1,0 +1,324 @@
+/* ---------------------------------------------------------------------------
+   huettner.io — editorial academic
+   Warm paper, a single oxblood accent, and an asymmetric gutter that carries
+   metadata (years, labels) beside the text column.
+--------------------------------------------------------------------------- */
+
+:root {
+  --bg: #fbfaf6;
+  --bg-soft: #f3f0e9;
+  --ink: #191714;
+  --ink-muted: #6e675a;
+  --rule: #e0dacc;
+  --accent: #8c2f1f;
+  --accent-soft: #f2e7e2;
+
+  --measure: 40rem;
+  --gutter: 4.5rem;
+  --rail-gap: 1.75rem;
+  --shell: 60rem;
+
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.88rem);
+  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.09rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.35vw, 1.4rem);
+  --step-2: clamp(1.5rem, 1.36rem + 0.7vw, 1.95rem);
+  --step-3: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13120f;
+    --bg-soft: #1c1a16;
+    --ink: #ede9e0;
+    --ink-muted: #9c9485;
+    --rule: #302b24;
+    --accent: #de8368;
+    --accent-soft: #2a1d18;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #13120f;
+  --bg-soft: #1c1a16;
+  --ink: #ede9e0;
+  --ink-muted: #9c9485;
+  --rule: #302b24;
+  --accent: #de8368;
+  --accent-soft: #2a1d18;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-serif), Charter, Georgia, serif;
+  font-size: var(--step-0);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* --- shell ---------------------------------------------------------------- */
+
+.shell {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* The signature grid: a narrow metadata rail, then the text column. */
+.rail {
+  display: grid;
+  grid-template-columns: var(--gutter) minmax(0, var(--measure));
+  gap: 0 var(--rail-gap);
+}
+
+@media (max-width: 46rem) {
+  .rail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* --- masthead ------------------------------------------------------------- */
+
+.masthead {
+  padding-block: 1.6rem 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__name {
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.masthead__name:hover {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1.35rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink-muted);
+  padding: 0;
+  align-self: center;
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--ink-muted);
+}
+
+/* --- prose ---------------------------------------------------------------- */
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: 1.05em;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2 {
+  font-size: var(--step-1);
+  margin-top: 2.2em;
+}
+
+.prose h3 {
+  font-size: var(--step-0);
+  margin-top: 1.8em;
+}
+
+.prose code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.88em;
+  background: var(--bg-soft);
+  padding: 0.12em 0.34em;
+  border-radius: 3px;
+}
+
+.prose pre {
+  padding: 1rem 1.1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  font-size: 0.85rem;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* --- page header ---------------------------------------------------------- */
+
+.page-head {
+  padding-block: 3rem 2rem;
+}
+
+.page-head h1 {
+  font-size: var(--step-2);
+  margin-top: 0.5rem;
+}
+
+.page-head p {
+  color: var(--ink-muted);
+  max-width: var(--measure);
+  margin: 0.7rem 0 0;
+}
+
+/* --- sections ------------------------------------------------------------- */
+
+.section {
+  padding-block: 2.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.section__body > * + * {
+  margin-top: 1.6rem;
+}
+
+@media (max-width: 46rem) {
+  .section__head {
+    margin-bottom: 1.2rem;
+  }
+}
+
+footer.site-foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding-block: 2rem 3rem;
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  justify-content: space-between;
+}
+
+footer.site-foot a {
+  color: var(--ink-muted);
+}
+
+footer.site-foot a:hover {
+  color: var(--accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

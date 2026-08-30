@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const news = (await getCollection("news")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const rendered = await Promise.all(news.map(async (item) => ({ item, Content: (await render(item)).Content })));
+
+const fmt = new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric" });
+---
+
+<Base title="news" description="Announcements and updates from Frank Huettner.">
+  <header class="page-head">
+    <p class="label">Archive</p>
+    <h1>News</h1>
+  </header>
+
+  <ul class="news">
+    {
+      rendered.map(({ item, Content }) => (
+        <li class="news__item rail">
+          <time class="label" datetime={item.data.date.toISOString()}>
+            {fmt.format(item.data.date)}
+          </time>
+          <div class="news__body prose">
+            <Content />
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  .news {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .news__item {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .news__item time {
+    padding-top: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .news__body :global(p:first-child) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 46rem) {
+    .news__item time {
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+  }
+</style>

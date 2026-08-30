@@ -1,0 +1,164 @@
+---
+import type { Paper } from "../lib/bib";
+
+interface Props {
+  paper: Paper;
+  /** Show the year in the left rail (publications page) or inline (home). */
+  showYear?: boolean;
+}
+
+const { paper, showYear = true } = Astro.props;
+
+// "forthcoming" / "accepted" arrive as a non-numeric year; surface them only
+// when the entry does not already carry full volume-and-page details.
+const status = /^\d+$/.test(paper.yearLabel) ? null : paper.yearLabel;
+
+const number = paper.number && !/^(none|n\/a)$/i.test(paper.number) ? paper.number : null;
+const volume = paper.volume ? `${paper.volume}${number ? `(${number})` : ""}` : null;
+const pages = paper.pages && /\d/.test(paper.pages) ? paper.pages.replace(/\s*-{1,3}\s*/, "\u2013") : null;
+
+const citation = [[paper.venue, volume].filter(Boolean).join(" "), pages, volume && pages ? null : status]
+  .filter(Boolean)
+  .join(", ");
+
+---
+
+<article class:list={["paper", !showYear && "paper--flush"]}>
+  {showYear && <div class="paper__year label">{paper.yearLabel}</div>}
+
+  <div class="paper__body">
+    <h3 class="paper__title">{paper.title}</h3>
+
+    <p class="paper__authors">
+      {
+        paper.authors.map((a, i) => (
+          <>
+            {i > 0 && ", "}
+            <span class={a.isSelf ? "self" : undefined}>{a.name}</span>
+          </>
+        ))
+      }
+    </p>
+
+    {citation && <p class="paper__venue">{citation}</p>}
+
+    {
+      (paper.links.length > 0 || paper.abstract) && (
+        <p class="paper__links">
+          {paper.links.map((l, i) => (
+            <>
+              {i > 0 && <span class="sep">·</span>}
+              <a href={l.href}>{l.label}</a>
+            </>
+          ))}
+          {paper.abstract && (
+            <>
+              {paper.links.length > 0 && <span class="sep">·</span>}
+              <button type="button" class="abstract-toggle" data-abstract-toggle aria-expanded="false">
+                Abstract
+              </button>
+            </>
+          )}
+        </p>
+      )
+    }
+
+    {paper.abstract && <div class="paper__abstract" hidden>{paper.abstract}</div>}
+  </div>
+</article>
+
+<style>
+  .paper {
+    display: grid;
+    grid-template-columns: var(--gutter) minmax(0, 1fr);
+    gap: 0 var(--rail-gap);
+    padding-block: 1.4rem;
+  }
+
+  .paper + .paper {
+    border-top: 1px solid var(--rule);
+  }
+
+  .paper--flush {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .paper__year {
+    padding-top: 0.42rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .paper__title {
+    font-size: var(--step-0);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .paper__authors,
+  .paper__venue,
+  .paper__links {
+    margin: 0.28rem 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .paper__authors .self {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .paper__venue {
+    font-style: italic;
+  }
+
+  .paper__links {
+    margin-top: 0.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+  }
+
+  .paper__links .sep {
+    margin-inline: 0.45rem;
+    color: var(--rule);
+  }
+
+  .abstract-toggle {
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    text-underline-offset: 0.18em;
+  }
+
+  .abstract-toggle[aria-expanded="true"] {
+    text-decoration-color: var(--accent);
+  }
+
+  .paper__abstract {
+    margin-top: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-soft);
+    border-left: 2px solid var(--accent);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 46rem) {
+    .paper {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .paper__year {
+      padding-top: 0;
+      margin-bottom: 0.35rem;
+    }
+  }
+</style>

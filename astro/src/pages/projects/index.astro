@@ -1,0 +1,103 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+
+/** Stub entries (no body) link straight out; entries with prose get a local page. */
+const href = (p: (typeof projects)[number]) => (p.body?.trim() ? `/projects/${p.id}/` : (p.data.url ?? p.data.repo ?? "#"));
+---
+
+<Base title="code" description="Software and teaching tools by Frank Huettner.">
+  <header class="page-head">
+    <p class="label">Software</p>
+    <h1>Code</h1>
+    <p>Libraries and tools that came out of the research and the classroom.</p>
+  </header>
+
+  <ul class="grid">
+    {
+      projects.map((p) => (
+        <li class="card">
+          <a class="card__link" href={href(p)}>
+            <h2 class="card__title">{p.data.title}</h2>
+          </a>
+          <p class="card__summary">{p.data.summary}</p>
+          <p class="card__meta">
+            {p.data.tags.map((t) => (
+              <span class="tag">{t}</span>
+            ))}
+          </p>
+          <p class="card__links">
+            {p.data.repo && <a href={p.data.repo}>Source</a>}
+            {p.data.repo && p.data.url && <span class="sep">·</span>}
+            {p.data.url && <a href={p.data.url}>{p.data.url.endsWith(".zip") ? "Download" : "Docs"}</a>}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    padding-block: 1.6rem;
+    border-top: 1px solid var(--rule);
+    max-width: var(--measure);
+  }
+
+  .card__link {
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+    font-weight: 600;
+  }
+
+  .card__link:hover .card__title {
+    color: var(--accent);
+  }
+
+  .card__summary {
+    margin: 0.4rem 0 0;
+    color: var(--ink-muted);
+  }
+
+  .card__meta {
+    margin: 0.7rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+  }
+
+  .card__links {
+    margin: 0.7rem 0 0;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+  }
+
+  .card__links .sep {
+    margin-inline: 0.45rem;
+    color: var(--rule);
+  }
+</style>

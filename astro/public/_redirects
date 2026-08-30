@@ -1,0 +1,9 @@
+# Old al-folio URLs that no longer exist. [source] [destination] [code]
+/blog          /            301
+/blog/*        /            301
+/cv            /            301
+/cv/*          /            301
+/teaching      /            301
+/teaching/*    /            301
+/repositories  /projects/   301
+/dropdown      /            301
