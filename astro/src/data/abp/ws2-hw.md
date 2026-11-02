@@ -174,9 +174,11 @@ Open Langflow: <http://localhost:7860>.
    Canvas, Workshop II) and unzip it. You get a folder
    `ws2_hw` with two folders inside (`langflow` and `n8n`) and a readme. Every name starts with `ws2_`, for
    Workshop II. You need them now and in Part C.
-3. **Load the Langflow flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Then click **Upload a flow**
-   and upload these four files from the folder `ws2_hw/langflow` (from step 8.2), one by one: `ws2_triage_enron.json`,
-   `ws2_draft_reply_enron.json`, `ws2_ask_mailbox_enron.json`, `ws2_judge_draft_enron.json`.
+3. **Load the Langflow flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Open the folder
+   `ws2_hw/langflow` (from step 8.2) next to your browser. Select all four files in it and drag them onto the page of
+   your new project, where its flows are listed (not into an open flow). Langflow loads all four at once.
+   Or use the small button with an arrow pointing up, next to **Projects** in the left column. It says
+   *Upload a flow* when you point at it.
 4. **Give the flow a mail.** Open the flow `Triage (Enron)`. Copy this mail into the box **Text** of the component
    **Text Input**:
 
