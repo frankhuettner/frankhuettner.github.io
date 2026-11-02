@@ -15,23 +15,27 @@ In Workshop II (9, 16 and 23 November), you will build an AI assistant for a rea
 
 At the end of the first morning, this works on your laptop:
 
-1. You will write a mail from your **private mail account** to your test account.
+1. You will write a mail from your **SKKU mail account** to your test account.
 2. Your AI assistant will sort the mail and draft Kaminski's answer.
 3. You will read the draft and say OK.
-4. The answer will arrive in your private inbox.
+4. The answer will arrive in your SKKU inbox.
 
-Your **private mail account** is the account you already use, for example Gmail, Naver, Daum or Outlook. Your SKKU
-address works too. It is not the new test account.
+<figure class="bp" aria-label="The path of one mail on 9 November"><ol class="bp-path"><li class="bp-stop mail"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Your SKKU account</b><span>you write to your test account</span></li><li class="bp-stop mail"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Your test account</b><span>in Gmail: the mail arrives</span></li><li class="bp-stop muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>picks it up</span></li><li class="bp-stop brain"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow: Triage</b><span>decides: reply</span></li><li class="bp-stop brain"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow: Draft Reply</b><span>writes in Kaminski's words</span></li><li class="bp-stop muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>checks the rules, asks you</span></li><li class="bp-stop person"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></span><b>You</b><span>say OK</span></li><li class="bp-stop hot"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Your SKKU inbox</b><span>the answer arrives, from your test account</span></li></ol><figcaption><span><i class="bp-key brain"></i>Langflow thinks.</span> <span><i class="bp-key muscle"></i>n8n does the work.</span> <span><i class="bp-key person"></i>You say OK.</span></figcaption></figure>
+
+So you work with two mail accounts: your **SKKU mail account**, which you already have, and a new **test account**
+in Gmail, which you make in step 2.
 
 ## This homework: three parts
 
 The homework gets your laptop ready for 9 November. It has three parts:
 
-| Part | Steps | What you do | What you see at the end |
-|---|---|---|---|
-| A | 1–7 | **Set up your test mailbox:** update kingo-pod, make the account, copy Kaminski's mails into it | his mails arrive in your test account in Gmail |
-| B | 8 | **Test Langflow:** load the course flows, let Triage sort a mail | the AI's decision: `reply`, then `calendar` |
-| C | 9–13 | **Set up n8n and test it:** logins, mail search, a test mail from your SKKU account | your test mail in kingo-pod; answers from Kaminski's mails |
+| Part | Steps | What you do |
+|---|---|---|
+| A | 1–7 | **Set up your test mailbox:** update kingo-pod, make the account, copy Kaminski's mails into it |
+| B | 8 | **Test Langflow:** load the course flows, let Triage sort a mail |
+| C | 9–13 | **Set up n8n and test it:** logins, mail search, a test mail from your SKKU account |
+
+<figure class="bp bp-setup" aria-label="What this homework sets up"><div class="bp-sys"><div class="bp-node mail "><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Gmail</b><span>your test account</span><em>Part A · steps 1–7</em></div><div class="bp-node box "><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><b>Mail</b><span>kingo-pod's service: copies the mails, masks addresses</span><em>Part A · steps 1–7</em></div><div class="bp-node db "><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>PostgreSQL</b><span>every mail as a row</span><em>Part A · steps 1–7</em></div><div class="bp-node muscle "><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>does the work</span><em>Part C · steps 9–13</em></div><div class="bp-node brain "><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>thinks: sorts and drafts</span><em>Part B · step 8</em></div><div class="bp-part pa ">Part A · steps 1–7</div><div class="bp-part pc ">Part C · steps 9–13</div><div class="bp-part pb ">Part B · step 8</div></div><figcaption>What this homework sets up on your laptop: the mails go from Gmail into your database, and n8n and Langflow work with them there.</figcaption></figure>
 
 ## Before you start
 
@@ -46,15 +50,20 @@ The homework gets your laptop ready for 9 November. It has three parts:
 
 ## Part A · Set up your test mailbox
 
+<figure class="bp bp-setup bp-mini" aria-label="Where you are: Part A"><div class="bp-sys"><div class="bp-node mail now"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Gmail</b><span>your test account</span><em>Part A · steps 1–7 · you are here</em></div><div class="bp-node box now"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><b>Mail</b><span>kingo-pod's service: copies the mails, masks addresses</span><em>Part A · steps 1–7 · you are here</em></div><div class="bp-node db now"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>PostgreSQL</b><span>every mail as a row</span><em>Part A · steps 1–7 · you are here</em></div><div class="bp-node muscle later"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>does the work</span><em>Part C · steps 9–13</em></div><div class="bp-node brain later"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>thinks: sorts and drafts</span><em>Part B · step 8</em></div><div class="bp-part pa now">Part A · steps 1–7 · you are here</div><div class="bp-part pc later">Part C · steps 9–13</div><div class="bp-part pb later">Part B · step 8</div></div></figure>
+
 ### 1. Update kingo-pod: get the new part called 'Mail'
 
 kingo-pod is the course software on your laptop. Langflow and n8n run in it. This update adds a new part called
 **Mail**. It connects your test account to kingo-pod. Later, it also sends the answers you approve.
 
-Open a terminal in your kingo-pod folder and run:
+Open a terminal in your kingo-pod folder and run these two commands, one after the other:
 
 ```
 ./kingo update
+```
+
+```
 ./kingo mode abp
 ```
 
@@ -116,12 +125,15 @@ It asks three questions:
 1. **The address of your test account.** Type the full address, with `@gmail.com`, for example
    `n8n.minji.kim@gmail.com`.
 2. **The app password** from step 5. You will not see it while you type.
-3. **Other addresses kingo-pod may send mail to.** Type the address you will write from on 9 November: your private
-   address (for example `yourname@naver.com`), your SKKU address, or both, with a comma between them.
+3. **Other addresses kingo-pod may send mail to.** Type your SKKU address, even though the question says *your
+   private one*. On 9 November you will write from your SKKU address, and your AI assistant's answers go back to it.
 
    **Why?** kingo-pod sends mail only to your test account and the addresses you type here. A mail to anyone
    else lands in your own test account instead. So neither your AI assistant nor a mistake can send mail to
    anyone else.
+
+   **Forgot your SKKU address, or want to add another one later?** Run `./kingo mail` again. Press Enter to keep
+   your test account, paste the app password again (or make a new one as in step 5), then type the addresses.
 
 kingo-pod then checks the login. It sends nothing. You should see a line that starts with `OK. Folders:`.
 
@@ -151,7 +163,9 @@ Good to know:
   `already seeded`.
 - If your laptop sleeps or kingo-pod stops, start it again with `./kingo up`. The upload goes on by itself.
 
-## Part B · Test Langflow (10 minutes)
+## Part B · Test Langflow
+
+<figure class="bp bp-setup bp-mini" aria-label="Where you are: Part B"><div class="bp-sys"><div class="bp-node mail done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Gmail</b><span>your test account</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node box done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><b>Mail</b><span>kingo-pod's service: copies the mails, masks addresses</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node db done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>PostgreSQL</b><span>every mail as a row</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node muscle later"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>does the work</span><em>Part C · steps 9–13</em></div><div class="bp-node brain now"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>thinks: sorts and drafts</span><em>Part B · step 8 · you are here</em></div><div class="bp-part pa done">Part A · steps 1–7 ✓</div><div class="bp-part pc later">Part C · steps 9–13</div><div class="bp-part pb now">Part B · step 8 · you are here</div></div></figure>
 
 ### 8. Test Langflow: load the course flows and let Triage sort a mail
 
@@ -229,6 +243,8 @@ will give it hands: n8n will notice new mail, then reach out to this Langflow fl
 test account.
 
 ## Part C · Set up n8n and test it
+
+<figure class="bp bp-setup bp-mini" aria-label="Where you are: Part C"><div class="bp-sys"><div class="bp-node mail done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><b>Gmail</b><span>your test account</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node box done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><b>Mail</b><span>kingo-pod's service: copies the mails, masks addresses</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node db done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>PostgreSQL</b><span>every mail as a row</span><em>Part A · steps 1–7 ✓</em></div><div class="bp-node muscle now"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>does the work</span><em>Part C · steps 9–13 · you are here</em></div><div class="bp-node brain done"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>thinks: sorts and drafts</span><em>Part B · step 8 ✓</em></div><div class="bp-part pa done">Part A · steps 1–7 ✓</div><div class="bp-part pc now">Part C · steps 9–13 · you are here</div><div class="bp-part pb done">Part B · step 8 ✓</div></div></figure>
 
 n8n is the second tool of the course. In n8n you build **workflows**. A workflow is like a flow in Langflow: boxes
 (nodes) joined by lines. The difference: Langflow is good for building AI; n8n is good for doing things. An n8n
