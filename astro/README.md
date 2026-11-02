@@ -56,7 +56,8 @@ defined there and the theme is set before first paint. Dense list separators use
 used it.
 
 Pages ship **zero JavaScript** apart from two small inline scripts (theme toggle,
-Abstract/BibTeX disclosures). Math renders to HTML at build time via KaTeX — no
+Abstract/BibTeX disclosures), plus the Copy buttons on the Workshop II pages
+(`/abp/ws2/`, Markdown from the course repo in `src/data/abp/`). Math renders to HTML at build time via KaTeX — no
 runtime MathJax.
 
 ## Deploy

@@ -43,4 +43,7 @@ section dividers, Inter. Tokens sit at the top of
 (`--radius`, `--shadow-*`, `.btn`, `.badge`).
 
 Pages ship zero JavaScript apart from two inline scripts: the theme toggle and
-the Abstract/BibTeX disclosures. Math renders at build time via KaTeX.
+the Abstract/BibTeX disclosures. The exception: the Workshop II pages
+(`/abp/ws2/`) add Copy buttons to their code blocks. Their Markdown in
+`astro/src/data/abp/` is written by the course repo (n8n-workshop,
+`system/canvas.py --site`); do not edit it here. Math renders at build time via KaTeX.
