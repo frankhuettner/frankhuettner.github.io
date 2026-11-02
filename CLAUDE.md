@@ -44,6 +44,9 @@ section dividers, Inter. Tokens sit at the top of
 
 Pages ship zero JavaScript apart from two inline scripts: the theme toggle and
 the Abstract/BibTeX disclosures. The exception: the Workshop II pages
-(`/abp/ws2/`) add Copy buttons to their code blocks. Their Markdown in
-`astro/src/data/abp/` is written by the course repo (n8n-workshop,
-`system/canvas.py --site`); do not edit it here. Math renders at build time via KaTeX.
+(`/abp/ws2/`) add Copy buttons to their code blocks and mark the section being
+read in their contents, as on the kingo-pod guides. Their Markdown in
+`astro/src/data/abp/` and the download `astro/public/abp/ws2/ws2_hw.zip` are
+written by the course repo (n8n-workshop, `system/canvas.py --site`); do not
+edit them here. The zip holds nothing protected (no keys, passwords or
+addresses), which is why it may live in this public repo. Math renders at build time via KaTeX.

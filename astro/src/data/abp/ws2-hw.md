@@ -31,7 +31,7 @@ The homework gets your laptop ready for 9 November. It has three parts:
 |---|---|---|---|
 | A | 1–7 | **Set up your test mailbox:** update kingo-pod, make the account, copy Kaminski's mails into it | his mails arrive in your test account in Gmail |
 | B | 8 | **Test Langflow:** load the course flows, let Triage sort a mail | the AI's decision: `reply`, then `calendar` |
-| C | 9–13 | **Set up n8n and test it:** logins, mail search, a test mail from your private account | your test mail in kingo-pod; answers from Kaminski's mails |
+| C | 9–13 | **Set up n8n and test it:** logins, mail search, a test mail from your SKKU account | your test mail in kingo-pod; answers from Kaminski's mails |
 
 ## Before you start
 
@@ -41,7 +41,8 @@ The homework gets your laptop ready for 9 November. It has three parts:
 - **You need:**
   - your kingo-pod;
   - the OpenRouter key Yanbo gave you;
-  - the file `ws2_hw.zip` from Canvas (Workshop II). You download it in step 8.
+  - the file `ws2_hw.zip`, on Canvas (Workshop II) and at <https://huettner.io/abp/ws2/ws2_hw.zip>. You download it
+    in step 8.
 
 ## Part A · Set up your test mailbox
 
@@ -169,7 +170,8 @@ Open Langflow: <http://localhost:7860>.
    - If not, click **Add New**. Name: `OPEN_ROUTER_API_KEY`. Type: **Credential** (then Langflow hides the key on
      screen). Value: your key. Save.
    - More help: [Langflow: Global variables](https://docs.langflow.org/configuration-global-variables)
-2. **Get the course files.** Download `ws2_hw.zip` from Canvas (Workshop II) and unzip it. You get a folder
+2. **Get the course files.** Download [`ws2_hw.zip`](https://huettner.io/abp/ws2/ws2_hw.zip) (the same file is on
+   Canvas, Workshop II) and unzip it. You get a folder
    `ws2_hw` with two folders inside (`langflow` and `n8n`) and a readme. Every name starts with `ws2_`, for
    Workshop II. You need them now and in Part C.
 3. **Load the Langflow flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Then click **Upload a flow**
@@ -251,9 +253,13 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
    - *Customize n8n to you*: answer the questions as you like, then click **Get started**.
    - *Get paid features for free (forever)*: click **Skip**. The course does not need them.
    - n8n shows *Sign in* instead? Then you made an account before: sign in with it.
-2. **Make a key in Langflow for n8n.** Switch to the browser window of Langflow. There, go to the profile icon →
-   **Settings** → **Langflow API Keys** → *Create*. Copy the key and keep it somewhere you can find it again:
-   Langflow shows it only once. You need it in step 3.
+2. **Make a key in Langflow for n8n.** Switch to the browser window of Langflow. There, go to the profile icon in the
+   top right → **Settings** → **Langflow API Keys** → **Add New** (top right). In the window *Create API Key*:
+   - Description: `n8n`, so you know later what the key is for.
+   - Expiration date: leave it empty (*No expiration*). Then the key works for the whole course.
+
+   Click **Generate API Key**. Copy the key and keep it somewhere you can find it again: Langflow shows it only once.
+   You need it in step 3.
 3. **Make the four credentials in n8n.** Now you make four credentials, one after the other: one for kingo-pod's
    database, one for your Langflow flows, and two for OpenRouter. You make each one the same way:
    1. In n8n, on the page **Overview**: click the tab **Credentials** (in the middle of the page).
@@ -302,8 +308,22 @@ More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-c
 3. Turn the workflow on: click **Publish** at the top. In the window that opens, click **Publish** again.
    **Publish** means: the workflow now runs by itself, every minute, until you unpublish it.
 
-WS2.0 makes Kaminski's mails searchable, so that your AI assistant finds the right ones (step 13 tests it). Every
-minute, it handles up to 320 mails. All 3,244 take about 12 minutes once step 7 is done.
+**What WS2.0 does.** It does not search: it keeps the search up to date. This is a RAG system, like one with
+ChromaDB. It stores every mail as an *embedding*: a long list of numbers that stands for what the mail is about. But
+this time the store lives in kingo-pod's PostgreSQL database, in the table `chunks`. Every minute, WS2.0 takes up to
+320 mails that are not in it yet, gets their embeddings from an AI model on OpenRouter (bge-m3) and saves them there.
+So the search knows a new mail soon after it arrives. The first time, all 3,244 mails take about 12 minutes once
+step 7 is done.
+
+**Who searches: Langflow.** When your AI assistant needs facts, the component **Mail Search** (in the Langflow flows
+Ask Mailbox and Draft Reply) searches in two ways at once:
+- **By meaning**, as in any RAG system: it turns the question into numbers in the same way and finds the mails whose
+  numbers are closest.
+- **By words**: embeddings are bad at finding exact words, such as a name, a number or a rare term. PostgreSQL has an
+  index of words, like the index at the back of a book. With it, Mail Search also finds the mails that contain the
+  question's words, fast.
+
+Step 13 tests it.
 
 ### 11. Check that all mails arrived
 
@@ -313,9 +333,11 @@ When the upload of step 7 is done (about 30 minutes), run this in the terminal, 
 ./kingo mail status
 ```
 
-You should see `Mails: 3244 in Postgres` (or a few more) and no `Last error`. In your test account in Gmail, open
-**All Mail**: above the list, on the right, Gmail shows *1–50 of 3,244* (or a few more). **Sent** has about 1,500
-mails.
+You should see `Mails: 3244 in Postgres` (or a few more) and no `Last error`.
+
+In your test account in Gmail, check two folders:
+- **All Mail**: above the list, on the right, Gmail shows *1–50 of 3,244* (or a few more).
+- **Sent**: about 1,500 mails.
 
 **Look into the database.** No code needed, just look. CloudBeaver shows the database in your browser:
 <http://localhost:8978>. How to log in: [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/).
@@ -326,16 +348,47 @@ mails.
 3. One row is one mail of Kaminski's mailbox. Scroll to the right: who sent it (`from_addr`), to whom (`to_addrs`),
    the subject (`subject`), the text (`body_text`).
 
-The addresses here end in `.com` or `.edu`, not in `.example` as in Gmail: kingo-pod shows your AI assistant the real
-addresses, and makes sure no mail ever reaches these people. On 9 November, your n8n workflows work with exactly
+**Why the addresses look different.** Here in PostgreSQL (on your computer), the addresses end in `.com` or `.edu`, as
+in Kaminski's real mails. In Gmail, the same mails have addresses that end in `.example` (for example
+`vince.kaminski@enron.example`): no mail can reach such an address. In between, kingo-pod's service called Mail
+converts the addresses, both ways:
+- **From Gmail to PostgreSQL**, it turns `.example` into the real address. So your AI assistant sees the mails as
+  they really were.
+- **From PostgreSQL to Gmail**, when your AI assistant sends a mail, it never sends to a real address of the case: a
+  mail to one of Kaminski's contacts lands in your own test account instead.
+
+So no mail goes out through Gmail to a real person by mistake. On 9 November, your n8n workflows work with exactly
 these rows.
 
-### 12. Check that new mail arrives: a test mail from your private account
+### 12. Check that new mail arrives: a test mail from your SKKU account
 
-From your **private mail account**, send a mail to your test account. Within a minute, it is in the inbox of your test
-account. kingo-pod also copies it into its database: `./kingo mail status` now shows one mail more.
+From your **SKKU mail account**, send this mail to your test account. Copy the subject and the text, then sign with
+your first name:
 
-**It works: the mail from your private account just arrived in kingo-pod on your laptop.**
+```
+Kimchi for Monday
+```
+
+```
+Hi,
+
+This weekend my family makes kimchi for the winter (gimjang).
+I will bring a box of it for everyone at the workshop on Monday.
+```
+
+Within a minute, it is in the inbox of your test account. kingo-pod also copies it into its database:
+`./kingo mail status` now shows one mail more.
+
+You can also see it in CloudBeaver: open the table **messages** as in step 11 and sort it by the column `sent_at`,
+newest first. To sort, move the mouse over the head of the column `sent_at`: small arrows appear. Click them until the
+newest mail is at the top. Your mail is the first row.
+
+**What just happened.** You sent the mail to Gmail. kingo-pod's service called Mail copied it from Gmail onto your
+laptop and put it into the PostgreSQL database. There you can look at it easily, as you just did in CloudBeaver. A
+minute later, WS2.0 even adds it to your RAG system (step 10), so Mail Search can find your new mail by what it says.
+You try that in step 13.
+
+**It works: the mail from your SKKU account just arrived in kingo-pod on your laptop.**
 
 ### 13. Test the mail search: ask the mailbox
 
@@ -345,7 +398,10 @@ uses it, so you test Mail Search through this flow.
 
 1. In Langflow, open the flow `Ask Mailbox (Enron)` → **Playground**, as usual.
 2. Ask: *What is Steve Leppard's email address?* The answer gives steven.leppard@… and names the mail it comes from.
-3. Ask three questions of your own about Kaminski's work in spring 2001.
+   Here the name *Leppard* helps: Mail Search finds the mail by its words.
+3. Now find your own mail from step 12. Ask: *Who is sharing homemade Korean food?* None of these words is in your
+   mail, so this time Mail Search finds it by meaning (step 10). The answer tells you about your kimchi.
+4. Ask three questions of your own about Kaminski's work in spring 2001.
 
 **That's it: your laptop is ready for 9 November.** There you will build your first n8n workflow, WS2.1, and then
 your AI assistant.
@@ -360,9 +416,10 @@ your AI assistant.
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
 | WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
+| Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
 | The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password from `.env`. |
-| The mail from your private account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
+| The mail from your SKKU account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
 | `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
 | You want to start again with another account | Run `./kingo mail reset`, then step 6 again. |
 
@@ -396,7 +453,7 @@ The homework walks you through all of this step by step. The short version, to l
 - In Langflow, your OpenRouter key is a global variable named `OPEN_ROUTER_API_KEY`, with the key Yanbo gave you.
 
 1. **Langflow:** make a project "WS2 - Mail Assistant (Enron)" and upload the four files from `langflow/`. In Settings →
-   Langflow API Keys, create a key and copy it.
+   Langflow API Keys, **Add New** (description `n8n`, no expiration date), then copy the key.
 2. **n8n, credentials:** create four, with exactly these names:
    - `Mail (n8n_workshop_mail_n8n)`, type Postgres: host `postgres`, database `classroom`, user
      `n8n_workshop_mail_n8n`, password: the class password (`KINGO_PASSWORD` in your kingo-pod's `.env`), port
