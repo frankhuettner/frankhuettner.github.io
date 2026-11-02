@@ -1,5 +1,6 @@
 ---
 title: "Homework (3–8 November): get ready for Workshop II"
+lede: "Three parts, 13 steps: your test mailbox, Langflow and n8n. At the end, your laptop is ready for 9 November."
 ---
 
 ## What you will build in Workshop II
@@ -150,8 +151,10 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
 
    After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
 
-   **What happens.** In a few seconds, the command puts all mails into kingo-pod on your laptop. From there, kingo-pod
-   copies them into its PostgreSQL database and uploads them to your test Gmail account, round by round.
+   **What happens.** In a few seconds, the command puts all mails into kingo-pod's service called Mail, on your
+   laptop. Mail keeps this copy: with it, Mail knows what is new on each side. From there, kingo-pod copies the mails
+   into its PostgreSQL database and uploads them to your test Gmail account, round by round. In the end, every mail is
+   in three places: in Gmail, in Mail, and in PostgreSQL, where n8n and your AI assistant read it.
 2. The command is done, but the upload goes on inside kingo-pod for about 30 minutes, sometimes longer. Be patient.
    Keep kingo-pod running and your laptop awake.
 3. Watch the mails arrive. They come step by step over the 30 minutes, so the numbers in Gmail grow while you
@@ -260,8 +263,8 @@ course. `WS2.0` is the first one; you import it in step 10. On 9 November, you w
 
 Langflow and n8n each keep their own keys:
 - **Langflow** keeps your OpenRouter key as a global variable (step 8.1). With it, Langflow can use the AI.
-- **n8n** keeps its keys and passwords as **credentials**. A credential is a login that n8n saves for you. You make it
-  once, and every workflow that needs it finds it by its name.
+- **n8n** keeps its keys and passwords as **credentials**. A credential is a login that n8n saves for you, like an
+  entry in a password manager. You make it once, and every workflow that needs it finds it by its name.
 
 n8n needs four credentials. One of them lets n8n use your Langflow flows: for it, Langflow gives n8n a key of its own.
 
@@ -283,16 +286,13 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
    You need it in step 3.
 3. **Make the four credentials in n8n.** Now you make four credentials, one after the other: one for kingo-pod's
    database, one for your Langflow flows, and two for OpenRouter. You make each one the same way:
-   1. In n8n, on the page **Overview**: click the tab **Credentials** (in the middle of the page).
-   2. Click **Create credential** (top right). A window opens: *Add new credential*, *Select an app or service to
-      connect to*.
-   3. Type the credential's type into the search box (for example `Postgres`), pick it, and click **Continue**.
-   4. **First give the credential its name.** At the top left of the next window, n8n has put a name of its own, for
+   1. In n8n, click the **+** at the very top left, then **New credential**. A window opens: *Add new credential*,
+      *Select an app or service to connect to*.
+   2. Type the credential's type into the search box (for example `Postgres`), pick it, and click **Continue**.
+   3. **First give the credential its name.** At the top left of the next window, n8n has put a name of its own, for
       example *Postgres account* or *Header Auth account*. Click that name, delete it, and type the name from the list
       below (*Top left*). Use exactly these names: the workflows you import later look for them by name.
-   5. Fill in the fields and click **Save** (top right). Then close the window.
-
-   When all four are done, the tab **Credentials** shows four rows.
+   4. Fill in the fields and click **Save** (top right). Then close the window.
 
    - **Credential 1 of 4: give n8n access to kingo-pod's database**
      - Type: *Postgres*
@@ -312,7 +312,8 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
      - Type: *Header Auth*
      - Top left: `OpenRouter (embeddings)`
      - Name: `Authorization`
-     - Value: type the word `Bearer`, then one space (press the space bar once), then paste your OpenRouter key
+     - Value: type the word `Bearer`, then one space (press the space bar once), then paste your OpenRouter key.
+       With your own key, it looks like this: `Bearer sk-or-v1-0a1b2c3d…`
    - **Credential 4 of 4: give n8n access to OpenRouter's chat models, for the guard on 16 November**
      - Type: *OpenRouter*
      - Top left: `OpenRouter (chat)`
@@ -320,6 +321,11 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
 
    **Why two for OpenRouter?** It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways,
    and each way needs the key in its own form.
+
+   **Check:** in the column on the left of n8n, click **Overview**, then the tab **Credentials** (in the middle of the
+   page). You see your four credentials:
+
+   ![The tab Credentials in n8n with the four credentials](/abp/ws2/img/n8n-credentials.png)
 
 More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-credentials/)
 
@@ -480,8 +486,7 @@ The homework walks you through all of this step by step. The short version, to l
    Langflow API Keys, **Add New** (description `n8n`, no expiration date), then copy the key.
 2. **n8n, credentials:** create four, with exactly these names:
    - `Mail (n8n_workshop_mail_n8n)`, type Postgres: host `postgres`, database `classroom`, user
-     `n8n_workshop_mail_n8n`, password: the class password (`KINGO_PASSWORD` in your kingo-pod's `.env`), port
-     `5432`, SSL `disable`.
+     `n8n_workshop_mail_n8n`, password `kingo2026`, port `5432`, SSL `disable`.
    - `OpenRouter (embeddings)`, type Header Auth: name `Authorization`, value the word `Bearer`, one space, then your
      OpenRouter key.
    - `Langflow (Run API)`, type Header Auth: name `x-api-key`, value your Langflow API key.

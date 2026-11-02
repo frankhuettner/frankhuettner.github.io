@@ -10,7 +10,12 @@ export const getStaticPaths: GetStaticPaths = () => {
   const files = import.meta.glob<any>("../../../data/abp/ws2-*.md", { eager: true });
   return Object.entries(files).map(([path, mod]) => ({
     params: { part: path.match(/ws2-(\w+)\.md$/)![1] },
-    props: { title: mod.frontmatter.title as string, Content: mod.Content, headings: mod.getHeadings() },
+    props: {
+      title: mod.frontmatter.title as string,
+      lede: mod.frontmatter.lede as string | undefined,
+      Content: mod.Content,
+      headings: mod.getHeadings(),
+    },
   }));
 };
 
@@ -19,7 +24,7 @@ const LABELS: Record<string, string> = { hw: "Homework", s1: "9 November", s2: "
 const parts = Object.keys(import.meta.glob("../../../data/abp/ws2-*.md")).map((p) => p.match(/ws2-(\w+)\.md$/)![1]);
 
 const { part } = Astro.params;
-const { title, Content, headings } = Astro.props;
+const { title, lede, Content, headings } = Astro.props;
 // h2 is a part or a block; h3 is a step inside it. Deeper levels would only add noise.
 const toc = (headings as { depth: number; slug: string; text: string }[]).filter((h) => h.depth === 2 || h.depth === 3);
 ---
@@ -45,6 +50,7 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       <header class="page-head">
         <p class="label">Agentic AI in Business · Workshop II</p>
         <h1>{title}</h1>
+        {lede && <p class="lede">{lede}</p>}
       </header>
 
       <details class="ws2-toc ws2-toc--mobile">
@@ -257,10 +263,34 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     }
   }
 
-  .ws2.body {
-    padding-block: 1.5rem 2rem;
-    border-top: 1px solid var(--rule);
+  /* As on the kingo-pod guides (Frank, 3 Nov 2026: "a, b, c"): the text as wide as theirs, no line above it, a grey
+     line under the title. */
+  .ws2-main .ws2.body {
+    max-width: 46rem;
+    padding-block: 0.4rem 2rem;
     overflow-wrap: break-word;   /* a long link (the app passwords page) would push a phone's page sideways */
+  }
+
+  .ws2-guide .page-head .lede {
+    margin: 0.7rem 0 1.6rem;
+    max-width: 46rem;
+    color: var(--ink-muted);
+  }
+
+  /* Code as on the kingo-pod guides: a thin frame around inline code, the site's red rule around a box. */
+  .ws2 :not(pre) > code {
+    padding: 0.08em 0.3em;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius-sm);
+  }
+
+  .ws2 img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0 1.4rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
   }
 
   .ws2 .snip {
@@ -270,22 +300,22 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
   .ws2 .snip pre {
     white-space: pre-wrap;
     word-break: break-word;
-    padding: 0.7rem 5.5rem 0.7rem 0.9rem !important;   /* room for the button; the site's pre style sets its own */
-    border: 1px solid var(--rule-soft);
-    border-radius: var(--radius-sm);
+    padding: 1rem 5.5rem 1rem 1.1rem !important;   /* room for the button; the site's pre style sets its own */
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
   }
 
   .ws2 .copy {
     position: absolute;
-    top: 0.45rem;
-    right: 0.45rem;
+    top: 0.6rem;
+    right: 0.6rem;
     font: inherit;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.65rem;
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
     border: 1px solid var(--rule-soft);
     border-radius: var(--radius-sm);
     background: var(--bg);
-    color: var(--ink);
+    color: var(--ink-muted);
     cursor: pointer;
   }
 
