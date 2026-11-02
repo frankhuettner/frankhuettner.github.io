@@ -149,8 +149,11 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
    ```
 
    After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
-2. The command is done, but the upload goes on inside kingo-pod for about 30 minutes. Keep kingo-pod running and your
-   laptop awake.
+
+   **What happens.** In a few seconds, the command puts all mails into kingo-pod on your laptop. From there, kingo-pod
+   copies them into its PostgreSQL database and uploads them to your test Gmail account, round by round.
+2. The command is done, but the upload goes on inside kingo-pod for about 30 minutes, sometimes longer. Be patient.
+   Keep kingo-pod running and your laptop awake.
 3. Watch the mails arrive. They come step by step over the 30 minutes, so the numbers in Gmail grow while you
    watch. Open Gmail in your browser, signed in with your test account. When the upload is done, you see:
    - **Sent** (in the menu on the left): the mails Kaminski wrote, about 1,500.
@@ -159,8 +162,7 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
 4. You don't have to wait for the upload: go on with Part B now. The upload keeps running in the background.
 
 Good to know:
-- Run `./kingo mail seed` only once. A second time would copy every mail twice, so kingo-pod stops you with
-  `already seeded`.
+- `./kingo mail seed` copies every mail only once. If you run it again, kingo-pod answers `already seeded`.
 - If your laptop sleeps or kingo-pod stops, start it again with `./kingo up`. The upload goes on by itself.
 
 ## Part B · Test Langflow
@@ -434,6 +436,7 @@ your AI assistant.
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
+| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo mode abp`, then `./kingo mail status`, and send Frank the line `Last error`. |
 | WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
 | Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
