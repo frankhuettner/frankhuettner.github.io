@@ -284,36 +284,38 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
 3. **Make the four credentials in n8n.** Now you make four credentials, one after the other: one for kingo-pod's
    database, one for your Langflow flows, and two for OpenRouter. You make each one the same way:
    1. In n8n, on the page **Overview**: click the tab **Credentials** (in the middle of the page).
-   2. Click **Create credential** (top right).
-   3. Search for the credential's type (for example *Postgres*) and pick it.
-   4. At the top of the window, change the name to the credential name below. Use exactly these names: the workflows
-      you import later look for them by name.
-   5. Fill in the fields and click **Save**. Then close the window.
+   2. Click **Create credential** (top right). A window opens: *Add new credential*, *Select an app or service to
+      connect to*.
+   3. Type the credential's type into the search box (for example `Postgres`), pick it, and click **Continue**.
+   4. **First give the credential its name.** At the top left of the next window, n8n has put a name of its own, for
+      example *Postgres account* or *Header Auth account*. Click that name, delete it, and type the name from the list
+      below (*Top left*). Use exactly these names: the workflows you import later look for them by name.
+   5. Fill in the fields and click **Save** (top right). Then close the window.
 
    When all four are done, the tab **Credentials** shows four rows.
 
    - **Credential 1 of 4: give n8n access to kingo-pod's database**
-     - Credential name: `Mail (n8n_workshop_mail_n8n)`
      - Type: *Postgres*
+     - Top left: `Mail (n8n_workshop_mail_n8n)`
      - Host: `postgres`
      - Database: `classroom`
      - User: `n8n_workshop_mail_n8n`
-     - Password: `KINGO_PASSWORD` from the file `.env` in your kingo-pod folder
+     - Password: `kingo2026`
      - Port: `5432`
      - SSL: `disable`
    - **Credential 2 of 4: give n8n access to your Langflow flows**
-     - Credential name: `Langflow (Run API)`
      - Type: *Header Auth*
+     - Top left: `Langflow (Run API)`
      - Name: `x-api-key`
      - Value: the Langflow key from 2
    - **Credential 3 of 4: give n8n access to OpenRouter, to make the mails searchable (WS2.0)**
-     - Credential name: `OpenRouter (embeddings)`
      - Type: *Header Auth*
+     - Top left: `OpenRouter (embeddings)`
      - Name: `Authorization`
      - Value: type the word `Bearer`, then one space (press the space bar once), then paste your OpenRouter key
    - **Credential 4 of 4: give n8n access to OpenRouter's chat models, for the guard on 16 November**
-     - Credential name: `OpenRouter (chat)`
      - Type: *OpenRouter*
+     - Top left: `OpenRouter (chat)`
      - API Key: your OpenRouter key
 
    **Why two for OpenRouter?** It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways,
