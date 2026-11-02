@@ -256,7 +256,8 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
 2. **Make a key in Langflow for n8n.** Switch to the browser window of Langflow. There, go to the profile icon in the
    top right → **Settings** → **Langflow API Keys** → **Add New** (top right). In the window *Create API Key*:
    - Description: `n8n`, so you know later what the key is for.
-   - Expiration date: leave it empty (*No expiration*). Then the key works for the whole course.
+   - If the window also shows an expiration date, leave it empty (*No expiration*). Then the key works for the whole
+     course.
 
    Click **Generate API Key**. Copy the key and keep it somewhere you can find it again: Langflow shows it only once.
    You need it in step 3.
