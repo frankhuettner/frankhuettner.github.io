@@ -58,7 +58,8 @@ Open a terminal in your kingo-pod folder and run:
 ```
 
 - `./kingo update` gets the newest version.
-- `./kingo mode abp` starts the parts we need: Langflow, n8n, the database, CloudBeaver and Mail.
+- `./kingo mode abp` starts the parts we need: Langflow, n8n, the PostgreSQL database, CloudBeaver and a service
+  called Mail.
 
 This can take a few minutes. You don't have to wait: go on with steps 2 to 5 in your browser. The update keeps running
 in the terminal.
@@ -137,7 +138,8 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
    After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
 2. The command is done, but the upload goes on inside kingo-pod for about 30 minutes. Keep kingo-pod running and your
    laptop awake.
-3. Watch the mails arrive. Open Gmail in your browser, signed in with your test account:
+3. Watch the mails arrive. They come step by step over the 30 minutes, so the numbers in Gmail grow while you
+   watch. Open Gmail in your browser, signed in with your test account. When the upload is done, you see:
    - **Sent** (in the menu on the left): the mails Kaminski wrote, about 1,500.
    - **All Mail** (in the menu on the left, under **More**): all 3,244 mails.
    - **Inbox**: stays empty. That is right: new mail comes in the workshop.
@@ -170,8 +172,8 @@ Open Langflow: <http://localhost:7860>.
 2. **Get the course files.** Download `ws2_hw.zip` from Canvas (Workshop II) and unzip it. You get a folder
    `ws2_hw` with two folders inside (`langflow` and `n8n`) and a readme. Every name starts with `ws2_`, for
    Workshop II. You need them now and in Part C.
-3. **Load the flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Then click **Upload a flow** and upload these
-   four files from the folder `ws2_hw/langflow` (from step 8.2), one by one: `ws2_triage_enron.json`,
+3. **Load the Langflow flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Then click **Upload a flow**
+   and upload these four files from the folder `ws2_hw/langflow` (from step 8.2), one by one: `ws2_triage_enron.json`,
    `ws2_draft_reply_enron.json`, `ws2_ask_mailbox_enron.json`, `ws2_judge_draft_enron.json`.
 4. **Give the flow a mail.** Open the flow `Triage (Enron)`. Copy this mail into the box **Text** of the component
    **Text Input**:
@@ -249,15 +251,21 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
    - *Customize n8n to you*: answer the questions as you like, then click **Get started**.
    - *Get paid features for free (forever)*: click **Skip**. The course does not need them.
    - n8n shows *Sign in* instead? Then you made an account before: sign in with it.
-2. **A key from Langflow, for n8n.** In Langflow: profile icon → **Settings** → **Langflow API Keys** → *Create*. Copy
-   the key.
-3. **The four credentials in n8n.** In n8n: **Credentials** (in the menu on the left) → **Create credential**. Use
-   exactly these names: the workflows you import later look for them by name.
+2. **Make a key in Langflow for n8n.** Switch to the browser window of Langflow. There, go to the profile icon →
+   **Settings** → **Langflow API Keys** → *Create*. Copy the key and keep it somewhere you can find it again:
+   Langflow shows it only once. You need it in step 3.
+3. **Make the four credentials in n8n.** Now you make four credentials, one after the other: one for kingo-pod's
+   database, one for your Langflow flows, and two for OpenRouter. You make each one the same way:
+   1. In n8n, on the page **Overview**: click the tab **Credentials** (in the middle of the page).
+   2. Click **Create credential** (top right).
+   3. Search for the credential's type (for example *Postgres*) and pick it.
+   4. At the top of the window, change the name to the credential name below. Use exactly these names: the workflows
+      you import later look for them by name.
+   5. Fill in the fields and click **Save**. Then close the window.
 
-   For each one: search for its type, change the name at the top of the window to the credential name below, then
-   fill in the fields.
+   When all four are done, the tab **Credentials** shows four rows.
 
-   - **Give n8n access to kingo-pod's database**
+   - **Credential 1 of 4: give n8n access to kingo-pod's database**
      - Credential name: `Mail (n8n_workshop_mail_n8n)`
      - Type: *Postgres*
      - Host: `postgres`
@@ -266,17 +274,17 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
      - Password: `KINGO_PASSWORD` from the file `.env` in your kingo-pod folder
      - Port: `5432`
      - SSL: `disable`
-   - **Give n8n access to your Langflow flows**
+   - **Credential 2 of 4: give n8n access to your Langflow flows**
      - Credential name: `Langflow (Run API)`
      - Type: *Header Auth*
      - Name: `x-api-key`
      - Value: the Langflow key from 2
-   - **Give n8n access to OpenRouter, to make the mails searchable (WS2.0)**
+   - **Credential 3 of 4: give n8n access to OpenRouter, to make the mails searchable (WS2.0)**
      - Credential name: `OpenRouter (embeddings)`
      - Type: *Header Auth*
      - Name: `Authorization`
-     - Value: `Bearer ` (with a space), then your OpenRouter key
-   - **Give n8n access to OpenRouter's chat models, for the guard on 16 November**
+     - Value: type the word `Bearer`, then one space (press the space bar once), then paste your OpenRouter key
+   - **Credential 4 of 4: give n8n access to OpenRouter's chat models, for the guard on 16 November**
      - Credential name: `OpenRouter (chat)`
      - Type: *OpenRouter*
      - API Key: your OpenRouter key
@@ -351,7 +359,7 @@ your AI assistant.
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
-| WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be `Bearer `, a space, then your key. |
+| WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
 | The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password from `.env`. |
 | The mail from your private account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
@@ -393,7 +401,8 @@ The homework walks you through all of this step by step. The short version, to l
    - `Mail (n8n_workshop_mail_n8n)`, type Postgres: host `postgres`, database `classroom`, user
      `n8n_workshop_mail_n8n`, password: the class password (`KINGO_PASSWORD` in your kingo-pod's `.env`), port
      `5432`, SSL `disable`.
-   - `OpenRouter (embeddings)`, type Header Auth: name `Authorization`, value `Bearer ` followed by your OpenRouter key.
+   - `OpenRouter (embeddings)`, type Header Auth: name `Authorization`, value the word `Bearer`, one space, then your
+     OpenRouter key.
    - `Langflow (Run API)`, type Header Auth: name `x-api-key`, value your Langflow API key.
    - `OpenRouter (chat)`, type OpenRouter: your OpenRouter key (the guard's model).
 3. **n8n, WS2.0:** *Import from File* `n8n/ws2_0_embed_mails.json`; where a node asks for a credential, pick the one of

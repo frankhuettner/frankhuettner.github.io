@@ -6,7 +6,7 @@ Everything the slides ask you to type, in the order of the slides. Click *Copy* 
 
 ## WS2.1 - TEST - Triage: your AI, tested
 
-First the two data tables. In n8n, *Data tables*: import `ws2_1_test_triage_cases.csv` with this name:
+First the two data tables. In n8n, on the page *Overview*, the tab *Data tables* (in the middle of the page): import `ws2_1_test_triage_cases.csv` with this name:
 
 ```
 WS2.1 - TEST - Triage - Cases
@@ -215,9 +215,10 @@ The mail case's workflows and WS2.0 leave out mail to a plus address: that is yo
 
 ### Data tables and snippets
 
-- `ws2_1_test_triage_cases.csv` and `ws2_1_test_triage_runs.csv`: in n8n, *Data tables*, import them once as
-  "WS2.1 - TEST - Triage - Cases" and "WS2.1 - TEST - Triage - Runs" (exactly these names: the workflow finds its
-  tables by name). In block 2 you build WS2.1 up to the table Cases; in block 5 it gets the score in Runs.
+- `ws2_1_test_triage_cases.csv` and `ws2_1_test_triage_runs.csv`: in n8n, on the page *Overview*, the tab *Data
+  tables*, import them once as "WS2.1 - TEST - Triage - Cases" and "WS2.1 - TEST - Triage - Runs" (exactly these
+  names: the workflow finds its tables by name). In block 2 you build WS2.1 up to the table Cases; in block 5 it gets
+  the score in Runs.
 - `ws2_s1_snippets.md`: everything the slides ask you to type, in their order, ready to copy: the boxes above.
 
 ### Setting up (short version)
