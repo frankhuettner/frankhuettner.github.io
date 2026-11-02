@@ -126,7 +126,7 @@ It asks three questions:
 1. **The address of your test account.** Type the full address, with `@gmail.com`, for example
    `n8n.minji.kim@gmail.com`.
 2. **The app password** from step 5. You will not see it while you type.
-3. **Other addresses kingo-pod may send mail to.** Type your SKKU address, even though the question says *your
+3. **Other addresses kingo-pod may send mail to.** Type your SKKU address, even if the question says *your
    private one*. On 9 November you will write from your SKKU address, and your AI assistant's answers go back to it.
 
    **Why?** kingo-pod sends mail only to your test account and the addresses you type here. A mail to anyone
@@ -162,10 +162,14 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
    - **Sent** (in the menu on the left): the mails Kaminski wrote, about 1,500.
    - **All Mail** (in the menu on the left, under **More**): all 3,244 mails.
    - **Inbox**: stays empty. That is right: new mail comes in the workshop.
+
+   You can also ask kingo-pod how far it is: run `./kingo mail status`. It shows each folder twice, here and at
+   Gmail. When the numbers are the same in every row, the upload is done. (No such rows? Run `./kingo update` first.)
 4. You don't have to wait for the upload: go on with Part B now. The upload keeps running in the background.
 
 Good to know:
-- `./kingo mail seed` copies every mail only once. If you run it again, kingo-pod answers `already seeded`.
+- `./kingo mail seed` copies every mail only once. If you run it again, kingo-pod answers `already seeded` and gives
+  the upload a push.
 - If your laptop sleeps or kingo-pod stops, start it again with `./kingo up`. The upload goes on by itself.
 
 ## Part B · Test Langflow
@@ -444,9 +448,10 @@ your AI assistant.
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
-| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo mode abp`, then `./kingo mail status`, and send Frank the line `Last error`. |
+| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank the line `Last error` from `./kingo mail status`. |
 | WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
 | Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. |
+| Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are from before 3 November. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
 | The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password from `.env`. |
 | The mail from your SKKU account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
