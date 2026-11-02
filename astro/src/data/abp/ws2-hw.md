@@ -381,8 +381,8 @@ these rows.
 
 ### 12. Check that new mail arrives: a test mail from your SKKU account
 
-From your **SKKU mail account**, send this mail to your test account. Copy the subject and the text, then sign with
-your first name:
+From your **SKKU mail account**, send this mail to your test Gmail account. Copy the subject and the text, then
+sign with your first name:
 
 ```
 Kimchi for Monday
