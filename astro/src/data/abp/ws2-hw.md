@@ -67,7 +67,7 @@ in the terminal.
 
 1. Go to <https://accounts.google.com/signup>. Google will ask for your phone number.
 2. Use this pattern for the address: **`n8n.<givenname>.<familyname>@gmail.com`**
-   - For Min-ji Kim: `n8n.minji.kim@gmail.com` (small letters, no spaces, no hyphens)
+   - For example, for Min-ji Kim: `n8n.minji.kim@gmail.com` (small letters, no spaces, no hyphens)
    - If the address is taken, add a 2: `n8n.minji.kim2@gmail.com`
 3. When Google suggests addresses, click **Create your own Gmail address**. Type the part before `@gmail.com`.
 
