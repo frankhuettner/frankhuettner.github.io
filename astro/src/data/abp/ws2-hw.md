@@ -384,8 +384,12 @@ In your test account in Gmail, check two folders:
 - **All Mail**: above the list, on the right, Gmail shows *1–50 of 3,244* (or a few more).
 - **Sent**: about 1,500 mails.
 
-**Look into the database.** No code needed, just look. CloudBeaver shows the database in your browser:
-<http://localhost:8978>. How to log in: [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/).
+**Look into the database (optional, strongly recommended).** No code needed, just look. CloudBeaver shows the database
+in your browser: <http://localhost:8978>. In Workshop II, it shows you what your AI assistant did, row by row.
+
+**First time in CloudBeaver? Open [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/) first and do its
+steps 1 and 2.** This page is not just extra help: without it, you cannot get in. CloudBeaver has two logins, one for
+CloudBeaver and one for the database, with different passwords. The page shows both. You do it only once.
 
 1. On the left, open **Classroom (PostgreSQL)** → **Databases** → **classroom** → **Schemas** →
    **n8n_workshop_mail** → **Tables**.
@@ -424,12 +428,12 @@ I will bring a box of it for everyone at the workshop on Monday.
 Within a minute, it is in the inbox of your test account. kingo-pod also copies it into its database:
 `./kingo mail status` now shows one mail more.
 
-You can also see it in CloudBeaver: open the table **messages** as in step 11 and sort it by the column `sent_at`,
-newest first. To sort, move the mouse over the head of the column `sent_at`: small arrows appear. Click them until the
-newest mail is at the top. Your mail is the first row.
+Optional, if you set up CloudBeaver in step 11: open the table **messages** as in step 11 and sort it by the column
+`sent_at`, newest first. To sort, move the mouse over the head of the column `sent_at`: small arrows appear. Click
+them until the newest mail is at the top. Your mail is the first row.
 
 **What just happened.** You sent the mail to Gmail. kingo-pod's service called Mail copied it from Gmail onto your
-laptop and put it into the PostgreSQL database. There you can look at it easily, as you just did in CloudBeaver. A
+laptop and put it into the PostgreSQL database. There you can look at it easily, for example in CloudBeaver. A
 minute later, WS2.0 even adds it to your RAG system (step 10), so Mail Search can find your new mail by what it says.
 You try that in step 13.
 
@@ -465,6 +469,7 @@ your AI assistant.
 | Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
 | Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
+| CloudBeaver shows `No Connections`, or **Classroom (PostgreSQL)** does not open (step 11) | You are not logged in yet. Do steps 1 and 2 of [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/): two logins, with two different passwords. |
 | The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password `kingo2026`. |
 | The mail from your SKKU account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
 | `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
