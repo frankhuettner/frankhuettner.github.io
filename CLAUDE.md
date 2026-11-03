@@ -47,6 +47,7 @@ the Abstract/BibTeX disclosures. The exception: the Workshop II pages
 (`/abp/ws2/`) add Copy buttons to their code blocks and mark the section being
 read in their contents, as on the kingo-pod guides. Their Markdown in
 `astro/src/data/abp/` and the download `astro/public/abp/ws2/ws2_hw.zip` are
-written by the course repo (n8n-workshop, `system/canvas.py --site`); do not
-edit them here. The zip holds nothing protected (no keys, passwords or
-addresses), which is why it may live in this public repo. Math renders at build time via KaTeX.
+written by the course repo (n8n-workshop, `system/build_packages.py --site`);
+do not edit them here. The zip holds nothing protected (no keys, no addresses
+or ids of Frank's; the only password is kingo-pod's public class default
+`kingo2026`), which is why it may live in this public repo. Math renders at build time via KaTeX.
