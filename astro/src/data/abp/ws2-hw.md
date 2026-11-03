@@ -222,7 +222,8 @@ Open Langflow: <http://localhost:7860>.
    If you see a yellow note "Legacy" on Text Input or Text Output, ignore it.
 5. **Run it.** On the component **Text Output**, click ▶ (*Run component*). Wait a few seconds. Then click the small
    icon next to **Output Text** (*Inspect output*). You see `"action": "reply"` and a short reason after `"why"`.
-   Thomas asks a question, so the AI assistant would draft an answer.
+   Thomas asks a question, so the AI assistant would draft an answer. At the end you see `"checks_ok": true`: the
+   component **Check Triage** checked the answer before it left Langflow.
 6. **Change the mail.** Replace the whole text in **Text Input** with this mail. Run it again:
 
    ```
@@ -316,7 +317,7 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
      - Name: `Authorization`
      - Value: type the word `Bearer`, then one space (press the space bar once), then paste your OpenRouter key.
        With your own key, it looks like this: `Bearer sk-or-v1-0a1b2c3d…`
-   - **Credential 4 of 4: give n8n access to OpenRouter's chat models, for the guard on 16 November**
+   - **Credential 4 of 4: give n8n access to OpenRouter's chat models, for the guard (9 November)**
      - Type: *OpenRouter*
      - Top left: `OpenRouter (chat)`
      - API Key: your OpenRouter key
@@ -469,10 +470,10 @@ The homework says when you need which file (step 8 and Part C).
 
 | File | Langflow flow | What it does |
 |---|---|---|
-| `langflow/ws2_triage_enron.json` | Triage (Enron) | sorts one mail: MailEx events, action (calendar, reply, forward, archive), deadline |
-| `langflow/ws2_draft_reply_enron.json` | Draft Reply (Enron) | drafts Vince Kaminski's reply from his earlier mails, as of the mail's date; never from a confidential mail |
+| `langflow/ws2_triage_enron.json` | Triage (Enron) | sorts one mail: MailEx events, action (calendar, reply, forward, archive), deadline; checks its own answer (`checks_ok`, `problems`) |
+| `langflow/ws2_draft_reply_enron.json` | Draft Reply (Enron) | drafts Vince Kaminski's reply from his earlier mails, as of the mail's date; never from a confidential mail; checks its own draft (`checks_ok`, `problems`) |
 | `langflow/ws2_ask_mailbox_enron.json` | Ask Mailbox (Enron) | answers questions about the mailbox, with sources |
-| `langflow/ws2_judge_draft_enron.json` | Judge Draft (Enron) | grades a draft against the reply really sent, 1 to 5 (right from 4); for the test bench of 16 November |
+| `langflow/ws2_judge_draft_enron.json` | Judge Draft (Enron) | grades a draft against the reply really sent, 1 to 5 (right from 4); checks its grade; for the test bench of 16 November |
 
 ### n8n
 
