@@ -1,5 +1,5 @@
 ---
-title: "Homework (3–8 November): get ready for Workshop II"
+title: "Preparatory homework (3–8 November): get ready for Workshop II"
 lede: "Three parts, 13 steps: your test mailbox, Langflow and n8n. At the end, your laptop is ready for 9 November."
 ---
 
@@ -50,7 +50,8 @@ The homework gets your laptop ready for 9 November. It has three parts:
 ## Before you start
 
 - **Time:** 1 to 2 hours. Some of it is waiting while things load.
-- **Deadline:** **Friday, 6 November**.
+- **Deadline:** **Sunday, 8 November**, the day before Workshop II.
+- **Want help?** Finish by **Friday, 6 November**. Then there is still time to fix problems together.
 - **Stuck?** Write to Frank right away. Then we fix it together.
 - **You need:**
   - your kingo-pod;
