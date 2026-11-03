@@ -129,11 +129,11 @@ account and send the answers you approve. You can delete it any time on the same
 <p><strong>The app password</strong> from step 5. You will not see it while you type.</p>
 </li>
 <li>
-<p><strong>Other addresses kingo-pod may send mail to.</strong> Type your SKKU address, even if the question says <em>your
-private one</em>. On 9 November you will write from your SKKU address, and your AI assistant’s answers go back to it.</p>
-<p><strong>Why?</strong> kingo-pod sends mail only to your test account and the addresses you type here. A mail to anyone
-else lands in your own test account instead. So neither your AI assistant nor a mistake can send mail to
-anyone else.</p>
+<p><strong>Other addresses kingo-pod may send mail to.</strong> Type your SKKU address. On 9 November you will write from your
+SKKU address, and your AI assistant’s answers go back to it.</p>
+<p><strong>Why?</strong> kingo-pod sends mail only to your test account and the addresses you type here. A mail to someone in
+Kaminski’s mails lands in your own test account instead. A mail to any other address is not sent at all. So
+neither your AI assistant nor a mistake can send mail to anyone else.</p>
 <p><strong>Forgot your SKKU address, or want to add another one later?</strong> Run <code>./kingo mail</code> again. Press Enter to keep
 your test account, paste the app password again (or make a new one as in step 5), then type the addresses.</p>
 </li>
@@ -347,8 +347,8 @@ With your own key, it looks like this: <code>Bearer sk-or-v1-0a1b2c3d…</code><
 </ul>
 <p><strong>Why two for OpenRouter?</strong> It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways,
 and each way needs the key in its own form.</p>
-<p><strong>Check:</strong> in the column on the left of n8n, click <strong>Overview</strong>, then the tab <strong>Credentials</strong> (in the middle of the
-page). You see your four credentials:</p>
+<p><strong>Check:</strong> in the column on the left of n8n, click <strong>Overview</strong> (or <strong>Personal</strong>), then the tab <strong>Credentials</strong> (in
+the middle of the page). You see your four credentials:</p>
 <p><img src="/abp/ws2/img/n8n-credentials.png" alt="The tab Credentials in n8n with the four credentials"></p>
 </li>
 </ol>
@@ -360,6 +360,8 @@ and pick <code>ws2_hw/n8n/ws2_0_embed_mails.json</code> (in the folder from step
 <li>If a node shows a credential warning, pick the credential with the same name.</li>
 <li>Turn the workflow on: click <strong>Publish</strong> at the top. In the window that opens, click <strong>Publish</strong> again.
 <strong>Publish</strong> means: the workflow now runs by itself, every minute, until you unpublish it.</li>
+<li>Keep its list of runs short: open the menu <strong>…</strong> at the top → <strong>Settings</strong>. Set <em>Save successful production
+executions</em> to <strong>Do not save</strong>, then click <strong>Save</strong>. n8n now keeps only the runs that fail.</li>
 </ol>
 <p><strong>What WS2.0 does.</strong> It does not search: it keeps the search up to date. This is a RAG system, like one with
 ChromaDB. It stores every mail as an <em>embedding</em>: a long list of numbers that stands for what the mail is about. But
@@ -380,7 +382,7 @@ question’s words, fast.</li>
 <h3 id="11-check-that-all-mails-arrived">11. Check that all mails arrived</h3>
 <p>When the upload of step 7 is done (about 30 minutes), run this in the terminal, in your kingo-pod folder:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo mail status</span></span></code></pre>
-<p>You should see <code>Mails: 3244 in Postgres</code> (or a few more) and no <code>Last error</code>.</p>
+<p>You should see <code>Mails: 3244 in Postgres</code> (or a few more). A line <code>Last error</code> that ends in <code>mbsync took longer than 600 s</code> is fine: kingo-pod uploads in rounds of 10 minutes, and that line only says a round was full.</p>
 <p>In your test account in Gmail, check two folders:</p>
 <ul>
 <li><strong>All Mail</strong>: above the list, on the right, Gmail shows <em>1–50 of 3,244</em> (or a few more).</li>
@@ -505,7 +507,7 @@ your AI assistant.</p>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Triage shows an error (step 8)</td><td>Check the name <code>OPEN_ROUTER_API_KEY</code> in Langflow. Check that your key still has credit.</td></tr><tr><td>No app passwords page (step 5)</td><td>Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough.</td></tr><tr><td><code>Sign-in failed</code> (step 6)</td><td>Paste the app password again (not your Google password). Check that 2-Step Verification is on.</td></tr><tr><td><code>the mail service is off</code></td><td>Run <code>./kingo mode abp</code>, then step 6 again.</td></tr><tr><td><code>already seeded</code> (step 7)</td><td>Your account already has the mails. Look in Sent and All Mail.</td></tr><tr><td>The numbers in Gmail stop growing (step 7)</td><td>Be patient: kingo-pod uploads in rounds, and Gmail’s numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run <code>./kingo update</code>, then <code>./kingo mail seed</code> again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank the line <code>Last error</code> from <code>./kingo mail status</code>.</td></tr><tr><td>WS2.0 fails at <code>fetch_embeddings_bge_m3</code></td><td>In the credential <code>OpenRouter (embeddings)</code>, the value must be the word <code>Bearer</code>, one space, then your key.</td></tr><tr><td>Ask Mailbox does not find your kimchi mail (step 13)</td><td>WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again.</td></tr><tr><td>Ask Mailbox shows <code>Error building Component Agent</code> with <code>Token "NaN" is invalid</code> (step 13)</td><td>Your flows are from before 3 November. Download <code>ws2_hw.zip</code> again, delete the four flows in Langflow, and load the four new files (step 8.3).</td></tr><tr><td>Ask Mailbox gives no answer</td><td>WS2.0 is not finished yet (it needs about 12 minutes after step 7), or <code>OPEN_ROUTER_API_KEY</code> is missing in Langflow.</td></tr><tr><td>The Postgres credential fails</td><td>Host <code>postgres</code> (not <code>localhost</code>), SSL <code>disable</code>, the password from <code>.env</code>.</td></tr><tr><td>The mail from your SKKU account does not arrive (step 12)</td><td>Wait a minute. Check the address. Look into the inbox of your test account in Gmail.</td></tr><tr><td><code>./kingo mail status</code> shows an error</td><td>Copy the error into a mail to Frank.</td></tr><tr><td>You want to start again with another account</td><td>Run <code>./kingo mail reset</code>, then step 6 again.</td></tr></tbody></table>
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Triage shows an error (step 8)</td><td>Check the name <code>OPEN_ROUTER_API_KEY</code> in Langflow. Check that your key still has credit.</td></tr><tr><td>No app passwords page (step 5)</td><td>Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough.</td></tr><tr><td><code>Sign-in failed</code> (step 6)</td><td>Paste the app password again (not your Google password). Check that 2-Step Verification is on.</td></tr><tr><td><code>the mail service is off</code></td><td>Run <code>./kingo mode abp</code>, then step 6 again.</td></tr><tr><td><code>already seeded</code> (step 7)</td><td>Your account already has the mails. Look in Sent and All Mail.</td></tr><tr><td>The numbers in Gmail stop growing (step 7)</td><td>Be patient: kingo-pod uploads in rounds, and Gmail’s numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run <code>./kingo update</code>, then <code>./kingo mail seed</code> again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that <code>./kingo mail status</code> shows.</td></tr><tr><td>WS2.0 fails at <code>fetch_embeddings_bge_m3</code></td><td>In the credential <code>OpenRouter (embeddings)</code>, the value must be the word <code>Bearer</code>, one space, then your key.</td></tr><tr><td>Ask Mailbox does not find your kimchi mail (step 13)</td><td>WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row.</td></tr><tr><td>Ask Mailbox shows <code>Error building Component Agent</code> with <code>Token "NaN" is invalid</code> (step 13)</td><td>Your flows are old. Download <code>ws2_hw.zip</code> again, delete the four flows in Langflow, and load the four new files (step 8.3).</td></tr><tr><td>Ask Mailbox gives no answer</td><td>WS2.0 is not finished yet (it needs about 12 minutes after step 7), or <code>OPEN_ROUTER_API_KEY</code> is missing in Langflow.</td></tr><tr><td>The Postgres credential fails</td><td>Host <code>postgres</code> (not <code>localhost</code>), SSL <code>disable</code>, the password <code>kingo2026</code>.</td></tr><tr><td>The mail from your SKKU account does not arrive (step 12)</td><td>Wait a minute. Check the address. Look into the inbox of your test account in Gmail.</td></tr><tr><td><code>./kingo mail status</code> shows an error</td><td>Copy the error into a mail to Frank.</td></tr><tr><td>You want to start again with another account</td><td>Run <code>./kingo mail reset</code>, then step 6 again.</td></tr></tbody></table>
 <h2 id="the-files-in-ws2_hwzip">The files in ws2_hw.zip</h2>
 <p>The Enron mail case. Every name starts with <code>ws2_</code>, for Workshop II.</p>
 <p>The homework says when you need which file (step 8 and Part C).</p>
