@@ -126,12 +126,12 @@ It asks three questions:
 1. **The address of your test account.** Type the full address, with `@gmail.com`, for example
    `n8n.minji.kim@gmail.com`.
 2. **The app password** from step 5. You will not see it while you type.
-3. **Other addresses kingo-pod may send mail to.** Type your SKKU address, even if the question says *your
-   private one*. On 9 November you will write from your SKKU address, and your AI assistant's answers go back to it.
+3. **Other addresses kingo-pod may send mail to.** Type your SKKU address. On 9 November you will write from your
+   SKKU address, and your AI assistant's answers go back to it.
 
-   **Why?** kingo-pod sends mail only to your test account and the addresses you type here. A mail to anyone
-   else lands in your own test account instead. So neither your AI assistant nor a mistake can send mail to
-   anyone else.
+   **Why?** kingo-pod sends mail only to your test account and the addresses you type here. A mail to someone in
+   Kaminski's mails lands in your own test account instead. A mail to any other address is not sent at all. So
+   neither your AI assistant nor a mistake can send mail to anyone else.
 
    **Forgot your SKKU address, or want to add another one later?** Run `./kingo mail` again. Press Enter to keep
    your test account, paste the app password again (or make a new one as in step 5), then type the addresses.
@@ -326,8 +326,8 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
    **Why two for OpenRouter?** It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways,
    and each way needs the key in its own form.
 
-   **Check:** in the column on the left of n8n, click **Overview**, then the tab **Credentials** (in the middle of the
-   page). You see your four credentials:
+   **Check:** in the column on the left of n8n, click **Overview** (or **Personal**), then the tab **Credentials** (in
+   the middle of the page). You see your four credentials:
 
    ![The tab Credentials in n8n with the four credentials](/abp/ws2/img/n8n-credentials.png)
 
@@ -340,6 +340,8 @@ More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-c
 2. If a node shows a credential warning, pick the credential with the same name.
 3. Turn the workflow on: click **Publish** at the top. In the window that opens, click **Publish** again.
    **Publish** means: the workflow now runs by itself, every minute, until you unpublish it.
+4. Keep its list of runs short: open the menu **…** at the top → **Settings**. Set *Save successful production
+   executions* to **Do not save**, then click **Save**. n8n now keeps only the runs that fail.
 
 **What WS2.0 does.** It does not search: it keeps the search up to date. This is a RAG system, like one with
 ChromaDB. It stores every mail as an *embedding*: a long list of numbers that stands for what the mail is about. But
@@ -366,7 +368,8 @@ When the upload of step 7 is done (about 30 minutes), run this in the terminal, 
 ./kingo mail status
 ```
 
-You should see `Mails: 3244 in Postgres` (or a few more) and no `Last error`.
+You should see `Mails: 3244 in Postgres` (or a few more). A line `Last error` that ends in `mbsync took longer than
+600 s` is fine: kingo-pod uploads in rounds of 10 minutes, and that line only says a round was full.
 
 In your test account in Gmail, check two folders:
 - **All Mail**: above the list, on the right, Gmail shows *1–50 of 3,244* (or a few more).
@@ -448,12 +451,12 @@ your AI assistant.
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
-| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank the line `Last error` from `./kingo mail status`. |
+| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
 | WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
-| Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. |
-| Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are from before 3 November. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
+| Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
+| Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
-| The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password from `.env`. |
+| The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password `kingo2026`. |
 | The mail from your SKKU account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
 | `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
 | You want to start again with another account | Run `./kingo mail reset`, then step 6 again. |
