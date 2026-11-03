@@ -229,7 +229,8 @@ Or use the small button with an arrow pointing up, next to <strong>Projects</str
 <li>
 <p><strong>Run it.</strong> On the component <strong>Text Output</strong>, click ▶ (<em>Run component</em>). Wait a few seconds. Then click the small
 icon next to <strong>Output Text</strong> (<em>Inspect output</em>). You see <code>"action": "reply"</code> and a short reason after <code>"why"</code>.
-Thomas asks a question, so the AI assistant would draft an answer.</p>
+Thomas asks a question, so the AI assistant would draft an answer. At the end you see <code>"checks_ok": true</code>: the
+component <strong>Check Triage</strong> checked the answer before it left Langflow.</p>
 </li>
 <li>
 <p><strong>Change the mail.</strong> Replace the whole text in <strong>Text Input</strong> with this mail. Run it again:</p>
@@ -335,7 +336,7 @@ below (<em>Top left</em>). Use exactly these names: the workflows you import lat
 With your own key, it looks like this: <code>Bearer sk-or-v1-0a1b2c3d…</code></li>
 </ul>
 </li>
-<li><strong>Credential 4 of 4: give n8n access to OpenRouter’s chat models, for the guard on 16 November</strong>
+<li><strong>Credential 4 of 4: give n8n access to OpenRouter’s chat models, for the guard (9 November)</strong>
 <ul>
 <li>Type: <em>OpenRouter</em></li>
 <li>Top left: <code>OpenRouter (chat)</code></li>
@@ -540,7 +541,7 @@ your AI assistant.</p>
 
 
 
-<table><thead><tr><th>File</th><th>Langflow flow</th><th>What it does</th></tr></thead><tbody><tr><td><code>langflow/ws2_triage_enron.json</code></td><td>Triage (Enron)</td><td>sorts one mail: MailEx events, action (calendar, reply, forward, archive), deadline</td></tr><tr><td><code>langflow/ws2_draft_reply_enron.json</code></td><td>Draft Reply (Enron)</td><td>drafts Vince Kaminski’s reply from his earlier mails, as of the mail’s date; never from a confidential mail</td></tr><tr><td><code>langflow/ws2_ask_mailbox_enron.json</code></td><td>Ask Mailbox (Enron)</td><td>answers questions about the mailbox, with sources</td></tr><tr><td><code>langflow/ws2_judge_draft_enron.json</code></td><td>Judge Draft (Enron)</td><td>grades a draft against the reply really sent, 1 to 5 (right from 4); for the test bench of 16 November</td></tr></tbody></table>
+<table><thead><tr><th>File</th><th>Langflow flow</th><th>What it does</th></tr></thead><tbody><tr><td><code>langflow/ws2_triage_enron.json</code></td><td>Triage (Enron)</td><td>sorts one mail: MailEx events, action (calendar, reply, forward, archive), deadline; checks its own answer (<code>checks_ok</code>, <code>problems</code>)</td></tr><tr><td><code>langflow/ws2_draft_reply_enron.json</code></td><td>Draft Reply (Enron)</td><td>drafts Vince Kaminski’s reply from his earlier mails, as of the mail’s date; never from a confidential mail; checks its own draft (<code>checks_ok</code>, <code>problems</code>)</td></tr><tr><td><code>langflow/ws2_ask_mailbox_enron.json</code></td><td>Ask Mailbox (Enron)</td><td>answers questions about the mailbox, with sources</td></tr><tr><td><code>langflow/ws2_judge_draft_enron.json</code></td><td>Judge Draft (Enron)</td><td>grades a draft against the reply really sent, 1 to 5 (right from 4); checks its grade; for the test bench of 16 November</td></tr></tbody></table>
 <h3 id="n8n">n8n</h3>
 
 
