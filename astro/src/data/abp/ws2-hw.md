@@ -389,11 +389,22 @@ and that line only says a round was full.
 
 In your test account in Gmail, look at two folders. Gmail counts conversations, not mails (step 7), so its numbers
 are smaller:
-- **All Mail**: above the list, on the right, Gmail shows about 1,600.
-- **Sent**: about 870.
+- **All Mail**: above the list, on the right, Gmail shows about 1,600 conversations.
+- **Sent**: about 870 conversations.
 
-**Look into the database (optional, strongly recommended).** No code needed, just look. CloudBeaver shows the database
-in your browser: <http://localhost:8978>. In Workshop II, it shows you what your AI assistant did, row by row.
+**Moving forward, you might notice that the addresses differ.** In Gmail, they end in `.example` (for example
+`vince.kaminski@enron.example`): no mail can reach such an address. In kingo-pod's PostgreSQL database on your
+computer, and so in n8n and Langflow, they end in `.com` or `.edu`, as in Kaminski's real mails. In between,
+kingo-pod's service called Mail converts the addresses, both ways:
+- **From Gmail to PostgreSQL**, it turns `.example` into the real address. So your AI assistant sees the mails as
+  they really were.
+- **From PostgreSQL to Gmail**, when your AI assistant sends a mail, it never sends to a real address of the case: a
+  mail to one of Kaminski's contacts lands in your own test account instead.
+
+So no mail goes out through Gmail to a real person by mistake.
+
+**Want to look into the database?** (Optional, feel free to skip this and continue with step 12.) CloudBeaver shows the
+database in your browser: <http://localhost:8978>. In Workshop II, it shows you what your AI assistant did, row by row.
 
 **First time in CloudBeaver? Open [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/) first and do its
 steps 1 and 2.** This page is not just extra help: without it, you cannot get in. CloudBeaver has two logins, one for
@@ -405,17 +416,7 @@ CloudBeaver and one for the database, with different passwords. The page shows b
 3. One row is one mail of Kaminski's mailbox. Scroll to the right: who sent it (`from_addr`), to whom (`to_addrs`),
    the subject (`subject`), the text (`body_text`).
 
-**Why the addresses look different.** Here in PostgreSQL (on your computer), the addresses end in `.com` or `.edu`, as
-in Kaminski's real mails. In Gmail, the same mails have addresses that end in `.example` (for example
-`vince.kaminski@enron.example`): no mail can reach such an address. In between, kingo-pod's service called Mail
-converts the addresses, both ways:
-- **From Gmail to PostgreSQL**, it turns `.example` into the real address. So your AI assistant sees the mails as
-  they really were.
-- **From PostgreSQL to Gmail**, when your AI assistant sends a mail, it never sends to a real address of the case: a
-  mail to one of Kaminski's contacts lands in your own test account instead.
-
-So no mail goes out through Gmail to a real person by mistake. On 9 November, your n8n workflows work with exactly
-these rows.
+On 9 November, your n8n workflows work with exactly these rows.
 
 ### 12. Check that new mail arrives: a test mail from your SKKU account
 
