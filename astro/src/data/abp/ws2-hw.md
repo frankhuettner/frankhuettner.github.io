@@ -168,12 +168,15 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
    Keep kingo-pod running and your laptop awake.
 3. Watch the mails arrive. They come step by step over the 30 minutes, so the numbers in Gmail grow while you
    watch. Open Gmail in your browser, signed in with your test account. When the upload is done, you see:
-   - **Sent** (in the menu on the left): the mails Kaminski wrote, about 1,500.
-   - **All Mail** (in the menu on the left, under **More**): all 3,244 mails.
+   - **Sent** (in the menu on the left): the mails Kaminski wrote, about 870 conversations.
+   - **All Mail** (in the menu on the left, under **More**): about 1,600 conversations.
    - **Inbox**: stays empty. That is right: new mail comes in the workshop.
 
-   You can also ask kingo-pod how far it is: run `./kingo mail status`. It shows each folder twice, here and at
-   Gmail. When the numbers are the same in every row, the upload is done. (No such rows? Run `./kingo update` first.)
+   **Why not 3,244?** Gmail counts conversations, not mails: a mail and all its answers are one conversation. So
+   Gmail shows smaller numbers, but all 3,244 mails are there.
+
+   To count the mails, ask kingo-pod: run `./kingo mail status`. It shows each folder twice, here and at Gmail. When
+   the numbers are the same in every row, the upload is done. (No such rows? Run `./kingo update` first.)
 4. You don't have to wait for the upload: go on with Part B now. The upload keeps running in the background.
 
 Good to know:
@@ -377,12 +380,17 @@ When the upload of step 7 is done (about 30 minutes), run this in the terminal, 
 ./kingo mail status
 ```
 
-You should see `Mails: 3244 in Postgres` (or a few more). A line `Last error` that ends in `mbsync took longer than
-600 s` is fine: kingo-pod uploads in rounds of 10 minutes, and that line only says a round was full.
+You should see:
+- `Mails: 3244 in Postgres` (or a few more);
+- at the end: `Sync: done, every folder is the same here and at Gmail`.
 
-In your test account in Gmail, check two folders:
-- **All Mail**: above the list, on the right, Gmail shows *1–50 of 3,244* (or a few more).
-- **Sent**: about 1,500 mails.
+A line `Last error` that ends in `mbsync took longer than 600 s` is fine: kingo-pod uploads in rounds of 10 minutes,
+and that line only says a round was full.
+
+In your test account in Gmail, look at two folders. Gmail counts conversations, not mails (step 7), so its numbers
+are smaller:
+- **All Mail**: above the list, on the right, Gmail shows about 1,600.
+- **Sent**: about 870.
 
 **Look into the database (optional, strongly recommended).** No code needed, just look. CloudBeaver shows the database
 in your browser: <http://localhost:8978>. In Workshop II, it shows you what your AI assistant did, row by row.
@@ -465,6 +473,7 @@ your AI assistant.
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
 | The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
+| Gmail shows about 1,600 in All Mail, not 3,244 (steps 7 and 11) | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
 | WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
 | Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
 | Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
