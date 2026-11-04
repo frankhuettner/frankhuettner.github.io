@@ -67,22 +67,29 @@ The homework gets your laptop ready for 9 November. It has three parts:
 kingo-pod is the course software on your laptop. Langflow and n8n run in it. This update adds a new part called
 **Mail**. It connects your test account to kingo-pod. Later, it also sends the answers you approve.
 
-Open a terminal in your kingo-pod folder and run these two commands, one after the other:
+Open a terminal (on a Mac: the **Terminal** app; on Windows: the **Ubuntu** app) and run this one line:
 
 ```
-./kingo update
+cd ~/kingo-pod && git checkout -- . && git pull --ff-only && ./kingo backup && ./kingo update && ./kingo mode abp
 ```
 
-```
-./kingo mode abp
-```
-
-- `./kingo update` gets the newest version.
-- `./kingo mode abp` starts the parts we need: Langflow, n8n, the PostgreSQL database, CloudBeaver and a service
-  called Mail.
+Near the end, you should see a line that starts with `Stack updated — kingo-pod 1.4.4` (or a higher number).
 
 This can take a few minutes. You don't have to wait: go on with steps 2 to 5 in your browser. The update keeps running
 in the terminal.
+
+In case you care about what this does:
+
+- `&&` just connects the commands: each one starts when the one before it worked. If one fails, the line stops
+  there.
+- `cd ~/kingo-pod` goes to your kingo-pod folder.
+- `git checkout -- .` undoes changes in your kingo-pod folder. For Workshop I, many of you added `nemoguardrails` to
+  `langflow/requirements.txt`. That change stopped every update since. kingo-pod now has `nemoguardrails` built in.
+- `git pull --ff-only` gets the newest version.
+- `./kingo backup` saves your Langflow flows and n8n workflows first.
+- `./kingo update` builds the new version.
+- `./kingo mode abp` starts the parts we need: Langflow, n8n, the PostgreSQL database, CloudBeaver and a service
+  called Mail.
 
 ### 2. Make your test account in Gmail
 
@@ -468,6 +475,8 @@ your AI assistant.
 
 | What you see | What to do |
 |---|---|
+| The line in step 1 stops with `fatal: not a git repository` | Your kingo-pod folder came from the old ZIP download. Run `./kingo update`, then `./kingo mode abp`. |
+| The line in step 1 stops with another error | Send Frank a screenshot of the error and of what `git status` shows (run it in your kingo-pod folder). |
 | Triage shows an error (step 8) | Check the name `OPEN_ROUTER_API_KEY` in Langflow. Check that your key still has credit. |
 | No app passwords page (step 5) | Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough. |
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
