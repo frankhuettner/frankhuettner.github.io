@@ -356,7 +356,13 @@ More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-c
 
 1. In n8n, click **Create workflow**. In the new workflow, open the menu **…** at the top → **Import** → **From file**,
    and pick `ws2_hw/n8n/ws2_0_embed_mails.json` (in the folder from step 8.2).
-2. If a node shows a credential warning, pick the credential with the same name.
+2. If a node shows a credential warning, open it and pick the credential with the same name. For example:
+   double-click the node `fetch_embeddings_bge_m3`. Under *Header Auth*, click the field and pick
+   `OpenRouter (embeddings)`:
+
+   ![The node fetch_embeddings_bge_m3 in n8n: under Header Auth, pick OpenRouter (embeddings)](/abp/ws2/img/n8n-fix-node-credentials.png)
+
+   Then close the node with the **✕** at the top right.
 3. Turn the workflow on: click **Publish** at the top. In the window that opens, click **Publish** again.
    **Publish** means: the workflow now runs by itself, every minute, until you unpublish it.
 4. Keep its list of runs short: open the menu **…** at the top → **Settings**. Set *Save successful production
@@ -484,7 +490,7 @@ your AI assistant.
 | `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
 | The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
 | Gmail shows about 1,600 in All Mail, not 3,244 (steps 7 and 11) | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
-| WS2.0 fails at `fetch_embeddings_bge_m3` | In the credential `OpenRouter (embeddings)`, the value must be the word `Bearer`, one space, then your key. |
+| WS2.0 fails at `fetch_embeddings_bge_m3` | The node must use the credential `OpenRouter (embeddings)`: see step 10.2. In that credential, the value must be the word `Bearer`, one space, then your key. |
 | Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
 | Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
