@@ -215,7 +215,8 @@ We also prepared a Langflow component for you: **Mail Search**. It finds the mai
 3,244 mails. On 9 November, your AI assistant will use it to find facts for its drafts. The flow **Ask Mailbox (Enron)**
 uses it, so you test Mail Search through this flow.
 
-1. In Langflow, open the flow `Ask Mailbox (Enron)` → **Playground**, as usual.
+1. In Langflow, open the flow `Ask Mailbox (Enron)` → **Playground**, as usual. If Langflow says *Flow needs review*,
+   click **Dismiss All** (as in step 8.4).
 2. Ask: *What is Steve Leppard's email address?* The answer gives steven.leppard@… and names the mail it comes from.
    Here the name *Leppard* helps: Mail Search finds the mail by its words.
 3. Now find your own mail from step 12. Ask: *Who is sharing homemade Korean food?* None of these words is in your
@@ -266,3 +267,4 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
 | Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
 | A component says the API key is missing, or its API key field is empty | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |
+| OpenRouter and Agent are not connected | At the bottom right of OpenRouter, set the menu to **Language Model**. Then drag a line from its dot to **Language Model** on Agent. |

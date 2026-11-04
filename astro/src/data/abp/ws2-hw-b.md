@@ -50,7 +50,8 @@ Open Langflow: <http://localhost:7860>.
    THOMAS.
    ```
 
-   If you see a yellow note "Legacy" on Text Input or Text Output, ignore it.
+   If you see a yellow note "Legacy" on Text Input or Text Output, ignore it. If Langflow says *Flow needs review*,
+   click **Dismiss All**.
 5. **Run it.** On the component **Text Output**, click ▶ (*Run component*). Wait a few seconds. Then click the small
    icon next to **Output Text** (*Inspect output*). You see `"action": "reply"` and a short reason after `"why"`.
    Thomas asks a question, so the AI assistant would draft an answer. At the end you see `"checks_ok": true`: the
@@ -95,3 +96,4 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 |---|---|
 | Triage shows an error | Check the name `OPEN_ROUTER_API_KEY` in Langflow. Check that your key still has credit. |
 | A component says the API key is missing, or its API key field is empty | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |
+| OpenRouter and Check Triage are not connected | At the bottom right of OpenRouter, set the menu to **Model Response**. Then drag a line from its dot to **Answer** on Check Triage. |
