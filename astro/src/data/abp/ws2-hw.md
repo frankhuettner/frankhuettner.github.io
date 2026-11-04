@@ -53,7 +53,7 @@ The homework gets your laptop ready for 9 November. It has three parts:
 
 ## Before you start
 
-- **Time:** 1 to 2 hours. Some of it is waiting while things load.
+- **Time:** 1 to 2 hours. Some of it is waiting while things load. You can do this with breaks or in chunks.
 - **Deadline:** **Sunday, 8 November**, the day before Workshop II.
 - **Want help?** Finish by **Friday, 6 November**. Then there is still time to fix problems together.
 - **Stuck?** Write to Frank right away. Then we fix it together.
@@ -98,6 +98,8 @@ in the terminal.
 
 </details>
 
+[Stuck? Help for step 1](#step-1)
+
 ### 2. Make your test account in Gmail
 
 1. Go to <https://accounts.google.com/signup>. Google will ask for your phone number.
@@ -129,6 +131,8 @@ prompt, or an authenticator app. A security key alone does not work for step 5.
 
 This is not your Google password. It is a second password, only for kingo-pod: with it, kingo-pod can read your test
 account and send the answers you approve. You can delete it any time on the same page.
+
+[Stuck? Help for step 5](#step-5)
 
 ### 6. Connect your test account to kingo-pod
 
@@ -165,6 +169,8 @@ It asks three questions:
    your test account, paste the app password again (or make a new one as in step 5), then type the addresses.
 
 kingo-pod then checks the login. It sends nothing. You should see a line that starts with `OK. Folders:`.
+
+[Stuck? Help for step 6](#step-6)
 
 ### 7. Copy Kaminski's mails into your test account
 
@@ -212,6 +218,8 @@ Good to know:
 - `./kingo mail seed` copies every mail only once. If you run it again, kingo-pod answers `already seeded` and gives
   the upload a push.
 - If your laptop sleeps or kingo-pod stops, start it again with `./kingo up`. The upload goes on by itself.
+
+[Stuck? Help for step 7](#step-7)
 
 ## Part B · Test Langflow
 
@@ -291,6 +299,8 @@ Open Langflow: <http://localhost:7860>.
 **Well done: an AI just sorted a real mail for you.** This flow is the brain of your AI assistant. On 9 November, n8n
 will give it hands: n8n will notice new mail, then reach out to this Langflow flow, check the answer, and act in your
 test account.
+
+[Stuck? Help for step 8](#step-8)
 
 ## Part C · Set up n8n and test it
 
@@ -379,6 +389,8 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
 
 More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-credentials/)
 
+[Stuck? Help for step 9](#step-9)
+
 ### 10. Make Kaminski's mails searchable for your AI assistant: import WS2.0
 
 1. In n8n, click **Create workflow**. In the new workflow, open the menu **…** at the top, next to the workflow's
@@ -425,6 +437,8 @@ searches in two ways at once:
 Step 13 tests it.
 
 </details>
+
+[Stuck? Help for step 10](#step-10)
 
 ### 11. Check that all mails arrived
 
@@ -476,6 +490,8 @@ CloudBeaver and one for the database, with different passwords. The page shows b
 
 On 9 November, your n8n workflows work with exactly these rows.
 
+[Stuck? Help for step 11](#step-11)
+
 ### 12. Check that new mail arrives: a test mail from your SKKU account
 
 From your **SKKU mail account**, send this mail to your test Gmail account. Copy the subject and the text, then
@@ -510,6 +526,8 @@ to your RAG system (step 10), so Mail Search can find your new mail by what it s
 
 **It works: the mail from your SKKU account just arrived in kingo-pod on your laptop.**
 
+[Stuck? Help for step 12](#step-12)
+
 ### 13. Test the mail search: ask the mailbox
 
 We also prepared a Langflow component for you: **Mail Search**. It finds the mails that fit a question, among all
@@ -526,67 +544,80 @@ uses it, so you test Mail Search through this flow.
 **That's it: your laptop is ready for 9 November.** There you will build your first n8n workflow, WS2.1, and then
 your AI assistant.
 
+[Stuck? Help for step 13](#step-13)
+
 ## If something goes wrong
+
+Find your step. Still stuck? Write to Frank: then we fix it together.
+
+#### Step 1
 
 | What you see | What to do |
 |---|---|
-| The line in step 1 stops with `fatal: not a git repository` | Your kingo-pod folder came from the old ZIP download. Run `./kingo update`, then `./kingo mode abp`. |
-| The line in step 1 stops with another error | Send Frank a screenshot of the error and of what `git status` shows (run it in your kingo-pod folder). |
-| Triage shows an error (step 8) | Check the name `OPEN_ROUTER_API_KEY` in Langflow. Check that your key still has credit. |
-| A component says the API key is missing, or its API key field is empty (steps 8 and 13) | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |
-| No app passwords page (step 5) | Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough. |
-| `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
+| The line stops with `fatal: not a git repository` | Your kingo-pod folder came from the old ZIP download. Run `./kingo update`, then `./kingo mode abp`. |
+| The line stops with another error | Send Frank a screenshot of the error and of what `git status` shows (run it in your kingo-pod folder). |
+
+#### Step 5
+
+| What you see | What to do |
+|---|---|
+| No app passwords page | Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough. |
+
+#### Step 6
+
+| What you see | What to do |
+|---|---|
+| `Sign-in failed` | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
-| `already seeded` (step 7) | Your account already has the mails. Look in Sent and All Mail. |
-| The numbers in Gmail stop growing (step 7) | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
-| Gmail shows about 1,600 in All Mail, not 3,244 (steps 7 and 11) | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
-| WS2.0 fails at `fetch_embeddings_bge_m3` | The node must use the credential `OpenRouter (embeddings)`: see step 10.2. In that credential, the value must be the word `Bearer`, one space, then your key. |
-| Ask Mailbox does not find your kimchi mail (step 13) | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
-| Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` (step 13) | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
-| Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
-| CloudBeaver shows `No Connections`, or **Classroom (PostgreSQL)** does not open (step 11) | You are not logged in yet. Do steps 1 and 2 of [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/): two logins, with two different passwords. |
-| The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password `kingo2026`. |
-| The mail from your SKKU account does not arrive (step 12) | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
-| `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
 | You want to start again with another account | Run `./kingo mail reset`, then step 6 again. |
 
-## The files in ws2_hw.zip
+#### Step 7
 
-The Enron mail case. Every name starts with `ws2_`, for Workshop II.
+| What you see | What to do |
+|---|---|
+| `already seeded` | Your account already has the mails. Look in Sent and All Mail. |
+| The numbers in Gmail stop growing | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
+| Gmail shows about 1,600 in All Mail, not 3,244 | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
+| `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
 
-The homework says when you need which file (step 8 and Part C).
+#### Step 8
 
-### Langflow: upload all four in step 8
+| What you see | What to do |
+|---|---|
+| Triage shows an error | Check the name `OPEN_ROUTER_API_KEY` in Langflow. Check that your key still has credit. |
+| A component says the API key is missing, or its API key field is empty | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |
 
-| File | Langflow flow | What it does |
-|---|---|---|
-| `langflow/ws2_triage_enron.json` | Triage (Enron) | sorts one mail: MailEx events, action (calendar, reply, forward, archive), deadline; checks its own answer (`checks_ok`, `problems`) |
-| `langflow/ws2_draft_reply_enron.json` | Draft Reply (Enron) | drafts Vince Kaminski's reply from his earlier mails, as of the mail's date; never from a confidential mail; checks its own draft (`checks_ok`, `problems`) |
-| `langflow/ws2_ask_mailbox_enron.json` | Ask Mailbox (Enron) | answers questions about the mailbox, with sources |
-| `langflow/ws2_judge_draft_enron.json` | Judge Draft (Enron) | grades a draft against the reply really sent, 1 to 5 (right from 4); checks its grade; for the test bench of 16 November |
+#### Step 9
 
-### n8n
+| What you see | What to do |
+|---|---|
+| The Postgres credential fails | Host `postgres` (not `localhost`), SSL `disable`, the password `kingo2026`. |
 
-| File | n8n workflow | What it does |
-|---|---|---|
-| `n8n/ws2_0_embed_mails.json` | WS2.0 - Embed Mails | embeds every mail of your mailbox into `n8n_workshop_mail.chunks`, so the search finds it |
+#### Step 10
 
-### Setting up (short version)
+| What you see | What to do |
+|---|---|
+| WS2.0 fails at `fetch_embeddings_bge_m3` | The node must use the credential `OpenRouter (embeddings)`: see step 10.2. In that credential, the value must be the word `Bearer`, one space, then your key. |
 
-The homework walks you through all of this step by step. The short version, to look things up later:
+#### Step 11
 
-- Your pod runs in mode `abp`, and your test account is connected and holds Kaminski's mails (`./kingo mail`,
-  `./kingo mail seed`).
-- In Langflow, your OpenRouter key is a global variable named `OPEN_ROUTER_API_KEY`, with the key Yanbo gave you.
+| What you see | What to do |
+|---|---|
+| Gmail shows about 1,600 in All Mail, not 3,244 | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
+| CloudBeaver shows `No Connections`, or **Classroom (PostgreSQL)** does not open | You are not logged in yet. Do steps 1 and 2 of [Using CloudBeaver](https://huettner.io/kingo-pod/cloudbeaver/): two logins, with two different passwords. |
+| `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
 
-1. **Langflow:** make a project "WS2 - Mail Assistant (Enron)" and upload the four files from `langflow/`. In Settings →
-   Langflow API Keys, **Add New** (description `n8n`, no expiration date), then copy the key.
-2. **n8n, credentials:** create four, with exactly these names:
-   - `Mail (n8n_workshop_mail_n8n)`, type Postgres: host `postgres`, database `classroom`, user
-     `n8n_workshop_mail_n8n`, password `kingo2026`, port `5432`, SSL `disable`.
-   - `OpenRouter (embeddings)`, type Header Auth: name `Authorization`, value the word `Bearer`, one space, then your
-     OpenRouter key.
-   - `Langflow (Run API)`, type Header Auth: name `x-api-key`, value your Langflow API key.
-   - `OpenRouter (chat)`, type OpenRouter: your OpenRouter key (the guard's model).
-3. **n8n, WS2.0:** *Import from File* `n8n/ws2_0_embed_mails.json`; where a node asks for a credential, pick the one of
-   the same name. Publish it: it embeds your mailbox, in our test in about 12 minutes.
+#### Step 12
+
+| What you see | What to do |
+|---|---|
+| The mail from your SKKU account does not arrive | Wait a minute. Check the address. Look into the inbox of your test account in Gmail. |
+
+#### Step 13
+
+| What you see | What to do |
+|---|---|
+| Ask Mailbox does not find your kimchi mail | WS2.0 adds a new mail a minute after it arrives. Wait a minute and ask again. Still nothing? Your flows may be old: see the next row. |
+| Ask Mailbox shows `Error building Component Agent` with `Token "NaN" is invalid` | Your flows are old. Download `ws2_hw.zip` again, delete the four flows in Langflow, and load the four new files (step 8.3). |
+| Ask Mailbox gives no answer | WS2.0 is not finished yet (it needs about 12 minutes after step 7), or `OPEN_ROUTER_API_KEY` is missing in Langflow. |
+| A component says the API key is missing, or its API key field is empty | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |

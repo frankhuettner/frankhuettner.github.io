@@ -317,6 +317,42 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     margin-bottom: 0;
   }
 
+  /* The line at the end of a step that jumps down to its help, "[Stuck? Help for step 8](#step-8)" in the Markdown
+     (Frank, 4 Nov 2026: "links im text runter zum troubleshoot ... und ein schönes symbol"): a lifebuoy in a pill. */
+  .ws2 a[href^="#step-"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0.75rem 0.2rem 0.45rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: 999px;
+    color: var(--ink-muted);
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+
+  .ws2 a[href^="#step-"]::before {
+    content: "";
+    flex: none;
+    width: 1.25em;
+    height: 1.25em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7.25' fill='none' stroke='%23fff' stroke-width='5.5'/%3E%3Ccircle cx='12' cy='12' r='7.25' fill='none' stroke='%23e5484d' stroke-width='5.5' stroke-dasharray='5.694 5.694' stroke-dashoffset='2.847'/%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23a1262b' stroke-width='1'/%3E%3Ccircle cx='12' cy='12' r='4.5' fill='none' stroke='%23a1262b' stroke-width='1'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .ws2 a[href^="#step-"]:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* The help itself: one small table per step under its heading, all with the same columns. */
+  .ws2 h4 + table {
+    table-layout: fixed;
+  }
+
+  .ws2 h4 + table th:first-child {
+    width: 36%;
+  }
+
   .ws2 .snip {
     position: relative;
   }
