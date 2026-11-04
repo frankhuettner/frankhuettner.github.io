@@ -26,7 +26,9 @@ At the end of the first morning, this works on your laptop:
 So you work with two mail accounts: your **SKKU mail account**, which you already have, and a new **test account**
 in Gmail, which you make in step 2.
 
-**Two ideas you know from Yanbo's workshop.**
+<details class="more">
+<summary>Two ideas you know from Yanbo's workshop</summary>
+
 - **Decomposition.** Your AI assistant is not one big AI that does everything. The job is cut into small steps, and
   each step has one task: n8n picks up the mail, Triage only sorts it, Draft Reply only writes the answer, n8n checks
   the rules, and you decide. Small steps are easy to test and to fix. On 9 November you will test Triage on its own
@@ -34,6 +36,8 @@ in Gmail, which you make in step 2.
 - **Guardrails.** Every step is checked before the next one acts. n8n looks at each new mail first: it hides personal
   numbers, and a mail that tries to trick your AI assistant goes to you instead. Langflow checks its own answer: in
   step 8 you will see `"checks_ok": true`. And nothing leaves without your OK.
+
+</details>
 
 ## This homework: three parts
 
@@ -78,7 +82,8 @@ Near the end, you should see a line that starts with `Stack updated — kingo-po
 This can take a few minutes. You don't have to wait: go on with steps 2 to 5 in your browser. The update keeps running
 in the terminal.
 
-In case you care about what this does:
+<details class="more">
+<summary>In case you care about what this does</summary>
 
 - `&&` just connects the commands: each one starts when the one before it worked. If one fails, the line stops
   there.
@@ -90,6 +95,8 @@ In case you care about what this does:
 - `./kingo update` builds the new version.
 - `./kingo mode abp` starts the parts we need: Langflow, n8n, the PostgreSQL database, CloudBeaver and a service
   called Mail.
+
+</details>
 
 ### 2. Make your test account in Gmail
 
@@ -145,9 +152,14 @@ It asks three questions:
 3. **Other addresses kingo-pod may send mail to.** Type your SKKU address. On 9 November you will write from your
    SKKU address, and your AI assistant's answers go back to it.
 
-   **Why?** kingo-pod sends mail only to your test account and the addresses you type here. A mail to someone in
-   Kaminski's mails lands in your own test account instead. A mail to any other address is not sent at all. So
-   neither your AI assistant nor a mistake can send mail to anyone else.
+   <details class="more">
+   <summary>Why kingo-pod asks for these addresses</summary>
+
+   kingo-pod sends mail only to your test account and the addresses you type here. A mail to someone in Kaminski's
+   mails lands in your own test account instead. A mail to any other address is not sent at all. So neither your AI
+   assistant nor a mistake can send mail to anyone else.
+
+   </details>
 
    **Forgot your SKKU address, or want to add another one later?** Run `./kingo mail` again. Press Enter to keep
    your test account, paste the app password again (or make a new one as in step 5), then type the addresses.
@@ -167,10 +179,15 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
 
    After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
 
-   **What happens.** In a few seconds, the command puts all mails into kingo-pod's service called Mail, on your
-   laptop. Mail keeps this copy: with it, Mail knows what is new on each side. From there, kingo-pod copies the mails
-   into its PostgreSQL database and uploads them to your test Gmail account, round by round. In the end, every mail is
-   in three places: in Gmail, in Mail, and in PostgreSQL, where n8n and your AI assistant read it.
+   <details class="more">
+   <summary>What happens</summary>
+
+   In a few seconds, the command puts all mails into kingo-pod's service called Mail, on your laptop. Mail keeps this
+   copy: with it, Mail knows what is new on each side. From there, kingo-pod copies the mails into its PostgreSQL
+   database and uploads them to your test Gmail account, round by round. In the end, every mail is in three places: in
+   Gmail, in Mail, and in PostgreSQL, where n8n and your AI assistant read it.
+
+   </details>
 2. The command is done, but the upload goes on inside kingo-pod for about 30 minutes, sometimes longer. Be patient.
    Keep kingo-pod running and your laptop awake.
 3. Watch the mails arrive. They come step by step over the 30 minutes, so the numbers in Gmail grow while you
@@ -179,8 +196,13 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
    - **All Mail** (in the menu on the left, under **More**): about 1,600 conversations.
    - **Inbox**: stays empty. That is right: new mail comes in the workshop.
 
-   **Why not 3,244?** Gmail counts conversations, not mails: a mail and all its answers are one conversation. So
-   Gmail shows smaller numbers, but all 3,244 mails are there.
+   <details class="more">
+   <summary>Why not 3,244?</summary>
+
+   Gmail counts conversations, not mails: a mail and all its answers are one conversation. So Gmail shows smaller
+   numbers, but all 3,244 mails are there.
+
+   </details>
 
    To count the mails, ask kingo-pod: run `./kingo mail status`. It shows each folder twice, here and at Gmail. When
    the numbers are the same in every row, the upload is done. (No such rows? Run `./kingo update` first.)
@@ -342,8 +364,13 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
      - Top left: `OpenRouter (chat)`
      - API Key: your OpenRouter key
 
-   **Why two for OpenRouter?** It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways,
-   and each way needs the key in its own form.
+   <details class="more">
+   <summary>Why two for OpenRouter?</summary>
+
+   It is the same key twice. WS2.0 and the guard talk to OpenRouter in two different ways, and each way needs the key
+   in its own form.
+
+   </details>
 
    **Check:** in the column on the left of n8n, click **Overview** (or **Personal**), then the tab **Credentials** (in
    the middle of the page). You see your four credentials:
@@ -373,15 +400,22 @@ More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-c
 4. Keep its list of runs short: open the menu **…** at the top → **Settings**. Set *Save successful production
    executions* to **Do not save**, then click **Save**. n8n now keeps only the runs that fail.
 
-**What WS2.0 does.** It does not search: it keeps the search up to date. This is a RAG system, like one with
-ChromaDB. It stores every mail as an *embedding*: a long list of numbers that stands for what the mail is about. But
-this time the store lives in kingo-pod's PostgreSQL database, in the table `chunks`. Every minute, WS2.0 takes up to
-320 mails that are not in it yet, gets their embeddings from an AI model on OpenRouter (bge-m3) and saves them there.
-So the search knows a new mail soon after it arrives. The first time, all 3,244 mails take about 12 minutes once
-step 7 is done.
+<details class="more">
+<summary>What WS2.0 does</summary>
 
-**Who searches: Langflow.** When your AI assistant needs facts, the component **Mail Search** (in the Langflow flows
-Ask Mailbox and Draft Reply) searches in two ways at once:
+It does not search: it keeps the search up to date. This is a RAG system, like one with ChromaDB. It stores every mail
+as an *embedding*: a long list of numbers that stands for what the mail is about. But this time the store lives in
+kingo-pod's PostgreSQL database, in the table `chunks`. Every minute, WS2.0 takes up to 320 mails that are not in it
+yet, gets their embeddings from an AI model on OpenRouter (bge-m3) and saves them there. So the search knows a new mail
+soon after it arrives. The first time, all 3,244 mails take about 12 minutes once step 7 is done.
+
+</details>
+
+<details class="more">
+<summary>Who searches: Langflow</summary>
+
+When your AI assistant needs facts, the component **Mail Search** (in the Langflow flows Ask Mailbox and Draft Reply)
+searches in two ways at once:
 - **By meaning**, as in any RAG system: it turns the question into numbers in the same way and finds the mails whose
   numbers are closest.
 - **By words**: embeddings are bad at finding exact words, such as a name, a number or a rare term. PostgreSQL has an
@@ -389,6 +423,8 @@ Ask Mailbox and Draft Reply) searches in two ways at once:
   question's words, fast.
 
 Step 13 tests it.
+
+</details>
 
 ### 11. Check that all mails arrived
 
@@ -410,8 +446,10 @@ are smaller:
 - **All Mail**: above the list, on the right, Gmail shows about 1,600 conversations.
 - **Sent**: about 870 conversations.
 
-**Moving forward, you might notice that the addresses differ.** In Gmail, they end in `.example` (for example
-`vince.kaminski@enron.example`): no mail can reach such an address. In kingo-pod's PostgreSQL database on your
+<details class="more">
+<summary>Moving forward, you might notice that the addresses differ</summary>
+
+In Gmail, they end in `.example` (for example `vince.kaminski@enron.example`): no mail can reach such an address. In kingo-pod's PostgreSQL database on your
 computer, and so in n8n and Langflow, they end in `.com` or `.edu`, as in Kaminski's real mails. In between,
 kingo-pod's service called Mail converts the addresses, both ways:
 - **From Gmail to PostgreSQL**, it turns `.example` into the real address. So your AI assistant sees the mails as
@@ -420,6 +458,8 @@ kingo-pod's service called Mail converts the addresses, both ways:
   mail to one of Kaminski's contacts lands in your own test account instead.
 
 So no mail goes out through Gmail to a real person by mistake.
+
+</details>
 
 **Want to look into the database?** (Optional, feel free to skip this and continue with step 12.) CloudBeaver shows the
 database in your browser: <http://localhost:8978>. In Workshop II, it shows you what your AI assistant did, row by row.
@@ -459,10 +499,14 @@ Optional, if you set up CloudBeaver in step 11: open the table **messages** as i
 `sent_at`, newest first. To sort, move the mouse over the head of the column `sent_at`: small arrows appear. Click
 them until the newest mail is at the top. Your mail is the first row.
 
-**What just happened.** You sent the mail to Gmail. kingo-pod's service called Mail copied it from Gmail onto your
-laptop and put it into the PostgreSQL database. There you can look at it easily, for example in CloudBeaver. A
-minute later, WS2.0 even adds it to your RAG system (step 10), so Mail Search can find your new mail by what it says.
-You try that in step 13.
+<details class="more">
+<summary>What just happened</summary>
+
+You sent the mail to Gmail. kingo-pod's service called Mail copied it from Gmail onto your laptop and put it into the
+PostgreSQL database. There you can look at it easily, for example in CloudBeaver. A minute later, WS2.0 even adds it
+to your RAG system (step 10), so Mail Search can find your new mail by what it says. You try that in step 13.
+
+</details>
 
 **It works: the mail from your SKKU account just arrived in kingo-pod on your laptop.**
 
@@ -489,6 +533,7 @@ your AI assistant.
 | The line in step 1 stops with `fatal: not a git repository` | Your kingo-pod folder came from the old ZIP download. Run `./kingo update`, then `./kingo mode abp`. |
 | The line in step 1 stops with another error | Send Frank a screenshot of the error and of what `git status` shows (run it in your kingo-pod folder). |
 | Triage shows an error (step 8) | Check the name `OPEN_ROUTER_API_KEY` in Langflow. Check that your key still has credit. |
+| A component says the API key is missing, or its API key field is empty (steps 8 and 13) | You loaded the flows before you made `OPEN_ROUTER_API_KEY`. Langflow then empties the key fields. Delete the four flows and load them again (step 8.3). |
 | No app passwords page (step 5) | Turn on 2-Step Verification with text messages or the Google prompt. A security key alone is not enough. |
 | `Sign-in failed` (step 6) | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
