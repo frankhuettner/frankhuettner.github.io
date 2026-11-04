@@ -354,8 +354,13 @@ More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-c
 
 ### 10. Make Kaminski's mails searchable for your AI assistant: import WS2.0
 
-1. In n8n, click **Create workflow**. In the new workflow, open the menu **…** at the top → **Import** → **From file**,
-   and pick `ws2_hw/n8n/ws2_0_embed_mails.json` (in the folder from step 8.2).
+1. In n8n, click **Create workflow**. In the new workflow, open the menu **…** at the top, next to the workflow's
+   name:
+
+   ![The menu … at the top of n8n, next to the workflow's name](/abp/ws2/img/n8n-import.png)
+
+   In that menu, click **Import** → **From file**, and pick `ws2_hw/n8n/ws2_0_embed_mails.json` (in the folder from
+   step 8.2).
 2. If a node shows a credential warning, open it and pick the credential with the same name. For example:
    double-click the node `fetch_embeddings_bge_m3`. Under *Header Auth*, click the field and pick
    `OpenRouter (embeddings)`:
