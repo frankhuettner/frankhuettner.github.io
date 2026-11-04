@@ -124,6 +124,19 @@ soon after it arrives. The first time, all 3,244 mails take about 12 minutes onc
 </details>
 
 <details class="more">
+<summary>Why PostgreSQL, not ChromaDB?</summary>
+
+In Yanbo's workshop, the embeddings lived in ChromaDB. Here they live in PostgreSQL, next to the mails:
+- **One place.** The mails are already rows in PostgreSQL. Their embeddings sit right next to them, in the table
+  `chunks`. Nothing is copied into a second store, so nothing gets out of step.
+- **Meaning and words in one search.** One query finds mails by meaning and by words, and mixes both lists.
+- **Rules in the database.** When your AI assistant drafts a reply, Mail Search sees only mails up to the date of the
+  mail, and never a confidential one. The database itself makes sure of that, not the AI.
+- **Both tools reach it.** n8n writes the embeddings (WS2.0), Langflow reads them (Mail Search).
+
+</details>
+
+<details class="more">
 <summary>Who searches: Langflow</summary>
 
 When your AI assistant needs facts, the component **Mail Search** (in the Langflow flows Ask Mailbox and Draft Reply)
