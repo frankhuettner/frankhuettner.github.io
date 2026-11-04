@@ -73,7 +73,7 @@ Open a terminal (on a Mac: the **Terminal** app; on Windows: the **Ubuntu** app)
 cd ~/kingo-pod && git checkout -- . && git pull --ff-only && ./kingo backup && ./kingo update && ./kingo mode abp
 ```
 
-Near the end, you should see a line that starts with `Stack updated — kingo-pod 1.4.4` (or a higher number).
+Near the end, you should see a line that starts with `Stack updated — kingo-pod 1.4.3` (or a higher number).
 
 This can take a few minutes. You don't have to wait: go on with steps 2 to 5 in your browser. The update keeps running
 in the terminal.
