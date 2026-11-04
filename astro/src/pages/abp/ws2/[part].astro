@@ -9,7 +9,7 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths: GetStaticPaths = () => {
   const files = import.meta.glob<any>("../../../data/abp/ws2-*.md", { eager: true });
   return Object.entries(files).map(([path, mod]) => ({
-    params: { part: path.match(/ws2-(\w+)\.md$/)![1] },
+    params: { part: path.match(/ws2-([\w-]+)\.md$/)![1] },
     props: {
       title: mod.frontmatter.title as string,
       lede: mod.frontmatter.lede as string | undefined,
@@ -20,8 +20,23 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 // The pages in the order of the course, as the column on the left names them.
-const LABELS: Record<string, string> = { hw: "Homework", s1: "9 November", s2: "16 November", s3: "23 November" };
-const parts = Object.keys(import.meta.glob("../../../data/abp/ws2-*.md")).map((p) => p.match(/ws2-(\w+)\.md$/)![1]);
+// The homework is several pages (Frank, 4 Nov 2026: "auf drei teile aufteilen? Part A B C?"; "statt part D, einfach
+// optional"): its start, then its parts, indented under it.
+const LABELS: Record<string, string> = {
+  hw: "Homework",
+  "hw-a": "Part A · Mailbox",
+  "hw-b": "Part B · Langflow",
+  "hw-c": "Part C · n8n",
+  "hw-optional": "Optional · CloudBeaver",
+  s1: "9 November",
+  s2: "16 November",
+  s3: "23 November",
+};
+const ORDER = Object.keys(LABELS);
+const rank = (p: string) => (ORDER.includes(p) ? ORDER.indexOf(p) : ORDER.length);
+const parts = Object.keys(import.meta.glob("../../../data/abp/ws2-*.md"))
+  .map((p) => p.match(/ws2-([\w-]+)\.md$/)![1])
+  .sort((a, b) => rank(a) - rank(b));
 
 const { part } = Astro.params;
 const { title, lede, Content, headings } = Astro.props;
@@ -36,7 +51,7 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       <ul>
         {
           parts.map((p) => (
-            <li>
+            <li class={p.includes("-") ? "ws2-pages__sub" : undefined}>
               <a href={`/abp/ws2/${p}/`} aria-current={p === part ? "page" : undefined}>
                 {LABELS[p] ?? p}
               </a>
@@ -195,6 +210,10 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
   .ws2-toc a.is-current {
     color: var(--ink);
     font-weight: 600;
+  }
+
+  .ws2-pages__sub {
+    padding-left: 0.8rem;
   }
 
   .ws2-toc__item--3 {
@@ -397,6 +416,10 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     border-bottom: 1px solid var(--rule-soft);
     vertical-align: top;
     overflow-wrap: anywhere;   /* long file names must not push a phone's page sideways */
+  }
+
+  .ws2 th {
+    overflow-wrap: normal;   /* a short head ("Part", "Steps") stays one word */
   }
 
   /* The homework's pictures (the course repo's build_packages.py writes their HTML; Frank's colleague, 3 Nov 2026: "ein bigger
