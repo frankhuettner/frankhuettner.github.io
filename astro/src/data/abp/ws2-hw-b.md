@@ -24,8 +24,8 @@ Open Langflow: <http://localhost:7860>.
      screen). Value: your key. Save.
    - More help: [Langflow: Global variables](https://docs.langflow.org/configuration-global-variables)
 2. **Get the course files.** Download [`ws2_hw.zip`](https://huettner.io/abp/ws2/ws2_hw.zip) and unzip it. You get
-   a folder `ws2_hw` with two folders inside (`langflow` and `n8n`) and a readme. Every name starts with `ws2_`, for
-   Workshop II. You need them now and in [Part C](/abp/ws2/hw-c/).
+   a folder `ws2_hw` with two folders inside (`langflow` and `n8n`) and `ws2_hw_homework.html`: this homework as one
+   page, to read without the internet. Every name starts with `ws2_`, for Workshop II. You need them now and in [Part C](/abp/ws2/hw-c/).
 3. **Load the Langflow flows.** Make a new project called `WS2 - Mail Assistant (Enron)`. Open the folder
    `ws2_hw/langflow` (from step 8.2) next to your browser. Select all four files in it and drag them onto the page of
    your new project, where its flows are listed (not into an open flow). Langflow loads all four at once.

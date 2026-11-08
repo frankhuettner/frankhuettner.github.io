@@ -21,7 +21,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 // The pages in the order of the course, as the column on the left names them.
 // The homework is several pages (Frank, 4 Nov 2026: "auf drei teile aufteilen? Part A B C?"; "statt part D, einfach
-// optional"): its start, then its parts, indented under it.
+// optional"): its start, then its parts, indented under it. The workbook of 9 November the same way (Frank, 8 Nov
+// 2026: "mehrere, wie hausaufgabe"): its start with the import, then one page per block.
 const LABELS: Record<string, string> = {
   hw: "Homework",
   "hw-a": "Part A · Mailbox",
@@ -29,6 +30,12 @@ const LABELS: Record<string, string> = {
   "hw-c": "Part C · n8n",
   "hw-optional": "Optional · CloudBeaver",
   s1: "9 November",
+  "s1-block-2": "Block 2 · WS2.1",
+  "s1-block-3": "Block 3 · WS2.3 and WS2.4",
+  "s1-block-4": "Block 4 · Challenge",
+  "s1-block-5": "Block 5 · Inside WS2.3",
+  "s1-block-6": "Block 6 · Human in the loop",
+  "s1-appendix": "Appendix · Contracts",
   s2: "16 November",
   s3: "23 November",
 };
@@ -312,6 +319,23 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     border-radius: var(--radius);
   }
 
+  /* Small print in the workbooks (Frank, 7 Nov 2026: "bla bla ... bitte sehr klein machen"): what helps, not what to
+     type. The course repo's Markdown writes it as <div class="fine"> and <small>. */
+  .ws2 .fine,
+  .ws2 small {
+    font-size: 0.82em;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .ws2 .fine p {
+    margin: 0.3rem 0;
+  }
+
+  .ws2 details.fine > summary {
+    font-size: 1.2em;
+  }
+
   /* Explanations a step does not need, folded (a student, 4 Nov 2026: "it's a lot to read"; Frank: "ja"). The course
      repo's Markdown writes them as <details class="more">. */
   .ws2 details.more {
@@ -338,7 +362,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
 
   /* The line at the end of a step that jumps down to its help, "[Stuck? Help for step 8](#step-8)" in the Markdown
      (Frank, 4 Nov 2026: "links im text runter zum troubleshoot ... und ein schönes symbol"): a lifebuoy in a pill. */
-  .ws2 a[href^="#step-"] {
+  .ws2 a[href^="#step-"],
+  .ws2 a[href^="#block-"] {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
@@ -350,7 +375,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     text-decoration: none;
   }
 
-  .ws2 a[href^="#step-"]::before {
+  .ws2 a[href^="#step-"]::before,
+  .ws2 a[href^="#block-"]::before {
     content: "";
     flex: none;
     width: 1.25em;
@@ -358,7 +384,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7.25' fill='none' stroke='%23fff' stroke-width='5.5'/%3E%3Ccircle cx='12' cy='12' r='7.25' fill='none' stroke='%23e5484d' stroke-width='5.5' stroke-dasharray='5.694 5.694' stroke-dashoffset='2.847'/%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23a1262b' stroke-width='1'/%3E%3Ccircle cx='12' cy='12' r='4.5' fill='none' stroke='%23a1262b' stroke-width='1'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 
-  .ws2 a[href^="#step-"]:hover {
+  .ws2 a[href^="#step-"]:hover,
+  .ws2 a[href^="#block-"]:hover {
     border-color: var(--accent);
     color: var(--accent);
   }
