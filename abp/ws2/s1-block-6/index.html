@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Block 6 · Why we put the human in the loop in WS2.4 · Frank Huettner</title><meta name="description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><link rel="canonical" href="https://huettner.io/abp/ws2/s1-block-6/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Frank Huettner — news" href="/rss.xml"><link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🐼&lt;/text&gt;&lt;/svg&gt;"><meta property="og:type" content="website"><meta property="og:title" content="Block 6 · Why we put the human in the loop in WS2.4 · Frank Huettner"><meta property="og:description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><meta property="og:url" content="https://huettner.io/abp/ws2/s1-block-6/"><meta name="twitter:card" content="summary"><style>@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}:root{--font-sans:Inter-e4fb582994510e21,"Inter-e4fb582994510e21 fallback: Arial","Inter-e4fb582994510e21 fallback: Arial Bold",system-ui,-apple-system,"Segoe UI",sans-serif;}</style><link rel="preload" href="/_astro/fonts/73d1b6f280dc265e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/91753f8d8da3aeb7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/1e49bd114953732c.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/e868cdf4720e9ea5.woff2" as="font" type="font/woff2" crossorigin><script>
+      // Set the theme before first paint so the page never flashes the wrong one.
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/_part_.BM5qg2Mm.css"><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/" aria-current="page">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Block 6 · Why we put the human in the loop in WS2.4</h1></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li><li class="ws2-toc__item--2"><a href="#go-deeper-in-your-own-time">Go deeper, in your own time</a></li></ul></details><article class="prose body ws2"><p>Nothing to build. You look at what happened to your mail from block 3, and keep one list short.</p>
+<ol>
+<li>
+<p>Open <code>WS2.4 - Reply with Approval</code>, then the tab <strong>Executions</strong>.</p>
+</li>
+<li>
+<p>Click the run of your mail from block 3.</p>
+</li>
+<li>
+<p>Double-click the nodes, one after the other:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Node</th><th>What it does</th></tr></thead><tbody><tr><td><code>get_mail</code>, <code>if_draft_given</code></td><td>the mail from the database; a workflow that calls WS2.4 may bring its own draft</td></tr><tr><td><code>format_mail_as_text</code>, <code>transform_mask_personal_numbers</code></td><td>the mail as text, personal numbers masked</td></tr><tr><td><code>fetch_flow_list</code>, <code>fetch_draft_reply_flow</code>, <code>set_draft_reply_ids</code></td><td>Langflow gave each part of your flow a new id when you uploaded it, so n8n reads the ids here, from the flow itself: which <em>Text Input</em> takes the mail, which the date</td></tr><tr><td><code>fetch_draft_reply</code></td><td>the Langflow flow Draft Reply: Kaminski’s earlier mails up to the mail’s date, never a confidential one; it checks its own draft (<em>Check Draft</em>)</td></tr><tr><td><code>check_draft</code>, <code>if_draft_fine</code></td><td>a draft, and someone to send it to; Draft Reply’s verdict goes onto the approval form</td></tr><tr><td><code>post_proposal_to_outbox</code></td><td>a row in <code>outbox</code>, status <code>proposed</code></td></tr><tr><td><code>wait_for_approval</code></td><td>the form, with the draft in a field to edit; the run waits for you</td></tr><tr><td><code>post_approve</code>, <code>post_reject</code></td><td>your decision into the database; the mail service sends what is approved</td></tr></tbody></table>
+</li>
+</ol>
+<p><strong>The agent cannot send.</strong> No Langflow flow has a tool for that. Fixed rules check the draft, a person approves, and
+the database allows only that order.</p>
+<ol start="4">
+<li>
+<p>Keep the approvals page’s list of runs short:</p>
+<ol>
+<li>Open <code>WS2.4 - Approvals Page</code>.</li>
+<li>Open the menu <strong>…</strong> at the top, next to its name, then <strong>Settings</strong>.</li>
+<li>Set <em>Save successful production executions</em> to <strong>Do not save</strong>, then click <strong>Save</strong>.</li>
+</ol>
+<p><small>The approvals page is a workflow of its own, so its runs stay out of WS2.4’s list. It reloads every 15
+seconds, and each reload is a run: 240 an hour. Does that break the rule that you can show every run and every
+decision later? No: the page only shows, it decides nothing. The decisions stay in WS2.4’s runs and in <code>outbox</code>,
+with who approved, when, and why. And n8n still keeps the page’s failed runs.</small></p>
+<p><small>Want to see one run of the page? In <code>WS2.4 - Approvals Page</code>, click <strong>Execute workflow</strong>. Then open its Test
+URL once: in the node <code>webhook_open_approvals</code>, <em>Webhook URLs</em>, then <em>Test URL</em>. n8n keeps the runs you start by
+hand.</small></p>
+</li>
+</ol>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<p>Still stuck? Ask Frank.</p>
+<h4 id="block-6">Block 6</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>The approvals page shows “No draft waits” although WS2.4 waits</td><td>The page shows drafts with the status <code>proposed</code>. Open WS2.4, tab <em>Executions</em>: did the run reach <code>wait_for_approval</code>?</td></tr></tbody></table>
+<h2 id="go-deeper-in-your-own-time">Go deeper, in your own time</h2>
+<div class="fine">
+<p>n8n’s own courses are free and go further. Two that fit this morning, with a free account on learn.n8n.io:</p>
+<ul>
+<li><a href="https://learn.n8n.io/courses/course-v1:n8n+QS101+2026H2/about">n8n Quickstart</a>, part <em>Working with data</em>: how data
+moves between nodes, expressions such as <code>$('get_mail').item.json.subject</code>, and the three ways to handle an error.</li>
+<li><a href="https://learn.n8n.io/courses/course-v1:n8n+N8N103+2026H2/about">In Practice: AI, Testing &#x26; Best Practices</a>, section
+<em>Testing &#x26; Debugging</em>: <em>Common Error Types</em> and <em>Pinning Data for Testing</em>. The best tip there: pin the output of the
+last node that works, then <em>Execute step</em>.</li>
+</ul>
+</div>
+<p><strong>Next: <a href="/abp/ws2/s1-appendix/">Appendix · contracts between your tools →</a></strong></p></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li><li class="ws2-toc__item--2"><a href="#go-deeper-in-your-own-time">Go deeper, in your own time</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+      // Abstract / BibTeX disclosures on publication entries.
+      document.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-disclosure]");
+        if (!btn) return;
+        const key = btn.getAttribute("data-disclosure");
+        const panel = btn.closest(".paper__body")?.querySelector(`[data-panel="${key}"]`);
+        if (!panel) return;
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        panel.hidden = open;
+      });
+
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const current = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const next = current === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+      });
+    </script></body></html><script>
+  document.querySelectorAll(".ws2 pre").forEach((pre) => {
+    const box = document.createElement("div");
+    box.className = "snip";
+    pre.replaceWith(box);
+    box.append(pre);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", async () => {
+      const text = pre.innerText.replace(/\n$/, "");
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        getSelection().removeAllRanges();
+        getSelection().addRange(range);
+        document.execCommand("copy");
+      }
+      btn.textContent = "Copied ✓";
+      setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+    box.append(btn);
+  });
+
+  // Mark the section being read in the contents on the right.
+  const links = new Map();
+  document.querySelectorAll(".ws2-toc--rail a").forEach((a) => links.set(decodeURIComponent(a.hash.slice(1)), a));
+  const targets = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const seen = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id)));
+        const current = targets.find((t) => seen.has(t.id));
+        links.forEach((a, id) => a.classList.toggle("is-current", !!current && id === current.id));
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+</script>

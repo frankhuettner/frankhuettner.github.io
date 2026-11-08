@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Block 2 · WS2.1: You build an n8n workflow to test your Langflow Triage flow · Frank Huettner</title><meta name="description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><link rel="canonical" href="https://huettner.io/abp/ws2/s1-block-2/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Frank Huettner — news" href="/rss.xml"><link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🐼&lt;/text&gt;&lt;/svg&gt;"><meta property="og:type" content="website"><meta property="og:title" content="Block 2 · WS2.1: You build an n8n workflow to test your Langflow Triage flow · Frank Huettner"><meta property="og:description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><meta property="og:url" content="https://huettner.io/abp/ws2/s1-block-2/"><meta name="twitter:card" content="summary"><style>@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}:root{--font-sans:Inter-e4fb582994510e21,"Inter-e4fb582994510e21 fallback: Arial","Inter-e4fb582994510e21 fallback: Arial Bold",system-ui,-apple-system,"Segoe UI",sans-serif;}</style><link rel="preload" href="/_astro/fonts/73d1b6f280dc265e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/91753f8d8da3aeb7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/1e49bd114953732c.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/e868cdf4720e9ea5.woff2" as="font" type="font/woff2" crossorigin><script>
+      // Set the theme before first paint so the page never flashes the wrong one.
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/_part_.BM5qg2Mm.css"><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/" aria-current="page">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Block 2 · WS2.1: You build an n8n workflow to test your Langflow Triage flow</h1></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--3"><a href="#extra-if-you-are-fast-build-ws22---ask-mailbox">Extra, if you are fast: build WS2.2 - Ask Mailbox</a></li><li class="ws2-toc__item--3"><a href="#extra-if-you-are-fast-let-an-ai-chat-write-the-sql">Extra, if you are fast: let an AI chat write the SQL</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></details><article class="prose body ws2"><details class="more fine">
+<summary>What the workflow does</summary>
+<p>It takes the five test mails from the data table <em>Cases</em>. Each goes to your Langflow flow Triage, by HTTP. The action
+in Triage’s answer goes back into <em>Cases</em>, next to the expected one. In block 4, a second workflow gives it a score.</p>
+</details>
+<ol>
+<li>
+<p>Click <strong>Create workflow</strong>. Click its name at the top and give it this name:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WS2.1 - TEST - Triage</span></span></code></pre>
+</li>
+<li>
+<p>Add a first node: a <strong>Manual Trigger</strong> (in the list: <em>Trigger manually</em>). It starts the workflow when you click
+<strong>Execute workflow</strong>. Rename it <code>trigger_manual</code>.</p>
+</li>
+<li>
+<p>Add a <strong>Data table</strong> node and name it <code>get_cases</code>. It reads the five test mails. Set it like this:</p>
+<p>Pick <em>Get row(s)</em>. Under <em>Data table</em>, choose <em>From list</em> and pick this table:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WS2.1 - TEST - Triage - Cases</span></span></code></pre>
+<p>Turn <em>Return All</em> on.</p>
+<p>Click <strong>Execute step</strong>: on the right, five items.</p>
+</li>
+<li>
+<p>Add an <strong>HTTP Request</strong> node and name it <code>fetch_triage</code>. It sends each mail to your Triage flow in Langflow. Set
+it like this:</p>
+<p>Choose method POST and paste the URL:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>http://langflow:7860/api/v1/run/enron-triage?stream=false</span></span></code></pre>
+<p>For <em>Authentication</em>, choose <em>Generic Credential Type</em>, then <em>Header Auth</em>, then <code>Langflow (Run API)</code>. Turn <em>Send Body</em> on. <em>Body Content Type</em>: <em>JSON</em>. <em>Specify Body</em>: <em>Using Fields Below</em>.</p>
+<p>Under <em>Body Parameters</em>, add three. The first: <em>Name</em> <code>input_value</code>, and as <em>Value</em> paste this:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ $json.mail }}</span></span></code></pre>
+<p>The second: <em>Name</em> <code>input_type</code>, <em>Value</em> <code>text</code>. The third: <em>Name</em> <code>output_type</code>, <em>Value</em> <code>text</code>.</p>
+<details class="more fine">
+<summary>What it does</summary>
+<p>n8n sends one request per test mail, five in all. Each is one JSON object with three fields:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "input_value"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"From: Jason Sokolov ... (the whole mail)"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "input_type"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"text"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "output_type"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"text"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><code>input_value</code> is the mail, from the column <code>mail</code> of <em>Cases</em>. Langflow puts it into the flow’s one <em>Text Input</em>, the box you pasted a mail into in homework step 8. Text goes in, text comes out.</p>
+<p>What Langflow expects, in its own words: in Langflow, open the flow <em>Triage (Enron)</em>, then <strong>Share</strong> at the top right, then <strong>API access</strong>.</p>
+</details>
+</li>
+<li>
+<p>Add an <strong>Edit Fields</strong> node and name it <code>set_answer</code>. It turns Triage’s answer into fields n8n can read. Set it
+like this:</p>
+<p>Click <em>Add Field</em> and name it <code>answer</code>. Next to the name, change its type from <em>String</em> to <em>Object</em>. Then paste this as its value:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ $json.outputs[0].outputs[0].results.text.text }}</span></span></code></pre>
+<p>Click <strong>Execute step</strong>. On the right, each item now has <code>answer</code> with Triage’s fields: <code>action</code>, <code>why</code>, <code>checks_ok</code> and more.</p>
+<details class="more fine">
+<summary>What it does</summary>
+<p>Langflow answers with one object. <code>outputs[0].outputs[0]</code> is the flow’s first output, and <code>results.text.text</code> its text: Triage’s answer, as JSON text.</p>
+<p>The type <em>Object</em> makes n8n read that text as JSON, so each of its fields becomes a field of its own. That works because Triage keeps its contract: its answer is always JSON, with these fields.</p>
+</details>
+</li>
+<li>
+<p>Add a <strong>Data table</strong> node and name it <code>post_action_to_cases</code>. It writes the action into the table <em>Cases</em>. Set it
+like this:</p>
+<p>Pick <em>Update row(s)</em> and, from the list as in <code>get_cases</code>, the table Cases. Add a condition: the column <code>id</code>, <em>Equals</em>, and paste this value:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ $('get_cases').item.json.id }}</span></span></code></pre>
+<details class="more fine">
+<summary>What it does</summary>
+<p><code>$('get_cases')</code> is the node <code>get_cases</code>. <code>.item</code> is its item that belongs to this one: the same test mail. <code>.json.id</code> is that mail’s column <code>id</code>. So each action goes into the row of its own test mail.</p>
+<p>n8n writes the same when you drag the field <code>id</code> of <code>get_cases</code> from the left into the box.</p>
+</details>
+<p>Under <em>Values to update</em>, fill the column <code>action</code>: on the left, open <code>answer</code> and drag its field <code>action</code> into the box. n8n writes this:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ $json.answer.action }}</span></span></code></pre>
+</li>
+<li>
+<p>Click <strong>Execute workflow</strong>.</p>
+</li>
+<li>
+<p>Open the table: click <strong>Overview</strong>, then the tab <strong>Data tables</strong>, then <code>WS2.1 - TEST - Triage - Cases</code>. Triage’s
+answer now stands next to the expected one.</p>
+</li>
+<li>
+<p>Tidy up:</p>
+<ul>
+<li>
+<p>Give the workflow the tags <code>WS2</code>, <code>mail case</code> and <code>9 Nov</code>: click the three dots <strong>…</strong> at the top, next to its
+name, then <em>Edit description and tags</em>.</p>
+</li>
+<li>
+<p>Add a sticky note (<kbd>Shift</kbd>+<kbd>S</kbd>).</p>
+<p>Paste this into the sticky note, and put your name in place of <em>Your Name</em>:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>## WS2.1 - TEST - Triage</span></span>
+<span class="line"><span>**Created by:** Your Name · **Date:** 9 Nov 2026</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Tests the Langflow flow Triage: the five test mails from the table Cases go to Triage, one by one. Triage's action goes back into Cases, next to the expected one.</span></span></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Done: your first n8n workflow tests your Triage flow.</strong></p>
+<div class="fine">
+<p><strong>Stuck?</strong> Import <code>n8n/ws2_1_test_triage_solution.json</code>. It gives the finished workflow <code>WS2.1 - TEST - Triage - SOLUTION</code>. <a href="#block-2">Help for block 2</a></p>
+</div>
+<h3 id="extra-if-you-are-fast-build-ws22---ask-mailbox">Extra, if you are fast: build WS2.2 - Ask Mailbox</h3>
+<p>This becomes a chat that allows you to search your mail. It’s like the playground from your homework step 13, just
+in n8n. It contains:</p>
+<ul>
+<li>a <strong>Chat Trigger</strong> <code>trigger_chat</code></li>
+<li>an <strong>HTTP Request</strong> <code>fetch_ask_mailbox</code></li>
+<li>an <strong>Edit Fields</strong> node <code>set_answer</code></li>
+</ul>
+<p>Make an n8n workflow with the name:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WS2.2 - Ask Mailbox</span></span></code></pre>
+<p>Add a <strong>Chat Trigger</strong> node and name it <code>trigger_chat</code>.</p>
+<p>Open the chat at the bottom and send this question. Now <code>trigger_chat</code> has an item, and the next node shows it on its left:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Who is sharing homemade Korean food?</span></span></code></pre>
+<p>Add an <strong>HTTP Request</strong> node, name it <code>fetch_ask_mailbox</code>, choose method POST, and paste the URL:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>http://langflow:7860/api/v1/run/enron-ask-mailbox?stream=false</span></span></code></pre>
+<p>For <em>Authentication</em>, choose <em>Generic Credential Type</em>, then <em>Header Auth</em>, then <code>Langflow (Run API)</code>. Turn <em>Send Body</em> on, choose <em>JSON</em> and <em>Using JSON</em>, and paste the body:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ JSON.stringify({ input_value: $json.chatInput, input_type: 'chat', output_type: 'chat', session_id: $json.sessionId }) }}</span></span></code></pre>
+<p>Add an <strong>Edit Fields</strong> node and name it <code>set_answer</code>. Click <em>Add Field</em>, name it <code>output</code>, and paste this as its value:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>{{ $json.outputs[0].outputs[0].results.message.text }}</span></span></code></pre>
+<p>Then open the chat at the bottom, and ask:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>What is Steve Leppard's email address?</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Who arranges tours of the Enron trading floor?</span></span></code></pre>
+<div class="fine">
+<p>Between two questions, you may need to reset the chat: click the curved arrow at the top of the chat.</p>
+</div>
+<div class="fine">
+<p><strong>Stuck?</strong> Import <code>n8n/ws2_2_ask_mailbox_solution.json</code>. It gives the finished workflow <code>WS2.2 - Ask Mailbox - SOLUTION</code>.</p>
+</div>
+<h3 id="extra-if-you-are-fast-let-an-ai-chat-write-the-sql">Extra, if you are fast: let an AI chat write the SQL</h3>
+<p>This becomes a workflow that answers one question: who wrote to Kaminski most often? It contains:</p>
+<ul>
+<li>a <strong>Manual Trigger</strong> <code>trigger_manual</code></li>
+<li>a <strong>Postgres</strong> node <code>get_top_senders</code></li>
+</ul>
+<p><small>The credential may only read and write what n8n needs: a wrong query cannot break the mailbox.</small></p>
+<p>Make an n8n workflow with the name:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WS2.2 - Top Senders</span></span></code></pre>
+<p>Add a <strong>Manual Trigger</strong> node (in the list: <em>Trigger manually</em>) and name it <code>trigger_manual</code>.</p>
+<p>Give this to an AI chat like ChatGPT:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Write a PostgreSQL query for me.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The table: n8n_workshop_mail.messages, one mail per row. Its columns:</span></span>
+<span class="line"><span>- message_id</span></span>
+<span class="line"><span>- sent_at</span></span>
+<span class="line"><span>- from_name</span></span>
+<span class="line"><span>- from_addr</span></span>
+<span class="line"><span>- to_addrs (text[])</span></span>
+<span class="line"><span>- cc_addrs (text[])</span></span>
+<span class="line"><span>- subject</span></span>
+<span class="line"><span>- body_text</span></span>
+<span class="line"><span>- folders (text[]: INBOX, Sent, ...)</span></span>
+<span class="line"><span>- deleted_at</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The question: who sent the most mails?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Leave out:</span></span>
+<span class="line"><span>- the mails in the folder Sent</span></span>
+<span class="line"><span>- the deleted mails</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The result:</span></span>
+<span class="line"><span>- one row per sender (from_addr), with the number of mails</span></span>
+<span class="line"><span>- the ten largest first</span></span></code></pre>
+<p>Add a <strong>Postgres</strong> node, name it <code>get_top_senders</code>, pick the credential <code>Mail (n8n_workshop_mail_n8n)</code> and <em>Execute Query</em>, and paste the AI chat’s answer as the query. Then click <strong>Execute workflow</strong>: the ten senders appear on the right.</p>
+<details class="more fine">
+<summary>A solution, just in case</summary>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">SELECT</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> from_addr, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">count</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#D73A49;--shiki-dark:#F97583">*</span><span style="color:#24292E;--shiki-dark:#E1E4E8">) </span><span style="color:#D73A49;--shiki-dark:#F97583">AS</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> mails</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">FROM</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> n8n_workshop_mail</span><span style="color:#24292E;--shiki-dark:#E1E4E8">.</span><span style="color:#005CC5;--shiki-dark:#79B8FF">messages</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">WHERE</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> deleted_at </span><span style="color:#D73A49;--shiki-dark:#F97583">IS</span><span style="color:#D73A49;--shiki-dark:#F97583"> NULL</span><span style="color:#D73A49;--shiki-dark:#F97583"> AND</span><span style="color:#D73A49;--shiki-dark:#F97583"> NOT</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'Sent'</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ANY(folders)</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">GROUP BY</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> from_addr</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">ORDER BY</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> mails </span><span style="color:#D73A49;--shiki-dark:#F97583">DESC</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">LIMIT</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 10</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
+</details>
+<div class="fine">
+<p><strong>Stuck?</strong> Import <code>n8n/ws2_2_top_senders_solution.json</code>. It gives the finished workflow <code>WS2.2 - Top Senders - SOLUTION</code>: <em>Execute workflow</em>, then open <code>get_top_senders</code>.</p>
+</div>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<p>Still stuck? Ask Frank.</p>
+<h4 id="block-2">Block 2</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>fetch_triage</code> gives an error 403</td><td>The credential <code>Langflow (Run API)</code> holds the wrong key. In Langflow, open <em>Settings</em>, then <em>Langflow API Keys</em>, and make a new one. Put it into the credential.</td></tr><tr><td><code>fetch_triage</code> gives no answer, or a timeout</td><td>WS2.0 may still be embedding, or Langflow is busy. Wait a minute, then click <em>Execute step</em> again. The URL must say <code>langflow</code>, not <code>localhost</code>: inside kingo-pod, n8n reaches Langflow by its name.</td></tr><tr><td><code>get_cases</code> gives no items</td><td>The table’s name must be exactly <code>WS2.1 - TEST - Triage - Cases</code>. Check it: click <em>Overview</em>, then the tab <em>Data tables</em>.</td></tr><tr><td><code>set_answer</code> gives an error, or the column <code>action</code> stays empty</td><td>Is the type of the field <code>answer</code> <em>Object</em>? Then open <code>fetch_triage</code>’s output: under <code>text</code> you should see Triage’s answer as JSON, with <code>"checks_ok": true</code>. An empty mail in its <code>why</code>? Then <code>fetch_triage</code> sends no <code>input_value</code>: check its three <em>Body Parameters</em>.</td></tr><tr><td>You are behind</td><td>Import <code>n8n/ws2_1_test_triage_solution.json</code>. It gives the finished workflow <code>WS2.1 - TEST - Triage - SOLUTION</code>. Go on in it.</td></tr></tbody></table>
+<p><strong>Next: <a href="/abp/ws2/s1-block-3/">Block 3 · Your mail AI assistant answers your mail: WS2.3 and WS2.4 →</a></strong></p></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#extra-if-you-are-fast-build-ws22---ask-mailbox">Extra, if you are fast: build WS2.2 - Ask Mailbox</a></li><li class="ws2-toc__item--3"><a href="#extra-if-you-are-fast-let-an-ai-chat-write-the-sql">Extra, if you are fast: let an AI chat write the SQL</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+      // Abstract / BibTeX disclosures on publication entries.
+      document.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-disclosure]");
+        if (!btn) return;
+        const key = btn.getAttribute("data-disclosure");
+        const panel = btn.closest(".paper__body")?.querySelector(`[data-panel="${key}"]`);
+        if (!panel) return;
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        panel.hidden = open;
+      });
+
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const current = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const next = current === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+      });
+    </script></body></html><script>
+  document.querySelectorAll(".ws2 pre").forEach((pre) => {
+    const box = document.createElement("div");
+    box.className = "snip";
+    pre.replaceWith(box);
+    box.append(pre);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", async () => {
+      const text = pre.innerText.replace(/\n$/, "");
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        getSelection().removeAllRanges();
+        getSelection().addRange(range);
+        document.execCommand("copy");
+      }
+      btn.textContent = "Copied ✓";
+      setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+    box.append(btn);
+  });
+
+  // Mark the section being read in the contents on the right.
+  const links = new Map();
+  document.querySelectorAll(".ws2-toc--rail a").forEach((a) => links.set(decodeURIComponent(a.hash.slice(1)), a));
+  const targets = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const seen = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id)));
+        const current = targets.find((t) => seen.has(t.id));
+        links.forEach((a, id) => a.classList.toggle("is-current", !!current && id === current.id));
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+</script>
