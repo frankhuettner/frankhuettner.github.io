@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Homework until 16 Nov, Part A: Claude Code · Frank Huettner</title><meta name="description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><link rel="canonical" href="https://huettner.io/abp/ws2/hw2-a/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Frank Huettner — news" href="/rss.xml"><link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🐼&lt;/text&gt;&lt;/svg&gt;"><meta property="og:type" content="website"><meta property="og:title" content="Homework until 16 Nov, Part A: Claude Code · Frank Huettner"><meta property="og:description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><meta property="og:url" content="https://huettner.io/abp/ws2/hw2-a/"><meta name="twitter:card" content="summary"><style>@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}:root{--font-sans:Inter-e4fb582994510e21,"Inter-e4fb582994510e21 fallback: Arial","Inter-e4fb582994510e21 fallback: Arial Bold",system-ui,-apple-system,"Segoe UI",sans-serif;}</style><link rel="preload" href="/_astro/fonts/73d1b6f280dc265e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/91753f8d8da3aeb7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/1e49bd114953732c.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/e868cdf4720e9ea5.woff2" as="font" type="font/woff2" crossorigin><script>
+      // Set the theme before first paint so the page never flashes the wrong one.
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/_part_.DLGNKacs.css"><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li><li><a href="/abp/ws2/hw2/">Homework until 16 Nov</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-a/" aria-current="page">Part A · Claude Code</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-b/">Part B · The kimchi mail</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-optional/">Optional · SMS</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Homework until 16 Nov, Part A: Claude Code</h1><p class="lede">Steps 1 to 6. At the end: a coding agent that knows your workflows.</p></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-get-the-new-command-kingo-claude">1. Update kingo-pod: get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-give-claude-permission-to-work-in-n8n">3. Give Claude permission to work in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-reads-at-every-start">6. See the instructions Claude reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-can-do-and-what-it-cannot">What Claude can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-ask-before-every-command">You decide: should Claude ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></details><article class="prose body ws2"><h3 id="what-is-claude-code">What is Claude Code?</h3>
+<p>Claude Code is a major innovation from Anthropic (OpenAI followed up with a clone called Codex; an open source alternative is called OpenCode). The idea is simple (which makes it even better).</p>
+<ol>
+<li>Instead of copy/pasting code back and forth from Chat interfaces (like ChatGPT or Claude), Claude Code is a tool that simply writes directly onto your computer.</li>
+<li>Instead of using complicated editors and heavy software, the tool is made to live directly in the terminal. This allowed Anthropic to quickly develop a robust tool, and to focus on the main ideas.</li>
+<li>Instead of editing code or documents yourself, you describe to the AI what you want to be changed. By design, you use it as an agent.</li>
+</ol>
+<h3 id="better-safe-than-sorry">Better safe than sorry</h3>
+<p>Even though Claude Code usually has good intentions, it might accidentally do things on your computer that have seriously bad consequences. Hence, it’s always asking you for permission before doing something. Quickly, people said yes to everything instead of reading the fine print. Hence, developers decided to build sandboxes: within the sandbox, the AI can do what it wants, it might also reach out on well-defined paths, but that’s it.</p>
+<p>We use the sandbox tool called <strong>nono</strong>. We configure it so that Claude Code can</p>
+<ul>
+<li>only write in one folder: <code>~/kingo-pod/claude</code>,</li>
+<li>read the rest of kingo-pod to understand how it works,</li>
+<li>reach out to n8n and Langflow,</li>
+<li>access the internet, and</li>
+<li>not do anything else on your laptop.</li>
+</ul>
+<p>Typically, Claude Code uses the Claude models from Anthropic. Here, we use it with the model GLM 5.3 Flash, paid with the OpenRouter key you already have.</p>
+<h3 id="1-update-kingo-pod-get-the-new-command-kingo-claude">1. Update kingo-pod: get the new command <code>kingo claude</code></h3>
+<p>Open a terminal and run this one line:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo update</span></span></code></pre>
+<p>When it is done, run</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo help</span></span></code></pre>
+<p>You should see a line that starts with <code>kingo claude</code>.</p>
+<p><a href="#step-1">Stuck? Help for step 1</a></p>
+<h3 id="2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</h3>
+<p>One line installs three programs: <strong>nono</strong> (the sandbox), <strong>psql</strong> (so that Claude can talk to your database) and
+<strong>Claude Code</strong>. Run the line for your laptop, in the same terminal.</p>
+<p>On a Mac:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>brew install nono libpq &#x26;&#x26; curl -fsSL https://claude.ai/install.sh | bash</span></span></code></pre>
+<p>On WSL (Ubuntu in Windows):</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>curl -fsSL https://nono.sh/install.sh | sh &#x26;&#x26; sudo apt install -y postgresql-client &#x26;&#x26; curl -fsSL https://claude.ai/install.sh | bash</span></span></code></pre>
+<details class="more">
+<summary>Already using Claude Code?</summary>
+<p>Run the line anyway: it installs Claude Code the way Anthropic recommends, or brings it up to date. Your own settings
+and your login stay as they are.</p>
+<p>You installed it with Homebrew or npm instead? Then you now have it twice. <code>./kingo claude</code> always takes the new one.
+To keep only the new one, remove the old one:</p>
+<ul>
+<li>Homebrew: <code>brew uninstall --cask claude-code</code></li>
+<li>npm: <code>npm uninstall -g @anthropic-ai/claude-code</code></li>
+</ul>
+</details>
+<p><a href="#step-2">Stuck? Help for step 2</a></p>
+<h3 id="3-give-claude-permission-to-work-in-n8n">3. Give Claude permission to work in n8n</h3>
+<p>Claude reads and changes your workflows through n8n’s API. Claude needs an API key issued by n8n to do that.</p>
+<ol>
+<li>Open n8n at <a href="http://localhost:5678">http://localhost:5678</a> and sign in.</li>
+<li>Click <strong>Settings</strong> at the bottom of the left sidebar, then <strong>n8n API</strong>.</li>
+<li>Click <strong>Create API key</strong>. In the window <em>Create API Key</em>:
+<ul>
+<li>Label: <code>claude</code></li>
+<li>Expiration: <strong>Never</strong>. Then the key works for the whole course.</li>
+</ul>
+</li>
+<li>Click <strong>Save</strong>. Copy the key and keep it for step 4: n8n shows it only once.</li>
+</ol>
+<p><a href="#step-3">Stuck? Help for step 3</a></p>
+<h3 id="4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</h3>
+<p>In the terminal, run:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</span></span></code></pre>
+<p>Always start Claude Code for the course this way. A plain <code>claude</code> starts a standard Claude Code, without the sandbox
+and without the course settings (<a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">what is different</a>).</p>
+<p>The first time, <code>kingo claude</code> asks for two keys. You do not see a key as you paste it: that is on purpose.</p>
+<ol>
+<li>Paste your OpenRouter key (or your group’s key) and press Enter.</li>
+<li>Paste the n8n key from step 3, and press Enter.</li>
+</ol>
+<details class="more">
+<summary>Don’t I need to give it a key to Langflow?</summary>
+<p><code>kingo-pod</code> can make this and hand it to Claude. To be honest, if you have superuser access to the database used by Langflow (and by n8n), and to the file system, then you can get a lot of credentials. Feel free to ask Claude Code more about this later. And while you’re at it, you can ask how an admin can extract credentials saved to n8n.</p>
+</details>
+<p>Then Claude Code starts and asks a few questions of its own:</p>
+<ol start="3">
+<li>Pick a theme for Claude Code that you like, and press Enter.</li>
+<li><em>Do you trust the files in this folder?</em> Choose <strong>Yes</strong>.</li>
+</ol>
+<p>You see Claude Code waiting for your first words. Well done: your coding agent is set up.</p>
+<p><a href="#step-4">Stuck? Help for step 4</a></p>
+<h3 id="5-lets-try-it-out">5. Let’s try it out</h3>
+<p>Type this and press Enter:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>List my n8n workflows and tell me in one sentence each what they do.</span></span></code></pre>
+<p>Before Claude runs a command, it asks you. Read what it wants to do, then agree. You should see WS2.0,
+WS2.1, WS2.3 and WS2.4, each with a sentence. That is Claude reading your n8n.</p>
+<p>To leave Claude Code (and to get back to the terminal), run</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>/exit</span></span></code></pre>
+<p>Sometimes when exiting Claude code, you get a question from nono sandbox, if it should give Claude code further permissions. Only add something if you know what you’re doing.</p>
+<p>Now you can continue using this terminal as usual (you can also just open another one like you can open another tab in your browser).</p>
+<p><a href="#step-5">Stuck? Help for step 5</a></p>
+<h3 id="6-see-the-instructions-claude-reads-at-every-start">6. See the instructions Claude reads at every start</h3>
+<p>Claude reads the file <code>AGENTS.md</code> in its folder at every start (actually, it reads <code>CLAUDE.md</code> which here just has a link to <code>AGENTS.md</code>). You can have a look inside (the <code>cat</code> command just prints the content of the file into the terminal and you can continue using the terminal as usual):</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cat ~/kingo-pod/claude/CLAUDE.md</span></span></code></pre>
+<p>And</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cat ~/kingo-pod/claude/AGENTS.md</span></span></code></pre>
+<p>With your team’s rules in <code>AGENTS.md</code>, Claude builds the way your team decides: the same names, the same contracts between flows and between tools.</p>
+<p>Start Claude again with</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</span></span></code></pre>
+<p>and ask:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>What are our team's rules?</span></span></code></pre>
+<p>Claude should say that your team has not added its rules yet. That is right, and it shows that Claude has read <code>AGENTS.md</code>.</p>
+<details class="more">
+<summary>How do I change AGENTS.md myself?</summary>
+<p>With <strong>nano</strong>, an editor inside the terminal. It works the same on a Mac and in the Ubuntu app:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>nano -w ~/kingo-pod/claude/AGENTS.md</span></span></code></pre>
+<p>(<code>-w</code> keeps long lines as they are.)</p>
+<ul>
+<li>Move with the arrow keys, and type as usual. A mouse click does not move the cursor.</li>
+<li>Paste: on a Mac <strong>Cmd+V</strong>, in the Ubuntu app a right click.</li>
+<li>Save: <strong>Ctrl+O</strong> (on a Mac the key <em>control</em>, not <em>command</em>), then <strong>Enter</strong>.</li>
+<li>Leave nano: <strong>Ctrl+X</strong>.</li>
+</ul>
+<p>The two lines at the bottom of nano show these keys: <code>^O</code> means <strong>Ctrl+O</strong>.</p>
+<p>Claude reads <code>AGENTS.md</code> only when it starts. After a change, leave Claude with <code>/exit</code> and start it again.</p>
+<p><strong>Try it:</strong> add this line at the very end of <code>AGENTS.md</code>, with your own language if it is not Korean:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Always answer me in Korean.</span></span></code></pre>
+<p>Save, <code>/exit</code> and start Claude again with</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo claude</span></span></code></pre>
+<p>and ask it something: it answers in Korean. Keep the line, or delete it again.</p>
+<p>It’s a good idea to add your team’s design rules to <code>AGENTS.md</code>.</p>
+</details>
+<p><a href="#step-6">Stuck? Help for step 6</a></p>
+<h3 id="what-claude-can-do-and-what-it-cannot">What Claude can do, and what it cannot</h3>
+<p>Careful, if you just type <code>claude</code>, then Claude code runs in the standard way as anthropic had it set up. Please always use</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo claude</span></span></code></pre>
+<p>This way, it’s in the nono sandbox.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Claude can</th><th>Claude cannot</th></tr></thead><tbody><tr><td>read and write in <code>~/kingo-pod/claude</code></td><td>write anywhere else on your laptop</td></tr><tr><td>read kingo-pod: <code>compose.yml</code>, the guides</td><td>change kingo-pod, or run <code>./kingo</code></td></tr><tr><td>change your n8n workflows, Langflow flows and database</td><td>see your keys: it gets stand-ins</td></tr><tr><td>look things up on the web</td><td>see your own Claude Code settings, if you use Claude Code already</td></tr></tbody></table>
+<p>Sometimes, Claude code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal</p>
+<p><em>ONLY RUN A COMMAND IN YOUR OWN TERMINAL IF YOU UNDERSTAND IT.</em></p>
+<p>Claude cannot leave its sandbox, but a command you type does. When Claude says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude, then only add something if you know what you’re doing.</p>
+<h3 id="you-decide-should-claude-ask-before-every-command">You decide: should Claude ask before every command?</h3>
+<p>So far Claude asks you before it runs a command or changes something. You can also let it work without asking. To this end,
+you start it with this line:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo yolo</span></span></code></pre>
+<p>The first time, Claude Code asks whether you accept this mode. Choose <strong>Yes, I accept</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>./kingo claude</th><th>./kingo yolo</th><th>claude (without kingo)</th></tr></thead><tbody><tr><td>Your laptop is</td><td>protected by the nono sandbox and by Claude Code’s hesitations</td><td>protected by the nono sandbox</td><td>protected only by Claude Code’s hesitations: no sandbox</td></tr><tr><td>Your workflows, flows and database</td><td>you see every change before it happens</td><td>Claude changes them at once, mistakes too</td><td>out of reach at first, as Claude has no keys for them; but it can read every file you can, your keys too</td></tr><tr><td>Your user experience</td><td>many requests for permissions, often the same ones</td><td>Claude works on by itself</td><td>Anthropic’s standard Claude Code: your own Anthropic login and bill, and the usual requests for permissions</td></tr></tbody></table>
+<p>Inside the sandbox, Claude Code’s requests for permission do not protect your laptop: the sandbox does that, with or
+without them. They protect your project from Claude’s mistakes. If you let Claude work without asking, save your work first. This line saves your
+n8n workflows and your Langflow flows into <code>~/kingo-pod/backups/</code> (not your own tables in the database):</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo backup</span></span></code></pre>
+<p>Many people start with the requests for permission and switch once they trust what Claude does in their project. It is your choice,
+and you can change it at every start.</p>
+<h3 id="what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</h3>
+<p>The Claude Code you started with <code>./kingo claude</code> is set up for the course.</p>
+<p><strong>Important: the course setup holds only when you start Claude with <code>./kingo claude</code> or <code>./kingo yolo</code>.</strong> When you
+type <code>claude</code> anywhere, you get a standard Claude Code with Anthropic’s settings: no sandbox, your own <code>~/.claude</code>,
+your own Anthropic login. Even in <code>~/kingo-pod/claude</code>, a plain <code>claude</code> runs without the sandbox and without the
+keys.</p>
+<details class="more">
+<summary>In detail: what the course changes, and where</summary>
+<p>What is different from a Claude Code you install and start with <code>claude</code>, and the file where the course configures
+each part:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>A standard Claude Code</th><th>Here, started with <code>./kingo claude</code></th><th>Configured for the course in</th></tr></thead><tbody><tr><td>Start</td><td><code>claude</code>, in any folder</td><td><code>./kingo claude</code> in the kingo-pod folder; <code>./kingo yolo</code> is the same without requests for permission. Claude works in <code>kingo-pod/claude</code></td><td><code>kingo-pod/kingo</code>, the script behind every <code>./kingo</code> command. Before Claude starts, it checks that n8n and Langflow run, asks for your keys the first time, copies <code>AGENTS.md</code>, <code>CLAUDE.md</code> and <code>.claude/settings.json</code> into <code>kingo-pod/claude/</code> the first time, and writes the nono profile. Then it starts Claude Code inside nono.</td></tr><tr><td>Model and bill</td><td>Claude models, with an Anthropic account or key</td><td>GLM 5.3 Flash through OpenRouter, paid with your OpenRouter key</td><td><code>kingo-pod/claude/.claude/settings.json</code> names the model, for every role (<code>ANTHROPIC_MODEL</code> and the lines <code>ANTHROPIC_DEFAULT_…_MODEL</code>). The nono profile sends Claude’s requests to OpenRouter instead of Anthropic, and puts your OpenRouter key into them.</td></tr><tr><td>Keys</td><td>kept by Claude Code itself</td><td>kept in <code>~/.config/kingo/</code>; Claude sees only stand-ins</td><td><code>kingo-pod/kingo</code> asks for your OpenRouter and n8n keys, makes the Langflow key itself, and keeps them in <code>~/.config/kingo/</code>, readable only by you. When it starts Claude, it hands them to nono, not to Claude. The nono profile says, for OpenRouter, n8n and Langflow, where nono’s proxy puts the real key into a request.</td></tr><tr><td>Files</td><td>Claude reads and writes wherever you may, after asking</td><td>Claude writes only in <code>kingo-pod/claude</code> and <code>~/.kingo-claude</code>, reads <code>kingo-pod</code>, and nothing else; the operating system enforces it</td><td>The nono profile <code>~/.config/nono/profiles/kingo-claude.json</code> lists the folders Claude may read and write, and the few environment variables that reach Claude: other keys on your laptop do not. <code>kingo</code> writes it anew at every start from <code>kingo-pod/setup/claude/nono-profile.json</code>, so a change to it does not last. On top, <code>kingo-pod/claude/.claude/settings.json</code> forbids Claude to read <code>.env</code> files, <code>~/.ssh</code> and <code>~/.aws</code>.</td></tr><tr><td>Sandbox</td><td>Claude Code’s own sandbox, for commands only, if you turn it on</td><td>nono, around all of Claude Code: its commands, and its own tools for files too</td><td>the nono profile. <code>kingo-pod/claude/.claude/settings.json</code> turns Claude Code’s own sandbox off (<code>sandbox.enabled</code>): nono covers more.</td></tr><tr><td>Settings and history</td><td><code>~/.claude</code></td><td><code>~/.kingo-claude</code>; your own <code>~/.claude</code> stays untouched</td><td><code>kingo-pod/kingo</code> starts Claude with <code>CLAUDE_CONFIG_DIR=~/.kingo-claude</code>: Claude Code keeps its settings, sessions and history there. An Anthropic login stored there, <code>kingo</code> removes at every start: the course does not use it, and Claude could read it.</td></tr><tr><td>Instructions</td><td>a <code>CLAUDE.md</code> that you write</td><td><code>AGENTS.md</code>: the part about kingo-pod and your team’s rules; <code>CLAUDE.md</code> only points to it</td><td><code>kingo-pod/claude/AGENTS.md</code>, yours to change, and <code>kingo-pod/claude/CLAUDE.md</code>, which holds only <code>@AGENTS.md</code>. <code>settings.json</code> makes Claude skip the <code>CLAUDE.md</code> of kingo-pod itself, which is for kingo-pod’s developers (<code>claudeMdExcludes</code>).</td></tr><tr><td>Memory</td><td>hidden in <code>~/.claude/projects/</code></td><td>in <code>kingo-pod/claude/memory/</code>, where you can read it</td><td><code>kingo-pod/claude/.claude/settings.json</code> (<code>autoMemoryDirectory</code>)</td></tr><tr><td>What leaves the laptop</td><td>the model’s requests, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them</td><td>the model’s requests, to OpenRouter only; usage data, error reports, feedback, pages on claude.ai and Remote Control are off</td><td><code>kingo-pod/kingo</code> turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude. <code>kingo-pod/claude/.claude/settings.json</code> turns off the same, and also feedback (<code>DISABLE_FEEDBACK_COMMAND</code>), Remote Control (<code>disableRemoteControl</code>), pages on claude.ai (<code>enableArtifact</code>) and the check of each web address at Anthropic before Claude reads a page (<code>skipWebFetchPreflight</code>).</td></tr><tr><td>Requests for permission</td><td>Claude asks before a command</td><td>the same; <code>./kingo yolo</code> turns them off</td><td><code>kingo-pod/kingo</code>: <code>./kingo yolo</code> starts Claude with <code>--dangerously-skip-permissions</code>. The sandbox stays the same.</td></tr><tr><td>Updates</td><td>Claude Code updates itself</td><td>no self-update: run the install line again</td><td><code>kingo-pod/claude/.claude/settings.json</code>: <code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</code> also turns off the self-update.</td></tr></tbody></table>
+</details>
+<p><strong>Claude’s memory.</strong> Claude Code writes down for itself what it learns about your project, so that it still knows it
+in the next session: for example a name your team chose, or a mistake it should not make again. Usually this memory
+is hidden in Claude’s own folder. Here it lies in <code>~/kingo-pod/claude/memory/</code>, so you can read what Claude remembers,
+and correct or delete it. The file <code>MEMORY.md</code> there lists everything it keeps.</p>
+<p>Claude can explain all of this itself. Ask it:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>How are you set up here, and what is different from a standard Claude Code?</span></span></code></pre>
+<p><strong>Next: <a href="/abp/ws2/hw2-b/">Part B · Find why your mail AI assistant missed the kimchi →</a></strong></p>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<p>Find your step. Still stuck? Write to Frank: then we fix it together.</p>
+<h4 id="step-1">Step 1</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>./kingo help</code> shows no <code>kingo claude</code></td><td>Run <code>./kingo update</code> again and look for errors near the end. Send Frank what <code>./kingo version</code> shows.</td></tr></tbody></table>
+<h4 id="step-2">Step 2</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>brew: command not found</code> (Mac)</td><td>The line needs Homebrew. It is missing, or your Terminal does not find it. Do <a href="https://huettner.io/kingo-pod/mac/#step-1--install-homebrew">Step 1 — Install Homebrew</a> of the kingo-pod Mac guide, with its “Next steps” lines. Open a new Terminal window and run the line again.</td></tr><tr><td><code>Unable to locate package</code> (Windows)</td><td>Run <code>sudo apt update</code>, then the line again.</td></tr><tr><td>A download error</td><td>Check that you are online, then run the line again.</td></tr><tr><td>The line says that a folder is not on your PATH</td><td>Nothing to do: <code>./kingo claude</code> finds the programs anyway.</td></tr></tbody></table>
+<h4 id="step-3">Step 3</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>You closed the window before you copied the key</td><td>Make a new key the same way. In the list on the page <em>n8n API</em>, delete the old one.</td></tr></tbody></table>
+<h4 id="step-4">Step 4</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>nono is not installed</code> or <code>Claude Code is not installed</code></td><td>Run the line of step 2 again.</td></tr><tr><td><code>n8n and Langflow must be running first</code></td><td>Run <code>./kingo up</code>, then step 4 again.</td></tr><tr><td><code>n8n did not accept the key</code></td><td>Make a new key as in step 3. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td><code>openrouter did not accept the key</code></td><td>Check the key Yanbo gave you. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td>Claude Code asks you to log in to Anthropic</td><td>Do not log in. Type <code>/exit</code> and write to Frank.</td></tr><tr><td><code>removed an Anthropic login</code></td><td>You logged in to Anthropic inside <code>./kingo claude</code>. <code>kingo</code> removed that login again: the course does not use it, and Claude could read it there. Your own Claude Code login is not affected.</td></tr></tbody></table>
+<h4 id="step-5">Step 5</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Claude says it cannot reach n8n</td><td>Check that n8n opens at <a href="http://localhost:5678">http://localhost:5678</a>. If not, run <code>./kingo up</code> in your own terminal, then ask again.</td></tr></tbody></table>
+<h4 id="step-6">Step 6</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code></td><td><code>./kingo claude</code> makes these files at its first start. Do step 4 first.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-get-the-new-command-kingo-claude">1. Update kingo-pod: get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-give-claude-permission-to-work-in-n8n">3. Give Claude permission to work in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-reads-at-every-start">6. See the instructions Claude reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-can-do-and-what-it-cannot">What Claude can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-ask-before-every-command">You decide: should Claude ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+      // Abstract / BibTeX disclosures on publication entries.
+      document.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-disclosure]");
+        if (!btn) return;
+        const key = btn.getAttribute("data-disclosure");
+        const panel = btn.closest(".paper__body")?.querySelector(`[data-panel="${key}"]`);
+        if (!panel) return;
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        panel.hidden = open;
+      });
+
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const current = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const next = current === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+      });
+    </script></body></html><script>
+  document.querySelectorAll(".ws2 pre").forEach((pre) => {
+    const box = document.createElement("div");
+    box.className = "snip";
+    pre.replaceWith(box);
+    box.append(pre);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", async () => {
+      const text = pre.innerText.replace(/\n$/, "");
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        getSelection().removeAllRanges();
+        getSelection().addRange(range);
+        document.execCommand("copy");
+      }
+      btn.textContent = "Copied ✓";
+      setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+    box.append(btn);
+  });
+
+  // Mark the section being read in the contents on the right.
+  const links = new Map();
+  document.querySelectorAll(".ws2-toc--rail a").forEach((a) => links.set(decodeURIComponent(a.hash.slice(1)), a));
+  const targets = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const seen = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id)));
+        const current = targets.find((t) => seen.has(t.id));
+        links.forEach((a, id) => a.classList.toggle("is-current", !!current && id === current.id));
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+</script>
