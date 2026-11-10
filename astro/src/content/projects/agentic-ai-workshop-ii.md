@@ -19,6 +19,8 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
 
 - [Homework](/abp/ws2/hw/): three parts to get ready, with the test mailbox, Langflow and n8n.
 - [9 November](/abp/ws2/s1/): the workbook of the first morning, block by block as on the slides.
+- [Homework until 16 November](/abp/ws2/hw2/): Claude Code in a sandbox and the kimchi mail, and, if you like, an SMS
+  from n8n.
 - 16 and 23 November: to follow.
 
 ## Downloads
@@ -26,3 +28,5 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
 - [`ws2_hw.zip`](/abp/ws2/ws2_hw.zip): the homework as one HTML file, the Langflow flows and the first n8n workflow.
 - [`ws2_s1.zip`](/abp/ws2/ws2_s1.zip): the workbook and the slides of 9 November, the n8n workflows and the two CSV
   files for the data tables.
+- [`ws2_hw2.zip`](/abp/ws2/ws2_hw2.zip): the homework until 16 November as one HTML file, and the rules page for the
+  team's coding agent.
