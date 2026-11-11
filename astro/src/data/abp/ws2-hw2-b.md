@@ -4,7 +4,7 @@ title: "Homework until 16 Nov, Part B: Find out why your mail AI assistant misse
 
 
 Your mail AI assistant answers from earlier mails. Here you first send it a mail about kimchi, then ask it about
-Korean food, see that it misses the kimchi, and let Claude find out why.
+Korean food, see that it misses the kimchi, and let Claude Code find out why.
 
 ### 7. See the mistake: ask your mail AI assistant about Korean food
 
@@ -53,7 +53,7 @@ behind **Review** has an address of its own, made for this one run of WS2.4: whe
 
 [Stuck? Help for step 7](#step-7)
 
-### 8. Let Claude find the cause
+### 8. Let Claude Code find the cause
 
 Start Claude Code (you find `cd ~/kingo-pod && ./kingo claude` in your terminal's command history with the up arrow)
 and paste this:
@@ -70,12 +70,12 @@ Look at:
 Do not change anything. Then explain the cause to me in plain words.
 ```
 
-Claude reads the run, the flow and the code, and asks you before each command. At the end it explains why the search
+Claude Code reads the run, the flow and the code, and asks you before each command. At the end it explains why the search
 did not find the kimchi. Read the explanation twice: this is the most important finding of this part.
 
 [Stuck? Help for step 8](#step-8)
 
-### 9. Let Claude fix the search, in a copy of the flow
+### 9. Let Claude Code fix the search, in a copy of the flow
 
 The fix goes into Langflow only, not into n8n: n8n builds the mail text, and the prompt and the check of the draft
 still need all of it. Only the search should get less.
@@ -91,7 +91,7 @@ Do not change the original flow, and do not change n8n.
 ```
 
 You should see the new flow *Draft Reply (Enron) - Search Fix* in your Langflow, next to the original. The original
-is unchanged, and Claude saved its JSON in `~/kingo-pod/claude/backups/`.
+is unchanged, and Claude Code saved its JSON in `~/kingo-pod/claude/backups/`.
 
 [Stuck? Help for step 9](#step-9)
 
@@ -148,25 +148,25 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 |---|---|
 | No draft for your mail on the page | Check in Gmail that the mail arrived (look in Spam too). Check that WS2.3 and WS2.4 are published. In n8n, open *Executions* and look for a run of WS2.3 with your mail. |
 | The page does not open | Check that WS2.4 - Approvals Page is published. |
-| Claude says in step 8 that the kimchi mail is not in the search | WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3). |
+| Claude Code says in step 8 that the kimchi mail is not in the search | WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3). |
 
 #### Step 8
 
 | What you see | What to do |
 |---|---|
-| Claude does not find the cause | Ask it: `What exactly does Mail Search get as its search query? Show me the text.` Then: `Which lines of that text help to find the kimchi mail, and which do not?` |
-| Claude cannot find the run | Ask it for the newest run of WS2.4 - Reply with Approval, with its data. |
+| Claude Code does not find the cause | Ask it: `What exactly does Mail Search get as its search query? Show me the text.` Then: `Which lines of that text help to find the kimchi mail, and which do not?` |
+| Claude Code cannot find the run | Ask it for the newest run of WS2.4 - Reply with Approval, with its data. |
 
 #### Step 9
 
 | What you see | What to do |
 |---|---|
-| No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude: `Did you save the copy? Show me its name and id.` |
-| Claude changed the original flow | Ask Claude to put the original back from its backup in `backups/`. |
+| No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
+| Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `backups/`. |
 
 #### Step 10
 
 | What you see | What to do |
 |---|---|
-| Claude cannot find one of the mails | Ask it to search `n8n_workshop_mail.messages` by the subject, with `ILIKE`. |
-| Both flows find the same sources for every mail | Check with Claude that the copy really is a changed copy: `Show me what you changed in the copy.` |
+| Claude Code cannot find one of the mails | Ask it to search `n8n_workshop_mail.messages` by the subject, with `ILIKE`. |
+| Both flows find the same sources for every mail | Check with Claude Code that the copy really is a changed copy: `Show me what you changed in the copy.` |
