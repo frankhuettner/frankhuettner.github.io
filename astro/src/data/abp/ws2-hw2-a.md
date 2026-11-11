@@ -75,9 +75,9 @@ To keep only the new one, remove the old one:
 
 [Stuck? Help for step 2](#step-2)
 
-### 3. Give Claude Code permission to work in n8n
+### 3. Make a key in n8n
 
-Claude Code reads and changes your workflows through n8n's API. Claude Code needs an API key issued by n8n to do that.
+Claude Code works on your workflows through n8n's API. For that, it needs a key from n8n.
 
 1. Open n8n at <http://localhost:5678> and sign in.
 2. Click **Settings** at the bottom of the left sidebar, then **n8n API**.
