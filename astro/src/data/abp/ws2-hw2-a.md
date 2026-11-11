@@ -15,6 +15,8 @@ its usefulness for working with other documents, like PowerPoint or Excel files.
 ### Better safe than sorry
 Even though Claude Code usually has good intentions, it might accidentally do things on your computer that have seriously bad consequences. Hence, it’s always asking you for permission before doing something. Quickly, people said yes to everything instead of reading the fine print. Hence, developers decided to build sandboxes: within the sandbox, the AI can do what it wants, it might also reach out on well-defined paths, but that’s it.
 
+![Claude Code as a robot in a sandbox called nono: inside, it may dig, play and build as it likes; nothing may leave the box.](/abp/ws2/img/sandbox.png)
+
 We use the sandbox tool called **nono**. We configure it so that Claude Code can
 - only write in one folder: `~/kingo-pod/claude`,
 - read the rest of kingo-pod to understand how it works,
