@@ -43,10 +43,10 @@ whether the fix does better.
    it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
    kimchi mail is in your database, yet the draft does not use it.
 
-Your draft does mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
+Does your draft mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
 
 <details class="more">
-<summary>By the way: your browser called n8n through a webhook</summary>
+<summary>Side note: the address in sub-step 4 is a webhook</summary>
 
 The address you opened in sub-step 4 (<http://localhost:5678/webhook/approvals>) is a **webhook**, that is, an address where
 someone (here, that is you) can call n8n. In other words, n8n hands out a hook that you can pull. In this case, your
@@ -144,7 +144,7 @@ You should see a table with six answers. When we measured the search alone on 10
 The fix brings in the kimchi, and the Energy Institute drops out. That is the lesson of this part: **a change is
 better only when you measured it on more than one case.**
 
-Your table looks a little different? That is fine. What counts is that you measured both flows on the same mails.
+Does your table look a little different? That is fine. What counts is that you measured both flows on the same mails.
 
 [Stuck? Help for step 10](#step-10)
 
