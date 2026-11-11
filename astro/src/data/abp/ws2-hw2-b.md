@@ -46,9 +46,9 @@ whether the fix does better.
 Your draft does mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
 
 <details class="more">
-<summary>What just happened: your browser called n8n through a webhook</summary>
+<summary>By the way: your browser called n8n through a webhook</summary>
 
-The address you just opened (<http://localhost:5678/webhook/approvals>) is a **webhook**, that is, an address where
+The address you opened in sub-step 4 (<http://localhost:5678/webhook/approvals>) is a **webhook**, that is, an address where
 someone (here, that is you) can call n8n. In other words, n8n hands out a hook that you can pull. In this case, your
 browser pulled the hook by calling the address, and the n8n workflow *WS2.4 - Approvals Page* answered: it read the
 drafts that wait for you from the database, made a web page of them, and sent this page back to your browser. The
