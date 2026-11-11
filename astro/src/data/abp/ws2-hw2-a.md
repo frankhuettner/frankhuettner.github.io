@@ -79,7 +79,7 @@ To keep only the new one, remove the old one:
 
 Claude Code works on your workflows through n8n's API. For that, it needs a key from n8n.
 
-1. Open n8n at <http://localhost:5678> and sign in.
+1. **Open n8n** at <http://localhost:5678> and sign in.
 2. Click **Settings** at the bottom of the left sidebar, then **n8n API**.
 3. Click **Create API key**. In the window *Create API Key*:
    - Label: `claude`
