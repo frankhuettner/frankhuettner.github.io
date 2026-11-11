@@ -26,9 +26,9 @@ We use the sandbox tool called **nono**. We configure it so that Claude Code can
 
 Typically, Claude Code uses the Claude models from Anthropic. Here, we use it with the model GLM 5.3 Flash, paid with the OpenRouter key you already have.
 
-### 1. Update kingo-pod: get the new command `kingo claude`
+### 1. Update kingo-pod to get the new command `kingo claude`
 
-Open a terminal and run this one line:
+Open a terminal (in Windows, start WSL/Ubuntu) and run this one line:
 
 ```
 cd ~/kingo-pod && ./kingo update
@@ -44,8 +44,8 @@ You should see a line that starts with `kingo claude`.
 
 ### 2. Install Claude Code and its sandbox
 
-One line installs three programs: **nono** (the sandbox), **psql** (so that Claude can talk to your database) and
-**Claude Code**. Run the line for your laptop, in the same terminal.
+One line installs three programs: **nono** (the sandbox), **psql** (so that Claude can talk to your Postgres database) and
+**Claude Code**. Run the command in the terminal:
 
 On a Mac:
 
@@ -65,7 +65,7 @@ curl -fsSL https://nono.sh/install.sh | sh && sudo apt install -y postgresql-cli
 Run the line anyway: it installs Claude Code the way Anthropic recommends, or brings it up to date. Your own settings
 and your login stay as they are.
 
-You installed it with Homebrew or npm instead? Then you now have it twice. `./kingo claude` always takes the new one.
+You installed Claude Code with Homebrew or npm instead? Then you now have two installations. `./kingo claude` always takes the new one.
 To keep only the new one, remove the old one:
 
 - Homebrew: `brew uninstall --cask claude-code`
