@@ -1,6 +1,5 @@
 ---
 title: "Homework until 16 Nov, Part A: Claude Code"
-lede: "Steps 1 to 6. At the end: a coding agent that knows your workflows."
 ---
 
 
@@ -291,7 +290,7 @@ Claude can explain all of this itself. Ask it:
 How are you set up here, and what is different from a standard Claude Code?
 ```
 
-**Next: [Part B · Find why your mail AI assistant missed the kimchi →](/abp/ws2/hw2-b/)**
+**Next: [Part B · Find out why your mail AI assistant missed the kimchi →](/abp/ws2/hw2-b/)**
 
 ## If something goes wrong
 

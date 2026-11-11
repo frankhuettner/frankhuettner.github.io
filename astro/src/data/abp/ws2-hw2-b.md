@@ -1,6 +1,5 @@
 ---
 title: "Homework until 16 Nov, Part B: Find out why your mail AI assistant missed the kimchi"
-lede: "Steps 7 to 10. At the end: a fix, measured on three mails."
 ---
 
 

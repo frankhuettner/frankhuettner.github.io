@@ -1,6 +1,5 @@
 ---
 title: "Homework until 16 Nov, optional: Get ready for SMS"
-lede: "Optional. Steps 11 to 14. At the end: an SMS on your phone, sent by n8n."
 ---
 
 
