@@ -3,21 +3,15 @@ title: "Homework until 16 Nov, optional: Get ready for SMS"
 ---
 
 
-This part is optional: skip it if you like.
-
 An SMS lets your system reach a person who is not at the laptop, for example the person who approves a draft. You
-need an account at **Twilio**, a company that sends SMS for programs.
+need an account with a company that sends SMS, for example **Twilio** (or **SOLAPI**).
 
 **Twilio costs money.** Its free trial is enough for the two test SMS here, and it needs no credit card: it has 100
-SMS, ends after 30 days, and sends only Twilio's sample texts, not your own. Your own text, or more SMS, needs a paid
-account.
+SMS, ends after 30 days, and sends only Twilio's sample texts, not your own.
 
-ONLY SHORT, MASKED TEXT GOES INTO AN SMS: NEVER A NAME OR THE TEXT OF A MAIL. Twilio is outside your laptop, and an
-SMS goes through many hands.
-
-**The 100 SMS of the free trial are all you get.** Send only the two test SMS in steps 11 and 14, and never put the Twilio node
-into a workflow that runs on its own many times, such as every minute on a schedule or for every new mail: it can
-use them all up before you notice.
+**An SMS is not a safe channel.** Never send a name or the text of a mail, even with a paid account. An SMS passes
+through the SMS company and the phone networks, and it can show up on a locked phone. Send only a short note, such as
+"A draft waits for you".
 
 ### 11. Make a free Twilio trial account
 
@@ -68,8 +62,10 @@ Build a small n8n workflow with two nodes:
    - Message: `sms_internal_alerts`. A free account sends only Twilio's sample texts; this name picks the alert.
 4. Click **Execute workflow**, once.
 
-Within a minute your phone shows Twilio's sample alert, in Korea marked [국제발신]: *Alert: System downtime
-detected. …* Well done: your n8n can now reach a phone. Your own text needs a paid Twilio account.
+Within a minute your phone shows Twilio's sample alert, in Korea marked [국제발신]: *Alert: System downtime detected. …*
+Well done: your n8n can now reach a phone. Your own text needs a paid Twilio account. SOLAPI seems to give you more
+freedom in its trial: from what it writes, the points you get at sign-up already send your own text, from your own
+number. For this, you need a Korean phone number in your own name.
 
 [Stuck? Help for step 14](#step-14)
 
