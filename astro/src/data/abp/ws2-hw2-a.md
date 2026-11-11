@@ -351,6 +351,8 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | `nono is not installed` or `Claude Code is not installed` | Run the line of step 2 again. |
+| `Sandbox initialization failed: WSL2: proxy-only network mode cannot be kernel-enforced` (Windows) | Your kingo-pod is too old for Windows. Run `./kingo update`, then step 4 again. After the update, `./kingo version` shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer). |
+| `WARNING: WSL2 insecure proxy mode` (Windows) | Nothing to do: on Windows, this line comes at every start. There, the sandbox cannot lock the network, and in this course Claude Code may use the internet anyway. Your files stay protected, and Claude Code still does not see your keys. |
 | `n8n and Langflow must be running first` | Run `./kingo up`, then step 4 again. |
 | `n8n did not accept the key` | Make a new key as in step 3. Then run `./kingo claude` again: it asks for the key. |
 | `openrouter did not accept the key` | Check the key Yanbo gave you. Then run `./kingo claude` again: it asks for the key. |
