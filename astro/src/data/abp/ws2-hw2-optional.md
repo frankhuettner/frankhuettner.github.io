@@ -6,19 +6,20 @@ title: "Homework until 16 Nov, optional: Get ready for SMS"
 This part is optional: skip it if you like.
 
 An SMS lets your system reach a person who is not at the laptop, for example the person who approves a draft. You
-need a free account at **Twilio**, a company that sends SMS for programs.
+need an account at **Twilio**, a company that sends SMS for programs.
+
+**Twilio costs money.** Its free trial is enough for the two test SMS here, and it needs no credit card: it has 100
+SMS, ends after 30 days, and sends only Twilio's sample texts, not your own. Your own text, or more SMS, needs a paid
+account.
 
 ONLY SHORT, MASKED TEXT GOES INTO AN SMS: NEVER A NAME OR THE TEXT OF A MAIL. Twilio is outside your laptop, and an
 SMS goes through many hands.
 
-**The free account has 100 SMS, and no more.** Send only the two test SMS in steps 11 and 14, and never put the Twilio node
+**The 100 SMS of the free trial are all you get.** Send only the two test SMS in steps 11 and 14, and never put the Twilio node
 into a workflow that runs on its own many times, such as every minute on a schedule or for every new mail: it can
 use them all up before you notice.
 
-The free account has more limits: it ends after 30 days, and it sends only Twilio's sample texts, not your own. That
-is enough to see your n8n reach a phone.
-
-### 11. Make a free Twilio account
+### 11. Make a free Twilio trial account
 
 1. Open <https://www.twilio.com/try-twilio> and sign up with your SKKU address.
 2. Confirm your address with the mail Twilio sends you.
