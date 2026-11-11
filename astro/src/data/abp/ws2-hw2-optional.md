@@ -37,8 +37,6 @@ On the first page of your Twilio account (the *Console*), find the box *Account 
 1. Click **Get phone number** if there is no number yet. This is the number your SMS come from.
 2. Copy into a note: the **Account SID**, the **Auth Token** (click **Show** first), and **My Twilio phone number**.
 
-[Stuck? Help for step 12](#step-12)
-
 ### 13. Give n8n the Twilio login: a credential
 
 1. In n8n, click the **+** at the very top left, then **New credential**.
@@ -77,12 +75,6 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 |---|---|
 | Twilio does not accept your Korean mobile number | Write to Frank, with a screenshot. |
 | The SMS from Twilio's website does not come | Check the number under **To**: `+82`, then your number without the first 0. Then open the tab **Logs** on the same page and look at the status of your SMS. |
-
-#### Step 12
-
-| What you see | What to do |
-|---|---|
-| No button **Get phone number** | In the left menu, open **Phone Numbers**, then **Manage**, then **Buy a number**: in a free account it costs nothing. |
 
 #### Step 13
 

@@ -140,6 +140,23 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     box.append(btn);
   });
 
+  // A click on a picture shows it large; a click or Esc closes it (Frank, 11 Nov 2026).
+  document.querySelectorAll(".ws2 img").forEach((img) =>
+    img.addEventListener("click", () => {
+      const box = document.createElement("div");
+      box.className = "ws2-zoom";
+      box.append(Object.assign(new Image(), { src: img.src, alt: img.alt }));
+      const close = (e) => {
+        if (e.type === "keydown" && e.key !== "Escape") return;
+        box.remove();
+        document.removeEventListener("keydown", close);
+      };
+      box.addEventListener("click", close);
+      document.addEventListener("keydown", close);
+      document.body.append(box);
+    }),
+  );
+
   // Mark the section being read in the contents on the right.
   const links = new Map();
   document.querySelectorAll(".ws2-toc--rail a").forEach((a) => links.set(decodeURIComponent(a.hash.slice(1)), a));
@@ -321,6 +338,25 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     height: auto;
     margin: 1rem 0 1.4rem;
     border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    cursor: zoom-in;
+  }
+
+  .ws2-zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 2vw;
+    background: rgb(15 20 28 / 0.88);
+    cursor: zoom-out;
+  }
+
+  .ws2-zoom img {
+    max-width: 100%;
+    max-height: 100%;
     border-radius: var(--radius);
   }
 

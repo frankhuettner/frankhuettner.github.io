@@ -15,9 +15,9 @@ its usefulness for working with other documents, like PowerPoint or Excel files.
 ### Better safe than sorry
 Even though Claude Code usually has good intentions, it might accidentally do things on your computer that have seriously bad consequences. Hence, it’s always asking you for permission before doing something. Quickly, people said yes to everything instead of reading the fine print. Hence, developers decided to build sandboxes: within the sandbox, the AI can do what it wants, it might also reach out on well-defined paths, but that’s it.
 
-![Claude Code as a robot in a sandbox called nono: inside, it may dig, play and build as it likes; nothing may leave the box.](/abp/ws2/img/sandbox.png)
+![Claude Code as a robot in a sandbox called nono: inside, it may dig, play and build as it likes; nothing may leave the box.](/abp/ws2/img/sandbox.jpg)
 
-We use the sandbox tool called **nono**. We configure it so that Claude Code can
+We use the sandbox tool called **[nono](https://nono.sh/)**. We configure it so that Claude Code can
 - only write in one folder: `~/kingo-pod/claude`,
 - read the rest of kingo-pod to understand how it works,
 - reach out to n8n and Langflow,
@@ -170,7 +170,24 @@ Claude Code should say that your team has not added its rules yet. That is right
 <details class="more">
 <summary>How do I change AGENTS.md myself?</summary>
 
-With **nano**, an editor inside the terminal. It works the same on a Mac and in the Ubuntu app:
+Open it in a text editor, like any text file:
+
+- On a Mac, this line opens it in TextEdit:
+  ```
+  open -e ~/kingo-pod/claude/AGENTS.md
+  ```
+- On Windows, in the Ubuntu app, this line opens it in Notepad:
+  ```
+  cd ~/kingo-pod/claude && notepad.exe AGENTS.md
+  ```
+
+Change it, then save with **Cmd+S** (Mac) or **Ctrl+S** (Windows).
+
+Or do it in **nano**, an editor inside the terminal. It works the same on a Mac and in the Ubuntu app. Do not confuse
+nano with nono:
+
+- **nano** is the opposite of a huge tool like MS Word for a simple task.
+- **nono** is the opposite of saying "yes, yes, …" to Claude Code.
 
 ```
 nano -w ~/kingo-pod/claude/AGENTS.md
@@ -257,10 +274,16 @@ and you can change it at every start.
 
 The Claude Code you started with `./kingo claude` is set up for the course.
 
-**Important: the course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.** When you
-type `claude` anywhere, you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`,
-your own Anthropic login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the
-keys.
+<details class="more">
+<summary>And if I just type <code>claude</code>?</summary>
+
+Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own Anthropic
+login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys. **Here, you're on
+your own, kid.**
+
+The course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.
+
+</details>
 
 <details class="more">
 <summary>In detail: what the course changes, and where</summary>
