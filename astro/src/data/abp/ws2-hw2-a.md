@@ -17,7 +17,7 @@ Even though Claude Code usually has good intentions, it might accidentally do th
 
 ![Claude Code as a robot in a sandbox called nono: inside, it may dig, play and build as it likes; nothing may leave the box.](/abp/ws2/img/sandbox.jpg)
 
-We use the sandbox tool called **[nono](https://nono.sh/)**. We configure it so that Claude Code can
+We use the sandbox tool called **<a href="https://nono.sh/" target="_blank" rel="noopener">nono</a>**. We configure it so that Claude Code can
 - only write in one folder: `~/kingo-pod/claude`,
 - read the rest of kingo-pod to understand how it works,
 - reach out to n8n and Langflow,
@@ -274,8 +274,9 @@ and you can change it at every start.
 
 The Claude Code you started with `./kingo claude` is set up for the course.
 
-<details class="more">
-<summary>And if I just type <code>claude</code>?</summary>
+<div class="warn">
+
+**And if I just type `claude`?**
 
 Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own Anthropic
 login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys. **Here, you're on
@@ -283,13 +284,13 @@ your own, kid.**
 
 The course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.
 
-</details>
+</div>
 
 <details class="more">
-<summary>In detail: what the course changes, and where</summary>
+<summary>In detail: what <code>./kingo claude</code> changes, and where</summary>
 
-What is different from a Claude Code you install and start with `claude`, and the file where the course configures
-each part:
+What is different from a Claude Code you install and start with `claude`, and the file where each
+part is configured:
 
 | | A standard Claude Code | Here, started with `./kingo claude` | Configured for the course in |
 |---|---|---|---|

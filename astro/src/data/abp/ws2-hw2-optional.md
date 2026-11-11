@@ -15,6 +15,9 @@ SMS goes through many hands.
 into a workflow that runs on its own many times, such as every minute on a schedule or for every new mail: it can
 use them all up before you notice.
 
+The free account has more limits: it ends after 30 days, and it sends only Twilio's sample texts, not your own. That
+is enough to see your n8n reach a phone.
+
 ### 11. Make a free Twilio account
 
 1. Open <https://www.twilio.com/try-twilio> and sign up with your SKKU address.
@@ -26,16 +29,20 @@ use them all up before you notice.
    - Under **To**, open the list. Your number is there, with `+82` in front and without the first 0
      (`010-1234-5678` becomes `+821012345678`)? Pick it. If not, pick **Add a verified tester**, type your number
      like that, and type in the code Twilio sends you.
-   - Click **Send SMS**. Your phone shows it within a minute: Twilio works.
+   - Click **Send SMS**. Your phone shows it within a minute: Twilio works. Keep the SMS: you need the number it
+     comes from in step 12.
 
 [Stuck? Help for step 11](#step-11)
 
-### 12. Copy three things from Twilio
+### 12. Copy three things from Twilio into a note
 
-On the first page of your Twilio account (the *Console*), find the box *Account Info*:
-
-1. Click **Get phone number** if there is no number yet. This is the number your SMS come from.
-2. Copy into a note: the **Account SID**, the **Auth Token** (click **Show** first), and **My Twilio phone number**.
+1. On the first page of your Twilio account (**Home** in the menu on the left), find the box with the name of your
+   account, at first *My First Twilio Account*. Next to **Account SID**, click the copy icon, and paste it into a note.
+2. Next to **Auth Token**, click the copy icon too, and paste it into the same note. The token stays hidden as dots;
+   the eye shows it.
+3. Add the number the SMS of step 11 came from, as a `+` and then only digits: `+1 (737) 250-8034` becomes
+   `+17372508034`. A free account has no number of its own: it sends from numbers that Twilio shares among many
+   accounts.
 
 ### 13. Give n8n the Twilio login: a credential
 
@@ -54,14 +61,14 @@ Build a small n8n workflow with two nodes:
 2. Add a first node: the trigger **Trigger manually**. Name it `trigger_manual`.
 3. Add a **Twilio** node, the action **Send an SMS/MMS/WhatsApp message**. Name it `send_sms`.
    - Credential: `Twilio`
-   - From: your Twilio phone number from step 12
+   - From: the number from step 12, such as `+17372508034`
    - To: your own mobile number with `+82` in front and without the first 0: `010-1234-5678` becomes
      `+821012345678`
-   - Message: `Hello from my mail AI assistant`
+   - Message: `sms_internal_alerts`. A free account sends only Twilio's sample texts; this name picks the alert.
 4. Click **Execute workflow**, once.
 
-Within a minute your phone shows the SMS. It starts with *Sent from your Twilio trial account*, and in Korea it may
-be marked [국제발신] or [Web 발신]. You cannot reply to it. Well done: your n8n can now reach a phone.
+Within a minute your phone shows Twilio's sample alert, in Korea marked [국제발신]: *Alert: System downtime
+detected. …* Well done: your n8n can now reach a phone. Your own text needs a paid Twilio account.
 
 [Stuck? Help for step 14](#step-14)
 
@@ -87,4 +94,5 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | `The number … is unverified` | A free account sends only to verified numbers. Check the number in **To**: `+82`, then your number without the first 0. Check that the same number is in the list under **To** on Twilio's page *Try out SMS* (step 11). |
-| No SMS after five minutes | In Twilio, open **Monitor**, then **Logs**, then **Messaging**, and look at the status of your SMS. Send Frank a screenshot. |
+| Another error from Twilio in `send_sms` | Check **From**: the number from step 12, a `+` and then only digits. Check **Message**: exactly `sms_internal_alerts`, as a free account sends only Twilio's sample texts. |
+| No SMS after five minutes | On Twilio's page *Try out SMS* (step 11), open the tab **Logs** and look at the status of your SMS. Send Frank a screenshot. |

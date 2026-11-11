@@ -360,6 +360,23 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     border-radius: var(--radius);
   }
 
+  /* A warning in the text (Frank, 11 Nov 2026: "als warn box"): <div class="warn"> in the course repo's Markdown. */
+  .ws2 .warn {
+    margin: 1.2rem 0;
+    padding: 0.8rem 1rem;
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+  }
+
+  .ws2 .warn > :first-child {
+    margin-top: 0;
+  }
+
+  .ws2 .warn > :last-child {
+    margin-bottom: 0;
+  }
+
   /* Small print in the workbooks (Frank, 7 Nov 2026: "bla bla ... bitte sehr klein machen"): what helps, not what to
      type. The course repo's Markdown writes it as <div class="fine"> and <small>. */
   .ws2 .fine,
