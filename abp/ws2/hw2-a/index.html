@@ -413,7 +413,15 @@ and correct or delete it. The file <code>MEMORY.md</code> there lists everything
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>nono is not installed</code> or <code>Claude Code is not installed</code></td><td>Run the line of step 2 again.</td></tr><tr><td><code>n8n and Langflow must be running first</code></td><td>Run <code>./kingo up</code>, then step 4 again.</td></tr><tr><td><code>n8n did not accept the key</code></td><td>Make a new key as in step 3. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td><code>openrouter did not accept the key</code></td><td>Check the key Yanbo gave you. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td>Claude Code asks you to log in to Anthropic</td><td>Do not log in. Type <code>/exit</code> and write to Frank.</td></tr><tr><td><code>removed an Anthropic login</code></td><td>You logged in to Anthropic inside <code>./kingo claude</code>. <code>kingo</code> removed that login again: the course does not use it, and Claude Code could read it there. Your own Claude Code login is not affected.</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>nono is not installed</code> or <code>Claude Code is not installed</code></td><td>Run the line of step 2 again.</td></tr><tr><td><code>Sandbox initialization failed: WSL2: proxy-only network mode cannot be kernel-enforced</code> (Windows)</td><td>Your kingo-pod is too old for Windows. Run <code>./kingo update</code>, then step 4 again. After the update, <code>./kingo version</code> shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer).</td></tr><tr><td><code>WARNING: WSL2 insecure proxy mode</code> (Windows)</td><td>Nothing to do: on Windows, this line comes at every start. There, the sandbox cannot lock the network, and in this course Claude Code may use the internet anyway. Your files stay protected, and Claude Code still does not see your keys.</td></tr><tr><td><code>n8n and Langflow must be running first</code></td><td>Run <code>./kingo up</code>, then step 4 again.</td></tr><tr><td><code>n8n did not accept the key</code></td><td>Make a new key as in step 3. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td><code>openrouter did not accept the key</code></td><td>Check the key Yanbo gave you. Then run <code>./kingo claude</code> again: it asks for the key.</td></tr><tr><td>Claude Code asks you to log in to Anthropic</td><td>Do not log in. Type <code>/exit</code> and write to Frank.</td></tr><tr><td><code>removed an Anthropic login</code></td><td>You logged in to Anthropic inside <code>./kingo claude</code>. <code>kingo</code> removed that login again: the course does not use it, and Claude Code could read it there. Your own Claude Code login is not affected.</td></tr></tbody></table>
 <h4 id="step-5">Step 5</h4>
 
 
