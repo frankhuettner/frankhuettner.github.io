@@ -54,8 +54,8 @@ kimchi mail is in your database, yet the draft does not use it.</p>
 </ol>
 <p>Your draft does mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.</p>
 <details class="more">
-<summary>What just happened: your browser called n8n through a webhook</summary>
-<p>The address you just opened (<a href="http://localhost:5678/webhook/approvals">http://localhost:5678/webhook/approvals</a>) is a <strong>webhook</strong>, that is, an address where
+<summary>By the way: your browser called n8n through a webhook</summary>
+<p>The address you opened in sub-step 4 (<a href="http://localhost:5678/webhook/approvals">http://localhost:5678/webhook/approvals</a>) is a <strong>webhook</strong>, that is, an address where
 someone (here, that is you) can call n8n. In other words, n8n hands out a hook that you can pull. In this case, your
 browser pulled the hook by calling the address, and the n8n workflow <em>WS2.4 - Approvals Page</em> answered: it read the
 drafts that wait for you from the database, made a web page of them, and sent this page back to your browser. The
