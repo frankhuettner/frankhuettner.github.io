@@ -20,7 +20,7 @@ Even though Claude Code usually has good intentions, it might accidentally do th
 We use the sandbox tool called **<a href="https://nono.sh/" target="_blank" rel="noopener">nono</a>**. We configure it so that Claude Code can
 - only write in one folder: `~/kingo-pod/claude`,
 - read the rest of kingo-pod to understand how it works,
-- reach out to n8n and Langflow,
+- reach out to n8n, Langflow and your database,
 - access the internet, and
 - not do anything else on your laptop.
 
@@ -223,7 +223,7 @@ It’s a good idea to add your team’s design rules to `AGENTS.md`.
 
 ### What Claude Code can do, and what it cannot
 
-Careful, if you just type `claude`, then Claude Code runs in the standard way as anthropic had it set up. Please always use
+Careful, if you just type `claude`, then Claude Code runs in the standard way as Anthropic had it set up. Please always use
 ```
 ./kingo claude
 ```
@@ -236,9 +236,9 @@ This way, it’s in the nono sandbox.
 | change your n8n workflows, Langflow flows and database | see your keys: it gets stand-ins |
 | look things up on the web | see your own Claude Code settings, if you use Claude Code already |
 
-Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal
+Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal.
 
-*ONLY RUN A COMMAND IN YOUR OWN TERMINAL IF YOU UNDERSTAND IT.*
+**Only run a command in your own terminal if you understand it.**
 
 Claude Code cannot leave its sandbox, but a command you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude Code, then only add something if you know what you’re doing.
 
@@ -302,7 +302,7 @@ part is configured:
 | Settings and history | `~/.claude` | `~/.kingo-claude`; your own `~/.claude` stays untouched | `kingo-pod/kingo` starts Claude Code with `CLAUDE_CONFIG_DIR=~/.kingo-claude`: Claude Code keeps its settings, sessions and history there. An Anthropic login stored there, `kingo` removes at every start: the course does not use it, and Claude Code could read it. |
 | Instructions | a `CLAUDE.md` that you write | `AGENTS.md`: the part about kingo-pod and your team's rules; `CLAUDE.md` only points to it | `kingo-pod/claude/AGENTS.md`, yours to change, and `kingo-pod/claude/CLAUDE.md`, which holds only `@AGENTS.md`. `settings.json` makes Claude Code skip the `CLAUDE.md` of kingo-pod itself, which is for kingo-pod's developers (`claudeMdExcludes`). |
 | Memory | hidden in `~/.claude/projects/` | in `kingo-pod/claude/memory/`, where you can read it | `kingo-pod/claude/.claude/settings.json` (`autoMemoryDirectory`) |
-| What leaves the laptop | the model's requests, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them | the model's requests, to OpenRouter only; usage data, error reports, feedback, pages on claude.ai and Remote Control are off | `kingo-pod/kingo` turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude Code. `kingo-pod/claude/.claude/settings.json` turns off the same, and also feedback (`DISABLE_FEEDBACK_COMMAND`), Remote Control (`disableRemoteControl`), pages on claude.ai (`enableArtifact`) and the check of each web address at Anthropic before Claude Code reads a page (`skipWebFetchPreflight`). |
+| What leaves the laptop | the model's requests and the web pages Claude Code looks up, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them | the model's requests, to OpenRouter only, and the web pages Claude Code looks up; usage data, error reports, feedback, pages on claude.ai and Remote Control are off | `kingo-pod/kingo` turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude Code. `kingo-pod/claude/.claude/settings.json` turns off the same, and also feedback (`DISABLE_FEEDBACK_COMMAND`), Remote Control (`disableRemoteControl`), pages on claude.ai (`enableArtifact`) and the check of each web address at Anthropic before Claude Code reads a page (`skipWebFetchPreflight`). |
 | Requests for permission | Claude Code asks before a command | the same; `./kingo yolo` turns them off | `kingo-pod/kingo`: `./kingo yolo` starts Claude Code with `--dangerously-skip-permissions`. The sandbox stays the same. |
 | Updates | Claude Code updates itself | no self-update: run the install line again | `kingo-pod/claude/.claude/settings.json`: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also turns off the self-update. |
 

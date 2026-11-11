@@ -4,10 +4,10 @@ title: "Homework until 16 Nov, optional: Get ready for SMS"
 
 
 An SMS lets your system reach a person who is not at the laptop, for example the person who approves a draft. You
-need an account with a company that sends SMS, for example **Twilio** (or **SOLAPI**).
+need an account with a company that sends SMS, for example **Twilio** (or **SOLAPI**). The steps here use Twilio.
 
-**Twilio costs money.** Its free trial is enough for the two test SMS here, and it needs no credit card: it has 100
-SMS, ends after 30 days, and sends only Twilio's sample texts, not your own.
+**Twilio costs money.** Its free trial account is enough for the two test SMS here, and it needs no credit card: it
+has 100 SMS, ends after 30 days, and sends only Twilio's sample texts, not your own.
 
 **An SMS is not a safe channel.** Never send a name or the text of a mail, even with a paid account. An SMS passes
 through the SMS company and the phone networks, and it can show up on a locked phone. Send only a short note, such as
@@ -18,9 +18,10 @@ through the SMS company and the phone networks, and it can show up on a locked p
 1. Open <https://www.twilio.com/try-twilio> and sign up with your SKKU address.
 2. Confirm your address with the mail Twilio sends you.
 3. Twilio asks for your mobile number and sends it a code. Type the code in.
-4. Send yourself a first SMS on Twilio's website. This also makes your number a **verified tester**: a free account
+4. Send yourself a first SMS on Twilio's website. This also makes your number a **verified tester**: a trial account
    sends SMS only to verified numbers.
    - On the first page of your Twilio account, under **Try it out**, tab **Communications**, click **Send an SMS**.
+     The page *Try out SMS* opens.
    - Under **To**, open the list. Your number is there, with `+82` in front and without the first 0
      (`010-1234-5678` becomes `+821012345678`)? Pick it. If not, pick **Add a verified tester**, type your number
      like that, and type in the code Twilio sends you.
@@ -36,7 +37,7 @@ through the SMS company and the phone networks, and it can show up on a locked p
 2. Next to **Auth Token**, click the copy icon too, and paste it into the same note. The token stays hidden as dots;
    the eye shows it.
 3. Add the number the SMS of step 11 came from, as a `+` and then only digits: `+1 (737) 250-8034` becomes
-   `+17372508034`. A free account has no number of its own: it sends from numbers that Twilio shares among many
+   `+17372508034`. A trial account has no number of its own: it sends from numbers that Twilio shares among many
    accounts.
 
 ### 13. Give n8n the Twilio login: a credential
@@ -59,7 +60,7 @@ Build a small n8n workflow with two nodes:
    - From: the number from step 12, such as `+17372508034`
    - To: your own mobile number with `+82` in front and without the first 0: `010-1234-5678` becomes
      `+821012345678`
-   - Message: `sms_internal_alerts`. A free account sends only Twilio's sample texts; this name picks the alert.
+   - Message: `sms_internal_alerts`. A trial account sends only Twilio's sample texts; this name picks the alert.
 4. Click **Execute workflow**, once.
 
 Within a minute your phone shows Twilio's sample alert, in Korea marked [국제발신]: *Alert: System downtime detected. …*
@@ -90,6 +91,6 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 
 | What you see | What to do |
 |---|---|
-| `The number … is unverified` | A free account sends only to verified numbers. Check the number in **To**: `+82`, then your number without the first 0. Check that the same number is in the list under **To** on Twilio's page *Try out SMS* (step 11). |
-| Another error from Twilio in `send_sms` | Check **From**: the number from step 12, a `+` and then only digits. Check **Message**: exactly `sms_internal_alerts`, as a free account sends only Twilio's sample texts. |
+| `The number … is unverified` | A trial account sends only to verified numbers. Check the number in **To**: `+82`, then your number without the first 0. Check that the same number is in the list under **To** on Twilio's page *Try out SMS* (step 11). |
+| Another error from Twilio in `send_sms` | Check **From**: the number from step 12, a `+` and then only digits. Check **Message**: exactly `sms_internal_alerts`, as a trial account sends only Twilio's sample texts. |
 | No SMS after five minutes | On Twilio's page *Try out SMS* (step 11), open the tab **Logs** and look at the status of your SMS. Send Frank a screenshot. |

@@ -15,7 +15,7 @@ title: "Homework until 16 Nov: setup and build with Claude Code"
 
 - **Deadline:** **Monday, 16 November**, before the lecture at 10:50.
 - **You need:**
-  - your kingo-pod, with WS2.3 and WS2.4 from 9 November, both published;
+  - your kingo-pod, with WS2.0 from the preparatory homework and WS2.3 and WS2.4 from 9 November, all published;
   - the OpenRouter key Yanbo gave you;
   - the file [`ws2_hw2.zip`](/abp/ws2/ws2_hw2.zip), unpacked: it holds this homework as a page and the rules page `ws2_rules.html`;
   - your phone, for the optional part.

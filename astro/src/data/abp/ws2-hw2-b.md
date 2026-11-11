@@ -4,7 +4,8 @@ title: "Homework until 16 Nov, Part B: Find out why your mail AI assistant misse
 
 
 Your mail AI assistant answers from earlier mails. Here you first send it a mail about kimchi, then ask it about
-Korean food, see that it misses the kimchi, and let Claude Code find out why.
+Korean food, see that it misses the kimchi, and let Claude Code find out why. Then Claude Code fixes the search in a
+copy of the flow, and you measure whether the fix is better.
 
 ### 7. See the mistake: ask your mail AI assistant about Korean food
 
@@ -36,8 +37,7 @@ Korean food, see that it misses the kimchi, and let Claude Code find out why.
    it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
    kimchi mail is in your database, yet the draft does not use it.
 
-Your draft does mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you see how close
-it was.
+Your draft does mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
 
 <details class="more">
 <summary>What just happened: your browser called n8n through a webhook</summary>
@@ -51,9 +51,9 @@ you, and the page is never more than 15 seconds old. n8n looks into the database
 close the page, and *WS2.4 - Approvals Page* rests.
 
 A webhook is how someone else calls n8n. The other way round, n8n calls someone else, often with an **HTTP Request**
-node: *WS2.4 - Reply with Approval*, for example, calls the Langflow flow *Draft Reply* with one.
+node: *WS2.4 - Reply with Approval*, for example, calls the Langflow flow *Draft Reply (Enron)* with one.
 
-<figure class="bp bp-calls" aria-label="Who calls whom"><div class="bp-call"><em>A webhook: someone else calls n8n</em><div class="bp-end person"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></span><b>Your browser</b><span>you open the page</span></div><div class="bp-arrow"><span>calls <code>/webhook/approvals</code></span><i></i><span>← the page</span></div><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Approvals Page</span></div></div><div class="bp-call"><em>An HTTP Request node: n8n calls someone else</em><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Reply with Approval</span></div><div class="bp-arrow"><span>calls Langflow's Run API</span><i></i><span>← the draft</span></div><div class="bp-end brain"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>Draft Reply</span></div></div><figcaption>Who calls whom: the left side calls, the right side answers.</figcaption></figure>
+<figure class="bp bp-calls" aria-label="Who calls whom"><div class="bp-call"><em>A webhook: someone else calls n8n</em><div class="bp-end person"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></span><b>Your browser</b><span>you open the page</span></div><div class="bp-arrow"><span>calls <code>/webhook/approvals</code></span><i></i><span>← the page</span></div><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Approvals Page</span></div></div><div class="bp-call"><em>An HTTP Request node: n8n calls someone else</em><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Reply with Approval</span></div><div class="bp-arrow"><span>calls Langflow's Run API</span><i></i><span>← the draft</span></div><div class="bp-end brain"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>Draft Reply (Enron)</span></div></div><figcaption>Who calls whom: the left side calls, the right side answers.</figcaption></figure>
 
 </details>
 
@@ -115,7 +115,7 @@ and as its date one second before the mail was sent, so that the search does not
 the mail itself.
 
 The mails, by subject, and the sources I expect:
-1. "Is there any Korean home made food?" (my mail of today):
+1. "Is there any Korean home made food?" (my own mail):
    "Kimchi for Monday"
 2. "Re: FW: Wharton Resume Submission - Summer Intern" (from Kristin Gandy, 26 January 2001):
    "FW: Wharton Resume Submission - Summer Intern"
@@ -168,7 +168,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
-| Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `backups/`. |
+| Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `~/kingo-pod/claude/backups/`. |
 
 #### Step 10
 
