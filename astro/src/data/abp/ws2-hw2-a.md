@@ -9,6 +9,9 @@ Claude Code is a major innovation from Anthropic (OpenAI followed up with a clon
 2. Instead of using complicated editors and heavy software, the tool is made to live directly in the terminal. This allowed Anthropic to quickly develop a robust tool, and to focus on the main ideas.
 3. Instead of editing code or documents yourself, you describe to the AI what you want to be changed. By design, you use it as an agent.
 
+It started as a simple idea but proved to be revolutionary in software development. Quickly, people also realized
+its usefulness for working with other documents, like PowerPoint or Excel files.
+
 ### Better safe than sorry
 Even though Claude Code usually has good intentions, it might accidentally do things on your computer that have seriously bad consequences. Hence, it’s always asking you for permission before doing something. Quickly, people said yes to everything instead of reading the fine print. Hence, developers decided to build sandboxes: within the sandbox, the AI can do what it wants, it might also reach out on well-defined paths, but that’s it.
 
