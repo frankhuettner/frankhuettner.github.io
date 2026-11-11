@@ -3,19 +3,25 @@ title: "Homework until 16 Nov, Part B: Find out why your mail AI assistant misse
 ---
 
 
-Your mail AI assistant answers from earlier mails. Here you first send it a mail about kimchi, then ask it about
-Korean food, see that it misses the kimchi, and let Claude Code find out why. Then Claude Code fixes the search in a
-copy of the flow, and you measure whether the fix is better.
+Your mail AI assistant drafts answers based on earlier mails. In the preparatory homework, you first sent a mail about
+kimchi to your test Gmail account, then asked it about Korean food, and saw the power of semantic search. However, when
+you send another mail that asks about Korean food, you see that the mail AI assistant misses the info about the kimchi
+in its search. Let's use Claude Code to find out why. Then Claude Code will try to fix the search, and you measure
+whether the fix does better.
 
 ### 7. See the mistake: ask your mail AI assistant about Korean food
 
-1. In n8n, check that **WS2.0 - Embed Mails**, **WS2.3 - Triage New Mail** and **WS2.4 - Reply with Approval** are
-   published: the dot on the button **Publish** is green.
-2. First the kimchi mail. You sent *Kimchi for Monday* in step 12 of the preparatory homework? Then go on with 3. Not
-   sure? Search your test Gmail account for `kimchi`.
+1. In n8n, check that these three workflows are published:
+   - **WS2.0 - Embed Mails**
+   - **WS2.3 - Triage New Mail**
+   - **WS2.4 - Reply with Approval**
 
-   Otherwise, from your SKKU account, send this mail to your test Gmail account. Copy the subject and the text, then
-   sign with your first name:
+   Published means: the dot on the button **Publish** is green.
+2. First the kimchi mail. Did you send *Kimchi for Monday* in step 12 of the preparatory homework? If yes, go on with 3.
+   If you are not sure, search your test Gmail account for `kimchi`.
+
+   If you did not send it, send it now: from your SKKU account, send this mail to your test Gmail account. Copy the
+   subject and the text, then sign with your first name:
 
    ```
    Kimchi for Monday
