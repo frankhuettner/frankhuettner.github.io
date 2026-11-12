@@ -41,7 +41,7 @@ subject and the text, then sign with your first name:</p>
 <p>Now the question. From your SKKU account, send a second mail to your test Gmail account:</p>
 <ul>
 <li>Subject: <code>Is there any Korean home made food?</code></li>
-<li>Text: <code>I'm getting hungry!</code></li>
+<li>Text: <code>I'm getting hungry! Could you please let me know?</code></li>
 </ul>
 </li>
 <li>
@@ -87,7 +87,8 @@ did not find the kimchi. Read the explanation twice: this is the most important 
 <p>The fix goes into Langflow only, not into n8n: n8n builds the mail text, and the prompt and the check of the draft
 still need all of it. Only the search should get less.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Make a copy of the Langflow flow Draft Reply (Enron) and name it</span></span>
-<span class="line"><span>"Draft Reply (Enron) - Search Fix".</span></span>
+<span class="line"><span>"Draft Reply (Enron) - Search Fix". Put the copy into the same Langflow project</span></span>
+<span class="line"><span>(folder) as the original.</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>In the copy only, change what goes into the search of Mail Search, following the cause</span></span>
 <span class="line"><span>you found. The prompt and Check Draft keep the whole mail.</span></span>
@@ -117,7 +118,7 @@ in your database.</p>
 <span class="line"><span>   "Invitation-WhartonETEvent-Apr20/PlsRSVP"</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>Show me a table: for each mail and each flow, was an expected source among the sources?</span></span></code></pre>
-<p>You should see a table with six answers. When we measured the search alone on 10 November, it looked like this:</p>
+<p>You should see a table with six answers. When we measured the search alone on 10 November, our table looked like this:</p>
 
 
 
@@ -144,9 +145,16 @@ in your database.</p>
 
 
 <table><thead><tr><th>Mail</th><th>Draft Reply (Enron)</th><th>Draft Reply (Enron) - Search Fix</th></tr></thead><tbody><tr><td>Korean home made food</td><td>not found</td><td>found</td></tr><tr><td>Wharton Resume Submission</td><td>found</td><td>found</td></tr><tr><td>Energy Institute</td><td>found</td><td>not found</td></tr></tbody></table>
-<p>The fix brings in the kimchi, and the Energy Institute drops out. That is the lesson of this part: <strong>a change is
-better only when you measured it on more than one case.</strong></p>
-<p>Does your table look a little different? That is fine. What counts is that you measured both flows on the same mails.</p>
+<p>In our table, the fix brings in the kimchi, and the Energy Institute drops out: the fix helped one mail and hurt
+another.</p>
+<p>Your table may look different. Your mailbox holds other mails than ours, and Claude Code may have built your fix in
+another way. Read your own table:</p>
+<ul>
+<li>Where did the fix help?</li>
+<li>Where did it change nothing?</li>
+<li>Did it hurt anywhere?</li>
+</ul>
+<p>That is the lesson of this part: <strong>a change is better only when you measured it on more than one case.</strong></p>
 <p><a href="#step-10">Stuck? Help for step 10</a></p>
 <p><strong>Want more? <a href="/abp/ws2/hw2-optional/">Optional · Get ready for SMS →</a></strong></p>
 <h2 id="if-something-goes-wrong">If something goes wrong</h2>
@@ -173,7 +181,11 @@ better only when you measured it on more than one case.</strong></p>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>No draft for your mail on the page</td><td>Check in Gmail that the mail arrived (look in Spam too). Check that WS2.3 and WS2.4 are published. In n8n, open <em>Executions</em> and look for a run of WS2.3 with your mail.</td></tr><tr><td>The page does not open</td><td>Check that WS2.4 - Approvals Page is published.</td></tr><tr><td>Claude Code says in step 8 that the kimchi mail is not in the search</td><td>WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3).</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>No draft for your mail on the page</td><td>Check in Gmail that the mail arrived (look in Spam too). Check that WS2.3 and WS2.4 are published. In n8n, open <em>Executions</em> and look for a run of WS2.3 with your mail.</td></tr><tr><td>No draft, and the mail has left the inbox of your test Gmail account (you find it under <em>All Mail</em>)</td><td>Your mail AI assistant filed the mail instead of answering it. Triage decides for every mail, and for a short mail not always the same way. Send the mail of sub-step 3 again, with exactly the text given there, and wait two minutes.</td></tr><tr><td>The page does not open</td><td>Check that WS2.4 - Approvals Page is published.</td></tr><tr><td>Claude Code says in step 8 that the kimchi mail is not in the search</td><td>WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3).</td></tr></tbody></table>
 <h4 id="step-8">Step 8</h4>
 
 
@@ -211,7 +223,15 @@ better only when you measured it on more than one case.</strong></p>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>No new flow in Langflow</td><td>Reload the page of Langflow. Still none? Ask Claude Code: <code>Did you save the copy? Show me its name and id.</code></td></tr><tr><td>Claude Code changed the original flow</td><td>Ask Claude Code to put the original back from its backup in <code>~/kingo-pod/claude/backups/</code>.</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>No new flow in Langflow</td><td>Reload the page of Langflow. Still none? Ask Claude Code: <code>Did you save the copy? Show me its name and id.</code></td></tr><tr><td>Claude Code changed the original flow</td><td>Ask Claude Code to put the original back from its backup in <code>~/kingo-pod/claude/backups/</code>.</td></tr><tr><td>The new flow is in another Langflow project, for example <em>Starter Project</em></td><td>Ask Claude Code: <code>Move the flow Draft Reply (Enron) - Search Fix into the same Langflow project as Draft Reply (Enron).</code></td></tr><tr><td>Claude Code says that the permission system refuses to change your Langflow, and the line under your text says <code>auto mode on</code></td><td>Your kingo-pod is too old: there, a newer Claude Code starts in auto mode, where a model decides which commands run. Type <code>/exit</code>, run <code>./kingo update</code>, then <code>./kingo claude</code>, and send the text of step 9 again. <code>./kingo version</code> then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer).</td></tr></tbody></table>
 <h4 id="step-10">Step 10</h4>
 
 
@@ -234,7 +254,11 @@ better only when you measured it on more than one case.</strong></p>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Claude Code says that it cannot reach your database (Mac)</td><td>Your kingo-pod may be too old. Type <code>/exit</code>, run <code>./kingo update</code>, then <code>./kingo claude</code>, and send the text of step 10 again. After the update, <code>./kingo version</code> shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer).</td></tr><tr><td>Claude Code cannot find one of the mails</td><td>Ask it to search <code>n8n_workshop_mail.messages</code> by the subject, with <code>ILIKE</code>.</td></tr><tr><td>Both flows find the same sources for every mail</td><td>Check with Claude Code that the copy really is a changed copy: <code>Show me what you changed in the copy.</code></td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#7-see-the-mistake-ask-your-mail-ai-assistant-about-korean-food">7. See the mistake: ask your mail AI assistant about Korean food</a></li><li class="ws2-toc__item--3"><a href="#8-let-claude-code-find-the-cause">8. Let Claude Code find the cause</a></li><li class="ws2-toc__item--3"><a href="#9-let-claude-code-fix-the-search-in-a-copy-of-the-flow">9. Let Claude Code fix the search, in a copy of the flow</a></li><li class="ws2-toc__item--3"><a href="#10-measure-three-mails-two-flows">10. Measure: three mails, two flows</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Claude Code says that it cannot reach your database (Mac)</td><td>Your kingo-pod may be too old. Type <code>/exit</code>, run <code>./kingo update</code>, then <code>./kingo claude</code>, and send the text of step 10 again. After the update, <code>./kingo version</code> shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer).</td></tr><tr><td>Claude Code cannot find one of the mails</td><td>Ask it to search <code>n8n_workshop_mail.messages</code> by the subject, with <code>ILIKE</code>.</td></tr><tr><td>A flow fails because the API key is missing</td><td>The key field of <em>Draft Reply (Enron)</em> is empty, and the copy took that over. Repair the original as in the preparatory homework (its help row “A component says the API key is missing”). Then ask Claude Code to make the copy again, as in step 9.</td></tr><tr><td>Both flows find the same sources for every mail</td><td>Check with Claude Code that the copy really is a changed copy: <code>Show me what you changed in the copy.</code></td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#7-see-the-mistake-ask-your-mail-ai-assistant-about-korean-food">7. See the mistake: ask your mail AI assistant about Korean food</a></li><li class="ws2-toc__item--3"><a href="#8-let-claude-code-find-the-cause">8. Let Claude Code find the cause</a></li><li class="ws2-toc__item--3"><a href="#9-let-claude-code-fix-the-search-in-a-copy-of-the-flow">9. Let Claude Code fix the search, in a copy of the flow</a></li><li class="ws2-toc__item--3"><a href="#10-measure-three-mails-two-flows">10. Measure: three mails, two flows</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
         const btn = event.target.closest("[data-disclosure]");
