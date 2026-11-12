@@ -11,10 +11,11 @@ whether the fix does better.
 
 ### 7. See the mistake: ask your mail AI assistant about Korean food
 
-1. In n8n, check that these three workflows are published:
+1. In n8n, check that these four workflows are published:
    - **WS2.0 - Embed Mails**
    - **WS2.3 - Triage New Mail**
    - **WS2.4 - Reply with Approval**
+   - **WS2.4 - Approvals Page**
 
    Published means: the dot on the button **Publish** is green.
 2. First the kimchi mail. Did you send *Kimchi for Monday* in step 12 of the preparatory homework? If yes, go on with 3.
@@ -180,5 +181,6 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 
 | What you see | What to do |
 |---|---|
+| Claude Code says that it cannot reach your database (Mac) | Your kingo-pod may be too old. Type `/exit`, run `./kingo update`, then `./kingo claude`, and send the text of step 10 again. After the update, `./kingo version` shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer). |
 | Claude Code cannot find one of the mails | Ask it to search `n8n_workshop_mail.messages` by the subject, with `ILIKE`. |
 | Both flows find the same sources for every mail | Check with Claude Code that the copy really is a changed copy: `Show me what you changed in the copy.` |
