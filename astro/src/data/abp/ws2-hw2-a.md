@@ -267,6 +267,9 @@ n8n workflows and your Langflow flows into `~/kingo-pod/backups/` (not your own 
 cd ~/kingo-pod && ./kingo backup
 ```
 
+On top, every start of `./kingo claude` or `./kingo yolo` saves each n8n workflow and each Langflow flow as one JSON
+file in `~/kingo-pod/backups/flows/`. The newest 10 starts stay. You can import such a file again in n8n or in Langflow.
+
 Many people start with the requests for permission and switch once they trust what Claude Code does in their project. It is your choice,
 and you can change it at every start.
 
@@ -295,15 +298,16 @@ part is configured:
 | | A standard Claude Code | Here, started with `./kingo claude` | Configured for the course in |
 |---|---|---|---|
 | Start | `claude`, in any folder | `./kingo claude` in the kingo-pod folder; `./kingo yolo` is the same without requests for permission. Claude Code works in `kingo-pod/claude` | `kingo-pod/kingo`, the script behind every `./kingo` command. Before Claude Code starts, it checks that n8n and Langflow run, asks for your keys the first time, copies `AGENTS.md`, `CLAUDE.md` and `.claude/settings.json` into `kingo-pod/claude/` the first time, and writes the nono profile. Then it starts Claude Code inside nono. |
-| Model and bill | Claude models, with an Anthropic account or key | GLM 5.3 Flash through OpenRouter, paid with your OpenRouter key | `kingo-pod/claude/.claude/settings.json` names the model, for every role (`ANTHROPIC_MODEL` and the lines `ANTHROPIC_DEFAULT_…_MODEL`). The nono profile sends Claude Code's requests to OpenRouter instead of Anthropic, and puts your OpenRouter key into them. |
-| Keys | kept by Claude Code itself | kept in `~/.config/kingo/`; Claude Code sees only stand-ins | `kingo-pod/kingo` asks for your OpenRouter and n8n keys, makes the Langflow key itself, and keeps them in `~/.config/kingo/`, readable only by you. When it starts Claude Code, it hands them to nono, not to Claude Code. The nono profile says, for OpenRouter, n8n and Langflow, where nono's proxy puts the real key into a request. |
+| Model and bill | Claude models, with an Anthropic account or key | GLM 5.3 Flash through OpenRouter, paid with your OpenRouter key | `kingo-pod/claude/.claude/settings.json` names the model, for every role (`ANTHROPIC_MODEL` and the lines `ANTHROPIC_DEFAULT_…_MODEL`). The nono profile sends Claude Code's requests to OpenRouter instead of Anthropic, and puts your OpenRouter key into them. Claude Code does not know this model: `kingo-pod/kingo` tells it the context size to work with (`CLAUDE_CODE_MAX_CONTEXT_TOKENS`), 200,000 tokens. |
+| Keys | kept by Claude Code itself | kept in `~/.config/kingo/`; Claude Code sees only stand-ins | `kingo-pod/kingo` asks for your OpenRouter and n8n keys, makes the Langflow key itself, and keeps them in `~/.config/kingo/`, readable only by you. nono reads them from these files when it starts; they are never in an environment variable. The nono profile says, for OpenRouter, n8n and Langflow, which file holds the key and where nono's proxy puts it into a request. |
 | Files | Claude Code reads and writes wherever you may, after asking | Claude Code writes only in `kingo-pod/claude` and `~/.kingo-claude`, reads `kingo-pod`, and nothing else; the operating system enforces it | The nono profile `~/.config/nono/profiles/kingo-claude.json` lists the folders Claude Code may read and write, and the few environment variables that reach Claude Code: other keys on your laptop do not. `kingo` writes it anew at every start from `kingo-pod/setup/claude/nono-profile.json`, so a change to it does not last. On top, `kingo-pod/claude/.claude/settings.json` forbids Claude Code to read `.env` files, `~/.ssh` and `~/.aws`. |
 | Sandbox | Claude Code's own sandbox, for commands only, if you turn it on | nono, around all of Claude Code: its commands, and its own tools for files too | the nono profile. `kingo-pod/claude/.claude/settings.json` turns Claude Code's own sandbox off (`sandbox.enabled`): nono covers more. |
 | Settings and history | `~/.claude` | `~/.kingo-claude`; your own `~/.claude` stays untouched | `kingo-pod/kingo` starts Claude Code with `CLAUDE_CONFIG_DIR=~/.kingo-claude`: Claude Code keeps its settings, sessions and history there. An Anthropic login stored there, `kingo` removes at every start: the course does not use it, and Claude Code could read it. |
 | Instructions | a `CLAUDE.md` that you write | `AGENTS.md`: the part about kingo-pod and your team's rules; `CLAUDE.md` only points to it | `kingo-pod/claude/AGENTS.md`, yours to change, and `kingo-pod/claude/CLAUDE.md`, which holds only `@AGENTS.md`. `settings.json` makes Claude Code skip the `CLAUDE.md` of kingo-pod itself, which is for kingo-pod's developers (`claudeMdExcludes`). |
 | Memory | hidden in `~/.claude/projects/` | in `kingo-pod/claude/memory/`, where you can read it | `kingo-pod/claude/.claude/settings.json` (`autoMemoryDirectory`) |
 | What leaves the laptop | the model's requests and the web pages Claude Code looks up, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them | the model's requests, to OpenRouter only, and the web pages Claude Code looks up; usage data, error reports, feedback, pages on claude.ai and Remote Control are off | `kingo-pod/kingo` turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude Code. `kingo-pod/claude/.claude/settings.json` turns off the same, and also feedback (`DISABLE_FEEDBACK_COMMAND`), Remote Control (`disableRemoteControl`), pages on claude.ai (`enableArtifact`) and the check of each web address at Anthropic before Claude Code reads a page (`skipWebFetchPreflight`). |
-| Requests for permission | Claude Code asks before a command | the same; `./kingo yolo` turns them off | `kingo-pod/kingo`: `./kingo yolo` starts Claude Code with `--dangerously-skip-permissions`. The sandbox stays the same. |
+| A way back | none | every start saves each n8n workflow and Langflow flow as a JSON file in `kingo-pod/backups/flows/`, a folder per start; the newest 10 stay. Claude Code can read them but not change them. A file can be imported again in n8n or in Langflow | `kingo-pod/kingo`, before it starts Claude Code. It needs `psql`. |
+| Requests for permission | since version 2.1.283, Claude Code starts in auto mode: a model checks each command, runs what it judges safe and blocks the rest, without asking | Claude Code asks before a command (manual mode). Shift+Tab switches the mode, to auto mode too: there, GLM 5.3 Flash is the judge. `./kingo yolo` turns the requests off | `kingo-pod/kingo` starts Claude Code with `--permission-mode default`, and `./kingo yolo` starts it with `--dangerously-skip-permissions`. The sandbox stays the same. |
 | Updates | Claude Code updates itself | no self-update: run the install line again | `kingo-pod/claude/.claude/settings.json`: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also turns off the self-update. |
 
 </details>
@@ -357,6 +361,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | `n8n did not accept the key` | Make a new key as in step 3. Then run `./kingo claude` again: it asks for the key. |
 | `openrouter did not accept the key` | Check the key Yanbo gave you. Then run `./kingo claude` again: it asks for the key. |
 | Claude Code asks you to log in to Anthropic | Do not log in. Type `/exit` and write to Frank. |
+| `Model "z-ai/glm-5.3-flash" isn't recognized · context assumed to be 200k tokens` | Nothing to do: Claude Code works. After `./kingo update`, the line no longer comes (`./kingo version` shows 1.4.9 or newer; on Kingo 1.5: 1.5.8 or newer). |
 | `removed an Anthropic login` | You logged in to Anthropic inside `./kingo claude`. `kingo` removed that login again: the course does not use it, and Claude Code could read it there. Your own Claude Code login is not affected. |
 
 #### Step 5
@@ -364,6 +369,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | Claude Code says it cannot reach n8n | Check that n8n opens at <http://localhost:5678>. If not, run `./kingo up` in your own terminal, then ask again. |
+| Claude Code does not ask before it runs a command, and the line under your text says `auto mode on` | Your kingo-pod is too old: there, a newer Claude Code starts in auto mode, where a model decides which commands run. It may refuse things that you asked for. Type `/exit`, run `./kingo update`, then `./kingo claude`. The line under your text then says `manual mode on`, and `./kingo version` shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
 
 #### Step 6
 

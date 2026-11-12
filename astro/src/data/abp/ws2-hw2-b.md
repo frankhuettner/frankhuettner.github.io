@@ -38,7 +38,7 @@ whether the fix does better.
    Wait two minutes: kingo-pod copies the mail into its database, and WS2.0 adds it to the search.
 3. Now the question. From your SKKU account, send a second mail to your test Gmail account:
    - Subject: `Is there any Korean home made food?`
-   - Text: `I'm getting hungry!`
+   - Text: `I'm getting hungry! Could you please let me know?`
 4. Wait two minutes. Then open the page with the drafts that wait for you: <http://localhost:5678/webhook/approvals>
 5. Read the draft for *Is there any Korean home made food?* (A draft for the kimchi mail may wait there too: leave
    it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
@@ -95,7 +95,8 @@ still need all of it. Only the search should get less.
 
 ```
 Make a copy of the Langflow flow Draft Reply (Enron) and name it
-"Draft Reply (Enron) - Search Fix".
+"Draft Reply (Enron) - Search Fix". Put the copy into the same Langflow project
+(folder) as the original.
 
 In the copy only, change what goes into the search of Mail Search, following the cause
 you found. The prompt and Check Draft keep the whole mail.
@@ -134,7 +135,7 @@ The mails, by subject, and the sources I expect:
 Show me a table: for each mail and each flow, was an expected source among the sources?
 ```
 
-You should see a table with six answers. When we measured the search alone on 10 November, it looked like this:
+You should see a table with six answers. When we measured the search alone on 10 November, our table looked like this:
 
 | Mail | Draft Reply (Enron) | Draft Reply (Enron) - Search Fix |
 |---|---|---|
@@ -142,10 +143,17 @@ You should see a table with six answers. When we measured the search alone on 10
 | Wharton Resume Submission | found | found |
 | Energy Institute | found | not found |
 
-The fix brings in the kimchi, and the Energy Institute drops out. That is the lesson of this part: **a change is
-better only when you measured it on more than one case.**
+In our table, the fix brings in the kimchi, and the Energy Institute drops out: the fix helped one mail and hurt
+another.
 
-Does your table look a little different? That is fine. What counts is that you measured both flows on the same mails.
+Your table may look different. Your mailbox holds other mails than ours, and Claude Code may have built your fix in
+another way. Read your own table:
+
+- Where did the fix help?
+- Where did it change nothing?
+- Did it hurt anywhere?
+
+That is the lesson of this part: **a change is better only when you measured it on more than one case.**
 
 [Stuck? Help for step 10](#step-10)
 
@@ -160,6 +168,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | No draft for your mail on the page | Check in Gmail that the mail arrived (look in Spam too). Check that WS2.3 and WS2.4 are published. In n8n, open *Executions* and look for a run of WS2.3 with your mail. |
+| No draft, and the mail has left the inbox of your test Gmail account (you find it under *All Mail*) | Your mail AI assistant filed the mail instead of answering it. Triage decides for every mail, and for a short mail not always the same way. Send the mail of sub-step 3 again, with exactly the text given there, and wait two minutes. |
 | The page does not open | Check that WS2.4 - Approvals Page is published. |
 | Claude Code says in step 8 that the kimchi mail is not in the search | WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3). |
 
@@ -176,6 +185,8 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 |---|---|
 | No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
 | Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `~/kingo-pod/claude/backups/`. |
+| The new flow is in another Langflow project, for example *Starter Project* | Ask Claude Code: `Move the flow Draft Reply (Enron) - Search Fix into the same Langflow project as Draft Reply (Enron).` |
+| Claude Code says that the permission system refuses to change your Langflow, and the line under your text says `auto mode on` | Your kingo-pod is too old: there, a newer Claude Code starts in auto mode, where a model decides which commands run. Type `/exit`, run `./kingo update`, then `./kingo claude`, and send the text of step 9 again. `./kingo version` then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
 
 #### Step 10
 
@@ -183,4 +194,5 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 |---|---|
 | Claude Code says that it cannot reach your database (Mac) | Your kingo-pod may be too old. Type `/exit`, run `./kingo update`, then `./kingo claude`, and send the text of step 10 again. After the update, `./kingo version` shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer). |
 | Claude Code cannot find one of the mails | Ask it to search `n8n_workshop_mail.messages` by the subject, with `ILIKE`. |
+| A flow fails because the API key is missing | The key field of *Draft Reply (Enron)* is empty, and the copy took that over. Repair the original as in the preparatory homework (its help row "A component says the API key is missing"). Then ask Claude Code to make the copy again, as in step 9. |
 | Both flows find the same sources for every mail | Check with Claude Code that the copy really is a changed copy: `Show me what you changed in the copy.` |
