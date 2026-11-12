@@ -36,12 +36,19 @@ whether the fix does better.
    ```
 
    Wait two minutes: kingo-pod copies the mail into its database, and WS2.0 adds it to the search.
-3. Now the question. From your SKKU account, send a second mail to your test Gmail account:
-   - Subject: `Is there any Korean home made food?`
-   - Text: `Hi Vince, I'm getting hungry! Please reply.`
+3. Now the question. From your SKKU account, send a second mail to your test Gmail account. Copy the subject and
+   the text:
+
+   ```
+   Is there any Korean home made food?
+   ```
+
+   ```
+   Hi Vince, I'm getting hungry! Please reply.
+   ```
 4. Wait two minutes. Then open the page with the drafts that wait for you: <http://localhost:5678/webhook/approvals>
-5. Read the draft for *Is there any Korean home made food?* (A draft for the kimchi mail may wait there too: leave
-   it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
+5. Read the draft of the reply to *Is there any Korean home made food?* (A draft of a reply to the kimchi mail may
+   wait there too: leave it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
    kimchi mail is in your database, yet the draft does not use it.
 
 Does your draft mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
@@ -83,8 +90,26 @@ Look at:
 Do not change anything. Then explain the cause to me in plain words.
 ```
 
-Claude Code reads the run, the flow and the code, and asks you before each command. At the end it explains why the search
-did not find the kimchi. Read the explanation twice: this is the most important finding of this part.
+Claude Code reads the run, the flow and the code. To this end, it runs several commands to dig deeper and to find
+the reason. Before running a command, it asks you for permission. Most of these requests are searches: Claude Code
+looks into your database, or into the runs that n8n keeps. A search changes nothing, so you can approve it.
+
+So many requests in a row are tiring, right? Did you switch to auto mode? Press Shift+Tab until the line under your
+text says `auto mode on`. Then a model checks each command and runs what it judges safe, without asking you. More
+about your choices:
+[You decide: should Claude Code ask before every command?](#you-decide-should-claude-code-ask-before-every-command)
+
+Did you stop Claude Code by accident, or say no to a request? Type `continue`, and Claude Code goes on.
+
+At the end, Claude Code answers your question: it explains why the search did not find the kimchi. Read this answer
+twice (the answer at the end, not the reasons Claude Code gives for its requests): this is the most important finding
+of this part.
+
+Feel free to ask Claude Code to say the answer in simple words if you find it too complicated:
+
+```
+Say this again in simple words.
+```
 
 [Stuck? Help for step 8](#step-8)
 
