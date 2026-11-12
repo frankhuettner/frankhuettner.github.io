@@ -38,7 +38,7 @@ whether the fix does better.
    Wait two minutes: kingo-pod copies the mail into its database, and WS2.0 adds it to the search.
 3. Now the question. From your SKKU account, send a second mail to your test Gmail account:
    - Subject: `Is there any Korean home made food?`
-   - Text: `I'm getting hungry! Could you please let me know?`
+   - Text: `Hi Vince, I'm getting hungry! Please reply.`
 4. Wait two minutes. Then open the page with the drafts that wait for you: <http://localhost:5678/webhook/approvals>
 5. Read the draft for *Is there any Korean home made food?* (A draft for the kimchi mail may wait there too: leave
    it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
