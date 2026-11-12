@@ -38,18 +38,17 @@ subject and the text, then sign with your first name:</p>
 <p>Wait two minutes: kingo-pod copies the mail into its database, and WS2.0 adds it to the search.</p>
 </li>
 <li>
-<p>Now the question. From your SKKU account, send a second mail to your test Gmail account:</p>
-<ul>
-<li>Subject: <code>Is there any Korean home made food?</code></li>
-<li>Text: <code>Hi Vince, I'm getting hungry! Please reply.</code></li>
-</ul>
+<p>Now the question. From your SKKU account, send a second mail to your test Gmail account. Copy the subject and
+the text:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Is there any Korean home made food?</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Hi Vince, I'm getting hungry! Please reply.</span></span></code></pre>
 </li>
 <li>
 <p>Wait two minutes. Then open the page with the drafts that wait for you: <a href="http://localhost:5678/webhook/approvals">http://localhost:5678/webhook/approvals</a></p>
 </li>
 <li>
-<p>Read the draft for <em>Is there any Korean home made food?</em> (A draft for the kimchi mail may wait there too: leave
-it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
+<p>Read the draft of the reply to <em>Is there any Korean home made food?</em> (A draft of a reply to the kimchi mail may
+wait there too: leave it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
 kimchi mail is in your database, yet the draft does not use it.</p>
 </li>
 </ol>
@@ -80,8 +79,19 @@ and paste this:</p>
 <span class="line"><span>- the code of the component Mail Search in that flow.</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>Do not change anything. Then explain the cause to me in plain words.</span></span></code></pre>
-<p>Claude Code reads the run, the flow and the code, and asks you before each command. At the end it explains why the search
-did not find the kimchi. Read the explanation twice: this is the most important finding of this part.</p>
+<p>Claude Code reads the run, the flow and the code. To this end, it runs several commands to dig deeper and to find
+the reason. Before running a command, it asks you for permission. Most of these requests are searches: Claude Code
+looks into your database, or into the runs that n8n keeps. A search changes nothing, so you can approve it.</p>
+<p>So many requests in a row are tiring, right? Did you switch to auto mode? Press Shift+Tab until the line under your
+text says <code>auto mode on</code>. Then a model checks each command and runs what it judges safe, without asking you. More
+about your choices:
+<a href="#you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</a></p>
+<p>Did you stop Claude Code by accident, or say no to a request? Type <code>continue</code>, and Claude Code goes on.</p>
+<p>At the end, Claude Code answers your question: it explains why the search did not find the kimchi. Read this answer
+twice (the answer at the end, not the reasons Claude Code gives for its requests): this is the most important finding
+of this part.</p>
+<p>Feel free to ask Claude Code to say the answer in simple words if you find it too complicated:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Say this again in simple words.</span></span></code></pre>
 <p><a href="#step-8">Stuck? Help for step 8</a></p>
 <h3 id="9-let-claude-code-fix-the-search-in-a-copy-of-the-flow">9. Let Claude Code fix the search, in a copy of the flow</h3>
 <p>The fix goes into Langflow only, not into n8n: n8n builds the mail text, and the prompt and the check of the draft
