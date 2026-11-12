@@ -16,11 +16,12 @@ whether the fix does better.</p>
 <h3 id="7-see-the-mistake-ask-your-mail-ai-assistant-about-korean-food">7. See the mistake: ask your mail AI assistant about Korean food</h3>
 <ol>
 <li>
-<p>In n8n, check that these three workflows are published:</p>
+<p>In n8n, check that these four workflows are published:</p>
 <ul>
 <li><strong>WS2.0 - Embed Mails</strong></li>
 <li><strong>WS2.3 - Triage New Mail</strong></li>
 <li><strong>WS2.4 - Reply with Approval</strong></li>
+<li><strong>WS2.4 - Approvals Page</strong></li>
 </ul>
 <p>Published means: the dot on the button <strong>Publish</strong> is green.</p>
 </li>
@@ -229,7 +230,11 @@ better only when you measured it on more than one case.</strong></p>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Claude Code cannot find one of the mails</td><td>Ask it to search <code>n8n_workshop_mail.messages</code> by the subject, with <code>ILIKE</code>.</td></tr><tr><td>Both flows find the same sources for every mail</td><td>Check with Claude Code that the copy really is a changed copy: <code>Show me what you changed in the copy.</code></td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#7-see-the-mistake-ask-your-mail-ai-assistant-about-korean-food">7. See the mistake: ask your mail AI assistant about Korean food</a></li><li class="ws2-toc__item--3"><a href="#8-let-claude-code-find-the-cause">8. Let Claude Code find the cause</a></li><li class="ws2-toc__item--3"><a href="#9-let-claude-code-fix-the-search-in-a-copy-of-the-flow">9. Let Claude Code fix the search, in a copy of the flow</a></li><li class="ws2-toc__item--3"><a href="#10-measure-three-mails-two-flows">10. Measure: three mails, two flows</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>Claude Code says that it cannot reach your database (Mac)</td><td>Your kingo-pod may be too old. Type <code>/exit</code>, run <code>./kingo update</code>, then <code>./kingo claude</code>, and send the text of step 10 again. After the update, <code>./kingo version</code> shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer).</td></tr><tr><td>Claude Code cannot find one of the mails</td><td>Ask it to search <code>n8n_workshop_mail.messages</code> by the subject, with <code>ILIKE</code>.</td></tr><tr><td>Both flows find the same sources for every mail</td><td>Check with Claude Code that the copy really is a changed copy: <code>Show me what you changed in the copy.</code></td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#7-see-the-mistake-ask-your-mail-ai-assistant-about-korean-food">7. See the mistake: ask your mail AI assistant about Korean food</a></li><li class="ws2-toc__item--3"><a href="#8-let-claude-code-find-the-cause">8. Let Claude Code find the cause</a></li><li class="ws2-toc__item--3"><a href="#9-let-claude-code-fix-the-search-in-a-copy-of-the-flow">9. Let Claude Code fix the search, in a copy of the flow</a></li><li class="ws2-toc__item--3"><a href="#10-measure-three-mails-two-flows">10. Measure: three mails, two flows</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
         const btn = event.target.closest("[data-disclosure]");
