@@ -242,7 +242,7 @@ Sometimes, Claude Code wants to execute a command (which we don’t allow), and 
 
 Claude Code cannot leave its sandbox, but a command you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude Code, then only add something if you know what you’re doing.
 
-### So many requests in a row are tiring, right? Can we tell Claude Code to just do its job?
+### 6b. Claude Code always asks for permission: should we tell it to just do its job?
 
 Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
 AI, or nobody. The line under your text shows the mode, for example `⏸ manual mode on`.

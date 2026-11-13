@@ -97,7 +97,7 @@ looks into your database, or into the runs that n8n keeps. A search changes noth
 So many requests in a row are tiring, right? Did you switch to auto mode? Press Shift+Tab until the line under your
 text says `auto mode on`. Then a model checks each command and runs what it judges safe, without asking you. More
 about the modes:
-[Can we tell Claude Code to just do its job?](/abp/ws2/hw2-a/#so-many-requests-in-a-row-are-tiring-right-can-we-tell-claude-code-to-just-do-its-job)
+[step 6b: Claude Code always asks for permission: should we tell it to just do its job?](/abp/ws2/hw2-a/#6b-claude-code-always-asks-for-permission-should-we-tell-it-to-just-do-its-job)
 
 Did you stop Claude Code by accident, or say no to a request? Type `continue`, and Claude Code goes on.
 
