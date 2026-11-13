@@ -270,6 +270,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | What you see | What to do |
 |---|---|
 | No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
+| In the new flow, *Text Input* and *Text Output* show a *Legacy* mark (Kingo 1.5 only) | Nothing to do: they work as before. The newer Langflow of Kingo 1.5 marks these two components as old. |
 | Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `~/kingo-pod/claude/backups/`. |
 | The new flow is in another Langflow project, for example *Starter Project* | Ask Claude Code: `Move the flow Draft Reply (Enron) - Search Fix into the same Langflow project as Draft Reply (Enron).` |
 | Claude Code says that the permission system refuses to change your Langflow, and the line under your text says `auto mode on` | In auto mode, the AI decides which commands run, and it refused this one. Claude Code asks whether it may try again: say yes, and name what it may do, for example `Yes, retry saving the change to the copy.` Is it blocked again? Press Shift+Tab until the line under your text says `manual mode on`, and say it again. Did you not switch to auto mode yourself? Then your kingo-pod is too old: type `/exit`, run `./kingo update`, then `./kingo claude`. `./kingo version` then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
