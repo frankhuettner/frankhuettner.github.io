@@ -88,7 +88,7 @@ You should see **Mail** in the list. Then run:
 ./kingo mail
 ```
 
-It asks three questions:
+It asks four questions:
 
 1. **The address of your test Gmail account.** Type the full address, with `@gmail.com`, for example
    `n8n.minji.kim@gmail.com`.
@@ -105,10 +105,22 @@ It asks three questions:
 
    </details>
 
-   **Forgot your SKKU address, or want to add another one later?** Run `./kingo mail` again. Press Enter to keep
-   your test Gmail account, paste the app password again (or make a new one as in step 5), then type the addresses.
+   **Forgot your SKKU address, or want to add another one later?** Run `./kingo mail` again. Every question now
+   shows your last answer in brackets. Press Enter to keep it, also at the app password, and type all addresses at
+   question 3.
+4. **The sender name.** Press Enter. That takes the name in the brackets, `Vince J Kaminski`: your AI assistant
+   answers in his name.
 
 kingo-pod then checks the login. It sends nothing. You should see a line that starts with `OK. Folders:`.
+
+Below it, kingo-pod says how many of Kaminski's mails your test Gmail account already holds, and asks a question:
+
+```
+Your test Gmail account holds 0 of 3,244 of Kaminski's mails.
+Upload them now? [Y/n]:
+```
+
+Your account is new, so it holds none of them. The question is the start of step 7.
 
 [Stuck? Help for step 6](#step-6)
 
@@ -117,18 +129,21 @@ kingo-pod then checks the login. It sends nothing. You should see a line that st
 Your AI assistant will search Kaminski's old mails for facts when it drafts an answer. The update in step 1 brought
 all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo-pod into your test Gmail account.
 
-1. In the terminal, in your kingo-pod folder, run:
+1. The terminal still shows the question from the end of step 6: **Upload them now?** Press Enter. That means yes.
+
+   After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
+
+   **Did the question not come, or did you answer no?** Run this in the terminal, in your kingo-pod folder. It
+   uploads the mails too:
 
    ```
    ./kingo mail seed
    ```
 
-   After a short while, you see a line that starts with `Mailbox:` and ends with `Uploading starts now.`
-
    <details class="more">
    <summary>What happens</summary>
 
-   In a few seconds, the command puts all mails into kingo-pod's service called Mail, on your laptop. Mail keeps this
+   In a few seconds, kingo-pod puts all mails into its service called Mail, on your laptop. Mail keeps this
    copy: with it, Mail knows what is new on each side. From there, kingo-pod copies the mails into its PostgreSQL
    database and uploads them to your test Gmail account, round by round. In the end, every mail is in three places: in
    Gmail, in Mail, and in PostgreSQL, where n8n and your AI assistant read it.
@@ -155,8 +170,11 @@ all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo
 4. You don't have to wait for the upload: go on with [Part B](/abp/ws2/hw-b/) now. The upload keeps running in the background.
 
 Good to know:
-- `./kingo mail seed` copies every mail only once. If you run it again, kingo-pod answers `already seeded` and gives
-  the upload a push.
+- kingo-pod copies every mail only once. If you run `./kingo mail seed` again, kingo-pod answers `already seeded`
+  and gives the upload a push.
+- Do you connect a second laptop to the same test Gmail account? kingo-pod sees which of Kaminski's mails the
+  account already holds and uploads only the missing ones. If all are there, it uploads nothing and copies them from
+  Gmail.
 - If your laptop sleeps or kingo-pod stops, start it again with `./kingo up`. The upload goes on by itself.
 
 [Stuck? Help for step 7](#step-7)
@@ -187,12 +205,14 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | `Sign-in failed` | Paste the app password again (not your Google password). Check that 2-Step Verification is on. |
 | `the mail service is off` | Run `./kingo mode abp`, then step 6 again. |
 | You want to start again with another account | Run `./kingo mail reset`, then step 6 again. |
+| kingo-pod asks only three questions, and not **Upload them now?** | Your kingo-pod is older. Do step 1 again (the update). Then go on with step 7 and run `./kingo mail seed` there. |
 
 #### Step 7
 
 | What you see | What to do |
 |---|---|
 | `already seeded` | Your account already has the mails. Look in Sent and All Mail. |
+| `cannot read the mails in your test Gmail account` | kingo-pod could not look into your account, so it uploaded nothing. Check your internet connection. Then run `./kingo mail seed`. |
 | The numbers in Gmail stop growing | Be patient: kingo-pod uploads in rounds, and Gmail's numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run `./kingo update`, then `./kingo mail seed` again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that `./kingo mail status` shows. |
 | Gmail shows about 1,600 in All Mail, not 3,244 | That is right: Gmail counts conversations, not mails. `./kingo mail status` counts the mails. |
 | `./kingo mail status` shows an error | Copy the error into a mail to Frank. |
