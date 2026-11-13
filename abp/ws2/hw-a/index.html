@@ -68,7 +68,7 @@ Gmail account and send the answers you approve. You can delete it any time on th
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo status</span></span></code></pre>
 <p>You should see <strong>Mail</strong> in the list. Then run:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo mail</span></span></code></pre>
-<p>It asks three questions:</p>
+<p>It asks four questions:</p>
 <ol>
 <li>
 <p><strong>The address of your test Gmail account.</strong> Type the full address, with <code>@gmail.com</code>, for example
@@ -86,23 +86,34 @@ SKKU address, and your AI assistant’s answers go back to it.</p>
 Kaminski’s mails lands in your own test Gmail account instead. A mail to any other address is not sent at all. So
 neither your AI assistant nor a mistake can send mail to anyone else.</p>
 </details>
-<p><strong>Forgot your SKKU address, or want to add another one later?</strong> Run <code>./kingo mail</code> again. Press Enter to keep
-your test Gmail account, paste the app password again (or make a new one as in step 5), then type the addresses.</p>
+<p><strong>Forgot your SKKU address, or want to add another one later?</strong> Run <code>./kingo mail</code> again. Every question now
+shows your last answer in brackets. Press Enter to keep it, also at the app password, and type all addresses at
+question 3.</p>
+</li>
+<li>
+<p><strong>The sender name.</strong> Press Enter. That takes the name in the brackets, <code>Vince J Kaminski</code>: your AI assistant
+answers in his name.</p>
 </li>
 </ol>
 <p>kingo-pod then checks the login. It sends nothing. You should see a line that starts with <code>OK. Folders:</code>.</p>
+<p>Below it, kingo-pod says how many of Kaminski’s mails your test Gmail account already holds, and asks a question:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Your test Gmail account holds 0 of 3,244 of Kaminski's mails.</span></span>
+<span class="line"><span>Upload them now? [Y/n]:</span></span></code></pre>
+<p>Your account is new, so it holds none of them. The question is the start of step 7.</p>
 <p><a href="#step-6">Stuck? Help for step 6</a></p>
 <h3 id="7-copy-kaminskis-mails-into-your-test-gmail-account">7. Copy Kaminski’s mails into your test Gmail account</h3>
 <p>Your AI assistant will search Kaminski’s old mails for facts when it drafts an answer. The update in step 1 brought
 all 3,244 mails onto your laptop, inside kingo-pod. Now you copy them from kingo-pod into your test Gmail account.</p>
 <ol>
 <li>
-<p>In the terminal, in your kingo-pod folder, run:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo mail seed</span></span></code></pre>
+<p>The terminal still shows the question from the end of step 6: <strong>Upload them now?</strong> Press Enter. That means yes.</p>
 <p>After a short while, you see a line that starts with <code>Mailbox:</code> and ends with <code>Uploading starts now.</code></p>
+<p><strong>Did the question not come, or did you answer no?</strong> Run this in the terminal, in your kingo-pod folder. It
+uploads the mails too:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo mail seed</span></span></code></pre>
 <details class="more">
 <summary>What happens</summary>
-<p>In a few seconds, the command puts all mails into kingo-pod’s service called Mail, on your laptop. Mail keeps this
+<p>In a few seconds, kingo-pod puts all mails into its service called Mail, on your laptop. Mail keeps this
 copy: with it, Mail knows what is new on each side. From there, kingo-pod copies the mails into its PostgreSQL
 database and uploads them to your test Gmail account, round by round. In the end, every mail is in three places: in
 Gmail, in Mail, and in PostgreSQL, where n8n and your AI assistant read it.</p>
@@ -134,8 +145,11 @@ the numbers are the same in every row, the upload is done. (No such rows? Run <c
 </ol>
 <p>Good to know:</p>
 <ul>
-<li><code>./kingo mail seed</code> copies every mail only once. If you run it again, kingo-pod answers <code>already seeded</code> and gives
-the upload a push.</li>
+<li>kingo-pod copies every mail only once. If you run <code>./kingo mail seed</code> again, kingo-pod answers <code>already seeded</code>
+and gives the upload a push.</li>
+<li>Do you connect a second laptop to the same test Gmail account? kingo-pod sees which of Kaminski’s mails the
+account already holds and uploads only the missing ones. If all are there, it uploads nothing and copies them from
+Gmail.</li>
 <li>If your laptop sleeps or kingo-pod stops, start it again with <code>./kingo up</code>. The upload goes on by itself.</li>
 </ul>
 <p><a href="#step-7">Stuck? Help for step 7</a></p>
@@ -198,7 +212,11 @@ the upload a push.</li>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>Sign-in failed</code></td><td>Paste the app password again (not your Google password). Check that 2-Step Verification is on.</td></tr><tr><td><code>the mail service is off</code></td><td>Run <code>./kingo mode abp</code>, then step 6 again.</td></tr><tr><td>You want to start again with another account</td><td>Run <code>./kingo mail reset</code>, then step 6 again.</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>Sign-in failed</code></td><td>Paste the app password again (not your Google password). Check that 2-Step Verification is on.</td></tr><tr><td><code>the mail service is off</code></td><td>Run <code>./kingo mode abp</code>, then step 6 again.</td></tr><tr><td>You want to start again with another account</td><td>Run <code>./kingo mail reset</code>, then step 6 again.</td></tr><tr><td>kingo-pod asks only three questions, and not <strong>Upload them now?</strong></td><td>Your kingo-pod is older. Do step 1 again (the update). Then go on with step 7 and run <code>./kingo mail seed</code> there.</td></tr></tbody></table>
 <h4 id="step-7">Step 7</h4>
 
 
@@ -225,7 +243,11 @@ the upload a push.</li>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>already seeded</code></td><td>Your account already has the mails. Look in Sent and All Mail.</td></tr><tr><td>The numbers in Gmail stop growing</td><td>Be patient: kingo-pod uploads in rounds, and Gmail’s numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run <code>./kingo update</code>, then <code>./kingo mail seed</code> again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that <code>./kingo mail status</code> shows.</td></tr><tr><td>Gmail shows about 1,600 in All Mail, not 3,244</td><td>That is right: Gmail counts conversations, not mails. <code>./kingo mail status</code> counts the mails.</td></tr><tr><td><code>./kingo mail status</code> shows an error</td><td>Copy the error into a mail to Frank.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-get-the-new-part-called-mail">1. Update kingo-pod: get the new part called ‘Mail’</a></li><li class="ws2-toc__item--3"><a href="#2-make-your-test-gmail-account">2. Make your test Gmail account</a></li><li class="ws2-toc__item--3"><a href="#3-set-your-test-gmail-account-to-english">3. Set your test Gmail account to English</a></li><li class="ws2-toc__item--3"><a href="#4-turn-on-2-step-verification-needed-for-step-5">4. Turn on 2-Step Verification (needed for step 5)</a></li><li class="ws2-toc__item--3"><a href="#5-make-an-app-password-for-kingo-pod">5. Make an app password for kingo-pod</a></li><li class="ws2-toc__item--3"><a href="#6-connect-your-test-gmail-account-to-kingo-pod">6. Connect your test Gmail account to kingo-pod</a></li><li class="ws2-toc__item--3"><a href="#7-copy-kaminskis-mails-into-your-test-gmail-account">7. Copy Kaminski’s mails into your test Gmail account</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>already seeded</code></td><td>Your account already has the mails. Look in Sent and All Mail.</td></tr><tr><td><code>cannot read the mails in your test Gmail account</code></td><td>kingo-pod could not look into your account, so it uploaded nothing. Check your internet connection. Then run <code>./kingo mail seed</code>.</td></tr><tr><td>The numbers in Gmail stop growing</td><td>Be patient: kingo-pod uploads in rounds, and Gmail’s numbers can stand still for up to 10 minutes. Reload Gmail. Keep your laptop awake. Still no change after 20 minutes? Run <code>./kingo update</code>, then <code>./kingo mail seed</code> again: it copies nothing twice and gives the upload a push. Still stuck? Send Frank everything that <code>./kingo mail status</code> shows.</td></tr><tr><td>Gmail shows about 1,600 in All Mail, not 3,244</td><td>That is right: Gmail counts conversations, not mails. <code>./kingo mail status</code> counts the mails.</td></tr><tr><td><code>./kingo mail status</code> shows an error</td><td>Copy the error into a mail to Frank.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-get-the-new-part-called-mail">1. Update kingo-pod: get the new part called ‘Mail’</a></li><li class="ws2-toc__item--3"><a href="#2-make-your-test-gmail-account">2. Make your test Gmail account</a></li><li class="ws2-toc__item--3"><a href="#3-set-your-test-gmail-account-to-english">3. Set your test Gmail account to English</a></li><li class="ws2-toc__item--3"><a href="#4-turn-on-2-step-verification-needed-for-step-5">4. Turn on 2-Step Verification (needed for step 5)</a></li><li class="ws2-toc__item--3"><a href="#5-make-an-app-password-for-kingo-pod">5. Make an app password for kingo-pod</a></li><li class="ws2-toc__item--3"><a href="#6-connect-your-test-gmail-account-to-kingo-pod">6. Connect your test Gmail account to kingo-pod</a></li><li class="ws2-toc__item--3"><a href="#7-copy-kaminskis-mails-into-your-test-gmail-account">7. Copy Kaminski’s mails into your test Gmail account</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
         const btn = event.target.closest("[data-disclosure]");
