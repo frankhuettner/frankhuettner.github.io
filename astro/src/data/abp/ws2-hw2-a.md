@@ -242,10 +242,69 @@ Sometimes, Claude Code wants to execute a command (which we don’t allow), and 
 
 Claude Code cannot leave its sandbox, but a command you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude Code, then only add something if you know what you’re doing.
 
+### So many requests in a row are tiring, right? Can we tell Claude Code to just do its job?
+
+Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
+AI, or nobody. The line under your text shows the mode, for example `⏸ manual mode on`.
+
+**Where can Claude Code change something?** In four places:
+
+- files in its folder `~/kingo-pod/claude`,
+- your n8n: workflows and data tables,
+- your Langflow flows,
+- your Postgres database.
+
+**What about other folders?** Claude Code can read the rest of `~/kingo-pod`, to understand how kingo-pod works.
+It cannot write there. And it cannot write into any other folder on your laptop, such as Documents or Desktop. The
+nono sandbox stops that, with or without your permission.
+
+So the mode does not decide where Claude Code can write. It decides whether Claude Code asks you first.
+
+**To change the mode, press Shift+Tab.** Each press takes you one mode further, in this order:
+
+1. `manual mode on`: Claude Code asks you before it writes a file and before it runs a command. `./kingo claude`
+   always starts here.
+2. `accept edits on`: Claude Code writes files in its folder `~/kingo-pod/claude` without asking. Before a command,
+   it still asks you.
+3. `plan mode on`: Claude Code changes nothing. It writes a plan and asks for your yes.
+4. `auto mode on`: the AI decides itself whether it needs to ask you for permission.
+
+One more press of Shift+Tab, and you are back in manual mode.
+
+There is a fifth way, where nobody says yes or no: you start Claude Code with `./kingo yolo` instead of
+`./kingo claude`. Then Claude Code never asks for permission.
+
+**The difference, in three examples:**
+
+| What Claude Code wants to do | In manual mode | In accept edits mode | In auto mode | Started with `./kingo yolo` |
+|---|---|---|---|---|
+| **Write a file:** save its findings in the file `notes.md` in its folder `~/kingo-pod/claude` | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> |
+| **Run a command that only reads:** list your n8n workflows | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
+| **Run a command that changes something:** make a copy of a Langflow flow | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
+| **Write a file outside its folder:** save a file on your Desktop | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission |
+
+**What does this mean for you?** In this homework, Claude Code rarely writes files. It mostly runs commands to
+search, and to talk to n8n, Langflow and your Postgres database. In accept edits mode, Claude Code still asks you
+before each of these commands. The requests stop only in auto mode, or with `./kingo yolo`.
+
+**Which mode should you use? Auto mode is okay.** Claude Code runs inside the nono sandbox, so the sandbox protects
+your laptop in every mode. And every start of `./kingo claude` saves your n8n workflows and your Langflow flows. In
+manual mode, you get many requests, and the commands are hard to read. So feel free to switch to auto mode: press
+Shift+Tab until the line under your text says `auto mode on`.
+
+Two things to know:
+
+- **In manual mode,** Claude Code asks before each command. **Yes** runs the command. **No** stops Claude Code: then
+  tell it what to do instead, or type `continue`.
+- **In auto mode,** the AI may refuse a command that you asked for. Then press Shift+Tab until the line under
+  your text says `manual mode on`, and send your text again.
+- **With `./kingo yolo`,** nobody refuses and nobody asks: Claude Code changes your workflows and flows at once,
+  mistakes too. The next section says more.
+
 ### You decide: should Claude Code ask before every command?
 
-So far Claude Code asks you before it runs a command or changes something. You can also let it work without asking. To this end,
-you start it with this line:
+In each of the four modes, someone checks a command before it runs: you, or a model. You can also start Claude Code
+with no check at all. To this end, you start it with this line:
 
 ```
 ./kingo yolo

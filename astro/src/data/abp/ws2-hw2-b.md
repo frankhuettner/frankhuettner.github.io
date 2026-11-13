@@ -96,8 +96,8 @@ looks into your database, or into the runs that n8n keeps. A search changes noth
 
 So many requests in a row are tiring, right? Did you switch to auto mode? Press Shift+Tab until the line under your
 text says `auto mode on`. Then a model checks each command and runs what it judges safe, without asking you. More
-about your choices:
-[You decide: should Claude Code ask before every command?](#you-decide-should-claude-code-ask-before-every-command)
+about the modes:
+[Can we tell Claude Code to just do its job?](/abp/ws2/hw2-a/#so-many-requests-in-a-row-are-tiring-right-can-we-tell-claude-code-to-just-do-its-job)
 
 Did you stop Claude Code by accident, or say no to a request? Type `continue`, and Claude Code goes on.
 
@@ -211,7 +211,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
 | Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `~/kingo-pod/claude/backups/`. |
 | The new flow is in another Langflow project, for example *Starter Project* | Ask Claude Code: `Move the flow Draft Reply (Enron) - Search Fix into the same Langflow project as Draft Reply (Enron).` |
-| Claude Code says that the permission system refuses to change your Langflow, and the line under your text says `auto mode on` | Your kingo-pod is too old: there, a newer Claude Code starts in auto mode, where a model decides which commands run. Type `/exit`, run `./kingo update`, then `./kingo claude`, and send the text of step 9 again. `./kingo version` then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
+| Claude Code says that the permission system refuses to change your Langflow, and the line under your text says `auto mode on` | In auto mode, a model decides which commands run, and it refused this one. Press Shift+Tab until the line under your text says `manual mode on`, then send the text of step 9 again. Did you not switch to auto mode yourself? Then your kingo-pod is too old: type `/exit`, run `./kingo update`, then `./kingo claude`. `./kingo version` then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
 
 #### Step 10
 
