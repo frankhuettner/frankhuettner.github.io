@@ -4,10 +4,12 @@ title: "Homework until 16 Nov: setup and build with Claude Code"
 
 ## Your goal of this HW
 
-- **Claude Code runs on your laptop and is well-configured** 
+- **Claude Code runs on your laptop and is well-configured.**
 
-- **You used Claude Code to improve the mail AI assistant**
-    
+- **You know what Claude Code may do on your laptop, and when it asks you for permission.**
+
+- **Recommended: you used Claude Code to improve the mail AI assistant.**
+
 - **Optional: you can send an SMS from n8n.**
 
 
@@ -20,4 +22,4 @@ title: "Homework until 16 Nov: setup and build with Claude Code"
   - the file [`ws2_hw2.zip`](/abp/ws2/ws2_hw2.zip), unpacked: it holds this homework as a page and the rules page `ws2_rules.html`;
   - your phone, for the optional part.
 
-**Ready? [Start with Part A · Claude Code →](/abp/ws2/hw2-a/)**
+**Ready? [Start with Part A · Set up Claude Code →](/abp/ws2/hw2-a/)**

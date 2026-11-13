@@ -1,5 +1,5 @@
 ---
-title: "Homework until 16 Nov, Part A: Claude Code"
+title: "Homework until 16 Nov, Part A: Set up Claude Code"
 ---
 
 
@@ -24,7 +24,43 @@ We use the sandbox tool called **<a href="https://nono.sh/" target="_blank" rel=
 - access the internet, and
 - not do anything else on your laptop.
 
+<details class="more">
+<summary>Where do I find the folder <code>~/kingo-pod</code> in Windows?</summary>
+
+The folder lies in Ubuntu, not in your Windows folders. You still see it in the File Explorer of Windows.
+
+Open the File Explorer and follow the left side:
+
+**Linux**, then **Ubuntu**, then **home**, then your Linux user name, then **kingo-pod**
+
+Your Linux user name is the name you chose when Ubuntu started for the first time.
+
+In there, you find the folder **claude**. It is the one folder where Claude Code can write.
+
+</details>
+
 Typically, Claude Code uses the Claude models from Anthropic. Here, we use it with the model GLM 5.3 Flash, paid with the OpenRouter key you already have.
+
+<div class="quiz">
+
+**Quiz.** Claude Code asks you before it does something on your laptop. Why do we still put it into a sandbox?
+
+<ul>
+<li data-right>Because people get tired of the questions and just say yes</li>
+<li>Because Claude Code is faster in a sandbox</li>
+<li>Because n8n needs it</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**Because people get tired of the questions and just say yes.** Think of a program that asks you 50 times a day: “May I
+do this?” After a while, you click yes without reading. The sandbox is a fence around Claude Code: whatever you
+click, Claude Code cannot get out.
+
+</details>
+
+</div>
 
 ### 1. Update kingo-pod to get the new command `kingo claude`
 
@@ -33,6 +69,22 @@ Open a terminal (in Windows, start WSL/Ubuntu) and run this one line:
 ```
 cd ~/kingo-pod && ./kingo update
 ```
+
+<div class="quiz match">
+
+**What does this line mean?** It has five pieces. Match each piece with what it does.
+
+| Piece | What it does |
+|---|---|
+| `cd` | go into a folder (“change directory”) |
+| `~/kingo-pod` | the folder `kingo-pod` in your home folder (`~` is short for your home folder) |
+| `&&` | and then, but only if the part before worked |
+| `./kingo` | run the program `kingo` that lies in this folder (`./` means: right here) |
+| `update` | tell `kingo` what to do: get its newest version |
+
+So the whole line says: go into the folder `kingo-pod`, and then let `kingo` update itself.
+
+</div>
 
 When it is done, run 
 ```
@@ -97,7 +149,7 @@ cd ~/kingo-pod && ./kingo claude
 ```
 
 Always start Claude Code for the course this way. A plain `claude` starts a standard Claude Code, without the sandbox
-and without the course settings ([what is different](#what-is-different-from-a-standard-claude-code-and-where-it-is-configured)).
+and without the course settings ([what is different](/abp/ws2/hw2-b/#10-what-is-different-from-a-standard-claude-code-and-where-it-is-configured)).
 
 The first time, `kingo claude` asks for two keys. You do not see a key as you paste it: that is on purpose.
 
@@ -138,6 +190,25 @@ To leave Claude Code (and to get back to the terminal), run
 Sometimes when exiting Claude Code, you get a question from nono sandbox, if it should give Claude Code further permissions. Only add something if you know what you’re doing.
 
 Now you can continue using this terminal as usual (you can also just open another one like you can open another tab in your browser).
+
+<div class="quiz">
+
+**Quiz.** Claude Code listed your n8n workflows. Did it change anything in your n8n?
+
+<ul>
+<li>Yes</li>
+<li data-right>No</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**No.** It only read your workflows, through n8n's API with the key from step 3. A change would be a command of its
+own, and in manual mode Claude Code asks you before it.
+
+</details>
+
+</div>
 
 [Stuck? Help for step 5](#step-5)
 
@@ -219,210 +290,28 @@ and ask it something: it answers in Korean. Keep the line, or delete it again.
 It’s a good idea to add your team’s design rules to `AGENTS.md`.
 </details>
 
+<div class="quiz">
+
+**Quiz.** You change `AGENTS.md` while Claude Code is running. When does Claude Code follow the new rules?
+
+<ul>
+<li>At once</li>
+<li data-right>After its next start</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**After its next start.** Claude Code reads `AGENTS.md` only when it starts. So leave it with `/exit` and start it again
+with `./kingo claude`.
+
+</details>
+
+</div>
+
 [Stuck? Help for step 6](#step-6)
 
-### What Claude Code can do, and what it cannot
-
-| Claude Code can | Claude Code cannot |
-|---|---|
-| read and write in `~/kingo-pod/claude` | write anywhere else on your laptop |
-| read kingo-pod: `compose.yml`, the guides | change kingo-pod, or run `./kingo` |
-| change your n8n workflows and data tables, your Langflow flows and your Postgres database | see your keys: it gets stand-ins |
-| look things up on the web | see your own Claude Code settings, if you use Claude Code already |
-
-Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal.
-
-<div class="quiz">
-
-**Quiz.** Claude Code says that the sandbox blocks a command, and asks you to run it in your own terminal. Should you?
-
-<ul>
-<li>Yes: Claude Code needs it to go on</li>
-<li data-right>Only if I understand the command</li>
-<li>No, never</li>
-</ul>
-
-<details class="more">
-<summary>Show the answer</summary>
-
-**Only run a command in your own terminal if you understand it.** Claude Code cannot leave its sandbox, but a command
-you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job.
-
-</details>
-
-</div>
-
-### 6b. Claude Code always asks for permission: should we tell it to just do its job?
-
-Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
-AI, or nobody. The line under your text shows the mode, for example `⏸ manual mode on`.
-
-**The mode does not decide where Claude Code can write.** The nono sandbox does that, as the table above shows:
-Claude Code cannot write into any other folder on your laptop, such as Documents or Desktop, with or without your
-permission. The mode only decides whether Claude Code asks you first.
-
-**To change the mode, press Shift+Tab.** Each press takes you one mode further, in this order:
-
-1. `manual mode on`: Claude Code asks you before it writes a file and before it runs a command. `./kingo claude`
-   always starts here.
-2. `accept edits on`: Claude Code writes files in its folder `~/kingo-pod/claude` without asking. Before a command,
-   it still asks you.
-3. `plan mode on`: Claude Code changes nothing. It writes a plan and asks for your yes.
-4. `auto mode on`: the AI decides itself whether it needs to ask you for permission.
-
-One more press of Shift+Tab, and you are back in manual mode.
-
-There is a fifth way, where nobody says yes or no: you start Claude Code with `./kingo yolo` instead of
-`./kingo claude`. Then Claude Code never asks for permission.
-
-**The difference, in three examples:**
-
-| What Claude Code wants to do | In manual mode | In accept edits mode | In auto mode | Started with `./kingo yolo` |
-|---|---|---|---|---|
-| **Write a file:** save its findings in the file `notes.md` in its folder `~/kingo-pod/claude` | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> |
-| **Run a command that only reads:** list your n8n workflows | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
-| **Run a command that changes something:** make a copy of a Langflow flow | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
-| **Write a file outside its folder:** save a file on your Desktop | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission |
-
-**What does this mean for you?** In this homework, Claude Code rarely writes files. It mostly runs commands to
-search, and to talk to n8n, Langflow and your Postgres database. In accept edits mode, Claude Code still asks you
-before each of these commands. The requests stop only in auto mode, or with `./kingo yolo`.
-
-**Which mode should you use? Auto mode is okay.** Claude Code runs inside the nono sandbox, so the sandbox protects
-your laptop in every mode. And every start of `./kingo claude` saves your n8n workflows and your Langflow flows. In
-manual mode, you get many requests, and the commands are hard to read. So feel free to switch to auto mode: press
-Shift+Tab until the line under your text says `auto mode on`.
-
-**In manual mode,** Claude Code asks before each command. **Yes** runs the command. **No** stops Claude Code: then
-tell it what to do instead, or type `continue`.
-
-<div class="quiz">
-
-**Quiz.** You are in auto mode. Claude Code tells you that a request was blocked, and asks whether it may try again. It is the change you asked for. What do you do?
-
-<ul>
-<li>Type <code>/exit</code> and start again</li>
-<li data-right>Say yes, and name what it may do</li>
-<li>Nothing: Claude Code finds another way</li>
-</ul>
-
-<details class="more">
-<summary>Show the answer</summary>
-
-**Say yes, and name what it may do,** for example: `Yes, retry saving the change to the copy.` In auto mode, the AI
-may refuse a command that you asked for. Is it blocked again? Press Shift+Tab until the line under your text says
-`manual mode on`, and say it again.
-
-</details>
-
-</div>
-
-### You decide: `./kingo yolo` starts Claude Code without any check
-
-In each of the four modes, someone checks a command before it runs: you, or the AI. You can also start Claude Code
-with no check at all. To this end, you start it with this line:
-
-```
-./kingo yolo
-```
-
-The first time, Claude Code asks whether you accept this mode. Choose **Yes, I accept**.
-
-| | ./kingo claude | ./kingo yolo | claude (without kingo) |
-|---|---|---|---|
-| Your laptop is | protected by the nono sandbox and by Claude Code’s hesitations | protected by the nono sandbox | protected only by Claude Code’s hesitations: no sandbox |
-| Your workflows, flows and database | you see every change before it happens | Claude Code changes them at once, mistakes too | out of reach at first, as Claude Code has no keys for them; but it can read every file you can, your keys too |
-| Your user experience | many requests for permissions, often the same ones | Claude Code works on by itself | Anthropic's standard Claude Code: your own Anthropic login and bill, and the usual requests for permissions |
-
-The requests for permission protect your project from Claude Code's mistakes. If you let Claude Code work without asking, save your work first. This line saves your
-n8n workflows and your Langflow flows into `~/kingo-pod/backups/` (not your own tables in the database):
-
-```
-cd ~/kingo-pod && ./kingo backup
-```
-
-<div class="quiz">
-
-**Quiz.** Claude Code changed your n8n workflow *WS2.3 - Triage New Mail*, and now it does not work. Where is the version from before?
-
-<ul>
-<li>It is gone</li>
-<li data-right>In <code>~/kingo-pod/backups/flows/</code></li>
-<li>In Claude Code's memory</li>
-</ul>
-
-<details class="more">
-<summary>Show the answer</summary>
-
-**In `~/kingo-pod/backups/flows/`.** Every start of `./kingo claude` or `./kingo yolo` saves each n8n workflow and each
-Langflow flow there as one JSON file, in a folder per start. The newest 10 starts stay. You can import such a file
-again in n8n or in Langflow.
-
-</details>
-
-</div>
-
-### What is different from a standard Claude Code, and where it is configured
-
-The Claude Code you started with `./kingo claude` is set up for the course.
-
-<div class="quiz">
-
-**Quiz.** You are in the folder `~/kingo-pod/claude` and type `claude`. Are you in the sandbox?
-
-<ul>
-<li>Yes: the folder belongs to kingo-pod</li>
-<li data-right>No</li>
-</ul>
-
-<details class="more">
-<summary>Show the answer</summary>
-
-**No.** Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own
-Anthropic login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys.
-**Here, you're on your own, kid.**
-
-The course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.
-
-</details>
-
-</div>
-
-<details class="more">
-<summary>In detail: what <code>./kingo claude</code> changes, and where</summary>
-
-What is different from a Claude Code you install and start with `claude`, and the file where each
-part is configured:
-
-| | A standard Claude Code | Here, started with `./kingo claude` | Configured for the course in |
-|---|---|---|---|
-| Start | `claude`, in any folder | `./kingo claude` in the kingo-pod folder; `./kingo yolo` is the same without requests for permission. Claude Code works in `kingo-pod/claude` | `kingo-pod/kingo`, the script behind every `./kingo` command. Before Claude Code starts, it checks that n8n and Langflow run, asks for your keys the first time, copies `AGENTS.md`, `CLAUDE.md` and `.claude/settings.json` into `kingo-pod/claude/` the first time, and writes the nono profile. Then it starts Claude Code inside nono. |
-| Model and bill | Claude models, with an Anthropic account or key | GLM 5.3 Flash through OpenRouter, paid with your OpenRouter key | `kingo-pod/claude/.claude/settings.json` names the model, for every role (`ANTHROPIC_MODEL` and the lines `ANTHROPIC_DEFAULT_…_MODEL`). The nono profile sends Claude Code's requests to OpenRouter instead of Anthropic, and puts your OpenRouter key into them. Claude Code does not know this model: `kingo-pod/kingo` tells it the context size to work with (`CLAUDE_CODE_MAX_CONTEXT_TOKENS`), 200,000 tokens. |
-| Keys | kept by Claude Code itself | kept in `~/.config/kingo/`; Claude Code sees only stand-ins | `kingo-pod/kingo` asks for your OpenRouter and n8n keys, makes the Langflow key itself, and keeps them in `~/.config/kingo/`, readable only by you. nono reads them from these files when it starts; they are never in an environment variable. The nono profile says, for OpenRouter, n8n and Langflow, which file holds the key and where nono's proxy puts it into a request. |
-| Files | Claude Code reads and writes wherever you may, after asking | Claude Code writes only in `kingo-pod/claude` and `~/.kingo-claude`, reads `kingo-pod`, and nothing else; the operating system enforces it | The nono profile `~/.config/nono/profiles/kingo-claude.json` lists the folders Claude Code may read and write, and the few environment variables that reach Claude Code: other keys on your laptop do not. `kingo` writes it anew at every start from `kingo-pod/setup/claude/nono-profile.json`, so a change to it does not last. On top, `kingo-pod/claude/.claude/settings.json` forbids Claude Code to read `.env` files, `~/.ssh` and `~/.aws`. |
-| Sandbox | Claude Code's own sandbox, for commands only, if you turn it on | nono, around all of Claude Code: its commands, and its own tools for files too | the nono profile. `kingo-pod/claude/.claude/settings.json` turns Claude Code's own sandbox off (`sandbox.enabled`): nono covers more. |
-| Settings and history | `~/.claude` | `~/.kingo-claude`; your own `~/.claude` stays untouched | `kingo-pod/kingo` starts Claude Code with `CLAUDE_CONFIG_DIR=~/.kingo-claude`: Claude Code keeps its settings, sessions and history there. An Anthropic login stored there, `kingo` removes at every start: the course does not use it, and Claude Code could read it. |
-| Instructions | a `CLAUDE.md` that you write | `AGENTS.md`: the part about kingo-pod and your team's rules; `CLAUDE.md` only points to it | `kingo-pod/claude/AGENTS.md`, yours to change, and `kingo-pod/claude/CLAUDE.md`, which holds only `@AGENTS.md`. `settings.json` makes Claude Code skip the `CLAUDE.md` of kingo-pod itself, which is for kingo-pod's developers (`claudeMdExcludes`). |
-| Memory | hidden in `~/.claude/projects/` | in `kingo-pod/claude/memory/`, where you can read it | `kingo-pod/claude/.claude/settings.json` (`autoMemoryDirectory`) |
-| What leaves the laptop | the model's requests and the web pages Claude Code looks up, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them | the model's requests, to OpenRouter only, and the web pages Claude Code looks up; usage data, error reports, feedback, pages on claude.ai and Remote Control are off | `kingo-pod/kingo` turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude Code. `kingo-pod/claude/.claude/settings.json` turns off the same, and also feedback (`DISABLE_FEEDBACK_COMMAND`), Remote Control (`disableRemoteControl`), pages on claude.ai (`enableArtifact`) and the check of each web address at Anthropic before Claude Code reads a page (`skipWebFetchPreflight`). |
-| A way back | none | every start saves each n8n workflow and Langflow flow as a JSON file in `kingo-pod/backups/flows/`, a folder per start; the newest 10 stay. Claude Code can read them but not change them. A file can be imported again in n8n or in Langflow | `kingo-pod/kingo`, before it starts Claude Code. It needs `psql`. |
-| Requests for permission | since version 2.1.283, Claude Code starts in auto mode: a model checks each command, runs what it judges safe and blocks the rest, without asking | Claude Code asks before a command (manual mode). Shift+Tab switches the mode, to auto mode too: there, GLM 5.3 Flash is the judge. `./kingo yolo` turns the requests off | `kingo-pod/kingo` starts Claude Code with `--permission-mode default`, and `./kingo yolo` starts it with `--dangerously-skip-permissions`. The sandbox stays the same. |
-| Updates | Claude Code updates itself | no self-update: run the install line again | `kingo-pod/claude/.claude/settings.json`: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also turns off the self-update. |
-
-</details>
-
-**Claude Code's memory.** Claude Code writes down for itself what it learns about your project, so that it still knows it
-in the next session: for example a name your team chose, or a mistake it should not make again. Usually this memory
-is hidden in Claude Code's own folder. Here it lies in `~/kingo-pod/claude/memory/`, so you can read what Claude Code remembers,
-and correct or delete it. The file `MEMORY.md` there lists everything it keeps.
-
-Claude Code can explain all of this itself. Ask it:
-
-```
-How are you set up here, and what is different from a standard Claude Code?
-```
-
-**Next: [Part B · Find out why your mail AI assistant missed the kimchi →](/abp/ws2/hw2-b/)**
+**Next: [Part B · How Claude Code works here →](/abp/ws2/hw2-b/)**
 
 ## If something goes wrong
 
@@ -460,7 +349,7 @@ Find your step. Still stuck? Write to Frank: then we fix it together.
 | `n8n did not accept the key` | Make a new key as in step 3. Then run `./kingo claude` again: it asks for the key. |
 | `openrouter did not accept the key` | Check the key Yanbo gave you. Then run `./kingo claude` again: it asks for the key. |
 | Claude Code asks you to log in to Anthropic | Do not log in. Type `/exit` and write to Frank. |
-| `Model "z-ai/glm-5.3-flash" isn't recognized · context assumed to be 200k tokens` | Nothing to do: Claude Code works. After `./kingo update`, the line no longer comes (`./kingo version` shows 1.4.9 or newer; on Kingo 1.5: 1.5.8 or newer). |
+| `Model "z-ai/glm-5.3-flash" isn't recognized · context assumed to be 200k tokens` | Nothing to do: Claude Code works. After `./kingo update`, the line no longer comes (`./kingo version` shows 1.4.10 or newer; on Kingo 1.5: 1.5.9 or newer). |
 | `removed an Anthropic login` | You logged in to Anthropic inside `./kingo claude`. `kingo` removed that login again: the course does not use it, and Claude Code could read it there. Your own Claude Code login is not affected. |
 
 #### Step 5

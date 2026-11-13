@@ -24,6 +24,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 // optional"): its start, then its parts, indented under it. The workbook of 9 November the same way (Frank, 8 Nov
 // 2026: "mehrere, wie hausaufgabe"): its start with the import, then one page per block. The homework until
 // 16 November like the first (10 Nov 2026: "make the website"), between the two mornings.
+// 13 Nov 2026: Part A in two pages, and the kimchi mail as "Recommended" (Frank: "vielleicht in zwei teile teilen?",
+// "mach jetzigen part B recommended").
 const LABELS: Record<string, string> = {
   hw: "Homework",
   "hw-a": "Part A · Mailbox",
@@ -38,8 +40,9 @@ const LABELS: Record<string, string> = {
   "s1-block-6": "Block 6 · Human in the loop",
   "s1-appendix": "Appendix · Contracts",
   hw2: "Homework until 16 Nov",
-  "hw2-a": "Part A · Claude Code",
-  "hw2-b": "Part B · The kimchi mail",
+  "hw2-a": "Part A · Set up Claude Code",
+  "hw2-b": "Part B · How it works here",
+  "hw2-recommended": "Recommended · The kimchi mail",
   "hw2-optional": "Optional · SMS",
   s2: "16 November",
   s3: "23 November",
@@ -1034,5 +1037,93 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       options.appendChild(btn);
     });
     list.replaceWith(options); fold.replaceWith(verdict); verdict.after(answer);
+  });
+</script>
+
+<script is:inline>
+  // A match quiz: <div class="quiz match"> around a table of two columns in the course repo's Markdown. The right
+  // column starts empty and its entries wait above the table, shuffled; the students put each one next to its piece
+  // (Frank, 13 Nov 2026: "mach eine box, die uns 'cd ~/kingo-pod && ./kingo update' erklärt; mit match quizz").
+  // Without this script the table stays as it is, as the explanation.
+  document.querySelectorAll(".ws2 .quiz.match").forEach(function (box) {
+    var table = box.querySelector("table");
+    if (!table) return;
+    if (!document.getElementById("ma-style")) {
+      var css = document.createElement("style"); css.id = "ma-style";
+      css.textContent =
+        ".ma-chip{display:inline-block;background:#e0e7ff;color:#1f2937;border-radius:.4em;padding:.25em .6em;margin:.2em;cursor:grab;line-height:1.35;border:2px solid transparent;user-select:none}" +
+        ".ma-chip code{background:transparent;color:inherit;padding:0}" +
+        ".ma-chip.ma-picked{outline:2px solid #2563eb}" +
+        ".ma-pool{margin:.6em 0;padding:.5em;border:1px dashed currentColor;border-radius:.6em;min-height:2.6em}" +
+        "td.ma-cell{cursor:pointer;height:2.9em;min-width:14em;vertical-align:middle}" +
+        "td.ma-cell.ma-empty{background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(128,128,128,.12) 8px 16px)}" +
+        "td.ma-cell.ma-over{outline:2px solid #2563eb;outline-offset:-2px}" +
+        "td.ma-cell.ma-right{outline:3px solid #16a34a;outline-offset:-3px}" +
+        "td.ma-cell.ma-wrong{outline:3px solid #dc2626;outline-offset:-3px}" +
+        "td.ma-cell .ma-chip{margin:0;cursor:pointer}" +
+        ".ma-bar{margin:.6em 0;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}" +
+        ".ma-bar button{font:inherit;padding:.35em .8em;border-radius:.4em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}";
+      document.head.appendChild(css);
+    }
+    var original = table.innerHTML, answers, cells, picked = null;
+    var pool = document.createElement("div"); pool.className = "ma-pool";
+    var bar = document.createElement("div"); bar.className = "ma-bar";
+    var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+    var show = document.createElement("button"); show.type = "button"; show.textContent = "Show the solution";
+    var again = document.createElement("button"); again.type = "button"; again.textContent = "Try again"; again.hidden = true;
+    var status = document.createElement("span");
+    bar.appendChild(check); bar.appendChild(show); bar.appendChild(again); bar.appendChild(status);
+    table.parentNode.insertBefore(pool, table);
+    table.parentNode.insertBefore(bar, table.nextSibling);
+
+    function pick(chip) {
+      picked = picked === chip ? null : chip;
+      Array.prototype.forEach.call(box.querySelectorAll(".ma-chip"), function (c) { c.classList.toggle("ma-picked", c === picked); });
+    }
+    function chip(i) {
+      var c = document.createElement("span"); c.className = "ma-chip"; c.innerHTML = answers[i]; c.dataset.i = i; c.draggable = true;
+      c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", String(i)); picked = null; });
+      c.addEventListener("click", function (e) { if (c.parentNode === pool) { e.stopPropagation(); pick(c); } });
+      return c;
+    }
+    function find(i) { return box.querySelector('.ma-chip[data-i="' + i + '"]'); }
+    function place(td, c) {   // one answer per cell: what lay there goes back above the table
+      if (!c) return;
+      var old = td.querySelector(".ma-chip"); if (old && old !== c) pool.appendChild(old);
+      var from = c.parentNode; td.appendChild(c);
+      if (from && from !== td && from.classList && from.classList.contains("ma-cell")) from.classList.add("ma-empty");
+      td.classList.remove("ma-empty", "ma-right", "ma-wrong"); c.classList.remove("ma-picked"); picked = null; status.textContent = "";
+    }
+    function start() {
+      table.innerHTML = original; pool.innerHTML = ""; picked = null; answers = []; cells = [];
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr, i) {
+        var td = tr.children[1]; answers.push(td.innerHTML); td.innerHTML = ""; td.className = "ma-cell ma-empty"; td.dataset.i = i; cells.push(td);
+        td.addEventListener("click", function () {
+          var mine = td.querySelector(".ma-chip");
+          if (picked) place(td, picked);
+          else if (mine) { pool.appendChild(mine); td.classList.add("ma-empty"); td.classList.remove("ma-right", "ma-wrong"); status.textContent = ""; }
+        });
+        td.addEventListener("dragover", function (e) { e.preventDefault(); td.classList.add("ma-over"); });
+        td.addEventListener("dragleave", function () { td.classList.remove("ma-over"); });
+        td.addEventListener("drop", function (e) { e.preventDefault(); td.classList.remove("ma-over"); place(td, find(e.dataTransfer.getData("text/plain"))); });
+      });
+      var order = answers.map(function (_, i) { return i; });
+      for (var k = order.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = order[k]; order[k] = order[j]; order[j] = t; }
+      if (order.length > 1 && order.every(function (v, i) { return v === i; })) order.push(order.shift());
+      order.forEach(function (i) { pool.appendChild(chip(i)); });
+      pool.hidden = false; check.hidden = false; show.hidden = false; again.hidden = true; status.textContent = "Drag each answer to its piece. Or click an answer, then its row.";
+    }
+    check.addEventListener("click", function () {
+      var right = 0;
+      cells.forEach(function (td) {
+        var c = td.querySelector(".ma-chip"); td.classList.remove("ma-right", "ma-wrong");
+        if (!c) return;
+        var ok = c.dataset.i === td.dataset.i; td.classList.add(ok ? "ma-right" : "ma-wrong"); if (ok) right++;
+      });
+      status.textContent = right === cells.length ? "All " + cells.length + " right. Well done!" : right + " of " + cells.length + " right.";
+    });
+    show.addEventListener("click", function () { table.innerHTML = original; pool.hidden = true; check.hidden = true; show.hidden = true; again.hidden = false; status.textContent = ""; });
+    again.addEventListener("click", start);
+    start();
   });
 </script>

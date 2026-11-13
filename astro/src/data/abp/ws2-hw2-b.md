@@ -1,223 +1,245 @@
 ---
-title: "Homework until 16 Nov, Part B: Find out why your mail AI assistant missed the kimchi"
+title: "Homework until 16 Nov, Part B: How Claude Code works here"
 ---
 
 
-Your mail AI assistant drafts answers based on earlier mails. In the preparatory homework, you first sent a mail about
-kimchi to your test Gmail account, then asked it about Korean food, and saw the power of semantic search. However, when
-you send another mail that asks about Korean food, you see that the mail AI assistant misses the info about the kimchi
-in its search. Let's use Claude Code to find out why. Then Claude Code will try to fix the search, and you measure
-whether the fix does better.
+### 7. What Claude Code can do, and what it cannot
 
-### 7. See the mistake: ask your mail AI assistant about Korean food
+| Claude Code can | Claude Code cannot |
+|---|---|
+| read and write in `~/kingo-pod/claude` | write anywhere else on your laptop |
+| read kingo-pod: `compose.yml`, the guides | change kingo-pod, or run `./kingo` |
+| change your n8n workflows and data tables, your Langflow flows and your Postgres database | see your keys: it gets stand-ins |
+| look things up on the web | see your own Claude Code settings, if you use Claude Code already |
 
-1. In n8n, check that these four workflows are published:
-   - **WS2.0 - Embed Mails**
-   - **WS2.3 - Triage New Mail**
-   - **WS2.4 - Reply with Approval**
-   - **WS2.4 - Approvals Page**
+Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal.
 
-   Published means: the dot on the button **Publish** is green.
-2. First the kimchi mail. Did you send *Kimchi for Monday* in step 12 of the preparatory homework? If yes, go on with 3.
-   If you are not sure, search your test Gmail account for `kimchi`.
+<div class="quiz">
 
-   If you did not send it, send it now: from your SKKU account, send this mail to your test Gmail account. Copy the
-   subject and the text, then sign with your first name:
+**Quiz.** Claude Code says that the sandbox blocks a command, and asks you to run it in your own terminal. Should you?
 
-   ```
-   Kimchi for Monday
-   ```
-
-   ```
-   Hi,
-
-   This weekend my family makes kimchi for the winter (gimjang).
-   I will bring a box of it for everyone at the workshop on Monday.
-   ```
-
-   Wait two minutes: kingo-pod copies the mail into its database, and WS2.0 adds it to the search.
-3. Now the question. From your SKKU account, send a second mail to your test Gmail account. Copy the subject and
-   the text:
-
-   ```
-   Is there any Korean home made food?
-   ```
-
-   ```
-   Hi Vince, I'm getting hungry! Please reply.
-   ```
-4. Wait two minutes. Then open the page with the drafts that wait for you: <http://localhost:5678/webhook/approvals>
-5. Read the draft of the reply to *Is there any Korean home made food?* (A draft of a reply to the kimchi mail may
-   wait there too: leave it.) Most likely the draft says that nothing is known about Korean food and that someone will follow up. The
-   kimchi mail is in your database, yet the draft does not use it.
-
-Does your draft mention the kimchi? Then the search was lucky this time. Go on anyway: in step 10 you measure it.
+<ul>
+<li>Yes: Claude Code needs it to go on</li>
+<li data-right>Only if I understand the command</li>
+<li>No, never</li>
+</ul>
 
 <details class="more">
-<summary>Side note: the address in sub-step 4 is a webhook</summary>
+<summary>Show the answer</summary>
 
-The address you opened in sub-step 4 (<http://localhost:5678/webhook/approvals>) is a **webhook**, that is, an address where
-someone (here, that is you) can call n8n. In other words, n8n hands out a hook that you can pull. In this case, your
-browser pulled the hook by calling the address, and the n8n workflow *WS2.4 - Approvals Page* answered: it read the
-drafts that wait for you from the database, made a web page of them, and sent this page back to your browser. The
-page carries a little sticker that you do not see: "pull the hook again in 15 seconds". So your browser does that for
-you, and the page is never more than 15 seconds old. n8n looks into the database only when someone pulls the hook:
-close the page, and *WS2.4 - Approvals Page* rests.
-
-A webhook is how someone else calls n8n. The other way round, n8n calls someone else, often with an **HTTP Request**
-node: *WS2.4 - Reply with Approval*, for example, calls the Langflow flow *Draft Reply (Enron)* with one.
-
-<figure class="bp bp-calls" aria-label="Who calls whom"><div class="bp-call"><em>A webhook: someone else calls n8n</em><div class="bp-end person"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></span><b>Your browser</b><span>you open the page</span></div><div class="bp-arrow"><span>calls <code>/webhook/approvals</code></span><i></i><span>← the page</span></div><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Approvals Page</span></div></div><div class="bp-call"><em>An HTTP Request node: n8n calls someone else</em><div class="bp-end muscle"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1.2"/><rect x="16.5" y="3" width="5" height="6" rx="1.2"/><rect x="16.5" y="15" width="5" height="6" rx="1.2"/><path d="M7.5 12H11M11 12V6h5.5M11 12v6h5.5"/></svg></span><b>n8n</b><span>WS2.4 - Reply with Approval</span></div><div class="bp-arrow"><span>calls Langflow's Run API</span><i></i><span>← the draft</span></div><div class="bp-end brain"><span class="bp-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6-4.6-1.9 4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span><b>Langflow</b><span>Draft Reply (Enron)</span></div></div><figcaption>Who calls whom: the left side calls, the right side answers.</figcaption></figure>
+**Only run a command in your own terminal if you understand it.** Claude Code cannot leave its sandbox, but a command
+you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job.
 
 </details>
 
-[Stuck? Help for step 7](#step-7)
+</div>
 
-### 8. Let Claude Code find the cause
+<div class="quiz">
 
-Start Claude Code (you find `cd ~/kingo-pod && ./kingo claude` in your terminal's command history with the up arrow)
-and paste this:
+**Quiz.** In step 4 you gave `kingo` your n8n key. Does Claude Code know the key now?
+
+<ul>
+<li>Yes: it needs the key to reach n8n</li>
+<li data-right>No: it gets a stand-in</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**No.** Claude Code gets only a stand-in. nono keeps the real key and puts it into each request that Claude Code sends
+to n8n. Hence, your key is not uploaded to the provider of the LLM, but Claude Code can still use it. The Langflow
+key and your OpenRouter key are kept the same way.
+
+</details>
+
+</div>
+
+### 8. Claude Code always asks for permission: should we tell it to just do its job?
+
+Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
+AI, or nobody. The line under your text shows the mode, for example `⏸ manual mode on`.
+
+**The mode does not decide where Claude Code can write.** The nono sandbox does that, as the table above shows:
+Claude Code cannot write into any other folder on your laptop, such as Documents or Desktop, with or without your
+permission. The mode only decides whether Claude Code asks you first.
+
+**To change the mode, press Shift+Tab.** Each press takes you one mode further, in this order:
+
+1. <span style="color:#9ca3af;font-weight:700">⏸︎</span> `manual mode on`: Claude Code asks you before it writes a file and before it runs a command. `./kingo claude`
+   always starts here.
+2. <span style="color:#a855f7;font-weight:700">⏵⏵</span> `accept edits on`: Claude Code writes files in its folder `~/kingo-pod/claude` without asking. Before a command,
+   it still asks you.
+3. <span style="color:#14b8a6;font-weight:700">⏸︎</span> `plan mode on`: Claude Code changes nothing. It writes a plan and asks for your yes.
+4. <span style="color:#d97706;font-weight:700">⏵⏵</span> `auto mode on`: the AI decides itself whether it needs to ask you for permission.
+
+One more press of Shift+Tab, and you are back in manual mode.
+
+<div class="quiz">
+
+**Quiz.** The line under your text says `plan mode on`. You ask Claude Code to rename a workflow. What happens?
+
+<ul>
+<li>Claude Code renames the workflow</li>
+<li data-right>Claude Code writes a plan and asks for your yes</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**Claude Code writes a plan and asks for your yes.** In plan mode, it changes nothing before you agree to the plan.
+
+</details>
+
+</div>
+
+<span style="color:#dc2626;font-weight:700">⏵⏵</span> There is a fifth way, where nobody says yes or no: you start Claude Code with `./kingo yolo` instead of
+`./kingo claude`. Then Claude Code never asks for permission.
+
+**The difference, in three examples:**
+
+| What Claude Code wants to do | <span style="color:#9ca3af;font-weight:700">⏸︎</span> In manual mode | <span style="color:#a855f7;font-weight:700">⏵⏵</span> In accept edits mode | <span style="color:#d97706;font-weight:700">⏵⏵</span> In auto mode | <span style="color:#dc2626;font-weight:700">⏵⏵</span> Started with `./kingo yolo` |
+|---|---|---|---|---|
+| **Write a file:** save its findings in the file `notes.md` in its folder `~/kingo-pod/claude` | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> | Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong> |
+| **Run a command that only reads:** list your n8n workflows | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
+| **Run a command that changes something:** make a copy of a Langflow flow | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first | <strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong> | Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong> |
+| **Write a file outside its folder:** save a file on your Desktop | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission | <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission |
+
+**What does this mean for you?** In this homework, Claude Code rarely writes files. It mostly runs commands to
+search, and to talk to n8n, Langflow and your Postgres database. In accept edits mode, Claude Code still asks you
+before each of these commands. The requests stop only in auto mode, or with `./kingo yolo`.
+
+**Which mode should you use? Auto mode is okay.** Claude Code runs inside the nono sandbox, so the sandbox protects
+your laptop in every mode. And every start of `./kingo claude` saves your n8n workflows and your Langflow flows. In
+manual mode, you get many requests, and the commands are hard to read. So feel free to switch to auto mode: press
+Shift+Tab until the line under your text says `auto mode on`.
+
+**In manual mode,** Claude Code asks before each command. **Yes** runs the command. **No** stops Claude Code: then
+tell it what to do instead, or type `continue`.
+
+<div class="quiz">
+
+**Quiz.** You are in auto mode. Claude Code tells you that a request was blocked, and asks whether it may try again. It is the change you asked for. What do you do?
+
+<ul>
+<li>Type <code>/exit</code> and start again</li>
+<li data-right>Say yes, and name what it may do</li>
+<li>Nothing: Claude Code finds another way</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**Say yes, and name what it may do,** for example: `Yes, retry saving the change to the copy.` In auto mode, the AI
+may refuse a command that you asked for. Is it blocked again? Press Shift+Tab until the line under your text says
+`manual mode on`, and say it again.
+
+</details>
+
+</div>
+
+### 9. You decide: `./kingo yolo` starts Claude Code without any check
+
+In each of the four modes, someone checks a command before it runs: you, or the AI. You can also start Claude Code
+with no check at all. To this end, you start it with this line:
 
 ```
-My mail AI assistant drafted a reply to my mail "Is there any Korean home made food?"
-without the mail "Kimchi for Monday", which is in the database. Find out why.
-
-Look at:
-- the last run of WS2.4 - Reply with Approval in n8n: what it sent to the Langflow flow
-  Draft Reply (Enron), and what came back as sources;
-- the code of the component Mail Search in that flow.
-
-Do not change anything. Then explain the cause to me in plain words.
+./kingo yolo
 ```
 
-Claude Code reads the run, the flow and the code. To this end, it runs several commands to dig deeper and to find
-the reason. Before running a command, it asks you for permission. Most of these requests are searches: Claude Code
-looks into your database, or into the runs that n8n keeps. A search changes nothing, so you can approve it.
+The first time, Claude Code asks whether you accept this mode. Choose **Yes, I accept**.
 
-So many requests in a row are tiring, right? Did you switch to auto mode? Press Shift+Tab until the line under your
-text says `auto mode on`. Then a model checks each command and runs what it judges safe, without asking you. More
-about the modes:
-[step 6b: Claude Code always asks for permission: should we tell it to just do its job?](/abp/ws2/hw2-a/#6b-claude-code-always-asks-for-permission-should-we-tell-it-to-just-do-its-job)
+| | <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> ./kingo claude | <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></svg> ./kingo yolo | <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="m2 2 20 20"/><path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71"/><path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264"/></svg> claude (without kingo) |
+|---|---|---|---|
+| <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg> Your laptop is | protected by the nono sandbox and by Claude Code’s hesitations | protected by the nono sandbox | protected only by Claude Code’s hesitations: no sandbox |
+| <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg> Your workflows, flows and database | you see every change before it happens | Claude Code changes them at once, mistakes too | out of reach at first, as Claude Code has no keys for them; but it can read every file you can, your keys too |
+| <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg> Your user experience | many requests for permissions, often the same ones | Claude Code works on by itself | Anthropic's standard Claude Code: your own Anthropic login and bill, and the usual requests for permissions |
 
-Did you stop Claude Code by accident, or say no to a request? Type `continue`, and Claude Code goes on.
-
-At the end, Claude Code answers your question: it explains why the search did not find the kimchi. Read this answer
-twice (the answer at the end, not the reasons Claude Code gives for its requests): this is the most important finding
-of this part.
-
-Feel free to ask Claude Code to say the answer in simple words if you find it too complicated:
+The requests for permission protect your project from Claude Code's mistakes. If you let Claude Code work without asking, save your work first. This line saves your
+n8n workflows and your Langflow flows into `~/kingo-pod/backups/` (not your own tables in the database):
 
 ```
-Say this again in simple words.
+cd ~/kingo-pod && ./kingo backup
 ```
 
-[Stuck? Help for step 8](#step-8)
+<div class="quiz">
 
-### 9. Let Claude Code fix the search, in a copy of the flow
+**Quiz.** Claude Code changed your n8n workflow *WS2.3 - Triage New Mail*, and now it does not work. Where is the version from before?
 
-The fix goes into Langflow only, not into n8n: n8n builds the mail text, and the prompt and the check of the draft
-still need all of it. Only the search should get less.
+<ul>
+<li>It is gone</li>
+<li data-right>In <code>~/kingo-pod/backups/flows/</code></li>
+<li>In Claude Code's memory</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**In `~/kingo-pod/backups/flows/`.** Every start of `./kingo claude` or `./kingo yolo` saves each n8n workflow and each
+Langflow flow there as one JSON file, in a folder per start. The newest 10 starts stay. You can import such a file
+again in n8n or in Langflow.
+
+</details>
+
+</div>
+
+### 10. What is different from a standard Claude Code, and where it is configured
+
+The Claude Code you started with `./kingo claude` is set up for the course.
+
+<div class="quiz">
+
+**Quiz.** You are in the folder `~/kingo-pod/claude` and type `claude`. Are you in the sandbox?
+
+<ul>
+<li>Yes: the folder belongs to kingo-pod</li>
+<li data-right>No</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**No.** Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own
+Anthropic login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys.
+**Here, you're on your own, kid.**
+
+The course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.
+
+</details>
+
+</div>
+
+<details class="more">
+<summary>In detail: what <code>./kingo claude</code> changes, and where</summary>
+
+What is different from a Claude Code you install and start with `claude`, and the file where each
+part is configured:
+
+| | A standard Claude Code | Here, started with `./kingo claude` | Configured for the course in |
+|---|---|---|---|
+| Start | `claude`, in any folder | `./kingo claude` in the kingo-pod folder; `./kingo yolo` is the same without requests for permission. Claude Code works in `kingo-pod/claude` | `kingo-pod/kingo`, the script behind every `./kingo` command. Before Claude Code starts, it checks that n8n and Langflow run, asks for your keys the first time, copies `AGENTS.md`, `CLAUDE.md` and `.claude/settings.json` into `kingo-pod/claude/` the first time, and writes the nono profile. Then it starts Claude Code inside nono. |
+| Model and bill | Claude models, with an Anthropic account or key | GLM 5.3 Flash through OpenRouter, paid with your OpenRouter key | `kingo-pod/claude/.claude/settings.json` names the model, for every role (`ANTHROPIC_MODEL` and the lines `ANTHROPIC_DEFAULT_…_MODEL`). The nono profile sends Claude Code's requests to OpenRouter instead of Anthropic, and puts your OpenRouter key into them. Claude Code does not know this model: `kingo-pod/kingo` tells it the context size to work with (`CLAUDE_CODE_MAX_CONTEXT_TOKENS`), 200,000 tokens. |
+| Keys | kept by Claude Code itself | kept in `~/.config/kingo/`; Claude Code sees only stand-ins | `kingo-pod/kingo` asks for your OpenRouter and n8n keys, makes the Langflow key itself, and keeps them in `~/.config/kingo/`, readable only by you. nono reads them from these files when it starts; they are never in an environment variable. The nono profile says, for OpenRouter, n8n and Langflow, which file holds the key and where nono's proxy puts it into a request. |
+| Files | Claude Code reads and writes wherever you may, after asking | Claude Code writes only in `kingo-pod/claude` and `~/.kingo-claude`, reads `kingo-pod`, and nothing else; the operating system enforces it | The nono profile `~/.config/nono/profiles/kingo-claude.json` lists the folders Claude Code may read and write, and the few environment variables that reach Claude Code: other keys on your laptop do not. `kingo` writes it anew at every start from `kingo-pod/setup/claude/nono-profile.json`, so a change to it does not last. On top, `kingo-pod/claude/.claude/settings.json` forbids Claude Code to read `.env` files, `~/.ssh` and `~/.aws`. |
+| Sandbox | Claude Code's own sandbox, for commands only, if you turn it on | nono, around all of Claude Code: its commands, and its own tools for files too | the nono profile. `kingo-pod/claude/.claude/settings.json` turns Claude Code's own sandbox off (`sandbox.enabled`): nono covers more. |
+| Settings and history | `~/.claude` | `~/.kingo-claude`; your own `~/.claude` stays untouched | `kingo-pod/kingo` starts Claude Code with `CLAUDE_CONFIG_DIR=~/.kingo-claude`: Claude Code keeps its settings, sessions and history there. An Anthropic login stored there, `kingo` removes at every start: the course does not use it, and Claude Code could read it. |
+| Instructions | a `CLAUDE.md` that you write | `AGENTS.md`: the part about kingo-pod and your team's rules; `CLAUDE.md` only points to it | `kingo-pod/claude/AGENTS.md`, yours to change, and `kingo-pod/claude/CLAUDE.md`, which holds only `@AGENTS.md`. `settings.json` makes Claude Code skip the `CLAUDE.md` of kingo-pod itself, which is for kingo-pod's developers (`claudeMdExcludes`). |
+| Memory | hidden in `~/.claude/projects/` | in `kingo-pod/claude/memory/`, where you can read it | `kingo-pod/claude/.claude/settings.json` (`autoMemoryDirectory`) |
+| What leaves the laptop | the model's requests and the web pages Claude Code looks up, plus usage data, error reports and feedback to Anthropic; pages on claude.ai (artifacts) and Remote Control, if you use them | the model's requests, to OpenRouter only, and the web pages Claude Code looks up; usage data, error reports, feedback, pages on claude.ai and Remote Control are off | `kingo-pod/kingo` turns off pages on claude.ai, usage data, error reports and all traffic that is not needed, when it starts Claude Code. `kingo-pod/claude/.claude/settings.json` turns off the same, and also feedback (`DISABLE_FEEDBACK_COMMAND`), Remote Control (`disableRemoteControl`), pages on claude.ai (`enableArtifact`) and the check of each web address at Anthropic before Claude Code reads a page (`skipWebFetchPreflight`). |
+| A way back | none | every start saves each n8n workflow and Langflow flow as a JSON file in `kingo-pod/backups/flows/`, a folder per start; the newest 10 stay. Claude Code can read them but not change them. A file can be imported again in n8n or in Langflow | `kingo-pod/kingo`, before it starts Claude Code. It needs `psql`. |
+| Requests for permission | since version 2.1.283, Claude Code starts in auto mode: a model checks each command, runs what it judges safe and blocks the rest, without asking | Claude Code asks before a command (manual mode). Shift+Tab switches the mode, to auto mode too: there, GLM 5.3 Flash is the judge. `./kingo yolo` turns the requests off | `kingo-pod/kingo` starts Claude Code with `--permission-mode default`, and `./kingo yolo` starts it with `--dangerously-skip-permissions`. The sandbox stays the same. |
+| Updates | Claude Code updates itself | no self-update: run the install line again | `kingo-pod/claude/.claude/settings.json`: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also turns off the self-update. |
+
+</details>
+
+**Claude Code's memory.** Claude Code writes down for itself what it learns about your project, so that it still knows it
+in the next session: for example a name your team chose, or a mistake it should not make again. Usually this memory
+is hidden in Claude Code's own folder. Here it lies in `~/kingo-pod/claude/memory/`, so you can read what Claude Code remembers,
+and correct or delete it. The file `MEMORY.md` there lists everything it keeps.
+
+Claude Code can explain all of this itself. Ask it:
 
 ```
-Make a copy of the Langflow flow Draft Reply (Enron) and name it
-"Draft Reply (Enron) - Search Fix". Put the copy into the same Langflow project
-(folder) as the original.
-
-In the copy only, change what goes into the search of Mail Search, following the cause
-you found. The prompt and Check Draft keep the whole mail.
-
-Do not change the original flow, and do not change n8n.
+How are you set up here, and what is different from a standard Claude Code?
 ```
 
-You should see the new flow *Draft Reply (Enron) - Search Fix* in your Langflow, next to the original. The original
-is unchanged, and Claude Code saved its JSON in `~/kingo-pod/claude/backups/`.
-
-[Stuck? Help for step 9](#step-9)
-
-### 10. Measure: three mails, two flows
-
-One mail proves nothing: a fix for one mail can break another. So you test both flows on three mails. All three are
-in your database.
-
-```
-Run both flows, Draft Reply (Enron) and Draft Reply (Enron) - Search Fix,
-on three mails from the table n8n_workshop_mail.messages.
-
-Give each mail to the flow as WS2.4 does (From, To, Date and Subject lines, then the text),
-and as its date one second before the mail was sent, so that the search does not find
-the mail itself.
-
-The mails, by subject, and the sources I expect:
-1. "Is there any Korean home made food?" (my own mail):
-   "Kimchi for Monday"
-2. "Re: FW: Wharton Resume Submission - Summer Intern" (from Kristin Gandy, 26 January 2001):
-   "FW: Wharton Resume Submission - Summer Intern"
-3. "Dr. Michelle Foss- Energy Institute" (from Aisha Jamal, 23 April 2001): one of
-   "Re: Tiger Team Event", "Re: Leonard Hilton Reception-DIRECTIONS-PARKING",
-   "Wharton Business Plan Competition", "@Jones: News and Information from the Jones School",
-   "Invitation-WhartonETEvent-Apr20/PlsRSVP"
-
-Show me a table: for each mail and each flow, was an expected source among the sources?
-```
-
-You should see a table with six answers. When we measured the search alone on 10 November, our table looked like this:
-
-| Mail | Draft Reply (Enron) | Draft Reply (Enron) - Search Fix |
-|---|---|---|
-| Korean home made food | not found | found |
-| Wharton Resume Submission | found | found |
-| Energy Institute | found | not found |
-
-In our table, the fix brings in the kimchi, and the Energy Institute drops out: the fix helped one mail and hurt
-another.
-
-Your table may look different. Your mailbox holds other mails than ours, and Claude Code may have built your fix in
-another way. Read your own table:
-
-- Where did the fix help?
-- Where did it change nothing?
-- Did it hurt anywhere?
-
-That is the lesson of this part: **a change is better only when you measured it on more than one case.**
-
-[Stuck? Help for step 10](#step-10)
-
-**Want more? [Optional · Get ready for SMS →](/abp/ws2/hw2-optional/)**
-
-## If something goes wrong
-
-Find your step. Still stuck? Write to Frank: then we fix it together.
-
-#### Step 7
-
-| What you see | What to do |
-|---|---|
-| No draft for your mail on the page | Check in Gmail that the mail arrived (look in Spam too). Check that WS2.3 and WS2.4 are published. In n8n, open *Executions* and look for a run of WS2.3 with your mail. |
-| No draft, and the mail has left the inbox of your test Gmail account (you find it under *All Mail*) | Your mail AI assistant filed the mail instead of answering it. Triage decides for every mail, and for a short mail not always the same way. Send the mail of sub-step 3 again, with exactly the text given there, and wait two minutes. |
-| The page does not open | Check that WS2.4 - Approvals Page is published. |
-| Claude Code says in step 8 that the kimchi mail is not in the search | WS2.0 - Embed Mails was not published when the kimchi mail came. Publish it, wait two minutes, then send the question again (sub-step 3). |
-
-#### Step 8
-
-| What you see | What to do |
-|---|---|
-| Claude Code does not find the cause | Ask it: `What exactly does Mail Search get as its search query? Show me the text.` Then: `Which lines of that text help to find the kimchi mail, and which do not?` |
-| Claude Code cannot find the run | Ask it for the newest run of WS2.4 - Reply with Approval, with its data. |
-
-#### Step 9
-
-| What you see | What to do |
-|---|---|
-| No new flow in Langflow | Reload the page of Langflow. Still none? Ask Claude Code: `Did you save the copy? Show me its name and id.` |
-| Claude Code changed the original flow | Ask Claude Code to put the original back from its backup in `~/kingo-pod/claude/backups/`. |
-| The new flow is in another Langflow project, for example *Starter Project* | Ask Claude Code: `Move the flow Draft Reply (Enron) - Search Fix into the same Langflow project as Draft Reply (Enron).` |
-| Claude Code says that the permission system refuses to change your Langflow, and the line under your text says `auto mode on` | In auto mode, the AI decides which commands run, and it refused this one. Claude Code asks whether it may try again: say yes, and name what it may do, for example `Yes, retry saving the change to the copy.` Is it blocked again? Press Shift+Tab until the line under your text says `manual mode on`, and say it again. Did you not switch to auto mode yourself? Then your kingo-pod is too old: type `/exit`, run `./kingo update`, then `./kingo claude`. `./kingo version` then shows 1.4.9 or newer (on Kingo 1.5: 1.5.8 or newer). |
-
-#### Step 10
-
-| What you see | What to do |
-|---|---|
-| Claude Code says that it cannot reach your database (Mac) | Your kingo-pod may be too old. Type `/exit`, run `./kingo update`, then `./kingo claude`, and send the text of step 10 again. After the update, `./kingo version` shows 1.4.6 or newer (on Kingo 1.5: 1.5.5 or newer). |
-| Claude Code cannot find one of the mails | Ask it to search `n8n_workshop_mail.messages` by the subject, with `ILIKE`. |
-| A flow fails because the API key is missing | The key field of *Draft Reply (Enron)* is empty, and the copy took that over. Repair the original as in the preparatory homework (its help row "A component says the API key is missing"). Then ask Claude Code to make the copy again, as in step 9. |
-| Both flows find the same sources for every mail | Check with Claude Code that the copy really is a changed copy: `Show me what you changed in the copy.` |
+**Next: [Recommended · Find out why your mail AI assistant missed the kimchi →](/abp/ws2/hw2-recommended/)**
