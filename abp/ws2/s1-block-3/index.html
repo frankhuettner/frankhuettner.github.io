@@ -225,4 +225,123 @@ Langflow flow Draft Reply drafts from Kaminski’s earlier mails, n8n checks the
     );
     targets.forEach((t) => observer.observe(t));
   }
+</script><script>
+  // The table of Claude Code's modes (homework until 16 Nov, Part A) as a riddle: the cells start empty, the students
+  // drag the answers in (Frank, 13 Nov 2026: "a drag and drop riddle where students have to drag the entries into the
+  // table"). The Markdown keeps the full table: without this script (Canvas, the page in the zip) it shows all answers.
+  (function () {
+    var table = Array.prototype.find.call(document.querySelectorAll("table"), function (t) {
+      var th = t.querySelector("th");
+      return th && th.textContent.trim() === "What Claude Code wants to do";
+    });
+    if (!table) return;
+    var KINDS = {
+      ask:   { bg: "#fde68a", text: "Claude Code asks you for permission first" },
+      go:    { bg: "#bbf7d0", text: "Claude Code does it without asking you" },
+      check: { bg: "#bfdbfe", text: "The AI checks it first. Safe: Claude Code does it without asking you. Not safe: it does not happen" },
+      stop:  { bg: "#fecaca", text: "The nono sandbox stops it, with or without permission" }
+    };
+    function kindOf(text) {
+      if (/sandbox stops/.test(text)) return ["stop"];
+      if (/AI checks/.test(text)) return ["check"];
+      if (/asks you for permission/.test(text)) return ["ask"];
+      return ["go"];
+    }
+    var original = table.innerHTML, cells = [], picked = null;
+    var css = document.createElement("style");
+    css.textContent =
+      ".mr-chip{display:inline-block;background:var(--mr);color:#1f2937;font-weight:600;border-radius:.4em;padding:.25em .55em;margin:.2em;cursor:grab;line-height:1.35;border:2px solid transparent;user-select:none}" +
+      ".mr-chip.mr-picked{border-color:currentColor;outline:2px solid #2563eb}" +
+      ".mr-pool{margin:.8em 0;padding:.6em;border:1px dashed currentColor;border-radius:.6em}" +
+      ".mr-pool p{margin:.1em .2em .4em;font-size:.95em}" +
+      "td.mr-cell{min-width:8.5em;height:4.2em;cursor:pointer;vertical-align:middle}" +
+      "td.mr-cell.mr-empty{background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(128,128,128,.12) 8px 16px)}" +
+      "td.mr-cell.mr-over{outline:2px solid #2563eb;outline-offset:-2px}" +
+      "td.mr-cell.mr-wrong{outline:3px solid #dc2626;outline-offset:-3px}" +
+      "td.mr-cell.mr-right{outline:3px solid #16a34a;outline-offset:-3px}" +
+      "td.mr-cell .mr-chip{cursor:pointer;margin:0;font-size:.92em}" +
+      ".mr-bar{margin:.6em 0;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}" +
+      ".mr-bar button{font:inherit;padding:.35em .8em;border-radius:.4em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}";
+    document.head.appendChild(css);
+
+    function chip(kind) {
+      var c = document.createElement("span");
+      c.className = "mr-chip"; c.style.setProperty("--mr", KINDS[kind].bg);
+      c.textContent = KINDS[kind].text; c.dataset.kind = kind;
+      return c;
+    }
+    function put(td, kind) {
+      td.innerHTML = ""; td.classList.remove("mr-wrong", "mr-right", "mr-empty");
+      if (kind) { td.appendChild(chip(kind)); td.dataset.put = kind; }
+      else { delete td.dataset.put; td.classList.add("mr-empty"); }
+    }
+    function start() {
+      cells = []; picked = null;
+      table.innerHTML = original;
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.slice.call(tr.children, 1).forEach(function (td, col) {
+          var ok = kindOf(td.textContent);
+          // A file in its own folder, in auto mode: "without asking" and "the AI checks first" both count.
+          if (col === 2 && ok[0] === "go") ok.push("check");
+          td.dataset.ok = ok.join(" "); td.className = "mr-cell"; put(td, null); cells.push(td);
+          td.addEventListener("click", function () {
+            if (picked) put(td, picked); else if (td.dataset.put) put(td, null);
+            status.textContent = "";
+          });
+          td.addEventListener("dragover", function (e) { e.preventDefault(); td.classList.add("mr-over"); });
+          td.addEventListener("dragleave", function () { td.classList.remove("mr-over"); });
+          td.addEventListener("drop", function (e) {
+            e.preventDefault(); td.classList.remove("mr-over");
+            var k = e.dataTransfer.getData("text/plain"); if (KINDS[k]) put(td, k);
+            status.textContent = "";
+          });
+        });
+      });
+      pool.hidden = false; bar.hidden = false; again.hidden = true; status.textContent = "";
+    }
+
+    var pool = document.createElement("div"); pool.className = "mr-pool";
+    var hint = document.createElement("p");
+    hint.textContent = "Your turn: what happens in each case? Drag an answer into each empty cell. Or click an answer, then click the cells where it belongs. You can use each answer many times.";
+    pool.appendChild(hint);
+    Object.keys(KINDS).forEach(function (k) {
+      var c = chip(k); c.draggable = true;
+      c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", k); });
+      c.addEventListener("click", function () {
+        picked = picked === k ? null : k;
+        Array.prototype.forEach.call(pool.querySelectorAll(".mr-chip"), function (x) {
+          x.classList.toggle("mr-picked", x.dataset.kind === picked);
+        });
+      });
+      pool.appendChild(c);
+    });
+    var bar = document.createElement("div"); bar.className = "mr-bar";
+    var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+    var show = document.createElement("button"); show.type = "button"; show.textContent = "Show the solution";
+    var status = document.createElement("span");
+    bar.appendChild(check); bar.appendChild(show); bar.appendChild(status);
+    var again = document.createElement("button"); again.type = "button"; again.textContent = "Try the riddle again"; again.hidden = true;
+    again.className = "mr-again";
+    var againBar = document.createElement("div"); againBar.className = "mr-bar"; againBar.appendChild(again);
+    table.parentNode.insertBefore(pool, table);
+    table.parentNode.insertBefore(bar, table.nextSibling);
+    bar.parentNode.insertBefore(againBar, bar.nextSibling);
+
+    check.addEventListener("click", function () {
+      var right = 0, empty = 0;
+      cells.forEach(function (td) {
+        td.classList.remove("mr-wrong", "mr-right");
+        if (!td.dataset.put) { empty++; return; }
+        var ok = td.dataset.ok.split(" ").indexOf(td.dataset.put) >= 0;
+        td.classList.add(ok ? "mr-right" : "mr-wrong"); if (ok) right++;
+      });
+      status.textContent = right === cells.length ? "All " + cells.length + " right. Well done!"
+        : right + " of " + cells.length + " right" + (empty ? ", " + empty + " still empty" : "") + ". Red cells: try another answer.";
+    });
+    show.addEventListener("click", function () {
+      table.innerHTML = original; pool.hidden = true; bar.hidden = true; again.hidden = false;
+    });
+    again.addEventListener("click", start);
+    start();
+  })();
 </script>

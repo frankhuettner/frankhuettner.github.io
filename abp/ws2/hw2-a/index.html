@@ -8,7 +8,7 @@
           }
         } catch {}
       })();
-    </script><link rel="stylesheet" href="/_astro/_part_.Cz5apl_e.css"><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li><li><a href="/abp/ws2/hw2/">Homework until 16 Nov</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-a/" aria-current="page">Part A · Claude Code</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-b/">Part B · The kimchi mail</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-optional/">Optional · SMS</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Homework until 16 Nov, Part A: Claude Code</h1></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-to-get-the-new-command-kingo-claude">1. Update kingo-pod to get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-make-a-key-in-n8n">3. Make a key in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-code-reads-at-every-start">6. See the instructions Claude Code reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-code-can-do-and-what-it-cannot">What Claude Code can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></details><article class="prose body ws2"><h3 id="what-is-claude-code">What is Claude Code?</h3>
+    </script><link rel="stylesheet" href="/_astro/_part_.Cz5apl_e.css"><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li><li><a href="/abp/ws2/hw2/">Homework until 16 Nov</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-a/" aria-current="page">Part A · Claude Code</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-b/">Part B · The kimchi mail</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-optional/">Optional · SMS</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Homework until 16 Nov, Part A: Claude Code</h1></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-to-get-the-new-command-kingo-claude">1. Update kingo-pod to get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-make-a-key-in-n8n">3. Make a key in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-code-reads-at-every-start">6. See the instructions Claude Code reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-code-can-do-and-what-it-cannot">What Claude Code can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#so-many-requests-in-a-row-are-tiring-right-can-we-tell-claude-code-to-just-do-its-job">So many requests in a row are tiring, right? Can we tell Claude Code to just do its job?</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></details><article class="prose body ws2"><h3 id="what-is-claude-code">What is Claude Code?</h3>
 <p>Claude Code is a major innovation from Anthropic (OpenAI followed up with a clone called Codex; an open source alternative is called OpenCode). The idea is simple (which makes it even better).</p>
 <ol>
 <li>Instead of copy/pasting code back and forth from Chat interfaces (like ChatGPT or Claude), Claude Code is a tool that simply writes directly onto your computer.</li>
@@ -180,9 +180,93 @@ nano with nono:</p>
 <p>Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal.</p>
 <p><strong>Only run a command in your own terminal if you understand it.</strong></p>
 <p>Claude Code cannot leave its sandbox, but a command you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude Code, then only add something if you know what you’re doing.</p>
+<h3 id="so-many-requests-in-a-row-are-tiring-right-can-we-tell-claude-code-to-just-do-its-job">So many requests in a row are tiring, right? Can we tell Claude Code to just do its job?</h3>
+<p>Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
+AI, or nobody. The line under your text shows the mode, for example <code>⏸ manual mode on</code>.</p>
+<p><strong>Where can Claude Code change something?</strong> In four places:</p>
+<ul>
+<li>files in its folder <code>~/kingo-pod/claude</code>,</li>
+<li>your n8n: workflows and data tables,</li>
+<li>your Langflow flows,</li>
+<li>your Postgres database.</li>
+</ul>
+<p><strong>What about other folders?</strong> Claude Code can read the rest of <code>~/kingo-pod</code>, to understand how kingo-pod works.
+It cannot write there. And it cannot write into any other folder on your laptop, such as Documents or Desktop. The
+nono sandbox stops that, with or without your permission.</p>
+<p>So the mode does not decide where Claude Code can write. It decides whether Claude Code asks you first.</p>
+<p><strong>To change the mode, press Shift+Tab.</strong> Each press takes you one mode further, in this order:</p>
+<ol>
+<li><code>manual mode on</code>: Claude Code asks you before it writes a file and before it runs a command. <code>./kingo claude</code>
+always starts here.</li>
+<li><code>accept edits on</code>: Claude Code writes files in its folder <code>~/kingo-pod/claude</code> without asking. Before a command,
+it still asks you.</li>
+<li><code>plan mode on</code>: Claude Code changes nothing. It writes a plan and asks for your yes.</li>
+<li><code>auto mode on</code>: the AI decides itself whether it needs to ask you for permission.</li>
+</ol>
+<p>One more press of Shift+Tab, and you are back in manual mode.</p>
+<p>There is a fifth way, where nobody says yes or no: you start Claude Code with <code>./kingo yolo</code> instead of
+<code>./kingo claude</code>. Then Claude Code never asks for permission.</p>
+<p><strong>The difference, in three examples:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What Claude Code wants to do</th><th>In manual mode</th><th>In accept edits mode</th><th>In auto mode</th><th>Started with <code>./kingo yolo</code></th></tr></thead><tbody><tr><td><strong>Write a file:</strong> save its findings in the file <code>notes.md</code> in its folder <code>~/kingo-pod/claude</code></td><td>Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first</td><td>Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong></td><td>Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong></td><td>Claude Code writes the file <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong></td></tr><tr><td><strong>Run a command that only reads:</strong> list your n8n workflows</td><td>Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first</td><td>Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first</td><td><strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong></td><td>Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong></td></tr><tr><td><strong>Run a command that changes something:</strong> make a copy of a Langflow flow</td><td>Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first</td><td>Claude Code <strong style="background:#fde68a;color:#1f2937;padding:0 .3em;border-radius:.25em">asks you for permission</strong> first</td><td><strong style="background:#bfdbfe;color:#1f2937;padding:0 .3em;border-radius:.25em">The AI checks the command.</strong> If the AI judges it safe, Claude Code runs it <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>. If not, <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the command does not run</strong></td><td>Claude Code runs the command <strong style="background:#bbf7d0;color:#1f2937;padding:0 .3em;border-radius:.25em">without asking you</strong>, and <strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">the AI does not check it</strong></td></tr><tr><td><strong>Write a file outside its folder:</strong> save a file on your Desktop</td><td><strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission</td><td><strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission</td><td><strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission</td><td><strong style="background:#fecaca;color:#1f2937;padding:0 .3em;border-radius:.25em">The nono sandbox stops it</strong>, with or without permission</td></tr></tbody></table>
+<p><strong>What does this mean for you?</strong> In this homework, Claude Code rarely writes files. It mostly runs commands to
+search, and to talk to n8n, Langflow and your Postgres database. In accept edits mode, Claude Code still asks you
+before each of these commands. The requests stop only in auto mode, or with <code>./kingo yolo</code>.</p>
+<p><strong>Which mode should you use? Auto mode is okay.</strong> Claude Code runs inside the nono sandbox, so the sandbox protects
+your laptop in every mode. And every start of <code>./kingo claude</code> saves your n8n workflows and your Langflow flows. In
+manual mode, you get many requests, and the commands are hard to read. So feel free to switch to auto mode: press
+Shift+Tab until the line under your text says <code>auto mode on</code>.</p>
+<p>Two things to know:</p>
+<ul>
+<li><strong>In manual mode,</strong> Claude Code asks before each command. <strong>Yes</strong> runs the command. <strong>No</strong> stops Claude Code: then
+tell it what to do instead, or type <code>continue</code>.</li>
+<li><strong>In auto mode,</strong> the AI may refuse a command that you asked for. Then press Shift+Tab until the line under
+your text says <code>manual mode on</code>, and send your text again.</li>
+<li><strong>With <code>./kingo yolo</code>,</strong> nobody refuses and nobody asks: Claude Code changes your workflows and flows at once,
+mistakes too. The next section says more.</li>
+</ul>
 <h3 id="you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</h3>
-<p>So far Claude Code asks you before it runs a command or changes something. You can also let it work without asking. To this end,
-you start it with this line:</p>
+<p>In each of the four modes, someone checks a command before it runs: you, or a model. You can also start Claude Code
+with no check at all. To this end, you start it with this line:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>./kingo yolo</span></span></code></pre>
 <p>The first time, Claude Code asks whether you accept this mode. Choose <strong>Yes, I accept</strong>.</p>
 
@@ -467,7 +551,7 @@ and correct or delete it. The file <code>MEMORY.md</code> there lists everything
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code></td><td><code>./kingo claude</code> makes these files at its first start. Do step 4 first.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-to-get-the-new-command-kingo-claude">1. Update kingo-pod to get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-make-a-key-in-n8n">3. Make a key in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-code-reads-at-every-start">6. See the instructions Claude Code reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-code-can-do-and-what-it-cannot">What Claude Code can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code></td><td><code>./kingo claude</code> makes these files at its first start. Do step 4 first.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#what-is-claude-code">What is Claude Code?</a></li><li class="ws2-toc__item--3"><a href="#better-safe-than-sorry">Better safe than sorry</a></li><li class="ws2-toc__item--3"><a href="#1-update-kingo-pod-to-get-the-new-command-kingo-claude">1. Update kingo-pod to get the new command kingo claude</a></li><li class="ws2-toc__item--3"><a href="#2-install-claude-code-and-its-sandbox">2. Install Claude Code and its sandbox</a></li><li class="ws2-toc__item--3"><a href="#3-make-a-key-in-n8n">3. Make a key in n8n</a></li><li class="ws2-toc__item--3"><a href="#4-start-claude-code-and-give-it-its-keys">4. Start Claude Code and give it its keys</a></li><li class="ws2-toc__item--3"><a href="#5-lets-try-it-out">5. Let’s try it out</a></li><li class="ws2-toc__item--3"><a href="#6-see-the-instructions-claude-code-reads-at-every-start">6. See the instructions Claude Code reads at every start</a></li><li class="ws2-toc__item--3"><a href="#what-claude-code-can-do-and-what-it-cannot">What Claude Code can do, and what it cannot</a></li><li class="ws2-toc__item--3"><a href="#so-many-requests-in-a-row-are-tiring-right-can-we-tell-claude-code-to-just-do-its-job">So many requests in a row are tiring, right? Can we tell Claude Code to just do its job?</a></li><li class="ws2-toc__item--3"><a href="#you-decide-should-claude-code-ask-before-every-command">You decide: should Claude Code ask before every command?</a></li><li class="ws2-toc__item--3"><a href="#what-is-different-from-a-standard-claude-code-and-where-it-is-configured">What is different from a standard Claude Code, and where it is configured</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
         const btn = event.target.closest("[data-disclosure]");
@@ -549,4 +633,123 @@ and correct or delete it. The file <code>MEMORY.md</code> there lists everything
     );
     targets.forEach((t) => observer.observe(t));
   }
+</script><script>
+  // The table of Claude Code's modes (homework until 16 Nov, Part A) as a riddle: the cells start empty, the students
+  // drag the answers in (Frank, 13 Nov 2026: "a drag and drop riddle where students have to drag the entries into the
+  // table"). The Markdown keeps the full table: without this script (Canvas, the page in the zip) it shows all answers.
+  (function () {
+    var table = Array.prototype.find.call(document.querySelectorAll("table"), function (t) {
+      var th = t.querySelector("th");
+      return th && th.textContent.trim() === "What Claude Code wants to do";
+    });
+    if (!table) return;
+    var KINDS = {
+      ask:   { bg: "#fde68a", text: "Claude Code asks you for permission first" },
+      go:    { bg: "#bbf7d0", text: "Claude Code does it without asking you" },
+      check: { bg: "#bfdbfe", text: "The AI checks it first. Safe: Claude Code does it without asking you. Not safe: it does not happen" },
+      stop:  { bg: "#fecaca", text: "The nono sandbox stops it, with or without permission" }
+    };
+    function kindOf(text) {
+      if (/sandbox stops/.test(text)) return ["stop"];
+      if (/AI checks/.test(text)) return ["check"];
+      if (/asks you for permission/.test(text)) return ["ask"];
+      return ["go"];
+    }
+    var original = table.innerHTML, cells = [], picked = null;
+    var css = document.createElement("style");
+    css.textContent =
+      ".mr-chip{display:inline-block;background:var(--mr);color:#1f2937;font-weight:600;border-radius:.4em;padding:.25em .55em;margin:.2em;cursor:grab;line-height:1.35;border:2px solid transparent;user-select:none}" +
+      ".mr-chip.mr-picked{border-color:currentColor;outline:2px solid #2563eb}" +
+      ".mr-pool{margin:.8em 0;padding:.6em;border:1px dashed currentColor;border-radius:.6em}" +
+      ".mr-pool p{margin:.1em .2em .4em;font-size:.95em}" +
+      "td.mr-cell{min-width:8.5em;height:4.2em;cursor:pointer;vertical-align:middle}" +
+      "td.mr-cell.mr-empty{background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(128,128,128,.12) 8px 16px)}" +
+      "td.mr-cell.mr-over{outline:2px solid #2563eb;outline-offset:-2px}" +
+      "td.mr-cell.mr-wrong{outline:3px solid #dc2626;outline-offset:-3px}" +
+      "td.mr-cell.mr-right{outline:3px solid #16a34a;outline-offset:-3px}" +
+      "td.mr-cell .mr-chip{cursor:pointer;margin:0;font-size:.92em}" +
+      ".mr-bar{margin:.6em 0;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}" +
+      ".mr-bar button{font:inherit;padding:.35em .8em;border-radius:.4em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}";
+    document.head.appendChild(css);
+
+    function chip(kind) {
+      var c = document.createElement("span");
+      c.className = "mr-chip"; c.style.setProperty("--mr", KINDS[kind].bg);
+      c.textContent = KINDS[kind].text; c.dataset.kind = kind;
+      return c;
+    }
+    function put(td, kind) {
+      td.innerHTML = ""; td.classList.remove("mr-wrong", "mr-right", "mr-empty");
+      if (kind) { td.appendChild(chip(kind)); td.dataset.put = kind; }
+      else { delete td.dataset.put; td.classList.add("mr-empty"); }
+    }
+    function start() {
+      cells = []; picked = null;
+      table.innerHTML = original;
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.slice.call(tr.children, 1).forEach(function (td, col) {
+          var ok = kindOf(td.textContent);
+          // A file in its own folder, in auto mode: "without asking" and "the AI checks first" both count.
+          if (col === 2 && ok[0] === "go") ok.push("check");
+          td.dataset.ok = ok.join(" "); td.className = "mr-cell"; put(td, null); cells.push(td);
+          td.addEventListener("click", function () {
+            if (picked) put(td, picked); else if (td.dataset.put) put(td, null);
+            status.textContent = "";
+          });
+          td.addEventListener("dragover", function (e) { e.preventDefault(); td.classList.add("mr-over"); });
+          td.addEventListener("dragleave", function () { td.classList.remove("mr-over"); });
+          td.addEventListener("drop", function (e) {
+            e.preventDefault(); td.classList.remove("mr-over");
+            var k = e.dataTransfer.getData("text/plain"); if (KINDS[k]) put(td, k);
+            status.textContent = "";
+          });
+        });
+      });
+      pool.hidden = false; bar.hidden = false; again.hidden = true; status.textContent = "";
+    }
+
+    var pool = document.createElement("div"); pool.className = "mr-pool";
+    var hint = document.createElement("p");
+    hint.textContent = "Your turn: what happens in each case? Drag an answer into each empty cell. Or click an answer, then click the cells where it belongs. You can use each answer many times.";
+    pool.appendChild(hint);
+    Object.keys(KINDS).forEach(function (k) {
+      var c = chip(k); c.draggable = true;
+      c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", k); });
+      c.addEventListener("click", function () {
+        picked = picked === k ? null : k;
+        Array.prototype.forEach.call(pool.querySelectorAll(".mr-chip"), function (x) {
+          x.classList.toggle("mr-picked", x.dataset.kind === picked);
+        });
+      });
+      pool.appendChild(c);
+    });
+    var bar = document.createElement("div"); bar.className = "mr-bar";
+    var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+    var show = document.createElement("button"); show.type = "button"; show.textContent = "Show the solution";
+    var status = document.createElement("span");
+    bar.appendChild(check); bar.appendChild(show); bar.appendChild(status);
+    var again = document.createElement("button"); again.type = "button"; again.textContent = "Try the riddle again"; again.hidden = true;
+    again.className = "mr-again";
+    var againBar = document.createElement("div"); againBar.className = "mr-bar"; againBar.appendChild(again);
+    table.parentNode.insertBefore(pool, table);
+    table.parentNode.insertBefore(bar, table.nextSibling);
+    bar.parentNode.insertBefore(againBar, bar.nextSibling);
+
+    check.addEventListener("click", function () {
+      var right = 0, empty = 0;
+      cells.forEach(function (td) {
+        td.classList.remove("mr-wrong", "mr-right");
+        if (!td.dataset.put) { empty++; return; }
+        var ok = td.dataset.ok.split(" ").indexOf(td.dataset.put) >= 0;
+        td.classList.add(ok ? "mr-right" : "mr-wrong"); if (ok) right++;
+      });
+      status.textContent = right === cells.length ? "All " + cells.length + " right. Well done!"
+        : right + " of " + cells.length + " right" + (empty ? ", " + empty + " still empty" : "") + ". Red cells: try another answer.";
+    });
+    show.addEventListener("click", function () {
+      table.innerHTML = original; pool.hidden = true; bar.hidden = true; again.hidden = false;
+    });
+    again.addEventListener("click", start);
+    start();
+  })();
 </script>
