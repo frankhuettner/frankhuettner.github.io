@@ -223,42 +223,43 @@ It’s a good idea to add your team’s design rules to `AGENTS.md`.
 
 ### What Claude Code can do, and what it cannot
 
-Careful, if you just type `claude`, then Claude Code runs in the standard way as Anthropic had it set up. Please always use
-```
-./kingo claude
-```
-This way, it’s in the nono sandbox.
-
 | Claude Code can | Claude Code cannot |
 |---|---|
 | read and write in `~/kingo-pod/claude` | write anywhere else on your laptop |
 | read kingo-pod: `compose.yml`, the guides | change kingo-pod, or run `./kingo` |
-| change your n8n workflows, Langflow flows and database | see your keys: it gets stand-ins |
+| change your n8n workflows and data tables, your Langflow flows and your Postgres database | see your keys: it gets stand-ins |
 | look things up on the web | see your own Claude Code settings, if you use Claude Code already |
 
 Sometimes, Claude Code wants to execute a command (which we don’t allow), and then it’ll tell you to run a command on its behalf in the terminal.
 
-**Only run a command in your own terminal if you understand it.**
+<div class="quiz">
 
-Claude Code cannot leave its sandbox, but a command you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job. When the sandbox asks you to give additional permissions after leaving Claude Code, then only add something if you know what you’re doing.
+**Quiz.** Claude Code says that the sandbox blocks a command, and asks you to run it in your own terminal. Should you?
+
+<ul>
+<li>Yes: Claude Code needs it to go on</li>
+<li data-right>Only if I understand the command</li>
+<li>No, never</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**Only run a command in your own terminal if you understand it.** Claude Code cannot leave its sandbox, but a command
+you type does. When Claude Code says that the sandbox blocks it, that is the sandbox doing its job.
+
+</details>
+
+</div>
 
 ### 6b. Claude Code always asks for permission: should we tell it to just do its job?
 
 Claude Code always works in one of four modes. The mode decides who says yes before a command runs: you, the
 AI, or nobody. The line under your text shows the mode, for example `⏸ manual mode on`.
 
-**Where can Claude Code change something?** In four places:
-
-- files in its folder `~/kingo-pod/claude`,
-- your n8n: workflows and data tables,
-- your Langflow flows,
-- your Postgres database.
-
-**What about other folders?** Claude Code can read the rest of `~/kingo-pod`, to understand how kingo-pod works.
-It cannot write there. And it cannot write into any other folder on your laptop, such as Documents or Desktop. The
-nono sandbox stops that, with or without your permission.
-
-So the mode does not decide where Claude Code can write. It decides whether Claude Code asks you first.
+**The mode does not decide where Claude Code can write.** The nono sandbox does that, as the table above shows:
+Claude Code cannot write into any other folder on your laptop, such as Documents or Desktop, with or without your
+permission. The mode only decides whether Claude Code asks you first.
 
 **To change the mode, press Shift+Tab.** Each press takes you one mode further, in this order:
 
@@ -292,18 +293,33 @@ your laptop in every mode. And every start of `./kingo claude` saves your n8n wo
 manual mode, you get many requests, and the commands are hard to read. So feel free to switch to auto mode: press
 Shift+Tab until the line under your text says `auto mode on`.
 
-Two things to know:
+**In manual mode,** Claude Code asks before each command. **Yes** runs the command. **No** stops Claude Code: then
+tell it what to do instead, or type `continue`.
 
-- **In manual mode,** Claude Code asks before each command. **Yes** runs the command. **No** stops Claude Code: then
-  tell it what to do instead, or type `continue`.
-- **In auto mode,** the AI may refuse a command that you asked for. Then press Shift+Tab until the line under
-  your text says `manual mode on`, and send your text again.
-- **With `./kingo yolo`,** nobody refuses and nobody asks: Claude Code changes your workflows and flows at once,
-  mistakes too. The next section says more.
+<div class="quiz">
 
-### You decide: should Claude Code ask before every command?
+**Quiz.** You are in auto mode. Claude Code tells you that a request was blocked, and asks whether it may try again. It is the change you asked for. What do you do?
 
-In each of the four modes, someone checks a command before it runs: you, or a model. You can also start Claude Code
+<ul>
+<li>Type <code>/exit</code> and start again</li>
+<li data-right>Say yes, and name what it may do</li>
+<li>Nothing: Claude Code finds another way</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**Say yes, and name what it may do,** for example: `Yes, retry saving the change to the copy.` In auto mode, the AI
+may refuse a command that you asked for. Is it blocked again? Press Shift+Tab until the line under your text says
+`manual mode on`, and say it again.
+
+</details>
+
+</div>
+
+### You decide: `./kingo yolo` starts Claude Code without any check
+
+In each of the four modes, someone checks a command before it runs: you, or the AI. You can also start Claude Code
 with no check at all. To this end, you start it with this line:
 
 ```
@@ -318,33 +334,57 @@ The first time, Claude Code asks whether you accept this mode. Choose **Yes, I a
 | Your workflows, flows and database | you see every change before it happens | Claude Code changes them at once, mistakes too | out of reach at first, as Claude Code has no keys for them; but it can read every file you can, your keys too |
 | Your user experience | many requests for permissions, often the same ones | Claude Code works on by itself | Anthropic's standard Claude Code: your own Anthropic login and bill, and the usual requests for permissions |
 
-Inside the sandbox, Claude Code’s requests for permission do not protect your laptop: the sandbox does that, with or
-without them. They protect your project from Claude Code's mistakes. If you let Claude Code work without asking, save your work first. This line saves your
+The requests for permission protect your project from Claude Code's mistakes. If you let Claude Code work without asking, save your work first. This line saves your
 n8n workflows and your Langflow flows into `~/kingo-pod/backups/` (not your own tables in the database):
 
 ```
 cd ~/kingo-pod && ./kingo backup
 ```
 
-On top, every start of `./kingo claude` or `./kingo yolo` saves each n8n workflow and each Langflow flow as one JSON
-file in `~/kingo-pod/backups/flows/`. The newest 10 starts stay. You can import such a file again in n8n or in Langflow.
+<div class="quiz">
 
-Many people start with the requests for permission and switch once they trust what Claude Code does in their project. It is your choice,
-and you can change it at every start.
+**Quiz.** Claude Code changed your n8n workflow *WS2.3 - Triage New Mail*, and now it does not work. Where is the version from before?
+
+<ul>
+<li>It is gone</li>
+<li data-right>In <code>~/kingo-pod/backups/flows/</code></li>
+<li>In Claude Code's memory</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**In `~/kingo-pod/backups/flows/`.** Every start of `./kingo claude` or `./kingo yolo` saves each n8n workflow and each
+Langflow flow there as one JSON file, in a folder per start. The newest 10 starts stay. You can import such a file
+again in n8n or in Langflow.
+
+</details>
+
+</div>
 
 ### What is different from a standard Claude Code, and where it is configured
 
 The Claude Code you started with `./kingo claude` is set up for the course.
 
-<div class="warn">
+<div class="quiz">
 
-**And if I just type `claude`?**
+**Quiz.** You are in the folder `~/kingo-pod/claude` and type `claude`. Are you in the sandbox?
 
-Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own Anthropic
-login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys. **Here, you're on
-your own, kid.**
+<ul>
+<li>Yes: the folder belongs to kingo-pod</li>
+<li data-right>No</li>
+</ul>
+
+<details class="more">
+<summary>Show the answer</summary>
+
+**No.** Then you get a standard Claude Code with Anthropic's settings: no sandbox, your own `~/.claude`, your own
+Anthropic login. Even in `~/kingo-pod/claude`, a plain `claude` runs without the sandbox and without the keys.
+**Here, you're on your own, kid.**
 
 The course setup holds only when you start Claude Code with `./kingo claude` or `./kingo yolo`.
+
+</details>
 
 </div>
 
