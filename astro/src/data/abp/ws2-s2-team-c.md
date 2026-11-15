@@ -46,7 +46,7 @@ and your page.
 - Your test Gmail account is connected.
 - n8n has the credentials `Langflow (Run API)`, `Mail (n8n_workshop_mail_n8n)` and `OpenRouter (chat)`.
 
-All files you need are in your folder `ws2_s2` from this morning (`ws2_s2.zip`, from Canvas).
+All files you need are in your folder `ws2_s2` from this morning ([`ws2_s2.zip`](https://huettner.io/abp/ws2/ws2_s2.zip)).
 
 1. **Langflow:** open your project `WS2 - Mail Assistant (Enron)`. Drag these two files from the folder
    `ws2_s2/langflow` onto its list of flows, as in the homework:

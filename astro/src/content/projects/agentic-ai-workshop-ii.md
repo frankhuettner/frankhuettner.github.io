@@ -34,5 +34,5 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   files for the data tables.
 - [`ws2_hw2.zip`](/abp/ws2/ws2_hw2.zip): the homework until 16 November as one HTML file, and the rules page for the
   team's coding agent.
-- `ws2_s2.zip`: the workbook, the slides and the team pages of 16 November, with the n8n workflows, Langflow flows
-  and data tables of the afternoon. On Canvas only, since it holds data from the teams' projects.
+- [`ws2_s2.zip`](/abp/ws2/ws2_s2.zip): the workbook, the slides and the team pages of 16 November, with the n8n
+  workflows, Langflow flows and data tables of the afternoon.

@@ -33,7 +33,7 @@ PowerShell: its line starts with `PS C:\`, and our commands do not work there.
    cd ~/kingo-pod && ./kingo update
    ```
 
-3. Download `ws2_s2.zip` from Canvas and unzip it (double-click it). The folder `ws2_s2` holds:
+3. Download [`ws2_s2.zip`](https://huettner.io/abp/ws2/ws2_s2.zip) and unzip it (double-click it). The folder `ws2_s2` holds:
    - `ws2_s2_workbook.html`: these pages, in one file
    - today's slides, as HTML and as PDF
    - `ws2_s2_team_a_ksmc.html`, `ws2_s2_team_b_kgoda.html`, `ws2_s2_team_c_k_motor.html`: one page per team, for

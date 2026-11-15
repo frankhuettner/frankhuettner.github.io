@@ -47,7 +47,7 @@ page.
 - kingo-pod runs in mode `abp`.
 - n8n has the credential `Langflow (Run API)`.
 
-All files you need are in your folder `ws2_s2` from this morning (`ws2_s2.zip`, from Canvas).
+All files you need are in your folder `ws2_s2` from this morning ([`ws2_s2.zip`](https://huettner.io/abp/ws2/ws2_s2.zip)).
 
 1. **Langflow:** open your project `WS2 - Mail Assistant (Enron)`. Drag the file `ws2_read_trip_request_kgoda.json`
    from the folder `ws2_s2/langflow` onto its list of flows, as in the homework. In Langflow, it is called *Read Trip
