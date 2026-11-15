@@ -21,7 +21,11 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
 - [9 November](/abp/ws2/s1/): the workbook of the first morning, block by block as on the slides.
 - [Homework until 16 November](/abp/ws2/hw2/): Claude Code in a sandbox and the kimchi mail, and, if you like, an SMS
   from n8n.
-- 16 and 23 November: to follow.
+- [16 November](/abp/ws2/s2/): the workbook of the second morning, block by block: a simple webhook, a page that
+  asks the mailbox, a better search flow, the team's rules. For the afternoon, one page per team:
+  [A · KSMC](/abp/ws2/s2-team-a/), [B · Kgoda](/abp/ws2/s2-team-b/), [C · K-Motor](/abp/ws2/s2-team-c/). And
+  [how to change the model that Claude Code uses](/abp/ws2/s2-model/).
+- 23 November: to follow.
 
 ## Downloads
 
@@ -30,3 +34,5 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   files for the data tables.
 - [`ws2_hw2.zip`](/abp/ws2/ws2_hw2.zip): the homework until 16 November as one HTML file, and the rules page for the
   team's coding agent.
+- `ws2_s2.zip`: the workbook, the slides and the team pages of 16 November, with the n8n workflows, Langflow flows
+  and data tables of the afternoon. On Canvas only, since it holds data from the teams' projects.
