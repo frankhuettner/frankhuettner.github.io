@@ -22,7 +22,7 @@ Open Langflow: <http://localhost:7860>.
    - Is there a variable called `OPEN_ROUTER_API_KEY`? Then go on with step 8.2.
    - If not, click **Add New**. Name: `OPEN_ROUTER_API_KEY`. Type: **Credential** (then Langflow hides the key on
      screen). Value: your key. Save.
-   - More help: [Langflow: Global variables](https://docs.langflow.org/configuration-global-variables)
+   - <span class="src">More help: [Langflow: Global variables](https://docs.langflow.org/configuration-global-variables)</span>
 2. **Get the course files.** Download [`ws2_hw.zip`](https://huettner.io/abp/ws2/ws2_hw.zip) and unzip it. You get
    a folder `ws2_hw` with two folders inside (`langflow` and `n8n`) and `ws2_hw_homework.html`: this homework as one
    page, to read without the internet. Every name starts with `ws2_`, for Workshop II. You need them now and in [Part C](/abp/ws2/hw-c/).

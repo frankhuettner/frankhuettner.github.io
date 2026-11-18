@@ -87,7 +87,7 @@ n8n needs four credentials. One of them lets n8n use your Langflow flows: for it
 
    ![The tab Credentials in n8n with the four credentials](/abp/ws2/img/n8n-credentials.png)
 
-More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-credentials/)
+<span class="src">More help: [n8n: Create a credential](https://docs.n8n.io/credentials/add-edit-credentials/)</span>
 
 [Stuck? Help for step 9](#step-9)
 

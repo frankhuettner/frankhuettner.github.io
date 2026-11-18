@@ -249,148 +249,175 @@ gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-
 So far, all your sessions pay with one OpenRouter key. On openrouter.ai, you see one sum for everything: the course,
 your website, and every other project.
 
-Give a project a key of its own. This gives you three things:
+kingo has one command to change that. You start Claude Code as you know it, and you add `--key` and a name:
+<span class="cmd-i cmd-i-t">`kc ~/projects/my-first-project --key website`</span>. Then the key with the name `website` pays for this session, and not
+your first key. This gives you three things:
 
 - **You see what this project costs.** OpenRouter counts for each key what it used.
 - **The project gets a credit limit of its own.** When Claude Code goes in circles in this project, it stops at
   that amount, and the credit of your other key stays.
 - **The project can use another provider.** A provider is the company, or the program, that runs the model. In the
-  course, the provider is OpenRouter. A project with a key of its own can use another one, for example Anthropic's
-  API: Anthropic is the company that makes Claude Code and the Claude models.
+  course, the provider is OpenRouter. With a key of its own, a project can use another one: for example Anthropic's
+  API, or a model on your own laptop. Anthropic is the company that makes Claude Code and the Claude models.
 
-**Your turn: a key with the name `website`, for your first website.** Pick one provider, and follow its lines.
+**The command, piece by piece.** In its longest form, it has four pieces:
+
+| You write | What it means |
+|---|---|
+| <span class="cmd-i cmd-i-t">`kc ~/projects/my-first-project`</span> | Start Claude Code in this folder, as before. |
+| `--key website` | The key with the name `website` pays. You choose the name. |
+| `--provider anthropic` | Who runs the model: `anthropic` is Anthropic's API, `ollama` is a model on your laptop. For OpenRouter, you leave this piece out. |
+| `--model sonnet` | Which model. For OpenRouter and for Anthropic's API, you can leave this piece out: then you get their usual model. |
+
+You did not make the short commands of [Part E](/abp/ws2/hw3-e/)? Then go into `~/kingo-pod` first, and write <span class="cmd-i cmd-i-t">`./kingo claude --in`</span> in
+place of <span class="cmd-i cmd-i-t">`kc`</span>.
+
+**About the name.**
+
+- **What is the name?** A word that you choose: small letters, digits and `-`. It is kingo's name for the key. It
+  need not be the name that the key has on the provider's website, but the same name is the easiest to remember.
+- **What does kingo keep under a name?** Three things: the key, its provider, and its model. The first start with a
+  new name asks for the key, and takes the provider and the model from your line. From then on, `--key` and the name
+  are enough.
+- **Where does kingo keep them?** On your laptop, in the folder `~/.config/kingo/`, with your other keys. This
+  folder is outside the sandbox: Claude Code cannot read your key.
+- **Does the name live in my project?** No. kingo writes nothing about the key into your project folder. The name
+  belongs to your laptop, not to one project.
+- **Can I use a name again?** Yes, for every folder: write another folder in the line, and the same key pays there.
+  Without a folder, <span class="cmd-i cmd-i-t">`kc --key website`</span> starts Claude Code for the course with this key; your flows in Langflow keep
+  the key that they have.
+- **What if I leave `--key` out?** Then the start is as before, and your first OpenRouter key pays. A project does
+  not remember its name: write `--key` and the name at every start of this project.
+- **Can I change what is under a name?** The model, yes: write `--model` again. The provider, no: one name, one
+  provider. For a key at another provider, take another name.
+- **Does it work with `--login`?** No. `--login` uses your Claude subscription, and `--key` uses a key: kingo takes
+  one of the two.
+
+**Three examples.** Each one starts with a key that you already have.
+
+**Example 1: a key for Anthropic's API.** You have a key from platform.claude.com. It must be a key for one
+workspace: kingo cannot use a key for all workspaces.
+
+<div class="cmd cmd-terminal">
+
+```
+kc ~/projects/my-first-project --key api --provider anthropic --model sonnet
+```
+
+</div>
+
+
+kingo asks for the key: `Paste the Anthropic API key "api"`. Then it says where the model comes from:
+`Claude Code's model comes from Anthropic's API, paid with your key "api"`, and `The model: sonnet`. Sonnet is
+Anthropic's model for everyday coding. Without `--model`, Claude Code takes Opus, a larger model that costs more.
+In Claude Code, <span class="cmd-i cmd-i-c">`/model haiku`</span> changes to Haiku, Anthropic's fast model for simple tasks, and <span class="cmd-i cmd-i-c">`/model sonnet`</span>
+changes back.
+
+**You have a Claude Pro or Max subscription? Then the subscription is usually the cheaper way.** It has a fixed price
+per month, and Claude Code is included, up to the limits of your plan. The API bills every use: for companies,
+Anthropic names an average of about 13 US dollars per developer and active day. With a subscription, start with
+`--login` and without `--key`: [Use your Claude subscription](/abp/ws2/s2-model/#use-your-claude-subscription)
+shows how.
+
+**Example 2: a model on your own laptop.** You have Ollama, a program that runs models on your laptop, and a model
+in it. Ollama needs no key, so kingo asks for none: here, the name stands for the provider and the model.
+
+<div class="cmd cmd-terminal">
+
+```
+kc ~/projects/my-first-project --key local --provider ollama --model qwen3.5
+```
+
+</div>
+
+
+Start Ollama first, and write the name of your model in place of `qwen3.5`. kingo says:
+`Claude Code's model comes from Ollama on this laptop ("local")`. The model runs on your laptop, so no provider
+bills you. For Claude Code, Ollama asks for a model with a context window of 64,000 tokens or more.
+
+**Example 3: a second OpenRouter key.** You have a second key from openrouter.ai, with a credit limit of its own.
+OpenRouter is the usual provider, so the line needs no `--provider`:
+
+<div class="cmd cmd-terminal">
+
+```
+kc ~/projects/my-first-project --key website
+```
+
+</div>
+
+
+kingo asks for the key: `Paste the OpenRouter key "website"`. Then it says:
+`Claude Code's model is paid with your OpenRouter key "website"`. The model is the course's, as before. On
+openrouter.ai, **Keys** shows what the key `website` used. For another model, add `--model` and the ID from the
+model's page on openrouter.ai. In the course, your OpenRouter key works only for the course's models.
+
+We tested examples 1 and 2 with a stand-in for the provider: not yet with a real key of Anthropic, and not with a
+real Ollama.
+
+**Your turn: start your project with a key of its own.** Take the example that fits a key of yours.
 
 <details class="more newhere">
 <summary>New here? What is different for you in this step</summary>
 
-- You use your Claude subscription, with `--login`? A subscription does not pay for a key: a key is paid per use, at
-  OpenRouter or at Anthropic's API. Without such an account, read this step, and skip the rest.
-- You have no folder `~/projects/my-first-project`? Then take your practice folder in 2: write
-  `~/projects/practice` in its place.
-- Below, <span class="cmd-i cmd-i-t">`kc --key website`</span> is the start for the course. You do not need it.
+- You have no folder `~/projects/my-first-project`? Then write `~/projects/practice` in its place.
+- You use your Claude subscription with `--login`, and you have no key? Then read this step, and skip this
+  **Your turn**: your subscription pays already.
+- <span class="cmd-i cmd-i-t">`kc --key website`</span>, without a folder, is the start for the course. You do not need it.
 
 </details>
 
-1. Make the key, in your browser.
-   - **OpenRouter:** open openrouter.ai, and sign in. Open **Settings**, then **Keys**, and make a new key. Name it
-     `website`, and give it a small credit limit.
-   - **Anthropic's API:** open platform.claude.com, and sign in. Open **API keys**, and click **Create key**. Name it
-     `website`, and choose one workspace for it, for example Default: kingo needs a key for one workspace. The API is
-     paid per use, with credit of its own: a Claude Pro or Max subscription does not pay for it.
-
-   Copy the key: you see it only once.
-2. Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then start Claude Code for your website, with
-   `--key` and the name of the key. With an OpenRouter key:
+1. Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then paste the line of your example into your
+   terminal.
+2. kingo asks for the key: paste it, and press **Enter**. You do not see the key as you paste it. With Ollama, kingo
+   asks for nothing.
+3. Read the lines before Claude Code starts. kingo says where the model comes from, and which key pays.
+4. Ask Claude Code something, for example: "What is in this folder?" Then type <span class="cmd-i cmd-i-c">`/exit`</span>.
+5. Start again, with the name alone. For example 1:
    <div class="cmd cmd-terminal">
 
    ```
-   kc ~/projects/my-first-project --key website
+   kc ~/projects/my-first-project --key api
    ```
 
    </div>
 
-   With a key for Anthropic's API, say the provider too:
-   <div class="cmd cmd-terminal">
-
-   ```
-   kc ~/projects/my-first-project --key website --provider anthropic
-   ```
-
-   </div>
-
-   The name is for kingo: small letters, digits and `-`. It can be any name, but the same name as on the provider's
-   website is the easiest to remember. You did not make the short commands of [Part E](/abp/ws2/hw3-e/)? Then go into `~/kingo-pod`
-   first, and write <span class="cmd-i cmd-i-t">`./kingo claude --in`</span> in place of <span class="cmd-i cmd-i-t">`kc`</span>.
-3. kingo asks for the key: `Paste the OpenRouter key "website"`, or `Paste the Anthropic API key "website"`. Paste
-   the key that you copied in 1, and press **Enter**. kingo keeps it with your other keys, outside the sandbox.
-4. Look at the lines before Claude Code starts. kingo says where the model comes from:
-   - **OpenRouter:** `Claude Code's model is paid with your OpenRouter key "website"`. The model is the course's,
-     as before.
-   - **Anthropic's API:** `Claude Code's model comes from Anthropic's API, paid with your key "website"`, and
-     `The model: Claude Code picks one of Anthropic's`. Type <span class="cmd-i cmd-i-c">`/model`</span> in Claude Code to pick another one.
-5. Ask Claude Code something, for example: "What is in this folder?" Then look at your key in the browser again: on
-   openrouter.ai, **Keys** shows what the key `website` used.
-6. Type <span class="cmd-i cmd-i-c">`/exit`</span>, and start again with the short line:
-   <div class="cmd cmd-terminal">
-
-   ```
-   kc ~/projects/my-first-project --key website
-   ```
-
-   </div>
-
-   This time, kingo does not ask. It kept the key under this name, and the provider with it: the short line is
-   enough for Anthropic's API too.
-
-Four more things to know:
-
-- **Without `--key`, nothing changed.** Start Claude Code as before, and your first OpenRouter key pays, as before.
-- **`--key` works in the course too.** <span class="cmd-i cmd-i-t">`kc --key website`</span> starts Claude Code for the course, with the key `website`.
-  Your flows in Langflow keep the key that they have.
-- **One name, one provider.** The name `website` now belongs to its provider. For a key at another provider, take
-  another name, for example `website-api`.
-- **Not with `--login`.** `--login` uses your Claude subscription, and `--key` a key that is paid per use: kingo
-  takes one of the two.
+   For the other examples, write `local` or `website` in place of `api`. This time, kingo does not ask: it kept the
+   key, the provider and the model under the name.
 
 <details class="more">
-<summary>Another model, a model on your own laptop, or another provider</summary>
+<summary>One more: any other provider, by its address</summary>
 
-**Another model.** `--model` and the ID of a model go with `--key`. kingo keeps the model with the name, like the
-provider. With Anthropic's API, for example:
+It works when the provider offers Anthropic's Messages API, the format that Claude Code speaks. In place of
+`anthropic` or `ollama`, give the provider's address, the one that the provider names for `ANTHROPIC_BASE_URL`, and
+a model:
 
 <div class="cmd cmd-terminal">
 
 ```
-kc ~/projects/my-first-project --key website --model claude-sonnet-5-5
+kc ~/projects/my-first-project --key work --provider https://llm.example.com/anthropic --model big-model
 ```
 
 </div>
 
 
-With an OpenRouter key, the ID is the one on the model's page on openrouter.ai. In the course, your OpenRouter key
-works only for the course's models.
-
-**A model on your own laptop.** Ollama is a program that runs models on your laptop. It needs no key: the name
-stands for the provider and the model. Start Ollama first. Then, with a model that you have in Ollama:
-
-<div class="cmd cmd-terminal">
-
-```
-kc ~/projects/practice --key local --provider ollama --model qwen3.5
-```
-
-</div>
-
-
-For Claude Code, Ollama asks for a model with a context window of 64,000 tokens or more.
-
-**Another provider.** It works when the provider offers Anthropic's Messages API, the format that Claude Code
-speaks. Give its address, the one that the provider names for `ANTHROPIC_BASE_URL`, and a model:
-
-<div class="cmd cmd-terminal">
-
-```
-kc ~/projects/practice --key work --provider https://llm.example.com/anthropic --model big-model
-```
-
-</div>
-
-
-We tested these two ways with a stand-in for the provider, not with a real Ollama or a real provider.
-
-<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--provider` and `--model`. Ollama's page
-[Claude Code](https://docs.ollama.com/integrations/claude-code): "64k+ context window".</span>
+kingo cannot check such a key before the start. We tested this with a stand-in for the provider, not with a real
+one.
 
 </details>
 
-Done: your website has a key of its own, with its own costs and its own limit.
+Done: your project has a key of its own. You know who runs the model, and which key pays.
 
 **Next time.** When you start a project that may cost more than a little, give it a key of its own first.
 
-<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key` and `--provider`. OpenRouter's page on
+<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key`, `--provider` and `--model`. OpenRouter's page on
 [limits](https://openrouter.ai/docs/api/reference/limits): "Per-key credit limits", and what each key used.
-Anthropic's page [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication): "Create and use
-a key", and "Select a workspace".</span>
+Anthropic's pages [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication): "Select a
+workspace"; [Model configuration](https://code.claude.com/docs/en/model-config): the names `sonnet`, `opus` and
+`haiku`, and that Claude Code with the Anthropic API "defaults to Opus 5.5";
+[Manage costs effectively](https://code.claude.com/docs/en/costs): the average per developer, and "Sonnet handles
+most coding tasks well and costs less than Opus". Ollama's page
+[Claude Code](https://docs.ollama.com/integrations/claude-code): "64k+ context window".</span>
 
 [Stuck? Help for step 14](#step-14)
 
@@ -419,10 +446,11 @@ Find your step.
 | What you see | What to do |
 |---|---|
 | `unknown option '--key'`, or `unknown option '--provider'` | Your kingo-pod is older than this step. Paste <span class="cmd-i cmd-i-t">`kingo update`</span>, or <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update`</span>, and start again. New here? Paste <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git pull`</span>. |
-| `OpenRouter did not accept the key "website"`, or `Anthropic did not accept the key "website"` | kingo deleted this key, and no other. Check it on the provider's website (openrouter.ai: Settings, Keys; platform.claude.com: API keys), or make a new one. Then start again with `--key website`: kingo asks for the key. |
-| With Anthropic's API, Claude Code shows an error that names `anthropic-workspace-id` | Your key is not for one workspace. On platform.claude.com, make a new key, and choose one workspace for it. Paste `rm ~/.config/kingo/key-website.key` into your terminal, and start again with `--key website`: kingo asks for the key. |
-| `The key "website" is for OpenRouter, not for Anthropic's API` | A name belongs to one provider. Take another name for the other provider, for example `--key website-api --provider anthropic`. |
+| Before Claude Code starts, kingo names no key of yours | You left `--key` out, so your first OpenRouter key pays. A project does not remember its name: type <span class="cmd-i cmd-i-c">`/exit`</span>, and start again with `--key` and the name. |
+| `OpenRouter did not accept the key "website"`, or `Anthropic did not accept the key "api"` | kingo deleted this key, and no other. Check it on the provider's website (openrouter.ai: Settings, Keys; platform.claude.com: API keys), or make a new one. Then start again with `--key` and the name: kingo asks for the key. |
+| With Anthropic's API, Claude Code shows an error that names `anthropic-workspace-id` | Your key is not for one workspace. On platform.claude.com, make a new key, and choose one workspace for it. Paste `rm ~/.config/kingo/key-api.key` into your terminal, and start again with `--key api`: kingo asks for the key. |
+| `The key "website" is for OpenRouter, not for Anthropic's API` | A name belongs to one provider. Take another name for the other provider, for example `--key api --provider anthropic`. |
 | `Ollama does not answer on this laptop` | Start Ollama, then start again. On Windows, Ollama must run in Ubuntu, where kingo runs. |
-| You want another key under the name `website` | kingo keeps the key in a file. Delete this file. For an OpenRouter key, paste `rm ~/.config/kingo/openrouter-website.key` into your terminal; for another provider, `rm ~/.config/kingo/key-website.key`. Then start again with `--key website`: kingo asks for the key. |
+| You want another key under a name | kingo keeps the key in a file. Delete this file. For the OpenRouter key `website`, paste `rm ~/.config/kingo/openrouter-website.key` into your terminal; for the key `api` of another provider, `rm ~/.config/kingo/key-api.key`. Then start again with `--key` and the name: kingo asks for the key. |
 
 </details>
