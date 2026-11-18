@@ -3,6 +3,9 @@ title: "Homework until 23 Nov, optional: More room for Claude Code"
 ---
 
 
+You do not need this part for the course. It is for the day when one folder, one session or one key is not enough
+any more: then you know that there is a way, and where to find it.
+
 ### 12. Give Claude Code one more folder
 
 Claude Code works in a sandbox, nono: a fence around Claude Code, as in the last homework
@@ -164,7 +167,7 @@ flow in the other. Each tab is a session of its own, in a sandbox of its own.
 
 **Your turn.** Open a second terminal tab ([how](/abp/ws2/hw3/#your-terminal-in-short)).
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? What is different for you in 2 and 3</summary>
 
 In 2, start the second session for your practice folder. Paste this line in place of the one there:
@@ -254,7 +257,7 @@ Give a project a key of its own. This gives you two things:
 
 **Your turn: a key with the name `website`, for your first website.**
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? What is different for you in this step</summary>
 
 - You use your Claude subscription, with `--login`? Then this step is not for you: `--key` needs an OpenRouter

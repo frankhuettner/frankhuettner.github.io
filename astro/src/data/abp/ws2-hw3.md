@@ -2,6 +2,20 @@
 title: "Homework until 23 Nov: get more out of Claude Code"
 ---
 
+**Why this homework?** Working with AI feels fast. But feeling fast is not the same as being fast. In 2025, the
+research group METR measured it: 16 experienced developers worked on 246 real tasks, some with AI tools and some
+without. With AI, the developers believed that they were 20% faster. The clock said: they were 19% slower
+([METR, 2025](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)).
+
+The tools are better today, and METR itself says that this number is out of date
+([METR, 2026](https://metr.org/blog/2026-02-24-uplift-update/)). But one lesson stays: you cannot feel whether the
+AI makes you faster. So do not trust the feeling: learn how to work with the tool. This homework shows you how,
+with nine habits that you try yourself.
+
+<p class="newhere-note"><strong>You did not set up the course, with n8n and Langflow?</strong> Then you are "new
+here". You can do this homework too: wherever you see a box or a line <strong>New here?</strong>, always open it,
+and do what it says.</p>
+
 ## Your goal of this HW
 
 - **You know which LLM works inside Claude Code, what that changes for you, and how you can change it.** An LLM
@@ -53,7 +67,7 @@ In the course, there is nothing new to install: you only update kingo-pod.
   - your team's project: the Langflow flow and the n8n workflow you work on.
 - **New here, without the course?** You can do this homework too, and you need less: open the two boxes below.
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? What you need, and your first start</summary>
 
 You need no n8n, no Langflow and no Podman: Claude Code works in a folder of your own. You need four things:
@@ -134,7 +148,7 @@ says otherwise:
 
 </details>
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? The words of the course</summary>
 
 - **kingo-pod:** the course software on your laptop. In the course, n8n and Langflow run in it. Its command, <span class="cmd-i cmd-i-t">`kingo`</span>,

@@ -490,6 +490,28 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     margin-bottom: 0;
   }
 
+  /* The boxes "New here?", for readers without the course's setup, in a colour of their own (Frank, 18 Nov 2026:
+     "müssen sich farblich etwas abheben"), and the note at the start of the homework that sends them there. */
+  .ws2 details.more.newhere,
+  .ws2 p.newhere-note {
+    border-color: color-mix(in srgb, #1f8a70 35%, var(--rule-soft));
+    border-left: 4px solid #1f8a70;
+    background: color-mix(in srgb, #1f8a70 8%, var(--bg-soft));
+  }
+
+  .ws2 details.more.newhere > summary {
+    color: color-mix(in srgb, #1f8a70 70%, var(--ink));
+    font-weight: 600;
+  }
+
+  .ws2 p.newhere-note {
+    margin: 0.8rem 0 1.2rem;
+    border-width: 1px 1px 1px 4px;
+    border-style: solid;
+    border-radius: var(--radius);
+    padding: 0.55rem 1rem;
+  }
+
   /* The line at the end of a step that jumps down to its help, "[Stuck? Help for step 8](#step-8)" in the Markdown
      (Frank, 4 Nov 2026: "links im text runter zum troubleshoot ... und ein schönes symbol"): a lifebuoy in a pill. */
   .ws2 a[href^="#step-"],

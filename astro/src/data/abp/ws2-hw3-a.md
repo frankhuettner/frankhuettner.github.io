@@ -3,6 +3,10 @@ title: "Homework until 23 Nov, Part A: The model and the facts"
 ---
 
 
+Claude Code makes mistakes, and it costs money. So it is good to know who makes the mistakes, and who gets the
+money. In this part, you find out which model works inside Claude Code. Then you look at the facts that Claude Code
+gets about your setup: with them, it guesses less, and you correct less.
+
 ### 1. Know the model inside Claude Code (here: GLM 5.3 Flash)
 
 Claude Code has two parts:
@@ -31,7 +35,7 @@ cd ~/kingo-pod && ./kingo claude
 </div>
 
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? Start Claude Code in your practice folder</summary>
 
 Start it as in your first start: paste this line in place of the one above.
@@ -202,7 +206,7 @@ Claude Code cannot.
 In kingo-pod, kingo gives Claude Code such facts. Indeed, it writes them into your course folder at every start of
 <span class="cmd-i cmd-i-t">`./kingo claude`</span>. **Your turn:** see them.
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? Look at what kingo writes into the startup file for the course</summary>
 
 With `--in`, kingo writes no file into your folder: these facts are about n8n and Langflow, which you do not have.

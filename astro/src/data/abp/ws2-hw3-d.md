@@ -3,6 +3,9 @@ title: "Homework until 23 Nov, Part D: A project of your own"
 ---
 
 
+So far, Claude Code worked for the course. Now it works for you: you build a small website of your own, in a folder
+of its own. After this part, you can use Claude Code for any project of yours, and the course stays clean.
+
 ### 9. Know where Claude Code may work
 
 <div class="quiz">

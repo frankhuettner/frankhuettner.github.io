@@ -3,6 +3,10 @@ title: "Homework until 23 Nov, Part C: Stay in control"
 ---
 
 
+Claude Code can work alone for a long time. That is its strength, and its risk: it can go in circles, lose the
+thread in a long conversation, or change something that you cannot take back. In this part, you learn three moves
+that keep you in charge: **Esc**, <span class="cmd-i cmd-i-c">`/clear`</span>, and a copy.
+
 ### 6. Watch Claude Code, and press Esc when it goes in circles
 
 Going in circles means: Claude Code tries the same thing again and again, and gets no closer.

@@ -3,6 +3,10 @@ title: "Homework until 23 Nov, Part B: Ask well"
 ---
 
 
+Claude Code does what you write, not what you mean. In this part, you learn three ways to close this gap: plan
+first, say what "done" looks like, and tell Claude Code what it cannot see. Each one is a sentence or two more in
+your prompt, and it saves you rounds of corrections.
+
 ### 3. Plan first when you are not sure what you want
 
 Not every task needs a plan. Which way is best depends on how well you know what you want.
@@ -36,7 +40,7 @@ in the work.
 for a new member of your team, which says what your project does, which flow does what, and how to try it out. The
 plan shall also say how you will know that the creation of the webpage is complete.
 
-<details class="more">
+<details class="more newhere">
 <summary>New here? Plan a webpage about a team of yours</summary>
 
 You have no team project of the course. So plan a webpage about a team or a group that you are in, at work or
