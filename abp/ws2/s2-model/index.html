@@ -609,7 +609,7 @@ block <code>filesystem</code>), with every model and every provider.</li>
           ? (n === 0 ? "You pressed Esc early. That is fine: a question costs you only a minute. "
              : n === 1 ? "You pressed Esc after the first marked line. Good: after it, Claude Code said the same thing three more times, each time a little differently. "
              : "You pressed Esc after Claude Code had said the same thing " + n + " times (marked). Good that you stopped it. ")
-            + "Now ask Claude Code what it is trying, and why the last try did not work. In our test, nobody pressed Esc: Claude Code went on for 23 minutes."
+            + "Next, you should ask Claude Code what it is trying, and why the last try did not work. In our test, nobody pressed Esc: as a consequence, Claude Code went on for 23 minutes."
           : "Nobody pressed Esc: Claude Code went on for 23 minutes. It said the same thing four times (marked), switched to Chinese, and wrote its last report in Chinese too. Press Play again, and stop it where you would.";
       };
       var tick = function () {
