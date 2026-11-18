@@ -294,7 +294,7 @@ place of <span class="cmd-i cmd-i-t">`kc`</span>.
   one of the two.
 
 **Three examples.** Each one starts with a key that you already have. You paste the line of an example into your
-terminal. Is Claude Code still running there? Type <span class="cmd-i cmd-i-c">`/exit`</span> first.
+terminal.
 
 <details class="more newhere">
 <summary>New here? What is different for you in the examples</summary>
