@@ -40,10 +40,37 @@ again, with that folder. Claude Code gives you the line for it.
 
 <figure class="hx hx-box hx-fence" data-mode="adddir" aria-label="What /add-dir changes, and what --read changes"><div class="hx-switch" role="group" aria-label="What you type"><button type="button" data-mode="adddir" aria-pressed="true"><code>/add-dir ~/projects/my-first-project</code></button><button type="button" data-mode="start" aria-pressed="false"><code>kc ~/projects/my-second-project --read ~/projects/my-first-project</code></button></div><ul class="hx-tree"><li style="--i:0"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><code>~/projects/my-second-project</code><small>where you started Claude Code</small><span class="acc adddir write"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span>reads and writes</span></span><span class="acc start write"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span>reads and writes</span></span></li><li style="--i:1"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><code>~/projects/my-first-project</code><small>your first website</small><span class="acc adddir none"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>blocked by the sandbox</span></span><span class="acc start read"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg><span>reads only</span></span></li><li style="--i:2"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><code>~</code><small>your other folders</small><span class="acc adddir none"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>no access</span></span><span class="acc start none"><svg class="hx-i" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>no access</span></span></li></ul><p class="hx-pick" data-for="adddir">Typed into Claude Code: <code>/add-dir</code> puts your first website on Claude Code's own list. The sandbox stays as kingo set it up at the start, and says no: <code>Operation not permitted</code>.</p><p class="hx-pick" data-for="start">Typed into the terminal: kingo sets up the sandbox with your first website, and tells Claude Code too. Claude Code reads it, and cannot change it.</p></figure>
 
-**For a file or two: copy them in.** Open the folder where Claude Code works, as in step 10, and copy the files into
-it. On Windows, drag them from Windows into it. That is all: the fence stays as it is.
+**For a file or two: copy them in.** For example, Claude Code shall read a report that is in your Downloads:
 
-**For a whole folder: `--read`.** **Your turn:** start a second website that reads your first one.
+1. Open the folder where Claude Code works, as in step 10. For your first website on a Mac, paste this line into a
+   second terminal tab:
+   <div class="cmd cmd-terminal">
+
+   ```
+   open ~/projects/my-first-project
+   ```
+
+   </div>
+
+   On Windows:
+   <div class="cmd cmd-terminal">
+
+   ```
+   cd ~/projects/my-first-project && explorer.exe .
+   ```
+
+   </div>
+
+2. Copy the file into this folder. Click the file where it is now, and press **Cmd+C** on a Mac or **Ctrl+C** on
+   Windows. Then click into the folder that you opened, and press **Cmd+V** or **Ctrl+V**. On Windows, you can also
+   drag the file from a Windows folder into it.
+3. Tell Claude Code the name of the file, for example: "Read report.pdf in this folder, and tell me its three main
+   points."
+
+That is all: you do not start Claude Code again, and the fence stays as it is. Claude Code works with the copy.
+Your file in Downloads stays as it is: Claude Code cannot read it or change it.
+
+**Want to give access to an entire other folder? Then use `--read`.** **Your turn:** start a second website that reads your first one.
 
 1. Make its folder. Is Claude Code still running? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then paste this line into your terminal:
    <div class="cmd cmd-terminal">

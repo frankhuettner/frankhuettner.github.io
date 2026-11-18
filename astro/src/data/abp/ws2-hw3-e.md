@@ -117,7 +117,9 @@ went into `~/kingo-pod` first. Without `./`, i.e. if you type just <span class="
 here: it looks for programs that are written in a central registry. The word `claude` in <span class="cmd-i cmd-i-t">`./kingo claude`</span> tells
 kingo what to do: start Claude Code.
 
-The short command <span class="cmd-i cmd-i-t">`kingo`</span> needs no `./` and works from any folder: it knows where the file is.
+Now that we ran `~/kingo-pod/kingo shortcuts`, the short command <span class="cmd-i cmd-i-t">`kingo`</span> needs no `./` and works from any folder:
+the information about where kingo lives is now written to a central registry. Likewise, <span class="cmd-i cmd-i-t">`kc`</span> is also written to
+some central registry.
 
 </details>
 
