@@ -45,7 +45,10 @@ In the course, there is nothing new to install: you only update kingo-pod.
 
     Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.24 or higher, or 1.5.23 or higher with
     Kingo 1.5.
-  - Claude Code, as you set it up in the last homework (<span class="cmd-i cmd-i-t">`./kingo claude`</span>);
+  - Claude Code, set up as in the last homework: installed with its sandbox
+    ([step 2](/abp/ws2/hw2-a/#2-install-claude-code-and-its-sandbox)), with a key in n8n
+    ([step 3](/abp/ws2/hw2-a/#3-make-a-key-in-n8n)), and started once with <span class="cmd-i cmd-i-t">`./kingo claude`</span>, where it took your
+    OpenRouter key and your n8n key ([step 4](/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys));
   - your team's project: the Langflow flow and the n8n workflow you work on.
 - **New here, without the course?** You can do this homework too, and you need less: open the two boxes below.
 
