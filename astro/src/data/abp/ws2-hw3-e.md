@@ -196,7 +196,7 @@ To take them out again: <span class="cmd-i cmd-i-t">`./kingo shortcuts remove`</
 
 ## If something goes wrong
 
-Find your step. Still stuck? In the course, write to Frank: then we fix it together.
+Find your step.
 
 #### Step 11
 

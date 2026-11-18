@@ -193,7 +193,7 @@ in Claude Code. A shorter way to start comes in [Part E](/abp/ws2/hw3-e/).
 
 ## If something goes wrong
 
-Find your step. Still stuck? In the course, write to Frank: then we fix it together.
+Find your step.
 
 #### Step 10
 

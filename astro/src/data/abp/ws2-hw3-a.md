@@ -367,7 +367,7 @@ tell Claude what it can't see (the limits of a sandbox are such a thing), and
 
 ## If something goes wrong
 
-Find your step. Still stuck? In the course, write to Frank: then we fix it together.
+Find your step.
 
 #### Step 1
 
