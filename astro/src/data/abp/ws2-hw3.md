@@ -37,8 +37,6 @@ always open it, and do what it says.</p>
 
 In the course, there is nothing new to install: you only update kingo-pod.
 
-**Your turn** means: do it now. **Next time** means: a habit for your next work with Claude Code; nothing to do now.
-
 **Where to type it.** A sign before a command tells you where it goes:
 
 - a dollar sign: into your terminal (on Windows: the Ubuntu app), as in <span class="cmd-i cmd-i-t">`./kingo status`</span>;
