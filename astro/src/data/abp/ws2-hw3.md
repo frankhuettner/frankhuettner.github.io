@@ -12,9 +12,10 @@ The tools are better today, and METR itself says that this number is out of date
 AI makes you faster. So do not trust the feeling: learn how to work with the tool. This homework shows you how,
 with nine habits that you try yourself.
 
-<p class="newhere-note"><strong>You did not set up the course, with n8n and Langflow?</strong> Then you are "new
-here". You can do this homework too: wherever you see a box or a line <strong>New here?</strong>, always open it,
-and do what it says.</p>
+<p class="newhere-note"><strong>You do not have everything from the course on your laptop?</strong> Maybe you are
+not in the course. Maybe you have n8n and Langflow, but you did not do the last homework. Or you just want to work on
+a project of your own. You can do this homework too: wherever you see a box or a line <strong>New here?</strong>,
+always open it, and do what it says.</p>
 
 ## Your goal of this HW
 
@@ -65,7 +66,8 @@ In the course, there is nothing new to install: you only update kingo-pod.
     ([step 3](/abp/ws2/hw2-a/#3-make-a-key-in-n8n)), and started once with <span class="cmd-i cmd-i-t">`./kingo claude`</span>, where it took your
     OpenRouter key and your n8n key ([step 4](/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys));
   - your team's project: the Langflow flow and the n8n workflow you work on.
-- **New here, without the course?** You can do this homework too, and you need less: open the two boxes below.
+- **New here: without the course, without the last homework, or for a project of your own?** You can do this
+  homework too, and you need less: open the two boxes below.
 
 <details class="more newhere">
 <summary>New here? What you need, and your first start</summary>
