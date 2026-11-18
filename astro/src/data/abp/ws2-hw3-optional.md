@@ -223,34 +223,10 @@ its own thing: its own folder, its own flow or workflow. Both should change one 
 
 </div>
 
-**With your OpenRouter key: as many as you like.** Start Claude Code in each tab. Each session is a conversation of
-its own, and you pay for each.
-
-<details class="more">
-<summary>A key for each project?</summary>
-
-All your sessions pay with one OpenRouter key. Give a project a key of its own: then you see what this project
-costs, and you can give it a credit limit of its own.
-
-1. On openrouter.ai, open Settings, then Keys, and make a new key. Give it a credit limit.
-2. Start Claude Code with `--key` and a name for the new key, for example `website`. A name has small letters,
-   digits and `-`.
-   <div class="cmd cmd-terminal">
-
-   ```
-   kc ~/projects/my-first-project --key website
-   ```
-
-   </div>
-
-   The first time, kingo asks for the key of this name: paste the new key. kingo keeps it with your other keys,
-   outside the sandbox. Before every start, kingo says which key pays: `Claude Code's model is paid with your
-   OpenRouter key "website"`.
-
-Start without `--key`, and your OpenRouter key pays, as before. `--key` works in the course too. Your flows in
-Langflow keep the key that they have.
-
-</details>
+**With your OpenRouter key: as many as you like.** You can start Claude Code in three tabs, in four, or in more:
+open one more terminal tab, and start it there with <span class="cmd-i cmd-i-t">`kc`</span> and a folder. Each session is a conversation of its own:
+it does not know what you said in the other tabs. All of them pay with your one OpenRouter key, and you pay for each
+session. So the credit limit of your key counts for all of them together.
 
 **With `--login`: one at a time.** kingo starts no second <span class="cmd-i cmd-i-t">`kcl`</span> while one runs: two at once break the login, because
 of a bug in nono, the sandbox that keeps your login. For a second session at the same time, start it with <span class="cmd-i cmd-i-t">`kc`</span>, with
@@ -261,11 +237,62 @@ Done: two sessions at once, each with its own thing.
 **Next time.** When you work in two sessions at once, give each its own folder or its own flow.
 
 *From Anthropic's page [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees): each session
-gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--login` and
-`--key`. OpenRouter's page on [limits](https://openrouter.ai/docs/api/reference/limits): "Per-key credit limits", and
-what each key used.*
+gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--login`.*
 
 [Stuck? Help for step 13](#step-13)
+
+### 14. Give a project a key of its own
+
+So far, all your sessions pay with one OpenRouter key. On openrouter.ai, you see one sum for everything: the course,
+your website, and every other project.
+
+Give a project a key of its own. This gives you two things:
+
+- **You see what this project costs.** OpenRouter counts for each key what it used.
+- **The project gets a credit limit of its own.** When Claude Code goes in circles in this project, it stops at
+  that amount, and the credit of your other key stays.
+
+**Your turn: a key with the name `website`, for your first website.**
+
+1. Make the key. Open openrouter.ai in your browser, and sign in. Open **Settings**, then **Keys**, and make a new
+   key. Name it `website`, and give it a small credit limit. Copy the key: OpenRouter shows it only once.
+2. Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then start Claude Code for your website,
+   with `--key` and the name of the key:
+   <div class="cmd cmd-terminal">
+
+   ```
+   kc ~/projects/my-first-project --key website
+   ```
+
+   </div>
+
+   The name is for kingo: small letters, digits and `-`. It can be any name, but the same name as on openrouter.ai
+   is the easiest to remember. You did not make the short commands of [Part E](/abp/ws2/hw3-e/)? Then go into `~/kingo-pod` first, and
+   start it with <span class="cmd-i cmd-i-t">`./kingo claude --in ~/projects/my-first-project --key website`</span>.
+3. kingo asks: `Paste the OpenRouter key "website"`. Paste the key that you copied in 1, and press **Enter**. kingo
+   keeps it with your other keys, outside the sandbox.
+4. Look at the lines before Claude Code starts. kingo says which key pays:
+   `Claude Code's model is paid with your OpenRouter key "website"`.
+5. Ask Claude Code something, for example: "What is in this folder?" Then look at **Keys** on openrouter.ai again:
+   the key `website` shows what it used.
+6. Type <span class="cmd-i cmd-i-c">`/exit`</span>, and paste the line of 2 again. This time, kingo does not ask: it has the key of this name.
+
+Three more things to know:
+
+- **Without `--key`, nothing changed.** Start Claude Code as before, and your first OpenRouter key pays, as before.
+- **`--key` works in the course too.** <span class="cmd-i cmd-i-t">`kc --key website`</span> starts Claude Code for the course, paid with the key
+  `website`. Your flows in Langflow keep the key that they have.
+- **Not with `--login`.** `--login` uses your Claude subscription, and `--key` an OpenRouter key: kingo takes one
+  of the two.
+
+Done: your website has a key of its own, with its own costs and its own limit.
+
+**Next time.** When you start a project that may cost more than a little, give it a key of its own first.
+
+*From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key`. OpenRouter's page on
+[limits](https://openrouter.ai/docs/api/reference/limits): "Per-key credit limits", and what each key used.*
+
+[Stuck? Help for step 14](#step-14)
 
 ## If something goes wrong
 
@@ -285,5 +312,11 @@ Find your step.
 | What you see | What to do |
 |---|---|
 | kingo says that another <span class="cmd-i cmd-i-t">`./kingo claude --login`</span> is running | Only one session with `--login` runs at a time. Type <span class="cmd-i cmd-i-c">`/exit`</span> in the other one first, or start this one with <span class="cmd-i cmd-i-t">`kc`</span>, with your OpenRouter key. No other session runs? Then paste the line `rm …` that kingo names. |
+
+#### Step 14
+
+| What you see | What to do |
+|---|---|
 | `unknown option '--key'` | Your kingo-pod is older than `--key`. Paste <span class="cmd-i cmd-i-t">`kingo update`</span>, or <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update`</span>, and start again. New here? Paste <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git pull`</span>. |
 | `OpenRouter did not accept the key "website"` | kingo deleted this key, and no other. Check it on openrouter.ai (Settings, Keys), or make a new one. Then start again with `--key website`: kingo asks for the key. |
+| You want another key under the name `website` | kingo keeps the key in a file. Delete this file: paste `rm ~/.config/kingo/openrouter-website.key` into your terminal. Then start again with `--key website`: kingo asks for the key. |

@@ -17,7 +17,8 @@ title: "Homework until 23 Nov: get more out of Claude Code"
 
 - **You start Claude Code with one short command, from any folder.**
 
-- **Optional: you give Claude Code one more folder, and you work in two sessions at once.**
+- **Optional: you give Claude Code one more folder, you work in two sessions at once, and you give a project a key
+  of its own.**
 
 In the course, there is nothing new to install: you only update kingo-pod.
 
