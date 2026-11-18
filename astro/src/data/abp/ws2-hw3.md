@@ -32,8 +32,8 @@ always open it, and do what it says.</p>
 
 - **You start Claude Code with one short command, from any folder.**
 
-- **Optional: you give Claude Code one more folder, you work in two sessions at once, and you give a project a key
-  of its own.**
+- **Optional: you give Claude Code one more folder, you work in two sessions at once, and you know how to give a
+  project a key of its own.**
 
 In the course, there is nothing new to install: you only update kingo-pod.
 
