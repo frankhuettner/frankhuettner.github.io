@@ -281,7 +281,7 @@ the four steps below, and read on at **For any project**.
      The last dot in <span class="cmd-i cmd-i-t">`explorer.exe .`</span> means: the folder you are in.
    - So the File Explorer shows your folder in Ubuntu, and you can drag files from Windows into it.
    - Ubuntu also sees your files in Windows: the drive `C:` is the folder `/mnt/c`. Still, keep your work in Ubuntu,
-     under `~`, as this homework does: Microsoft advises it.
+     under `~`, as this homework does: Microsoft advises to avoid working in Windows folders from within WSL.
 
    *From Microsoft's [Working across file systems](https://learn.microsoft.com/en-us/windows/wsl/filesystems).*
 
@@ -321,7 +321,7 @@ the four steps below, and read on at **For any project**.
    `@` load the three files.
 
 **What stays, and what kingo writes.** kingo writes everything above `# Your team's rules` anew at every start, and
-the files in `info-for-ai` too. So your team's rules go below the heading: there they stay. Did a line of your own
+the three files in `info-for-ai` too. So your team's rules go below the heading: there they stay. Did a line of your own
 land above the heading? kingo moves it below the heading and says so. The file as it was, kingo keeps in
 `~/kingo-pod/backups/course-files/`.
 
