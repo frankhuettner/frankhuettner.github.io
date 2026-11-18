@@ -216,7 +216,7 @@ API, or a model on your own laptop. Anthropic is the company that makes Claude C
 
 
 
-<table><thead><tr><th>You write</th><th>What it means</th></tr></thead><tbody><tr><td><span class="cmd-i cmd-i-t"><code>kc ~/projects/my-first-project</code></span></td><td>Start Claude Code in this folder, as before.</td></tr><tr><td><code>--key website</code></td><td>The key with the name <code>website</code> pays. You choose the name.</td></tr><tr><td><code>--provider anthropic</code></td><td>Who runs the model: <code>anthropic</code> is Anthropic’s API, <code>ollama</code> is a model on your laptop. For OpenRouter, you leave this piece out.</td></tr><tr><td><code>--model sonnet</code></td><td>Which model. For OpenRouter and for Anthropic’s API, you can leave this piece out: then you get their usual model.</td></tr></tbody></table>
+<table><thead><tr><th>You write</th><th>What it means</th></tr></thead><tbody><tr><td><span class="cmd-i cmd-i-t"><code>kc ~/projects/my-first-project</code></span></td><td>Start Claude Code in this folder, as before.</td></tr><tr><td><code>--key website</code></td><td>The key with the name <code>website</code> pays. You choose the name.</td></tr><tr><td><code>--provider anthropic</code></td><td>Who runs the model: <code>anthropic</code> is Anthropic’s API, <code>ollama</code> is a model on your laptop, and an address that starts with <code>https://</code> is any other provider. For OpenRouter, you leave this piece out.</td></tr><tr><td><code>--model sonnet</code></td><td>Which model. For OpenRouter and for Anthropic’s API, you can leave this piece out: then you get their usual model.</td></tr></tbody></table>
 <p>You did not make the short commands of <a href="/abp/ws2/hw3-e/">Part E</a>? Then go into <code>~/kingo-pod</code> first, and write <span class="cmd-i cmd-i-t"><code>./kingo claude --in</code></span> in
 place of <span class="cmd-i cmd-i-t"><code>kc</code></span>.</p>
 <p><strong>About the name.</strong></p>
@@ -240,7 +240,17 @@ provider. For a key at another provider, take another name.</li>
 <li><strong>Does it work with <code>--login</code>?</strong> No. <code>--login</code> uses your Claude subscription, and <code>--key</code> uses a key: kingo takes
 one of the two.</li>
 </ul>
-<p><strong>Three examples.</strong> Each one starts with a key that you already have.</p>
+<p><strong>Three examples.</strong> Each one starts with a key that you already have. You paste the line of an example into your
+terminal. Is Claude Code still running there? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first.</p>
+<details class="more newhere">
+<summary>New here? What is different for you in the examples</summary>
+<ul>
+<li>You have no folder <code>~/projects/my-first-project</code>? Then write <code>~/projects/practice</code> in its place.</li>
+<li>You use your Claude subscription with <code>--login</code>, and you have no key? Then your subscription pays already: read
+the examples, and try none.</li>
+<li><span class="cmd-i cmd-i-t"><code>kc --key website</code></span>, without a folder, is the start for the course. You do not need it.</li>
+</ul>
+</details>
 <p><strong>Example 1: a key for Anthropic’s API.</strong> You have a key from platform.claude.com. It must be a key for one
 workspace: kingo cannot use a key for all workspaces.</p>
 <div class="cmd cmd-terminal">
@@ -252,10 +262,8 @@ Anthropic’s model for everyday coding. Without <code>--model</code>, Claude Co
 In Claude Code, <span class="cmd-i cmd-i-c"><code>/model haiku</code></span> changes to Haiku, Anthropic’s fast model for simple tasks, and <span class="cmd-i cmd-i-c"><code>/model sonnet</code></span>
 changes back.</p>
 <p><strong>You have a Claude Pro or Max subscription? Then the subscription is usually the cheaper way.</strong> It has a fixed price
-per month, and Claude Code is included, up to the limits of your plan. The API bills every use: for companies,
-Anthropic names an average of about 13 US dollars per developer and active day. With a subscription, start with
-<code>--login</code> and without <code>--key</code>: <a href="/abp/ws2/s2-model/#use-your-claude-subscription">Use your Claude subscription</a>
-shows how.</p>
+per month, and Claude Code is included, up to the limits of your plan.
+<a href="/abp/ws2/s2-model/#use-your-claude-subscription">Use your Claude subscription</a> shows how.</p>
 <p><strong>Example 2: a model on your own laptop.</strong> You have Ollama, a program that runs models on your laptop, and a model
 in it. Ollama needs no key, so kingo asks for none: here, the name stands for the provider and the model.</p>
 <div class="cmd cmd-terminal">
@@ -264,71 +272,29 @@ in it. Ollama needs no key, so kingo asks for none: here, the name stands for th
 <p>Start Ollama first, and write the name of your model in place of <code>qwen3.5</code>. kingo says:
 <code>Claude Code's model comes from Ollama on this laptop ("local")</code>. The model runs on your laptop, so no provider
 bills you. For Claude Code, Ollama asks for a model with a context window of 64,000 tokens or more.</p>
-<p><strong>Example 3: a second OpenRouter key.</strong> You have a second key from openrouter.ai, with a credit limit of its own.
-OpenRouter is the usual provider, so the line needs no <code>--provider</code>:</p>
+<p><strong>Example 3: a key from another provider, by its address.</strong> You have a key from a provider that you trust, and the
+address that this provider names for Claude Code. It works when the provider offers Anthropic’s Messages API, the
+format that Claude Code speaks. You write the address in place of a provider’s name, and you name the model:</p>
 <div class="cmd cmd-terminal">
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key website</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key work --provider https://yourtrustedkey.example.com --model big-model</span></span></code></pre>
 </div>
-<p>kingo asks for the key: <code>Paste the OpenRouter key "website"</code>. Then it says:
-<code>Claude Code's model is paid with your OpenRouter key "website"</code>. The model is the course’s, as before. On
-openrouter.ai, <strong>Keys</strong> shows what the key <code>website</code> used. For another model, add <code>--model</code> and the ID from the
-model’s page on openrouter.ai. In the course, your OpenRouter key works only for the course’s models.</p>
-<p>We tested examples 1 and 2 with a stand-in for the provider: not yet with a real key of Anthropic, and not with a
-real Ollama.</p>
-<p><strong>Your turn: start your project with a key of its own.</strong> Take the example that fits a key of yours.</p>
-<details class="more newhere">
-<summary>New here? What is different for you in this step</summary>
-<ul>
-<li>You have no folder <code>~/projects/my-first-project</code>? Then write <code>~/projects/practice</code> in its place.</li>
-<li>You use your Claude subscription with <code>--login</code>, and you have no key? Then read this step, and skip this
-<strong>Your turn</strong>: your subscription pays already.</li>
-<li><span class="cmd-i cmd-i-t"><code>kc --key website</code></span>, without a folder, is the start for the course. You do not need it.</li>
-</ul>
-</details>
-<ol>
-<li>
-<p>Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then paste the line of your example into your
-terminal.</p>
-</li>
-<li>
-<p>kingo asks for the key: paste it, and press <strong>Enter</strong>. You do not see the key as you paste it. With Ollama, kingo
-asks for nothing.</p>
-</li>
-<li>
-<p>Read the lines before Claude Code starts. kingo says where the model comes from, and which key pays.</p>
-</li>
-<li>
-<p>Ask Claude Code something, for example: “What is in this folder?” Then type <span class="cmd-i cmd-i-c"><code>/exit</code></span>.</p>
-</li>
-<li>
-<p>Start again, with the name alone. For example 1:</p>
-<div class="cmd cmd-terminal">
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key api</span></span></code></pre>
-</div>
-<p>For the other examples, write <code>local</code> or <code>website</code> in place of <code>api</code>. This time, kingo does not ask: it kept the
-key, the provider and the model under the name.</p>
-</li>
-</ol>
-<details class="more">
-<summary>One more: any other provider, by its address</summary>
-<p>It works when the provider offers Anthropic’s Messages API, the format that Claude Code speaks. In place of
-<code>anthropic</code> or <code>ollama</code>, give the provider’s address, the one that the provider names for <code>ANTHROPIC_BASE_URL</code>, and
-a model:</p>
-<div class="cmd cmd-terminal">
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key work --provider https://llm.example.com/anthropic --model big-model</span></span></code></pre>
-</div>
-<p>kingo cannot check such a key before the start. We tested this with a stand-in for the provider, not with a real
-one.</p>
-</details>
-<p>Done: your project has a key of its own. You know who runs the model, and which key pays.</p>
+<p>Write the address of your provider and its name for the model in place of ours. The address is the one that the
+provider names for <code>ANTHROPIC_BASE_URL</code>. It ends in <code>/v1</code> or in <code>/v1/messages</code>? Then leave this ending out: Claude
+Code adds <code>/v1/messages</code> itself. kingo asks for the key: <code>Paste the key "work" for https://yourtrustedkey.example.com</code>.
+kingo cannot check this key before the start. Your key, and everything that Claude Code sends to the model, go to
+this address: take only a provider that you trust.</p>
+<p>We tested the three examples with a stand-in for the provider: not yet with a real key of Anthropic, a real Ollama,
+or a real provider.</p>
 <p><strong>Next time.</strong> When you start a project that may cost more than a little, give it a key of its own first.</p>
 <p><span class="src">From kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--key</code>, <code>--provider</code> and <code>--model</code>. OpenRouter’s page on
 <a href="https://openrouter.ai/docs/api/reference/limits">limits</a>: “Per-key credit limits”, and what each key used.
 Anthropic’s pages <a href="https://platform.claude.com/docs/en/manage-claude/authentication">Authentication</a>: “Select a
 workspace”; <a href="https://code.claude.com/docs/en/model-config">Model configuration</a>: the names <code>sonnet</code>, <code>opus</code> and
 <code>haiku</code>, and that Claude Code with the Anthropic API “defaults to Opus 5.5”;
-<a href="https://code.claude.com/docs/en/costs">Manage costs effectively</a>: the average per developer, and “Sonnet handles
-most coding tasks well and costs less than Opus”. Ollama’s page
+<a href="https://code.claude.com/docs/en/costs">Manage costs effectively</a>: subscribers “have usage included in their
+subscription”, and “Sonnet handles most coding tasks well and costs less than Opus”;
+<a href="https://code.claude.com/docs/en/llm-gateway-connect">Connect Claude Code to an LLM gateway</a>: its test request goes
+to the address of <code>ANTHROPIC_BASE_URL</code> plus <code>/v1/messages</code>. Ollama’s page
 <a href="https://docs.ollama.com/integrations/claude-code">Claude Code</a>: “64k+ context window”.</span></p>
 <p><a href="#step-14">Stuck? Help for step 14</a></p>
 <details class="more help" id="help">
@@ -414,7 +380,11 @@ most coding tasks well and costs less than Opus”. Ollama’s page
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>unknown option '--key'</code>, or <code>unknown option '--provider'</code></td><td>Your kingo-pod is older than this step. Paste <span class="cmd-i cmd-i-t"><code>kingo update</code></span>, or <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update</code></span>, and start again. New here? Paste <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git pull</code></span>.</td></tr><tr><td>Before Claude Code starts, kingo names no key of yours</td><td>You left <code>--key</code> out, so your first OpenRouter key pays. A project does not remember its name: type <span class="cmd-i cmd-i-c"><code>/exit</code></span>, and start again with <code>--key</code> and the name.</td></tr><tr><td><code>OpenRouter did not accept the key "website"</code>, or <code>Anthropic did not accept the key "api"</code></td><td>kingo deleted this key, and no other. Check it on the provider’s website (openrouter.ai: Settings, Keys; platform.claude.com: API keys), or make a new one. Then start again with <code>--key</code> and the name: kingo asks for the key.</td></tr><tr><td>With Anthropic’s API, Claude Code shows an error that names <code>anthropic-workspace-id</code></td><td>Your key is not for one workspace. On platform.claude.com, make a new key, and choose one workspace for it. Paste <code>rm ~/.config/kingo/key-api.key</code> into your terminal, and start again with <code>--key api</code>: kingo asks for the key.</td></tr><tr><td><code>The key "website" is for OpenRouter, not for Anthropic's API</code></td><td>A name belongs to one provider. Take another name for the other provider, for example <code>--key api --provider anthropic</code>.</td></tr><tr><td><code>Ollama does not answer on this laptop</code></td><td>Start Ollama, then start again. On Windows, Ollama must run in Ubuntu, where kingo runs.</td></tr><tr><td>You want another key under a name</td><td>kingo keeps the key in a file. Delete this file. For the OpenRouter key <code>website</code>, paste <code>rm ~/.config/kingo/openrouter-website.key</code> into your terminal; for the key <code>api</code> of another provider, <code>rm ~/.config/kingo/key-api.key</code>. Then start again with <code>--key</code> and the name: kingo asks for the key.</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>unknown option '--key'</code>, or <code>unknown option '--provider'</code></td><td>Your kingo-pod is older than this step. Paste <span class="cmd-i cmd-i-t"><code>kingo update</code></span>, or <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update</code></span>, and start again. New here? Paste <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git pull</code></span>.</td></tr><tr><td>Before Claude Code starts, kingo names no key of yours</td><td>You left <code>--key</code> out, so your first OpenRouter key pays. A project does not remember its name: type <span class="cmd-i cmd-i-c"><code>/exit</code></span>, and start again with <code>--key</code> and the name.</td></tr><tr><td><code>OpenRouter did not accept the key "website"</code>, or <code>Anthropic did not accept the key "api"</code></td><td>kingo deleted this key, and no other. Check it on the provider’s website (openrouter.ai: Settings, Keys; platform.claude.com: API keys), or make a new one. Then start again with <code>--key</code> and the name: kingo asks for the key.</td></tr><tr><td>With Anthropic’s API, Claude Code shows an error that names <code>anthropic-workspace-id</code></td><td>Your key is not for one workspace. On platform.claude.com, make a new key, and choose one workspace for it. Paste <code>rm ~/.config/kingo/key-api.key</code> into your terminal, and start again with <code>--key api</code>: kingo asks for the key.</td></tr><tr><td><code>The key "website" is for OpenRouter, not for Anthropic's API</code></td><td>A name belongs to one provider. Take another name for the other provider, for example <code>--key api --provider anthropic</code>.</td></tr><tr><td><code>Ollama does not answer on this laptop</code></td><td>Start Ollama, then start again. On Windows, Ollama must run in Ubuntu, where kingo runs.</td></tr><tr><td>With a provider’s address, Claude Code shows an error at your first question, for example with the number <code>404</code></td><td>Check the address with your provider: it is the one for <code>ANTHROPIC_BASE_URL</code>, without <code>/v1</code> or <code>/v1/messages</code> at its end. A name keeps its address. For another address, take a new name, or paste <code>rm ~/.config/kingo/key-work.key</code> into your terminal and start again with the whole line: kingo asks for the key.</td></tr><tr><td>You want another key under a name</td><td>kingo keeps the key in a file. Delete this file. For the OpenRouter key <code>website</code>, paste <code>rm ~/.config/kingo/openrouter-website.key</code> into your terminal; for the key <code>api</code> of another provider, <code>rm ~/.config/kingo/key-api.key</code>. Then start again with <code>--key</code> and the name: kingo asks for the key.</td></tr></tbody></table>
 </details></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#12-give-claude-code-one-more-folder">12. Give Claude Code one more folder</a></li><li class="ws2-toc__item--3"><a href="#13-work-in-two-sessions-at-once">13. Work in two sessions at once</a></li><li class="ws2-toc__item--3"><a href="#14-give-a-project-a-key-of-its-own">14. Give a project a key of its own</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
