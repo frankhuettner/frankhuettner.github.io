@@ -130,10 +130,15 @@ A long conversation has two more costs:
 - **It gets less reliable.** Researchers who tested 18 models found: the longer the text in front of a model, the
   less reliable its answers, even for simple tasks ([Chroma, 2025](https://research.trychroma.com/context-rot)).
 
-The same for a new task: after a morning on your n8n workflow, type <span class="cmd-i cmd-i-c">`/clear`</span> before you change a prompt in Langflow.
-Claude Code does not forget your project: after <span class="cmd-i cmd-i-c">`/clear`</span>, the model gets the start files of step 2 again, and
-Claude Code's notes (more on them below). The old conversation is not lost either: type <span class="cmd-i cmd-i-c">`/resume`</span>, and pick it from
-the list of your earlier conversations.
+**So start every new task with <span class="cmd-i cmd-i-c">`/clear`</span>.** For example: you worked on your n8n workflow all morning, and now you
+want to change a prompt in Langflow. Type <span class="cmd-i cmd-i-c">`/clear`</span> first: the model does not need the morning's conversation for the
+new task.
+
+<span class="cmd-i cmd-i-c">`/clear`</span> only empties the conversation. Two things stay:
+
+- **What Claude Code knows about your project.** After <span class="cmd-i cmd-i-c">`/clear`</span>, the model gets the start files of step 2 again,
+  and Claude Code's own notes (more on them below).
+- **The old conversation.** Type <span class="cmd-i cmd-i-c">`/resume`</span>, and pick it from the list of your earlier conversations.
 
 **Keep what you learned.** What Claude Code found out only in the conversation, for example which file was to blame,
 is gone after <span class="cmd-i cmd-i-c">`/clear`</span>. So before <span class="cmd-i cmd-i-c">`/clear`</span>, let Claude Code write it down. Paste:
