@@ -194,7 +194,8 @@ in Claude Code. A shorter way to start comes in [Part E](/abp/ws2/hw3-e/).
 
 **Next: [Part E · Shorter commands →](/abp/ws2/hw3-e/)**
 
-## If something goes wrong
+<details class="more help" id="help">
+<summary>If something goes wrong</summary>
 
 Find your step.
 
@@ -204,3 +205,5 @@ Find your step.
 |---|---|
 | kingo says the folder is not inside your home folder | Use a folder under `~`, as in the box. Not a Windows folder (`/mnt/c/...`). |
 | `index.html` opens in a text editor, not in your browser | Right-click it, choose *Open with*, and pick your browser. |
+
+</details>

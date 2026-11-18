@@ -215,7 +215,8 @@ To take them out again: <span class="cmd-i cmd-i-t">`./kingo shortcuts remove`</
 
 **Want more? [Optional · More room for Claude Code →](/abp/ws2/hw3-optional/)**
 
-## If something goes wrong
+<details class="more help" id="help">
+<summary>If something goes wrong</summary>
 
 Find your step.
 
@@ -226,3 +227,5 @@ Find your step.
 | New here: `No container engine found`, after <span class="cmd-i cmd-i-t">`kingo status`</span> or <span class="cmd-i cmd-i-t">`kingo update`</span> | These commands are for n8n and Langflow, which you do not need. <span class="cmd-i cmd-i-t">`kingo version`</span> shows which kingo-pod you have. To update kingo-pod, paste <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git pull`</span>. |
 | `command not found`, after <span class="cmd-i cmd-i-t">`kc`</span> | You are still in the old tab: open a new terminal tab. Still not? Paste <span class="cmd-i cmd-i-t">`cd ~/kingo-pod`</span>, then <span class="cmd-i cmd-i-t">`./kingo shortcuts`</span>, and type `1 5` again. |
 | kingo says that <span class="cmd-i cmd-i-t">`kc`</span> already means something in your terminal | Another program uses that name. Type `yes` to take kingo's <span class="cmd-i cmd-i-t">`kc`</span> in its place, or press **Enter** to keep yours, and start with <span class="cmd-i cmd-i-t">`./kingo claude`</span> as before. |
+
+</details>

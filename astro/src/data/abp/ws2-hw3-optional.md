@@ -315,7 +315,8 @@ Done: your website has a key of its own, with its own costs and its own limit.
 
 [Stuck? Help for step 14](#step-14)
 
-## If something goes wrong
+<details class="more help" id="help">
+<summary>If something goes wrong</summary>
 
 Find your step.
 
@@ -341,3 +342,5 @@ Find your step.
 | `unknown option '--key'` | Your kingo-pod is older than `--key`. Paste <span class="cmd-i cmd-i-t">`kingo update`</span>, or <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update`</span>, and start again. New here? Paste <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git pull`</span>. |
 | `OpenRouter did not accept the key "website"` | kingo deleted this key, and no other. Check it on openrouter.ai (Settings, Keys), or make a new one. Then start again with `--key website`: kingo asks for the key. |
 | You want another key under the name `website` | kingo keeps the key in a file. Delete this file: paste `rm ~/.config/kingo/openrouter-website.key` into your terminal. Then start again with `--key website`: kingo asks for the key. |
+
+</details>

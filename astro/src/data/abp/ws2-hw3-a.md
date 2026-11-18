@@ -363,7 +363,8 @@ tell Claude what it can't see (the limits of a sandbox are such a thing), and
 
 **Next: [Part B · Ask well →](/abp/ws2/hw3-b/)**
 
-## If something goes wrong
+<details class="more help" id="help">
+<summary>If something goes wrong</summary>
 
 Find your step.
 
@@ -385,3 +386,5 @@ Find your step.
 | kingo says that your `AGENTS.md` has no heading "# Your team's rules" | Open `AGENTS.md`, and write the line `# Your team's rules` above your team's rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t">`./kingo claude`</span> again. |
 | kingo says that it moved lines below `# Your team's rules` | They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in `~/kingo-pod/backups/course-files/`. |
 | <span class="cmd-i cmd-i-t">`./kingo claude`</span> (or <span class="cmd-i cmd-i-t">`./kingo claude --login`</span>) asks for your OpenRouter key, and you do not have it any more | Make a new key on openrouter.ai (Settings, Keys) and paste it. |
+
+</details>

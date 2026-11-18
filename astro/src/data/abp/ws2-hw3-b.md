@@ -309,7 +309,8 @@ workflow.
 
 **Next: [Part C · Stay in control →](/abp/ws2/hw3-c/)**
 
-## If something goes wrong
+<details class="more help" id="help">
+<summary>If something goes wrong</summary>
 
 Find your step.
 
@@ -319,3 +320,5 @@ Find your step.
 |---|---|
 | Claude Code starts to build the page, not only the plan | Press **Esc**, and write: "Only plan: write plan.md, and build nothing." |
 | After the interview, there is no `plan.md` | Ask Claude Code: "Write the plan to plan.md." |
+
+</details>
