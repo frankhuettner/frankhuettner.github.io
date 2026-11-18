@@ -278,7 +278,7 @@ the four steps below, and read on at **For any project**.
    Ubuntu runs inside Windows, and the two can reach each other:
 
    - From Ubuntu, you can start programs of Windows: <span class="cmd-i cmd-i-t">`explorer.exe`</span> is the File Explorer, <span class="cmd-i cmd-i-t">`notepad.exe`</span> is Notepad.
-     The dot in <span class="cmd-i cmd-i-t">`explorer.exe .`</span> means: the folder you are in.
+     The last dot in <span class="cmd-i cmd-i-t">`explorer.exe .`</span> means: the folder you are in.
    - So the File Explorer shows your folder in Ubuntu, and you can drag files from Windows into it.
    - Ubuntu also sees your files in Windows: the drive `C:` is the folder `/mnt/c`. Still, keep your work in Ubuntu,
      under `~`, as this homework does: Microsoft advises it.
