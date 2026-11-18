@@ -10,7 +10,7 @@ without. With AI, the developers believed that they were 20% faster. The clock s
 The tools are better today, and METR itself says that this number is out of date
 ([METR, 2026](https://metr.org/blog/2026-02-24-uplift-update/)). But one lesson stays: you cannot feel whether the
 AI makes you faster. So do not trust the feeling: learn how to work with the tool. This homework shows you how,
-with nine habits that you try yourself.
+introducing nine habits that you'll try out yourself.
 
 <p class="newhere-note"><strong>You do not have everything from the course on your laptop?</strong> Maybe you are
 not in the course. Maybe you have n8n and Langflow, but you did not do the last homework. Or you just want to work on
