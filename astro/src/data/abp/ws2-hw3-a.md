@@ -4,8 +4,9 @@ title: "Homework until 23 Nov, Part A: The model and the facts"
 
 
 Claude Code makes mistakes, and it costs money. So it is good to know who makes the mistakes, and who gets the
-money. In this part, you find out which model works inside Claude Code. Then you look at the facts that Claude Code
-gets about your setup: with them, it guesses less, and you correct less.
+money. In this part, you find out which model works inside Claude Code. Then you look at the information that
+Claude Code receives at every start, e.g. about your setup: with this info, it needs to guess less, makes fewer
+detours, is faster, and you need to correct less.
 
 ### 1. Know the model inside Claude Code (here: GLM 5.3 Flash)
 
