@@ -91,14 +91,14 @@ that comes from the model, and one line steers it back: "Please write in English
 </div>
 
 **Why this matters.** Each model makes its own kind of mistakes. In our tests, GLM 5.3 Flash went in circles and
-switched to Chinese (step 6); another model may make other mistakes. This homework develops your habits, things that
+switched to Chinese (as we'll discuss in step 6); another model may make other mistakes. This homework develops your habits, things that
 you do: how you ask, how you watch, how you check. So they help with any model.
 
-**Four settings decide which model works, and how.** They are the first four rows of this table. **An API is the way
-that programs talk to each other**, here the tool and the server of the model. A token is a short piece of text, often
+**Four settings decide which model works, and how.** They are the first four rows of this table. **Note: An API is the
+way that programs talk to each other**, here the tool and the server of the model. A token is a short piece of text, often
 part of a word.
 
-| | <span class="cmd-i cmd-i-t">`./kingo claude`</span>, for the course or with `--in` | <span class="cmd-i cmd-i-t">`./kingo claude --login`</span> |
+| | <span class="cmd-i cmd-i-t">`./kingo claude`</span> | <span class="cmd-i cmd-i-t">`./kingo claude --login`</span> |
 |---|---|---|
 | **The model name:** which model answers | `z-ai/glm-5.3-flash`, that is GLM 5.3 Flash, by Z.ai | Claude (Sonnet, Opus …), by Anthropic |
 | **The API URL:** where the tool sends the conversation | to OpenRouter, which passes it on to a server that runs the model | to Anthropic |
@@ -389,6 +389,7 @@ Find your step.
 |---|---|
 | New here: kingo says `n8n and Langflow must be running first` | That is the start for the course. Start Claude Code in your folder: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude --in ~/projects/practice`</span>. |
 | New here: kingo says `Claude Code is not installed`, or `python3 is missing` | Paste the line that kingo names after it, then start again. |
+| After <span class="cmd-i cmd-i-c">`/exit`</span>, nono writes `Sandbox denial: … paths blocked` and `Fix flags` | That is the fence at work: Claude Code looked at places outside it, for example your own `~/.claude` and the keychain of your Mac, and nono said no. Claude Code works without them. Add none of these flags: they would open the fence. |
 | After <span class="cmd-i cmd-i-c">`/model`</span> and a name, Claude Code shows an error | In the course, your key works only for the course's models. Type <span class="cmd-i cmd-i-c">`/model z-ai/glm-5.3-flash`</span> to go back. With a key that may use other models, check the name on the model's page, and that the model supports tools and images: `No endpoints found …` means that OpenRouter found no server for this model that takes your request, for example because the model reads only text and the conversation holds a picture. |
 
 #### Step 2
