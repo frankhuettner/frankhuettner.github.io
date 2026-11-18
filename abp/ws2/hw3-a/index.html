@@ -153,23 +153,6 @@ Claude Code, or start <span class="cmd-i cmd-i-t"><code>./kingo claude</code></s
 <p><strong>If you have a Claude Pro or Max subscription, you can use it with <span class="cmd-i cmd-i-t"><code>./kingo claude --login</code></span>:</strong> then Claude Code uses
 Anthropic’s models, and your Claude subscription pays. Type <span class="cmd-i cmd-i-c"><code>/model</code></span> in Claude Code and pick one.</p>
 <details class="more">
-<summary>Beyond OpenRouter and Anthropic subscription: using other APIs</summary>
-<p><strong>With a key that may use other models,</strong> for example your own key or one at work, type <span class="cmd-i cmd-i-c"><code>/model</code></span> and the model’s
-name in Claude Code. You find the name, its ID, on the model’s page at <a href="https://openrouter.ai/models">openrouter.ai/models</a>, under
-its title. Before you take a model, check four things on its page:</p>
-<ul>
-<li><strong>Tools:</strong> the model must support them. Here, tools are the actions that the model can ask the tool to do, such
-as read a file or run a command. Without them, the model can only write text.</li>
-<li><strong>Images:</strong> the model must read images, too. Once the conversation holds a picture, for example a page that Claude
-Code looked at, a model for text only stops with an error.</li>
-<li><strong>Context:</strong> 200,000 tokens or more: kingo lets the conversation grow that long.</li>
-<li><strong>Price:</strong> per million tokens, in and out. A bigger model often costs more. Give your key a credit limit on
-openrouter.ai (Settings, Keys): the key then stops at that amount.</li>
-</ul>
-<p><strong>In the course folder, you can also change which API Claude Code uses,</strong> for example to use a local model or
-Anthropic’s API instead of OpenRouter. <a href="/abp/ws2/s2-model/#use-anthropics-api-or-another-provider">Change the model</a> shows how to do this.</p>
-</details>
-<details class="more">
 <summary>If you use Claude Code without kingo: the names of the four settings</summary>
 <p>Outside kingo, you set the four settings yourself. Claude Code reads them from environment variables. You can also
 write them into a file <code>settings.json</code>, under <code>"env"</code>: kingo did that for the model names, for the course in
@@ -220,8 +203,7 @@ pays?</p>
 and <a href="https://code.claude.com/docs/en/commands">commands</a>. The price and the context window of GLM 5.3 Flash are from
 <a href="https://openrouter.ai/z-ai/glm-5.3-flash">OpenRouter</a>, 18 Nov 2026. What OpenRouter keeps: its pages on
 <a href="https://openrouter.ai/docs/guides/privacy/data-collection">data collection</a> and
-<a href="https://openrouter.ai/docs/guides/privacy/provider-logging">provider logging</a>; the credit limit:
-<a href="https://openrouter.ai/docs/api/reference/limits">Limits</a>.</em></p>
+<a href="https://openrouter.ai/docs/guides/privacy/provider-logging">provider logging</a>.</em></p>
 <p><a href="#step-1">Stuck? Help for step 1</a></p>
 <h3 id="2-give-claude-code-the-facts-of-your-setup-here-kingo-does-it-for-you">2. Give Claude Code the facts of your setup (here: kingo does it for you)</h3>
 <div class="quiz">
@@ -246,7 +228,7 @@ Claude Code cannot.</p>
 <p>In kingo-pod, kingo gives Claude Code these facts: at every start of <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span>, it writes them into your
 course folder. <strong>Your turn:</strong> see them.</p>
 <details class="more">
-<summary>New here? Look at what kingo writes for the course</summary>
+<summary>New here? Look at what kingo writes into the startup file for the course</summary>
 <p>With <code>--in</code>, kingo writes no file into your folder: these facts are about n8n and Langflow, which you do not have.
 But kingo-pod holds the files that kingo writes for the course, in the folder <code>~/kingo-pod/setup/claude</code>. On a Mac,
 paste this line into your terminal:</p>
