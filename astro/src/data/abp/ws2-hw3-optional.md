@@ -162,8 +162,25 @@ kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>.*
 Claude Code can work in two terminal tabs at once: for example on your website in one tab, while you ask about your
 flow in the other. Each tab is a session of its own, in a sandbox of its own.
 
-**Your turn.** Open a second terminal tab ([how](/abp/ws2/hw3/#your-terminal-in-short)). New here? In 2, start
-the second session for your practice folder: <span class="cmd-i cmd-i-t">`kc ~/projects/practice`</span>. In 3, ask it: "What does plan.md say?"
+**Your turn.** Open a second terminal tab ([how](/abp/ws2/hw3/#your-terminal-in-short)).
+
+<details class="more">
+<summary>New here? What is different for you in 2 and 3</summary>
+
+In 2, start the second session for your practice folder. Paste this line in place of the one there:
+
+<div class="cmd cmd-terminal">
+
+```
+kc ~/projects/practice
+```
+
+</div>
+
+
+In 3, ask it: "What does plan.md say?"
+
+</details>
 
 1. In the first tab, start Claude Code for your website:
    <div class="cmd cmd-terminal">
