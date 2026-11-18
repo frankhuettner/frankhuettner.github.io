@@ -170,7 +170,7 @@ and [commands](https://code.claude.com/docs/en/commands). The price and the cont
 
 [Stuck? Help for step 1](#step-1)
 
-### 2. Give Claude Code the facts of your setup (here: kingo does it for you)
+### 2. Give Claude Code the facts of your setup
 
 <div class="quiz">
 
@@ -199,8 +199,8 @@ Claude Code cannot.
 
 </div>
 
-In kingo-pod, kingo gives Claude Code these facts: at every start of <span class="cmd-i cmd-i-t">`./kingo claude`</span>, it writes them into your
-course folder. **Your turn:** see them.
+In kingo-pod, kingo gives Claude Code such facts. Indeed, it writes them into your course folder at every start of
+<span class="cmd-i cmd-i-t">`./kingo claude`</span>. **Your turn:** see them.
 
 <details class="more">
 <summary>New here? Look at what kingo writes into the startup file for the course</summary>
