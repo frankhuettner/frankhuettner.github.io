@@ -31,7 +31,21 @@ cd ~/kingo-pod && ./kingo claude
 </div>
 
 
-**New here?** Start it as in your first start: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude --in ~/projects/practice`</span>.
+<details class="more">
+<summary>New here? Start Claude Code in your practice folder</summary>
+
+Start it as in your first start: paste this line in place of the one above.
+
+<div class="cmd cmd-terminal">
+
+```
+cd ~/kingo-pod && ./kingo claude --in ~/projects/practice
+```
+
+</div>
+
+
+</details>
 
 Look at its first lines. In our tests, they looked like this:
 
