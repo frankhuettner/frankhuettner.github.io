@@ -114,8 +114,8 @@ folder above: <span class="cmd-i cmd-i-t">`cd ..`</span> goes one folder up.
 
 <span class="cmd-i cmd-i-t">`./kingo claude`</span> reads the same way. <span class="cmd-i cmd-i-t">`./kingo`</span> is the file kingo here, in the folder that you are in: that is why you
 went into `~/kingo-pod` first. Without `./`, i.e. if you type just <span class="cmd-i cmd-i-t">`kingo`</span>, then the terminal would not look for it
-here: it looks for programs that are written in a central registry. The word `claude` after it tells kingo what to
-do: start Claude Code.
+here: it looks for programs that are written in a central registry. The word `claude` in <span class="cmd-i cmd-i-t">`./kingo claude`</span> tells
+kingo what to do: start Claude Code.
 
 The short command <span class="cmd-i cmd-i-t">`kingo`</span> needs no `./` and works from any folder: it knows where the file is.
 
