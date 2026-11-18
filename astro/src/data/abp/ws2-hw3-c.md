@@ -189,7 +189,7 @@ steer the session, and [keep cost and context down](https://code.claude.com/docs
 <span class="cmd-i cmd-i-c">`/resume`</span>: its page on [commands](https://code.claude.com/docs/en/commands); its notes:
 [How Claude remembers your project](https://code.claude.com/docs/en/memory#storage-location).*
 
-### 8. Work on a copy where there is no undo (here: Langflow and n8n)
+### 8. Work on a copy where there is no undo
 
 Claude Code can undo its own changes: type <span class="cmd-i cmd-i-c">`/rewind`</span>, and pick the point to go back to. But <span class="cmd-i cmd-i-c">`/rewind`</span> undoes only
 changes to files that Claude Code edited itself.
