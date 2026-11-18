@@ -45,6 +45,9 @@ for example one that may use other models. kingo asks for this key at the first 
 keys, outside the sandbox. Start without `--key`, and the course's key pays again. No line with `--key` in
 `./kingo claude help`? Run `./kingo update` first.
 
+**A key for another provider, for one start:** `./kingo claude --key api --provider anthropic` takes a key for
+Anthropic's API under the name `api`. The last part of this page shows it.
+
 ## Use another model at OpenRouter
 
 <div class="warn" markdown="1">
@@ -174,10 +177,47 @@ to it in one format, the Messages API of Anthropic. Every provider that offers t
 
 A model on your own laptop can work, too: Ollama, a program that runs models on your laptop, offers this format.
 For Claude Code, Ollama asks for a context window of 64,000 tokens or more
-([Ollama's page on Claude Code](https://docs.ollama.com/integrations/claude-code)). We did not test it in kingo.
+([Ollama's page on Claude Code](https://docs.ollama.com/integrations/claude-code)). We did not test it with a real
+Ollama.
 
-You change three things: the key, the route, and the settings. The example is Anthropic's own API, with Claude
-Sonnet 5.5.
+### The short way: `--key` and `--provider`
+
+With a new kingo-pod, one line does it. The example is Anthropic's own API, with a key under the name `api`:
+
+```
+cd ~/kingo-pod && ./kingo claude --key api --provider anthropic
+```
+
+kingo asks for your Anthropic API key and keeps it outside the sandbox. Make the key on platform.claude.com (API
+keys, Create key), and choose one workspace for it. Claude Code then picks one of Anthropic's models, and `/model`
+in Claude Code switches. To name the model yourself, add `--model` and its ID, for example
+`--model claude-sonnet-5-5`.
+
+kingo keeps the provider and the model with the name. The next time, `./kingo claude --key api` is enough. Start
+without `--key`, and the course's model and key are back.
+
+Two more providers work the same way:
+
+- **Ollama, on your laptop:** `./kingo claude --key local --provider ollama --model qwen3.5`. No key. Start Ollama
+  first.
+- **Another provider:** `./kingo claude --key work --provider https://llm.example.com/anthropic --model big-model`.
+  The address is the one that the provider names for `ANTHROPIC_BASE_URL`.
+
+We tested Ollama and another provider with a stand-in for the provider, not with a real one. Step by step, for a
+project of your own: [step 14 of the homework until 23 Nov](https://huettner.io/abp/ws2/hw3-optional/#14-give-a-project-a-key-of-its-own).
+
+<div class="warn" markdown="1">
+
+No line with `--provider` in `./kingo claude help`? Run `./kingo update` first: it needs kingo-pod 1.4.26 or higher,
+or 1.5.25 or higher with Kingo 1.5.
+
+</div>
+
+### The long way: your own profile
+
+The steps below do the same by hand, in files of your own, for the course only. They do not go together with
+`--key`. You change three things: the key, the route, and the settings. The example is Anthropic's own API, with
+Claude Sonnet 5.5.
 
 ### 1. Save the key where the sandbox finds it
 
