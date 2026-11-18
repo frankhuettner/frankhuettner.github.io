@@ -9,7 +9,7 @@
         } catch {}
       })();
     </script><style>.news[data-astro-cid-z6xhinuh]{margin:0;padding:0;list-style:none}.news__item[data-astro-cid-z6xhinuh]{border-top:1px solid var(--rule-soft);padding-block:1.5rem}.news__item[data-astro-cid-z6xhinuh] time[data-astro-cid-z6xhinuh]{white-space:nowrap;padding-top:.35rem}.news__body[data-astro-cid-z6xhinuh] p:first-child{margin-top:0}@media (width<=46rem){.news__item[data-astro-cid-z6xhinuh] time[data-astro-cid-z6xhinuh]{margin-bottom:.4rem;display:block}}
-</style><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><header class="page-head" data-astro-cid-z6xhinuh><p class="label" data-astro-cid-z6xhinuh>Archive</p><h1 data-astro-cid-z6xhinuh>News</h1></header><ul class="news" data-astro-cid-z6xhinuh><li class="news__item rail" data-astro-cid-z6xhinuh><time class="label" datetime="2026-08-09T00:00:00.000Z" data-astro-cid-z6xhinuh>Aug 9, 2026</time><div class="news__body prose" data-astro-cid-z6xhinuh><p><strong>New project:</strong> an auto-hiding toolbar for <a href="https://revealjs.com">reveal.js</a>. Draw, highlight, drop
+</style><link rel="stylesheet" href="/_astro/Base.-WlJp7LX.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><header class="page-head" data-astro-cid-z6xhinuh><p class="label" data-astro-cid-z6xhinuh>Archive</p><h1 data-astro-cid-z6xhinuh>News</h1></header><ul class="news" data-astro-cid-z6xhinuh><li class="news__item rail" data-astro-cid-z6xhinuh><time class="label" datetime="2026-08-09T00:00:00.000Z" data-astro-cid-z6xhinuh>Aug 9, 2026</time><div class="news__body prose" data-astro-cid-z6xhinuh><p><strong>New project:</strong> an auto-hiding toolbar for <a href="https://revealjs.com">reveal.js</a>. Draw, highlight, drop
 in text, or pull up a blank whiteboard mid-sentence — from a toolbar that hides until you want it,
 with ink that survives reloads and exports cleanly to PDF. The <em>bigger idea:</em> a reveal.js deck is
 just <em>HTML, an LLM can build it easily</em> and you can still annotate live as you talk. WYSIWYG editors
@@ -29,6 +29,30 @@ My new tool just makes this a pleasure to present from.</p>
         const open = btn.getAttribute("aria-expanded") === "true";
         btn.setAttribute("aria-expanded", String(!open));
         panel.hidden = open;
+      });
+
+      // Links to other sites open in a new tab and say so (Frank, 18 Nov 2026: "links to external sites should be
+      // marked as such and open in a new tab", on the whole site; "fuß ohne"): links in the page's content, not
+      // those at its foot. Lucide's external-link icon after the text (global.css, a.ext-link) and, for screen
+      // readers, the words. huettner.io is this site under its own name. Here at the end of the page, so that links
+      // that a page's own script makes (its cards, its quizzes) get it too.
+      document.querySelectorAll("main a[href]").forEach((a) => {
+        if (a.classList.contains("ext-link")) return;
+        let url;
+        try {
+          url = new URL(a.getAttribute("href"), location.href);
+        } catch {
+          return;
+        }
+        if (!/^https?:$/.test(url.protocol) || url.host === location.host) return;
+        if (/(^|\.)huettner\.io$/.test(url.hostname) || url.hostname === "frankhuettner.github.io") return;
+        a.target = "_blank";
+        a.rel = [...new Set([...a.rel.split(/\s+/).filter(Boolean), "noopener", "noreferrer"])].join(" ");
+        a.classList.add("ext-link");
+        const sr = document.createElement("span");
+        sr.className = "visually-hidden";
+        sr.textContent = " (opens in a new tab)";
+        a.append(sr);
       });
 
       document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {

@@ -1,0 +1,1147 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Homework until 23 Nov, Part A: The model and the facts · Frank Huettner</title><meta name="description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><link rel="canonical" href="https://huettner.io/abp/ws2/hw3-a/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Frank Huettner — news" href="/rss.xml"><link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🐼&lt;/text&gt;&lt;/svg&gt;"><meta property="og:type" content="website"><meta property="og:title" content="Homework until 23 Nov, Part A: The model and the facts · Frank Huettner"><meta property="og:description" content="Agentic AI in Business, Workshop II: instructions and snippets to copy."><meta property="og:url" content="https://huettner.io/abp/ws2/hw3-a/"><meta name="twitter:card" content="summary"><style>@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/73d1b6f280dc265e.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/1e49bd114953732c.woff2") format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;font-weight:700;font-style:normal;}@font-face{font-family:Inter-e4fb582994510e21;src:url("/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:italic;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:italic;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:500;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial";src:local("Arial");font-display:swap;font-weight:600;font-style:normal;size-adjust:134.2826%;ascent-override:72.1426%;descent-override:17.9629%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}@font-face{font-family:"Inter-e4fb582994510e21 fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:124.7202%;ascent-override:77.6738%;descent-override:19.3402%;line-gap-override:0%;}:root{--font-sans:Inter-e4fb582994510e21,"Inter-e4fb582994510e21 fallback: Arial","Inter-e4fb582994510e21 fallback: Arial Bold",system-ui,-apple-system,"Segoe UI",sans-serif;}</style><link rel="preload" href="/_astro/fonts/73d1b6f280dc265e.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/91753f8d8da3aeb7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/1e49bd114953732c.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/fonts/e868cdf4720e9ea5.woff2" as="font" type="font/woff2" crossorigin><script>
+      // Set the theme before first paint so the page never flashes the wrong one.
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/_part_.Bx8-SwPe.css"><link rel="stylesheet" href="/_astro/Base.-WlJp7LX.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><div class="ws2-guide"><nav class="ws2-pages" aria-label="Workshop II"><p class="label">Workshop II</p><ul><li><a href="/abp/ws2/hw/">Homework</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-a/">Part A · Mailbox</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-b/">Part B · Langflow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-c/">Part C · n8n</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw-optional/">Optional · CloudBeaver</a></li><li><a href="/abp/ws2/s1/">9 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-2/">Block 2 · WS2.1</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-3/">Block 3 · WS2.3 and WS2.4</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-4/">Block 4 · Challenge</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-5/">Block 5 · Inside WS2.3</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-block-6/">Block 6 · Human in the loop</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s1-appendix/">Appendix · Contracts</a></li><li><a href="/abp/ws2/hw2/">Homework until 16 Nov</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-a/">Part A · Set up Claude Code</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-b/">Part B · How it works here</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-recommended/">Recommended · The kimchi mail</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw2-optional/">Optional · SMS</a></li><li><a href="/abp/ws2/s2/">16 November</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-block-1/">Block 1 · A simple webhook</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-block-2/">Block 2 · Your page</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-block-3/">Block 3 · A better search flow</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-block-4/">Block 4 · Your team&#39;s rules</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-team-a/">Team A · KSMC</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-team-b/">Team B · Kgoda</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-team-c/">Team C · K-Motor</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/s2-model/">Change the model</a></li><li><a href="/abp/ws2/hw3/">Homework until 23 Nov</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-a/" aria-current="page">Part A · The model and the facts</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-b/">Part B · Ask well</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-c/">Part C · Stay in control</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-d/">Part D · A project of your own</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-e/">Part E · Shorter commands</a></li><li class="ws2-pages__sub"><a href="/abp/ws2/hw3-optional/">Optional · More room for Claude Code</a></li></ul></nav><div class="ws2-main"><header class="page-head"><p class="label">Agentic AI in Business · Workshop II</p><h1>Homework until 23 Nov, Part A: The model and the facts</h1></header><details class="ws2-toc ws2-toc--mobile"><summary>On this page</summary><ul><li class="ws2-toc__item--3"><a href="#1-know-the-model-inside-claude-code-here-glm-53-flash">1. Know the model inside Claude Code (here: GLM 5.3 Flash)</a></li><li class="ws2-toc__item--3"><a href="#2-give-claude-code-the-facts-of-your-setup-here-kingo-does-it-for-you">2. Give Claude Code the facts of your setup (here: kingo does it for you)</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></details><article class="prose body ws2"><h3 id="1-know-the-model-inside-claude-code-here-glm-53-flash">1. Know the model inside Claude Code (here: GLM 5.3 Flash)</h3>
+<p>Claude Code has two parts:</p>
+<ul>
+<li><strong>The tool</strong> is the program in your terminal, on your laptop. It carries out the steps: it reads files, runs
+commands and shows you what happens. It also keeps the whole conversation since you started Claude Code, and at
+every step, it sends the conversation to the model.</li>
+<li><strong>The model</strong> runs on a server of the company that offers it, not on your laptop. It reads the conversation and
+decides the next step: which file to read, which command to run, what to tell you.</li>
+</ul>
+<p>In the course, the model is GLM 5.3 Flash, by the company Z.ai. The same tool also works with other models, for
+example with Claude, by Anthropic, the company that makes Claude Code. In this homework, “Claude Code” means both parts together, as you see
+them in your terminal. Where it matters which part does something, we say “the tool” or “the model”.</p>
+<figure class="hx hx-model" aria-label="You, Claude Code and the model behind it"><div class="hx-model__row"><div class="hx-card person"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"></path></svg></span><b>You</b><span>write the prompt, and steer</span></div><div class="hx-wire" aria-hidden="true"><i></i></div><div class="hx-card tool"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"></rect><path d="m7 9 3 3-3 3"></path><path d="M13 15h4"></path></svg></span><b>The tool</b><span>on your laptop: carries out the steps, keeps the conversation</span></div><div class="hx-wire hx-wire--late" aria-hidden="true"><i></i></div><div class="hx-card brain"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M12 5v13"></path></svg></span><b>The model</b><span>on a server: decides the next step</span><div class="hx-switch" role="group" aria-label="Which model"><button type="button" data-pick="course" aria-pressed="true"><code>./kingo claude</code></button><button type="button" data-pick="login" aria-pressed="false"><code>./kingo claude --login</code></button></div><p class="hx-pick" data-for="course"><strong>GLM 5.3 Flash</strong> by Z.ai, through OpenRouter, paid with your OpenRouter key</p><p class="hx-pick" data-for="login"><strong>Claude</strong> (Sonnet, Opus …) by Anthropic, paid by your Claude subscription</p></div></div><figcaption>Claude Code: the tool and the model. Each dot is one step: the tool sends the conversation to the model, and the model answers with the next step. The two buttons swap the model; the tool stays the same.</figcaption></figure>
+<p><strong>Your turn: see which model works for you.</strong> Start Claude Code. Paste this line into your terminal. The dollar
+sign before it stands for the terminal: it is not part of the command.</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</span></span></code></pre>
+</div>
+<p><strong>New here?</strong> Start it as in your first start: <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude --in ~/projects/practice</code></span>.</p>
+<p>Look at its first lines. In our tests, they looked like this:</p>
+<figure class="hx hx-banner" aria-label="The first lines of Claude Code in our tests"><div class="hx-term hx-term--still"><div class="hx-banner__lines"> <span class="logo">▐▛███▛█</span>   <b>Claude Code</b> v2.1.322
+<span class="logo">▝▜██████▀</span>  <mark>z-ai/glm-5.3-flash</mark> · <mark>API Usage Billing</mark>
+ <span class="logo">▝▝   ▝▝</span>   ~/kingo-pod/claude</div></div><figcaption>The first lines of Claude Code in our tests, with your folder in the third line. Marked: the model, and how it is paid.</figcaption></figure>
+<p>The second line names the model, <code>z-ai/glm-5.3-flash</code>, and how it is paid: <code>API Usage Billing</code> means per use, here
+with your OpenRouter key. Find the two in your own first lines.</p>
+<p><strong>Commands with a slash.</strong> In Claude Code, where you write your prompts, you can also type commands that start
+with <span class="cmd-i cmd-i-c"><code>/</code></span> (do not type the sparkles: we use them here only to tell these commands apart from terminal commands). They
+control the tool itself, for example:</p>
+<ul>
+<li><span class="cmd-i cmd-i-c"><code>/exit</code></span> ends Claude Code.</li>
+<li><span class="cmd-i cmd-i-c"><code>/clear</code></span> empties the conversation, for a fresh start. Your files stay as they are.</li>
+</ul>
+<p>Type <span class="cmd-i cmd-i-c"><code>/</code></span> now, where you write your prompts: a list of all commands opens, and there are many more. You meet some of
+them in this homework. Leave with <span class="cmd-i cmd-i-c"><code>/exit</code></span>.</p>
+<div class="quiz sort">
+<p><strong>Quiz.</strong> Which part is it, the tool or the model? Sort each card into its box.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What is true</th><th>Which part</th></tr></thead><tbody><tr><td>Runs on your laptop</td><td>The tool</td></tr><tr><td>Runs on a server of the company that offers it</td><td>The model</td></tr><tr><td>Keeps the whole conversation and sends it to the model at every step</td><td>The tool</td></tr><tr><td>Decides which command to run next</td><td>The model</td></tr><tr><td>Empties the conversation when you type <span class="cmd-i cmd-i-c"><code>/clear</code></span></td><td>The tool</td></tr><tr><td>Writes Chinese all of a sudden, in the middle of an English task</td><td>The model</td></tr></tbody></table>
+<details class="more">
+<summary>Why</summary>
+<p>The tool is the part on your laptop: it keeps the conversation and carries out what the model decides. The model is
+the part on a server: it decides the next step and writes the words. So when Claude Code suddenly writes Chinese,
+that comes from the model, and one line steers it back: “Please write in English.”</p>
+</details>
+</div>
+<p><strong>Why this matters.</strong> Each model makes its own kind of mistakes. In our tests, GLM 5.3 Flash went in circles and
+switched to Chinese (step 6); another model may make other mistakes. This homework develops your habits, things that
+you do: how you ask, how you watch, how you check. So they help with any model.</p>
+<p><strong>Four settings decide which model works, and how.</strong> They are the first four rows of this table. <strong>An API is the way
+that programs talk to each other</strong>, here the tool and the server of the model. A token is a short piece of text, often
+part of a word.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th><span class="cmd-i cmd-i-t"><code>./kingo claude</code></span>, for the course or with <code>--in</code></th><th><span class="cmd-i cmd-i-t"><code>./kingo claude --login</code></span></th></tr></thead><tbody><tr><td><strong>The model name:</strong> which model answers</td><td><code>z-ai/glm-5.3-flash</code>, that is GLM 5.3 Flash, by Z.ai</td><td>Claude (Sonnet, Opus …), by Anthropic</td></tr><tr><td><strong>The API URL:</strong> where the tool sends the conversation</td><td>to OpenRouter, which passes it on to a server that runs the model</td><td>to Anthropic</td></tr><tr><td><strong>The API key:</strong> who pays</td><td>you, with your OpenRouter key: about 0.15 US dollars per million tokens in, 0.50 US dollars per million tokens out</td><td>your Claude subscription, up to its limits: your login takes the place of a key</td></tr><tr><td><strong>The context window:</strong> how long the conversation can get</td><td>200,000 tokens: kingo sets this</td><td>1,000,000 tokens on the current Claude models</td></tr><tr><td><span class="cmd-i cmd-i-c"><code>/effort</code></span>: how much the model thinks before it answers</td><td>not for this model</td><td><span class="cmd-i cmd-i-c"><code>/effort low</code></span> to <span class="cmd-i cmd-i-c"><code>/effort max</code></span></td></tr></tbody></table>
+<p>200,000 tokens is a lot: the text of several books. When the conversation gets near the end of its context window,
+the tool shortens it: it replaces the older part with a summary.</p>
+<figure class="hx hx-set" data-mode="name" aria-label="The four settings"><div class="hx-switch" role="group" aria-label="Pick a setting"><button type="button" data-mode="name" aria-pressed="true">Model name</button><button type="button" data-mode="url" aria-pressed="false">API URL</button><button type="button" data-mode="key" aria-pressed="false">API key</button><button type="button" data-mode="ctx" aria-pressed="false">Context window</button></div><div class="hx-set__path"><div class="hx-set__node tool"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"></rect><path d="m7 9 3 3-3 3"></path><path d="M13 15h4"></path></svg></span><b>The tool</b><span>on your laptop</span></div><div class="hx-set__wire"><i class="pkt"><svg class="hx-i key" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5"></circle></svg></i></div><div class="hx-set__node router"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span><b>OpenRouter</b><span><code>openrouter.ai/api</code></span></div><div class="hx-set__wire two"><i class="pkt"><svg class="hx-i key" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5"></circle></svg></i></div><div class="hx-set__node brain"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M12 5v13"></path></svg></span><b>The model</b><span><code>z-ai/glm-5.3-flash</code></span></div></div><div class="hx-set__ctx" aria-hidden="true"><span>The conversation</span><i></i><em>200,000 tokens</em></div><p class="hx-pick" data-for="name"><strong>The model name</strong> says which model answers: <code>z-ai/glm-5.3-flash</code>. OpenRouter passes the conversation on to a server that runs this model.</p><p class="hx-pick" data-for="url"><strong>The API URL</strong> says where the tool sends the conversation, at every step: to <code>https://openrouter.ai/api</code>.</p><p class="hx-pick" data-for="key"><strong>The API key</strong> goes with every request. OpenRouter charges the owner of the key: you.</p><p class="hx-pick" data-for="ctx"><strong>The context window</strong> says how long the conversation can get: 200,000 tokens. Near that limit, the tool replaces the older part with a summary.</p><figcaption>Click the four settings: each one lights up what it decides.</figcaption></figure>
+<p><strong>What leaves your laptop.</strong> At every step, the tool sends the conversation to the model: your prompts, and
+everything that Claude Code read, for example files and mails from your database. With your OpenRouter key, it goes
+to OpenRouter and on to a server that runs the model; with <code>--login</code>, it goes to Anthropic. OpenRouter keeps your prompts
+only if you switch that on, and the company that runs the model has its own rules.</p>
+<ul>
+<li><strong>In your team’s project:</strong> its data goes out to the data centers in the same way when Claude Code reads it as when
+your Langflow flows send it to a model. This is okay: the data is synthetic, made up for the course.</li>
+<li><strong>At work:</strong> let Claude Code read company or customer data only when you may send that data to every company that
+gets it: the company that runs the model, and any service in between, such as OpenRouter.</li>
+</ul>
+<p><strong>The model is set for you.</strong> kingo set the four settings for you. In all six places where Claude Code names a
+model, one for each of its jobs, kingo put GLM 5.3 Flash. In the course, your OpenRouter key works only for the course’s
+models: after <span class="cmd-i cmd-i-c"><code>/model</code></span> and another name, Claude Code shows an error. To go back, type <span class="cmd-i cmd-i-c"><code>/model z-ai/glm-5.3-flash</code></span> in
+Claude Code, or start <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> again in your terminal.</p>
+<p><strong>If you have a Claude Pro or Max subscription, you can change the model with <code>--login</code>,</strong> in the course too: then
+Claude Code uses Anthropic’s models, and your Claude subscription pays. Type <span class="cmd-i cmd-i-c"><code>/model</code></span> in Claude Code and pick one.</p>
+<details class="more">
+<summary>Later: another model, or another API</summary>
+<p><strong>With a key that may use other models,</strong> for example your own key or one at work, type <span class="cmd-i cmd-i-c"><code>/model</code></span> and the model’s
+name in Claude Code. You find the name, its ID, on the model’s page at <a href="https://openrouter.ai/models">openrouter.ai/models</a>, under
+its title. Before you take a model, check four things on its page:</p>
+<ul>
+<li><strong>Tools:</strong> the model must support them. Here, tools are the actions that the model can ask the tool to do, such
+as read a file or run a command. Without them, the model can only write text.</li>
+<li><strong>Images:</strong> the model must read images, too. Once the conversation holds a picture, for example a page that Claude
+Code looked at, a model for text only stops with an error.</li>
+<li><strong>Context:</strong> 200,000 tokens or more: kingo lets the conversation grow that long.</li>
+<li><strong>Price:</strong> per million tokens, in and out. A bigger model often costs more. Give your key a credit limit on
+openrouter.ai (Settings, Keys): the key then stops at that amount.</li>
+</ul>
+<p><strong>In the course folder, you can also change which API Claude Code uses,</strong> for example to use a local model or
+Anthropic’s API instead of OpenRouter. <a href="/abp/ws2/s2-model/#use-anthropics-api-or-another-provider">Change the model</a> shows how to do this.</p>
+</details>
+<details class="more">
+<summary>If you use Claude Code without kingo: the names of the four settings</summary>
+<p>Outside kingo, you set the four settings yourself. Claude Code reads them from environment variables. You can also
+write them into a file <code>settings.json</code>, under <code>"env"</code>: kingo did that for the model names, for the course in
+<code>~/kingo-pod/claude/.claude/settings.json</code>, and for a folder of your own in <code>~/kingo-pod/setup/claude/settings-in.json</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Setting</th><th>Its name in Claude Code</th></tr></thead><tbody><tr><td>The model name</td><td><code>ANTHROPIC_MODEL</code>, and five more, for Claude Code’s other jobs, as in kingo’s <code>settings.json</code></td></tr><tr><td>The API URL</td><td><code>ANTHROPIC_BASE_URL</code>, for OpenRouter: <code>https://openrouter.ai/api</code></td></tr><tr><td>The API key</td><td>for OpenRouter: <code>ANTHROPIC_AUTH_TOKEN</code>, with <code>ANTHROPIC_API_KEY</code> set to <code>""</code>; for Anthropic’s own API: <code>ANTHROPIC_API_KEY</code></td></tr><tr><td>The context window</td><td><code>CLAUDE_CODE_MAX_CONTEXT_TOKENS</code>, for a model that Claude Code does not know</td></tr></tbody></table>
+<ul>
+<li><strong>A key is a password.</strong> Never write it into a file that you share or upload, for example to GitHub. In kingo,
+Claude Code never sees your key: the sandbox keeps it and adds it to each request on the way out.</li>
+<li><strong>Claude Code knows the context window of Claude models only.</strong> For any other model, it assumes one, and that may
+be wrong. So give it the size from the model’s page, or a smaller one. kingo gives 200,000 tokens, though GLM 5.3
+Flash takes more than 1,000,000: so the tool shortens a long conversation earlier, and each step after that costs
+less.</li>
+</ul>
+<p><em>From Anthropic’s pages on <a href="https://code.claude.com/docs/en/env-vars">environment variables</a> and on
+<a href="https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id">the context window of a model it does not know</a>,
+and OpenRouter’s guide <a href="https://openrouter.ai/docs/guides/coding-agents/claude-code-integration">Claude Code integration</a>.</em></p>
+</details>
+<p>Done: you know who answers you, where your words go, and who pays.</p>
+<p><strong>Next time.</strong> When you start Claude Code somewhere new, read its first lines: which model works there, and who
+pays?</p>
+<p><em>From Anthropic’s <a href="https://code.claude.com/docs/en/how-claude-code-works#the-agentic-loop">How Claude Code works</a>:
+“models that reason and tools that act”, and its pages on <a href="https://code.claude.com/docs/en/model-config">model configuration</a>
+and <a href="https://code.claude.com/docs/en/commands">commands</a>. The price and the context window of GLM 5.3 Flash are from
+<a href="https://openrouter.ai/z-ai/glm-5.3-flash">OpenRouter</a>, 18 Nov 2026. What OpenRouter keeps: its pages on
+<a href="https://openrouter.ai/docs/guides/privacy/data-collection">data collection</a> and
+<a href="https://openrouter.ai/docs/guides/privacy/provider-logging">provider logging</a>; the credit limit:
+<a href="https://openrouter.ai/docs/api/reference/limits">Limits</a>.</em></p>
+<p><a href="#step-1">Stuck? Help for step 1</a></p>
+<h3 id="2-give-claude-code-the-facts-of-your-setup-here-kingo-does-it-for-you">2. Give Claude Code the facts of your setup (here: kingo does it for you)</h3>
+<div class="quiz">
+<p><strong>Quiz.</strong> Langflow and n8n come in many versions, and what works in one version may fail in another. How does Claude
+Code know which versions run in your kingo-pod?</p>
+<ul>
+<li>From what the model learned: it knows every version of Langflow and n8n</li>
+<li data-right="">From the files it reads at the start, and from what it finds out while it works</li>
+<li>From the newest documentation on the internet</li>
+</ul>
+<details class="more">
+<summary>Show the answer</summary>
+<p><strong>From its files and from what it finds out.</strong> The model learned a lot about Langflow and n8n, but not which
+versions run on your laptop. The newest documentation is for the newest version, and your setup may run an older one.
+When its files say nothing, Claude Code has to guess and try, and that takes time. A few lines in its files save it
+that search.</p>
+<p>Here, three short files tell Claude Code the facts of your kingo-pod: how to find the versions, where Langflow and n8n
+describe their API (the way other programs talk to them), how long they may take to answer, and what you can do that
+Claude Code cannot.</p>
+</details>
+</div>
+<p>In kingo-pod, kingo gives Claude Code these facts: at every start of <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span>, it writes them into your
+course folder. <strong>Your turn:</strong> see them.</p>
+<details class="more">
+<summary>New here? Look at what kingo writes for the course</summary>
+<p>With <code>--in</code>, kingo writes no file into your folder: these facts are about n8n and Langflow, which you do not have.
+But kingo-pod holds the files that kingo writes for the course, in the folder <code>~/kingo-pod/setup/claude</code>. On a Mac,
+paste this line into your terminal:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>open -e ~/kingo-pod/setup/claude/AGENTS.md</span></span></code></pre>
+</div>
+<p>On Windows, paste this line into the Ubuntu app:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod/setup/claude &#x26;&#x26; notepad.exe AGENTS.md</span></span></code></pre>
+</div>
+<p>Find the section “Facts about this setup”, right above the heading <code># Your team's rules</code>. Its three lines with <code>@</code>
+load the three files in the folder <code>info-for-ai</code>, next to <code>AGENTS.md</code>. Close the file without a change. Then skip
+the four steps below, and read on at <strong>For any project</strong>.</p>
+</details>
+<ol>
+<li>
+<p>Start Claude Code. Is it running already? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then paste this line into your terminal: it updates
+kingo-pod and starts Claude Code.</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ./kingo claude</span></span></code></pre>
+</div>
+<p>Before Claude Code starts, kingo says which files of your course folder it wrote: the first time, <code>AGENTS.md</code> and
+three files in the folder <code>info-for-ai</code>. Do you start Claude Code with <code>--login</code>? Then kingo asks for your
+OpenRouter key if it does not have it yet: paste the key that your flows in Langflow use. With it, Claude Code can
+try the models of your flows.</p>
+</li>
+<li>
+<p>Open your course folder, <code>~/kingo-pod/claude</code>: there Claude Code works for the course. Open a second terminal tab
+(<a href="/abp/ws2/hw3/#your-terminal-in-short">how</a>). On a Mac, paste this line:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>open ~/kingo-pod/claude</span></span></code></pre>
+</div>
+<p>On Windows, paste this line into the Ubuntu app:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod/claude &#x26;&#x26; explorer.exe .</span></span></code></pre>
+</div>
+<p>Tip for Windows: pin the folder, so that you find it again without the command. Click the arrow <strong>↑</strong> next to the
+address bar: now you see the folder <code>claude</code>. Right-click it and choose <strong>Pin to Quick access</strong>. From then on, it is
+in the left column of every File Explorer window.</p>
+<details class="more">
+<summary>Windows: how can Ubuntu open a window of Windows?</summary>
+<p>Ubuntu runs inside Windows, and the two can reach each other:</p>
+<ul>
+<li>From Ubuntu, you can start programs of Windows: <span class="cmd-i cmd-i-t"><code>explorer.exe</code></span> is the File Explorer, <span class="cmd-i cmd-i-t"><code>notepad.exe</code></span> is Notepad.
+The dot in <span class="cmd-i cmd-i-t"><code>explorer.exe .</code></span> means: the folder you are in.</li>
+<li>So the File Explorer shows your folder in Ubuntu, and you can drag files from Windows into it.</li>
+<li>Ubuntu also sees your files in Windows: the drive <code>C:</code> is the folder <code>/mnt/c</code>. Still, keep your work in Ubuntu,
+under <code>~</code>, as this homework does: Microsoft advises it.</li>
+</ul>
+<p><em>From Microsoft’s <a href="https://learn.microsoft.com/en-us/windows/wsl/filesystems">Working across file systems</a>.</em></p>
+</details>
+</li>
+<li>
+<p>In the course folder, open the folder <code>info-for-ai</code>: it holds three short files, <code>kingo-pod.md</code>, <code>langflow.md</code>
+and <code>n8n.md</code>. In the terminal, this line lists them:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ls ~/kingo-pod/claude/info-for-ai</span></span></code></pre>
+</div>
+</li>
+<li>
+<p>Open <code>AGENTS.md</code> in a text editor, as in
+<a href="/abp/ws2/hw2-a/#6-see-the-instructions-claude-code-reads-at-every-start">step 6 of the last homework</a>. On a Mac,
+paste this line into your terminal:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>open -e ~/kingo-pod/claude/AGENTS.md</span></span></code></pre>
+</div>
+<p>On Windows, paste this line into the Ubuntu app:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod/claude &#x26;&#x26; notepad.exe AGENTS.md</span></span></code></pre>
+</div>
+<p>Find the section “Facts about this setup”, right above the heading <code># Your team's rules</code>. Its three lines with
+<code>@</code> load the three files.</p>
+</li>
+</ol>
+<p><strong>What stays, and what kingo writes.</strong> kingo writes everything above <code># Your team's rules</code> anew at every start, and
+the files in <code>info-for-ai</code> too. So your team’s rules go below the heading: there they stay. Did a line of your own
+land above the heading? kingo moves it below the heading and says so. The file as it was, kingo keeps in
+<code>~/kingo-pod/backups/course-files/</code>.</p>
+<p>Done. At every start, the tool now loads these five files, its start files, and gives them to the model, before your
+first prompt:</p>
+<figure class="hx hx-start" aria-label="What Claude Code reads at the start"><ol class="hx-files"><li style="--i:0"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></span><code>CLAUDE.md</code><span>Claude Code opens it first. It points to AGENTS.md: <code>@AGENTS.md</code></span></li><li style="--i:1"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></span><code>AGENTS.md</code><span>how to reach the services, your team's rules, and three lines with <code>@info-for-ai/…</code></span></li><li style="--i:2"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></span><code>info-for-ai/kingo-pod.md</code><span>you, the student, and this kingo-pod</span></li><li style="--i:3"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></span><code>info-for-ai/langflow.md</code><span>this Langflow: how to find its version, where its API is described</span></li><li style="--i:4"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></span><code>info-for-ai/n8n.md</code><span>this n8n: how to find its version, where its API is described</span></li></ol><div class="hx-start__view" aria-hidden="true"><b>The model gets all five</b><span>before your first prompt</span><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></div><figcaption>Each <code>@</code> in a file makes the tool load one more file. The model gets all five, at every start.</figcaption></figure>
+<p><strong>For any project.</strong> Here, kingo wrote the facts for you; in a project of your own, you write them yourself. Claude
+Code loads the file <code>CLAUDE.md</code> at every start. Many other coding agents (tools like <a href="https://opencode.ai">OpenCode</a>)
+read a file <code>AGENTS.md</code> instead, and Claude Code reads that file too when a folder has no <code>CLAUDE.md</code>. Here,
+<code>CLAUDE.md</code> only points to <code>AGENTS.md</code>, so both work.</p>
+<p>Four tips for such a file:</p>
+<ul>
+<li><strong>Keep it short.</strong> The model reads every line, for every task.</li>
+<li><strong>Write down what Claude Code cannot find out by itself</strong>, or only after a long search: for example, which versions
+you run, a decision that is only in your head, and anything you had to correct twice.</li>
+<li><strong>Say how to check the work</strong>, for example with the command that runs the tests.</li>
+<li><strong>Name the limits.</strong> Does Claude Code work in a sandbox? Write down what it may do there, what it may not, and what
+you can do for it. Then it does not lose time finding the limits by trial and error.</li>
+</ul>
+<p><strong>Next time.</strong> When you correct Claude Code twice on the same thing, ask it: “Write this into AGENTS.md, below
+<code># Your team's rules</code>.” From then on, it reads it at every start.</p>
+<p><em>From Anthropic’s <a href="https://code.claude.com/docs/en/best-practices#tell-claude-what-it-cant-see">best practices for Claude Code</a>:
+tell Claude what it can’t see (the limits of a sandbox are such a thing), and
+<a href="https://code.claude.com/docs/en/best-practices#keep-claude-md-short">keep CLAUDE.md short</a>; on <code>AGENTS.md</code>:
+<a href="https://code.claude.com/docs/en/memory#agents-md">How Claude remembers your project</a> and OpenCode’s page on
+<a href="https://opencode.ai/docs/instructions/">instructions</a>. Pin to Quick access: Microsoft’s
+<a href="https://support.microsoft.com/en-us/help/4028316">File Explorer in Windows</a>.</em></p>
+<p><a href="#step-2">Stuck? Help for step 2</a></p>
+<p><strong>Next: <a href="/abp/ws2/hw3-b/">Part B · Ask well →</a></strong></p>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<p>Find your step. Still stuck? In the course, write to Frank: then we fix it together.</p>
+<h4 id="step-1">Step 1</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>New here: kingo says <code>n8n and Langflow must be running first</code></td><td>That is the start for the course. Start Claude Code in your folder: <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude --in ~/projects/practice</code></span>.</td></tr><tr><td>New here: kingo says <code>Claude Code is not installed</code>, or <code>python3 is missing</code></td><td>Paste the line that kingo names after it, then start again.</td></tr><tr><td>After <span class="cmd-i cmd-i-c"><code>/model</code></span> and a name, Claude Code shows an error</td><td>In the course, your key works only for the course’s models. Type <span class="cmd-i cmd-i-c"><code>/model z-ai/glm-5.3-flash</code></span> to go back. With a key that may use other models, check the name on the model’s page, and that the model supports tools and images: <code>No endpoints found …</code> means that OpenRouter found no server for this model that takes your request, for example because the model reads only text and the conversation holds a picture.</td></tr></tbody></table>
+<h4 id="step-2">Step 2</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code> for <code>~/kingo-pod/claude</code></td><td>Claude Code never started in the course folder. Do <a href="/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys">step 4 of the last homework</a> first.</td></tr><tr><td>You see no <code>AGENTS.md</code> in the course folder</td><td>Same as above: start Claude Code once with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, then <span class="cmd-i cmd-i-c"><code>/exit</code></span>.</td></tr><tr><td>There is no folder <code>info-for-ai</code> in your course folder</td><td>kingo-pod is not up to date yet. Paste this line into your terminal again: <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ./kingo claude</code></span>.</td></tr><tr><td>kingo says that your <code>AGENTS.md</code> has no heading ”# Your team’s rules”</td><td>Open <code>AGENTS.md</code>, and write the line <code># Your team's rules</code> above your team’s rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> again.</td></tr><tr><td>kingo says that it moved lines below <code># Your team's rules</code></td><td>They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in <code>~/kingo-pod/backups/course-files/</code>.</td></tr><tr><td><span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> (or <span class="cmd-i cmd-i-t"><code>./kingo claude --login</code></span>) asks for your OpenRouter key, and you do not have it any more</td><td>Make a new key on openrouter.ai (Settings, Keys) and paste it.</td></tr></tbody></table></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#1-know-the-model-inside-claude-code-here-glm-53-flash">1. Know the model inside Claude Code (here: GLM 5.3 Flash)</a></li><li class="ws2-toc__item--3"><a href="#2-give-claude-code-the-facts-of-your-setup-here-kingo-does-it-for-you">2. Give Claude Code the facts of your setup (here: kingo does it for you)</a></li><li class="ws2-toc__item--2"><a href="#if-something-goes-wrong">If something goes wrong</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
+      // Abstract / BibTeX disclosures on publication entries.
+      document.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-disclosure]");
+        if (!btn) return;
+        const key = btn.getAttribute("data-disclosure");
+        const panel = btn.closest(".paper__body")?.querySelector(`[data-panel="${key}"]`);
+        if (!panel) return;
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        panel.hidden = open;
+      });
+
+      // Links to other sites open in a new tab and say so (Frank, 18 Nov 2026: "links to external sites should be
+      // marked as such and open in a new tab", on the whole site; "fuß ohne"): links in the page's content, not
+      // those at its foot. Lucide's external-link icon after the text (global.css, a.ext-link) and, for screen
+      // readers, the words. huettner.io is this site under its own name. Here at the end of the page, so that links
+      // that a page's own script makes (its cards, its quizzes) get it too.
+      document.querySelectorAll("main a[href]").forEach((a) => {
+        if (a.classList.contains("ext-link")) return;
+        let url;
+        try {
+          url = new URL(a.getAttribute("href"), location.href);
+        } catch {
+          return;
+        }
+        if (!/^https?:$/.test(url.protocol) || url.host === location.host) return;
+        if (/(^|\.)huettner\.io$/.test(url.hostname) || url.hostname === "frankhuettner.github.io") return;
+        a.target = "_blank";
+        a.rel = [...new Set([...a.rel.split(/\s+/).filter(Boolean), "noopener", "noreferrer"])].join(" ");
+        a.classList.add("ext-link");
+        const sr = document.createElement("span");
+        sr.className = "visually-hidden";
+        sr.textContent = " (opens in a new tab)";
+        a.append(sr);
+      });
+
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const current = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const next = current === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+      });
+    </script></body></html><script>
+  document.querySelectorAll(".ws2 pre").forEach((pre) => {
+    const box = document.createElement("div");
+    box.className = "snip";
+    pre.replaceWith(box);
+    box.append(pre);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", async () => {
+      const text = pre.innerText.replace(/\n$/, "");
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        getSelection().removeAllRanges();
+        getSelection().addRange(range);
+        document.execCommand("copy");
+      }
+      btn.textContent = "Copied ✓";
+      setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+    box.append(btn);
+  });
+
+  // A click on a picture shows it large; a click or Esc closes it (Frank, 11 Nov 2026).
+  document.querySelectorAll(".ws2 img").forEach((img) =>
+    img.addEventListener("click", () => {
+      const box = document.createElement("div");
+      box.className = "ws2-zoom";
+      box.append(Object.assign(new Image(), { src: img.src, alt: img.alt }));
+      const close = (e) => {
+        if (e.type === "keydown" && e.key !== "Escape") return;
+        box.remove();
+        document.removeEventListener("keydown", close);
+      };
+      box.addEventListener("click", close);
+      document.addEventListener("keydown", close);
+      document.body.append(box);
+    }),
+  );
+
+  // Mark the section being read in the contents on the right.
+  const links = new Map();
+  document.querySelectorAll(".ws2-toc--rail a").forEach((a) => links.set(decodeURIComponent(a.hash.slice(1)), a));
+  const targets = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const seen = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id)));
+        const current = targets.find((t) => seen.has(t.id));
+        links.forEach((a, id) => a.classList.toggle("is-current", !!current && id === current.id));
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+</script><script>
+  // The table of Claude Code's modes (homework until 16 Nov, Part A) as a riddle: the cells start empty, the students
+  // drag the answers in (Frank, 13 Nov 2026: "a drag and drop riddle where students have to drag the entries into the
+  // table"). The Markdown keeps the full table: without this script (Canvas, the page in the zip) it shows all answers.
+  (function () {
+    var table = Array.prototype.find.call(document.querySelectorAll("table"), function (t) {
+      var th = t.querySelector("th");
+      return th && th.textContent.trim() === "What Claude Code wants to do";
+    });
+    if (!table) return;
+    var KINDS = {
+      ask:   { bg: "#fde68a", text: "Claude Code asks you for permission first" },
+      go:    { bg: "#bbf7d0", text: "Claude Code does it without asking you" },
+      check: { bg: "#bfdbfe", text: "The AI checks it first. Safe: Claude Code does it without asking you. Not safe: it does not happen" },
+      stop:  { bg: "#fecaca", text: "The nono sandbox stops it, with or without permission" }
+    };
+    function kindOf(text) {
+      if (/sandbox stops/.test(text)) return ["stop"];
+      if (/AI checks/.test(text)) return ["check"];
+      if (/asks you for permission/.test(text)) return ["ask"];
+      return ["go"];
+    }
+    var original = table.innerHTML, cells = [], picked = null;
+    var css = document.createElement("style");
+    css.textContent =
+      ".mr-chip{display:inline-block;background:var(--mr);color:#1f2937;font-weight:600;border-radius:.4em;padding:.25em .55em;margin:.2em;cursor:grab;line-height:1.35;border:2px solid transparent;user-select:none}" +
+      ".mr-chip.mr-picked{border-color:currentColor;outline:2px solid #2563eb}" +
+      ".mr-pool{margin:.8em 0;padding:.6em;border:1px dashed currentColor;border-radius:.6em}" +
+      ".mr-pool p{margin:.1em .2em .4em;font-size:.95em}" +
+      "td.mr-cell{min-width:8.5em;height:4.2em;cursor:pointer;vertical-align:middle}" +
+      "td.mr-cell.mr-empty{background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(128,128,128,.12) 8px 16px)}" +
+      "td.mr-cell.mr-over{outline:2px solid #2563eb;outline-offset:-2px}" +
+      "td.mr-cell.mr-wrong{outline:3px solid #dc2626;outline-offset:-3px}" +
+      "td.mr-cell.mr-right{outline:3px solid #16a34a;outline-offset:-3px}" +
+      "td.mr-cell .mr-chip{cursor:pointer;margin:0;font-size:.92em}" +
+      ".mr-bar{margin:.6em 0;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}" +
+      ".mr-bar button{font:inherit;padding:.35em .8em;border-radius:.4em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}";
+    document.head.appendChild(css);
+
+    function chip(kind) {
+      var c = document.createElement("span");
+      c.className = "mr-chip"; c.style.setProperty("--mr", KINDS[kind].bg);
+      c.textContent = KINDS[kind].text; c.dataset.kind = kind;
+      return c;
+    }
+    function put(td, kind) {
+      td.innerHTML = ""; td.classList.remove("mr-wrong", "mr-right", "mr-empty");
+      if (kind) { td.appendChild(chip(kind)); td.dataset.put = kind; }
+      else { delete td.dataset.put; td.classList.add("mr-empty"); }
+    }
+    function start() {
+      cells = []; picked = null;
+      table.innerHTML = original;
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.slice.call(tr.children, 1).forEach(function (td, col) {
+          var ok = kindOf(td.textContent);
+          // A file in its own folder, in auto mode: "without asking" and "the AI checks first" both count.
+          if (col === 2 && ok[0] === "go") ok.push("check");
+          td.dataset.ok = ok.join(" "); td.className = "mr-cell"; put(td, null); cells.push(td);
+          td.addEventListener("click", function () {
+            if (picked) put(td, picked); else if (td.dataset.put) put(td, null);
+            status.textContent = "";
+          });
+          td.addEventListener("dragover", function (e) { e.preventDefault(); td.classList.add("mr-over"); });
+          td.addEventListener("dragleave", function () { td.classList.remove("mr-over"); });
+          td.addEventListener("drop", function (e) {
+            e.preventDefault(); td.classList.remove("mr-over");
+            var k = e.dataTransfer.getData("text/plain"); if (KINDS[k]) put(td, k);
+            status.textContent = "";
+          });
+        });
+      });
+      pool.hidden = false; bar.hidden = false; again.hidden = true; status.textContent = "";
+    }
+
+    var pool = document.createElement("div"); pool.className = "mr-pool";
+    var hint = document.createElement("p");
+    hint.textContent = "Your turn: what happens in each case? Drag an answer into each empty cell. Or click an answer, then click the cells where it belongs. You can use each answer many times.";
+    pool.appendChild(hint);
+    Object.keys(KINDS).forEach(function (k) {
+      var c = chip(k); c.draggable = true;
+      c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", k); });
+      c.addEventListener("click", function () {
+        picked = picked === k ? null : k;
+        Array.prototype.forEach.call(pool.querySelectorAll(".mr-chip"), function (x) {
+          x.classList.toggle("mr-picked", x.dataset.kind === picked);
+        });
+      });
+      pool.appendChild(c);
+    });
+    var bar = document.createElement("div"); bar.className = "mr-bar";
+    var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+    var show = document.createElement("button"); show.type = "button"; show.textContent = "Show the solution";
+    var status = document.createElement("span");
+    bar.appendChild(check); bar.appendChild(show); bar.appendChild(status);
+    var again = document.createElement("button"); again.type = "button"; again.textContent = "Try the riddle again"; again.hidden = true;
+    again.className = "mr-again";
+    var againBar = document.createElement("div"); againBar.className = "mr-bar"; againBar.appendChild(again);
+    table.parentNode.insertBefore(pool, table);
+    table.parentNode.insertBefore(bar, table.nextSibling);
+    bar.parentNode.insertBefore(againBar, bar.nextSibling);
+
+    check.addEventListener("click", function () {
+      var right = 0, empty = 0;
+      cells.forEach(function (td) {
+        td.classList.remove("mr-wrong", "mr-right");
+        if (!td.dataset.put) { empty++; return; }
+        var ok = td.dataset.ok.split(" ").indexOf(td.dataset.put) >= 0;
+        td.classList.add(ok ? "mr-right" : "mr-wrong"); if (ok) right++;
+      });
+      status.textContent = right === cells.length ? "All " + cells.length + " right. Well done!"
+        : right + " of " + cells.length + " right" + (empty ? ", " + empty + " still empty" : "") + ". Red cells: try another answer.";
+    });
+    show.addEventListener("click", function () {
+      table.innerHTML = original; pool.hidden = true; bar.hidden = true; again.hidden = false;
+    });
+    again.addEventListener("click", start);
+    start();
+  })();
+</script><script>
+  // The quizzes: the options of a <div class="quiz"> become buttons; a click says right or not and shows the answer
+  // that the Markdown keeps in a <details> (Frank, 13 Nov 2026: "1. B", buttons on the site, the fold elsewhere).
+  document.querySelectorAll(".ws2 .quiz").forEach(function (quiz) {
+    var list = quiz.querySelector("ul"), fold = quiz.querySelector("details");
+    if (!list || !fold || !list.querySelector("li[data-right]")) return;
+    var options = document.createElement("div"); options.className = "quiz-options";
+    var verdict = document.createElement("p"); verdict.className = "quiz-verdict"; verdict.hidden = true;
+    var answer = document.createElement("div"); answer.className = "quiz-answer"; answer.hidden = true;
+    Array.prototype.forEach.call(fold.children, function (node) {
+      if (node.tagName !== "SUMMARY") answer.appendChild(node.cloneNode(true));
+    });
+    Array.prototype.forEach.call(list.children, function (li) {
+      var btn = document.createElement("button"); btn.type = "button"; btn.innerHTML = li.innerHTML;
+      var right = li.hasAttribute("data-right"); if (right) btn.setAttribute("data-right", "");   // the hw3 block lights it up after a wrong choice
+      btn.addEventListener("click", function () {
+        Array.prototype.forEach.call(options.children, function (b) { b.classList.remove("right", "wrong"); });
+        btn.classList.add(right ? "right" : "wrong");
+        verdict.textContent = right ? "Right!" : "Not quite. Here is the answer:";
+        verdict.hidden = false; answer.hidden = false;
+      });
+      options.appendChild(btn);
+    });
+    list.replaceWith(options); fold.replaceWith(verdict); verdict.after(answer);
+  });
+</script><script>
+  // A match quiz: <div class="quiz match"> around a table of two columns in the course repo's Markdown. The right
+  // column starts empty and its entries wait above the table, shuffled; the students put each one next to its piece
+  // (Frank, 13 Nov 2026: "mach eine box, die uns 'cd ~/kingo-pod && ./kingo update' erklärt; mit match quizz").
+  // Without this script the table stays as it is, as the explanation.
+  document.querySelectorAll(".ws2 .quiz.match").forEach(function (box) {
+    var table = box.querySelector("table");
+    if (!table) return;
+    if (!document.getElementById("ma-style")) {
+      var css = document.createElement("style"); css.id = "ma-style";
+      css.textContent =
+        ".ma-chip{display:inline-block;background:#e0e7ff;color:#1f2937;border-radius:.4em;padding:.25em .6em;margin:.2em;cursor:grab;line-height:1.35;border:2px solid transparent;user-select:none}" +
+        ".ma-chip code{background:transparent;color:inherit;padding:0}" +
+        ".ma-chip.ma-picked{outline:2px solid #2563eb}" +
+        ".ma-pool{margin:.6em 0;padding:.5em;border:1px dashed currentColor;border-radius:.6em;min-height:2.6em}" +
+        "td.ma-cell{cursor:pointer;height:2.9em;min-width:14em;vertical-align:middle}" +
+        "td.ma-cell.ma-empty{background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(128,128,128,.12) 8px 16px)}" +
+        "td.ma-cell.ma-over{outline:2px solid #2563eb;outline-offset:-2px}" +
+        "td.ma-cell.ma-right{outline:3px solid #16a34a;outline-offset:-3px}" +
+        "td.ma-cell.ma-wrong{outline:3px solid #dc2626;outline-offset:-3px}" +
+        "td.ma-cell .ma-chip{margin:0;cursor:pointer}" +
+        ".ma-bar{margin:.6em 0;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}" +
+        ".ma-bar button{font:inherit;padding:.35em .8em;border-radius:.4em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}";
+      document.head.appendChild(css);
+    }
+    var original = table.innerHTML, answers, cells, picked = null;
+    var pool = document.createElement("div"); pool.className = "ma-pool";
+    var bar = document.createElement("div"); bar.className = "ma-bar";
+    var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+    var show = document.createElement("button"); show.type = "button"; show.textContent = "Show the solution";
+    var again = document.createElement("button"); again.type = "button"; again.textContent = "Try again"; again.hidden = true;
+    var status = document.createElement("span");
+    bar.appendChild(check); bar.appendChild(show); bar.appendChild(again); bar.appendChild(status);
+    table.parentNode.insertBefore(pool, table);
+    table.parentNode.insertBefore(bar, table.nextSibling);
+
+    function pick(chip) {
+      picked = picked === chip ? null : chip;
+      Array.prototype.forEach.call(box.querySelectorAll(".ma-chip"), function (c) { c.classList.toggle("ma-picked", c === picked); });
+    }
+    function chip(i) {
+      var c = document.createElement("span"); c.className = "ma-chip"; c.innerHTML = answers[i]; c.dataset.i = i; c.draggable = true;
+      c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", String(i)); picked = null; });
+      c.addEventListener("click", function (e) { if (c.parentNode === pool) { e.stopPropagation(); pick(c); } });
+      return c;
+    }
+    function find(i) { return box.querySelector('.ma-chip[data-i="' + i + '"]'); }
+    function place(td, c) {   // one answer per cell: what lay there goes back above the table
+      if (!c) return;
+      var old = td.querySelector(".ma-chip"); if (old && old !== c) pool.appendChild(old);
+      var from = c.parentNode; td.appendChild(c);
+      if (from && from !== td && from.classList && from.classList.contains("ma-cell")) from.classList.add("ma-empty");
+      td.classList.remove("ma-empty", "ma-right", "ma-wrong"); c.classList.remove("ma-picked"); picked = null; status.textContent = "";
+    }
+    function start() {
+      table.innerHTML = original; pool.innerHTML = ""; picked = null; answers = []; cells = [];
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr, i) {
+        var td = tr.children[1]; answers.push(td.innerHTML); td.innerHTML = ""; td.className = "ma-cell ma-empty"; td.dataset.i = i; cells.push(td);
+        td.addEventListener("click", function () {
+          var mine = td.querySelector(".ma-chip");
+          if (picked) place(td, picked);
+          else if (mine) { pool.appendChild(mine); td.classList.add("ma-empty"); td.classList.remove("ma-right", "ma-wrong"); status.textContent = ""; }
+        });
+        td.addEventListener("dragover", function (e) { e.preventDefault(); td.classList.add("ma-over"); });
+        td.addEventListener("dragleave", function () { td.classList.remove("ma-over"); });
+        td.addEventListener("drop", function (e) { e.preventDefault(); td.classList.remove("ma-over"); place(td, find(e.dataTransfer.getData("text/plain"))); });
+      });
+      var order = answers.map(function (_, i) { return i; });
+      for (var k = order.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = order[k]; order[k] = order[j]; order[j] = t; }
+      if (order.length > 1 && order.every(function (v, i) { return v === i; })) order.push(order.shift());
+      order.forEach(function (i) { pool.appendChild(chip(i)); });
+      pool.hidden = false; check.hidden = false; show.hidden = false; again.hidden = true; status.textContent = "Drag each answer to its row. Or click an answer, then its row.";
+    }
+    check.addEventListener("click", function () {
+      var right = 0;
+      cells.forEach(function (td) {
+        var c = td.querySelector(".ma-chip"); td.classList.remove("ma-right", "ma-wrong");
+        if (!c) return;
+        var ok = c.dataset.i === td.dataset.i; td.classList.add(ok ? "ma-right" : "ma-wrong"); if (ok) right++;
+      });
+      status.textContent = right === cells.length ? "All " + cells.length + " right. Well done!" : right + " of " + cells.length + " right.";
+    });
+    show.addEventListener("click", function () { table.innerHTML = original; pool.hidden = true; check.hidden = true; show.hidden = true; again.hidden = false; status.textContent = ""; });
+    again.addEventListener("click", start);
+    start();
+  });
+</script><script>
+  // hw3's pictures and the sort quiz (Frank, 17 Nov 2026). Without this script every picture shows all its text at
+  // once and the sort quiz stays a table, with the answers.
+  (function () {
+    document.documentElement.classList.add("hx-js");
+    var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var each = function (sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); };
+
+    // A switch of two: the course's model or Claude (step 1), its own finish line or yours (step 4).
+    each(".ws2 .hx-model, .ws2 .hx-loop, .ws2 .hx-set, .ws2 .hx-box", function (fig) {
+      var buttons = fig.querySelectorAll(".hx-switch button"), picks = fig.querySelectorAll(".hx-pick");
+      var key = function (b) { return b.dataset.pick || b.dataset.mode; };
+      var pick = function (v) {
+        Array.prototype.forEach.call(buttons, function (b) { b.setAttribute("aria-pressed", String(key(b) === v)); });
+        Array.prototype.forEach.call(picks, function (p) { p.classList.toggle("on", p.dataset.for === v); });
+        fig.dataset.mode = v;
+      };
+      Array.prototype.forEach.call(buttons, function (b) { b.addEventListener("click", function () { pick(key(b)); }); });
+      pick(key(buttons[0]));
+    });
+
+    // The replay of our test run (step 6): one line after the other; Esc, the button or the key, stops it.
+    each(".ws2 .hx-term", function (t) {
+      var log = t.querySelector(".hx-term__log");
+      if (!log) return;   // the first lines of Claude Code (step 1): a still picture
+      var lines = Array.prototype.slice.call(log.children);
+      var bar = t.querySelector(".hx-term__bar"), esc = t.querySelector(".hx-esc"), play = t.querySelector(".hx-play");
+      var note = t.querySelector(".hx-term__note"), keys = t.querySelector(".hx-term__keys");
+      var more = document.createElement("button"); more.type = "button"; more.className = "hx-more";
+      more.textContent = "Show what came next"; more.hidden = true; keys.appendChild(more);
+      var shown = 0, timer = null, running = false;
+      var show = function (n) {
+        shown = n;
+        lines.forEach(function (l, k) { l.classList.toggle("on", k < n); });
+        log.scrollTop = log.scrollHeight;
+        bar.style.setProperty("--p", String(n / lines.length));
+      };
+      var reps = function () { return lines.filter(function (l) { return l.classList.contains("rep") && l.classList.contains("on"); }).length; };
+      var end = function (pressed) {
+        clearTimeout(timer); running = false; esc.disabled = true; play.textContent = "Play again";
+        t.classList.add(pressed ? "is-stopped" : "is-done");
+        more.hidden = !pressed || shown >= lines.length;
+        var n = reps();
+        note.textContent = pressed
+          ? (n === 0 ? "You pressed Esc early. That is fine: a question costs you only a minute. "
+             : n === 1 ? "You pressed Esc after the first marked line. Good: after it, Claude Code said the same thing three more times, each time a little differently. "
+             : "You pressed Esc after Claude Code had said the same thing " + n + " times (marked). Good that you stopped it. ")
+            + "Now ask Claude Code what it is trying, and why the last try did not work. In our test, nobody pressed Esc: Claude Code went on for 23 minutes."
+          : "Nobody pressed Esc: Claude Code went on for 23 minutes. It said the same thing four times (marked), switched to Chinese, and wrote its last report in Chinese too. Press Play again, and stop it where you would.";
+      };
+      var tick = function () {
+        show(shown + 1);
+        if (shown >= lines.length) return end(false);
+        var last = lines[shown - 1].classList;
+        timer = setTimeout(tick, last.contains("think") ? 1200 : last.contains("you") ? 1000 : 2000);
+      };
+      var start = function () {
+        clearTimeout(timer); t.classList.remove("is-done", "is-stopped"); note.textContent = ""; more.hidden = true;
+        show(0); running = true; esc.disabled = false; play.textContent = "Start again"; tick();
+      };
+      esc.addEventListener("click", function () { if (running) end(true); });
+      play.addEventListener("click", start);
+      more.addEventListener("click", function () { show(lines.length); more.hidden = true; t.classList.remove("is-stopped"); t.classList.add("is-done"); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && running) { e.preventDefault(); end(true); } });
+      t.addEventListener("hx-in", function () { if (!calm && !running && shown === 0) start(); });
+    });
+
+    // What the model reads at every step (step 7): a third correction adds to it, /clear empties it.
+    each(".ws2 .hx-ctx", function (fig) {
+      var list = fig.querySelector(".hx-ctx__blocks"), say = fig.querySelector(".hx-ctx__say");
+      var original = list.innerHTML, tries = 2, cleared = false;
+      var add = function (cls, text) {
+        var li = document.createElement("li"); li.className = cls + " new"; li.textContent = text; list.appendChild(li);
+      };
+      fig.querySelector('[data-act="more"]').addEventListener("click", function () {
+        if (cleared) { list.innerHTML = original; tries = 2; cleared = false; }
+        tries += 1; add("bad", "Try " + tries + " ✗"); add("you", "Correction");
+        say.textContent = "Now the model reads " + tries + " failed tries at every step. And on your OpenRouter key, every step sends all of it again.";
+      });
+      fig.querySelector('[data-act="clear"]').addEventListener("click", function () {
+        if (cleared) return;
+        var old = Array.prototype.slice.call(list.querySelectorAll("li:not(.start)"));
+        old.forEach(function (li, k) { li.style.setProperty("--k", String(k)); li.classList.add("out"); });
+        setTimeout(function () {
+          old.forEach(function (li) { li.remove(); });
+          add("fresh", "One new prompt, with what you learned");
+        }, calm ? 0 : 420 + old.length * 40);
+        cleared = true;
+        say.textContent = "A fresh start: the model gets the start files again, and the failed tries are gone. Press the other button to start over.";
+      });
+    });
+
+    // The habits on one page as cards (the table stays, hidden, for the reader without styles).
+    each(".ws2 .habits table", function (table) {
+      var ol = document.createElement("ol"); ol.className = "habit-cards";
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr, i) {
+        var li = document.createElement("li"); li.style.setProperty("--i", String(i));
+        var b = document.createElement("b"); b.innerHTML = tr.children[0].innerHTML;
+        var gain = document.createElement("span"); gain.className = "gain"; gain.innerHTML = tr.children[1].innerHTML;
+        var src = document.createElement("span"); src.className = "src"; src.innerHTML = "Source: " + tr.children[2].innerHTML;
+        li.append(b, gain, src); ol.appendChild(li);
+      });
+      table.before(ol); table.hidden = true;
+    });
+
+    // The sort quiz: the cards wait above the boxes, shuffled; drag each into its box, or click it, then the box.
+    each(".ws2 .quiz.sort", function (box) {
+      var table = box.querySelector("table");
+      if (!table) return;
+      var rows = Array.prototype.map.call(table.querySelectorAll("tbody tr"), function (tr) {
+        return { html: tr.children[0].innerHTML, bin: tr.children[1].textContent.trim() };
+      });
+      var names = [];
+      rows.forEach(function (r) { if (names.indexOf(r.bin) < 0) names.push(r.bin); });
+      var pool = document.createElement("div"); pool.className = "sq-pool";
+      var bins = document.createElement("div"); bins.className = "sq-bins";
+      var bar = document.createElement("div"); bar.className = "sq-bar";
+      var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+      var solve = document.createElement("button"); solve.type = "button"; solve.textContent = "Show the solution";
+      var again = document.createElement("button"); again.type = "button"; again.textContent = "Try again";
+      var status = document.createElement("span"); status.setAttribute("aria-live", "polite");
+      bar.append(check, solve, again, status);
+      var picked = null;
+      var zones = names.map(function (name) {
+        var z = document.createElement("div"); z.className = "sq-bin"; z.dataset.bin = name;
+        var head = document.createElement("b"); head.textContent = name; z.appendChild(head);
+        z.addEventListener("click", function () { if (picked) put(picked, z); });
+        z.addEventListener("dragover", function (e) { e.preventDefault(); z.classList.add("over"); });
+        z.addEventListener("dragleave", function () { z.classList.remove("over"); });
+        z.addEventListener("drop", function (e) {
+          e.preventDefault(); z.classList.remove("over");
+          var c = box.querySelector('.sq-chip[data-i="' + e.dataTransfer.getData("text/plain") + '"]');
+          if (c) put(c, z);
+        });
+        bins.appendChild(z); return z;
+      });
+      var put = function (c, where) {
+        fly(c, where); c.classList.remove("picked", "right", "wrong"); picked = null; status.textContent = "";
+      };
+      var chip = function (i) {
+        var c = document.createElement("span"); c.className = "sq-chip"; c.innerHTML = rows[i].html; c.dataset.i = String(i);
+        c.draggable = true; c.tabIndex = 0;
+        c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", String(i)); });
+        c.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (c.parentNode !== pool) { put(c, pool); return; }
+          picked = picked === c ? null : c;
+          Array.prototype.forEach.call(box.querySelectorAll(".sq-chip"), function (o) { o.classList.toggle("picked", o === picked); });
+        });
+        c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); c.click(); } });
+        return c;
+      };
+      var start = function () {
+        pool.innerHTML = ""; zones.forEach(function (z) { Array.prototype.forEach.call(z.querySelectorAll(".sq-chip"), function (c) { c.remove(); }); });
+        var order = rows.map(function (_, i) { return i; });
+        for (var k = order.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = order[k]; order[k] = order[j]; order[j] = t; }
+        order.forEach(function (i) { pool.appendChild(chip(i)); });
+        pool.hidden = false; check.hidden = false; solve.hidden = false; again.hidden = true;
+        status.textContent = "Drag each card into its box. Or click a card, then its box.";
+      };
+      check.addEventListener("click", function () {
+        var right = 0, placed = 0, wrong = [];
+        zones.forEach(function (z) {
+          Array.prototype.forEach.call(z.querySelectorAll(".sq-chip"), function (c) {
+            placed++; var ok = rows[+c.dataset.i].bin === z.dataset.bin;
+            c.classList.toggle("right", ok); c.classList.toggle("wrong", !ok); if (ok) right++; else wrong.push(c);
+          });
+        });
+        if (right === rows.length) {
+          status.textContent = "All " + rows.length + " right. Well done!";
+          pool.hidden = true; check.hidden = true; solve.hidden = true; again.hidden = false;
+          burst(bins); solved(box);
+          return;
+        }
+        status.textContent = right + " of " + rows.length + " right." +
+          (wrong.length ? " The wrong ones go back to the top: try them again." : "") +
+          (placed < rows.length ? " " + (rows.length - placed) + " still to sort." : "");
+        setTimeout(function () {
+          wrong.forEach(function (c) { if (c.classList.contains("wrong")) { c.classList.remove("wrong"); fly(c, pool); } });
+        }, calm ? 700 : 1100);
+      });
+      solve.addEventListener("click", function () {
+        Array.prototype.forEach.call(box.querySelectorAll(".sq-chip"), function (c) {
+          var z = zones[names.indexOf(rows[+c.dataset.i].bin)]; fly(c, z); c.classList.remove("picked", "wrong"); c.classList.add("right");
+        });
+        check.hidden = true; solve.hidden = true; again.hidden = false; status.textContent = "";
+        setTimeout(function () { pool.hidden = true; }, calm ? 0 : 360);
+      });
+      again.addEventListener("click", start);
+      table.before(pool); table.before(bins); table.before(bar); table.hidden = true;
+      start();
+    });
+
+    // ---- More to click, more motion (Frank, 18 Nov 2026). ----
+
+    // A burst of colour where something was solved; none for readers who asked for less motion.
+    function burst(el) {
+      if (calm || !el || !el.getBoundingClientRect) return;
+      var r = el.getBoundingClientRect(), host = document.createElement("span");
+      host.className = "hx-burst"; host.setAttribute("aria-hidden", "true");
+      host.style.left = (r.left + r.width / 2 + window.scrollX) + "px";
+      host.style.top = (r.top + r.height / 2 + window.scrollY) + "px";
+      for (var k = 0; k < 16; k++) {
+        var p = document.createElement("i"), a = k / 16 * 2 * Math.PI + Math.random() * 0.4, d = 38 + Math.random() * 48;
+        p.style.setProperty("--x", Math.round(Math.cos(a) * d) + "px");
+        p.style.setProperty("--y", Math.round(Math.sin(a) * d) + "px");
+        p.style.setProperty("--c", ["#ff6c0f", "#2563eb", "#15803d", "#f5b301"][k % 4]);
+        host.appendChild(p);
+      }
+      document.body.appendChild(host);
+      setTimeout(function () { host.remove(); }, 1000);
+    }
+
+    // Move an element to its new place, and let it fly there from where it was.
+    function fly(el, where) {
+      var a = el.isConnected ? el.getBoundingClientRect() : null;
+      where.appendChild(el);
+      if (calm || !a || !el.animate) return;
+      var b = el.getBoundingClientRect();
+      el.animate([{ transform: "translate(" + (a.left - b.left) + "px, " + (a.top - b.top) + "px)" }, { transform: "none" }],
+        { duration: 340, easing: "cubic-bezier(0.2, 0.7, 0.3, 1)" });
+    }
+
+    // The quizzes of a page: a row of dots in each, one per quiz, filled when it is solved (kept in this browser).
+    var quizzes = Array.prototype.slice.call(document.querySelectorAll(".ws2 .quiz"));
+    var qkey = "hx-quiz:" + location.pathname, qdone = {};
+    try { qdone = JSON.parse(localStorage.getItem(qkey) || "{}") || {}; } catch (e) { qdone = {}; }
+    function paintDots() {
+      quizzes.forEach(function (q) {
+        Array.prototype.forEach.call(q.querySelectorAll(".qz-dots i"), function (dot, k) { dot.classList.toggle("on", !!qdone[k]); });
+        q.classList.toggle("is-solved", !!qdone[q.dataset.qi]);
+      });
+    }
+    function solved(q) {
+      if (!q || q.dataset.qi === undefined) return;
+      var first = !qdone[q.dataset.qi];
+      qdone[q.dataset.qi] = 1;
+      try { localStorage.setItem(qkey, JSON.stringify(qdone)); } catch (e) {}
+      paintDots();
+      if (first) burst(q.querySelector(".qz-dots i.me"));
+    }
+    quizzes.forEach(function (q, i) {
+      q.dataset.qi = String(i);
+      if (quizzes.length < 2) return;
+      var row = document.createElement("div"); row.className = "qz-dots";
+      var lab = document.createElement("span"); lab.textContent = "Quiz " + (i + 1) + " of " + quizzes.length + " on this page";
+      row.appendChild(lab);
+      quizzes.forEach(function (_, k) {
+        var dot = document.createElement("i"); dot.setAttribute("aria-hidden", "true"); if (k === i) dot.className = "me"; row.appendChild(dot);
+      });
+      q.prepend(row);
+    });
+    paintDots();
+
+    // A choice quiz: right gives a burst; after a wrong choice, the right answer lights up.
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest(".ws2 .quiz-options button") : null;
+      if (!b) return;
+      var opts = b.parentNode, q = b.closest(".quiz");
+      Array.prototype.forEach.call(opts.children, function (o) { o.classList.remove("hx-hint"); });
+      if (b.hasAttribute("data-right")) { burst(b); solved(q); return; }
+      b.style.animation = "none"; void b.offsetWidth; b.style.animation = "";
+      var r = opts.querySelector("[data-right]");
+      if (r) setTimeout(function () { if (!r.classList.contains("right")) r.classList.add("hx-hint"); }, 500);
+    });
+
+    // A match quiz: a burst when all are right (its own script writes "All … right").
+    each(".ws2 .quiz.match", function (q) {
+      var bar = q.querySelector(".ma-bar");
+      if (!bar || !window.MutationObserver) return;
+      var was = false;
+      new MutationObserver(function () {
+        var now = /All \d+ right/.test(bar.textContent);
+        if (now && !was) { burst(bar); solved(q); }
+        was = now;
+      }).observe(bar, { subtree: true, childList: true, characterData: true });
+    });
+
+    // The terminal for practice (before step 1): a click types the command, then Ubuntu's answer appears. As in a
+    // real terminal, a new line with the folder waits after each command. cd answers nothing, so a hint says what
+    // changed (Frank, 18 Nov 2026: "after cd and after cd ~/kingo-pod, nothing is happening").
+    each(".ws2 .hx-try", function (fig) {
+      var log = fig.querySelector(".hx-try__log"), out;
+      try { out = JSON.parse(fig.dataset.out); } catch (e) { return; }
+      var cwd = "~", busy = false, wait;
+      var line = function (cls, text) {
+        var li = document.createElement("li"); if (cls) li.className = cls; if (text) li.textContent = text;
+        log.appendChild(li); log.scrollTop = log.scrollHeight; return li;
+      };
+      var prompt = function () {
+        var pr = document.createElement("span");
+        pr.className = "pr"; pr.textContent = "anna@laptop:" + cwd + "$";
+        wait = line("you typing"); wait.appendChild(pr);
+      };
+      var named = function (f) { return f === "~" ? "~, your home folder" : f; };
+      log.innerHTML = "";
+      line("hint", "Click a command below.");
+      prompt();
+      var run = function (cmd) {
+        if (busy) return;
+        busy = true;
+        Array.prototype.forEach.call(log.querySelectorAll(".hint"), function (h) { h.remove(); });
+        var li = wait, typed = document.createTextNode(""), k = 0;
+        li.appendChild(typed);
+        var step = function () {
+          if (!calm && k < cmd.length) { typed.data += cmd.charAt(k++); setTimeout(step, 45); return; }
+          typed.data = cmd; li.classList.remove("typing");
+          if (cmd === "clear") log.innerHTML = "";
+          else if (cmd === "cd" || cmd === "cd ~/kingo-pod") {
+            var to = cmd === "cd" ? "~" : "~/kingo-pod";
+            line("hint", "cd shows nothing: it only changes the folder. " + (to === cwd
+              ? "The folder stays " + named(to) + ": you were in it already."
+              : "Before the dollar sign, you now see " + named(to) + "."));
+            cwd = to;
+          }
+          else if (out[cwd] && out[cwd][cmd]) line("out", out[cwd][cmd]);
+          prompt();
+          busy = false;
+        };
+        setTimeout(step, calm ? 0 : 120);
+      };
+      Array.prototype.forEach.call(fig.querySelectorAll(".hx-try__keys button"), function (b) {
+        b.addEventListener("click", function () { run(b.dataset.cmd); });
+      });
+    });
+
+    // The prompt builder (step 5): each button adds one piece; the bar shows how much is left to guess.
+    each(".ws2 .hx-build", function (fig) {
+      var buttons = Array.prototype.slice.call(fig.querySelectorAll(".hx-build__keys button"));
+      var say = fig.querySelector(".hx-build__meter em"), words = ["a lot", "still a lot", "less", "little", "almost nothing"];
+      var paint = function (fresh) {
+        var n = buttons.filter(function (b) { return b.getAttribute("aria-pressed") === "true"; }).length;
+        fig.style.setProperty("--n", String(n));
+        say.textContent = words[Math.min(n, words.length - 1)];
+        var all = n === buttons.length;
+        if (all && fresh && !fig.classList.contains("is-done")) burst(fig.querySelector(".hx-build__prompt"));
+        fig.classList.toggle("is-done", all);
+      };
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var on = b.getAttribute("aria-pressed") !== "true";
+          b.setAttribute("aria-pressed", String(on));
+          b.textContent = (on ? "✓ " : "+ ") + b.textContent.slice(2);
+          var li = fig.querySelector('.hx-build__prompt li[data-k="' + b.dataset.k + '"]');
+          if (li) li.classList.toggle("on", on);
+          paint(true);
+        });
+      });
+      paint(false);
+    });
+
+    // The website's five steps (step 10): tick each one off; all five give a burst (kept in this browser).
+    each(".ws2 .checklist", function (box) {
+      var list = box.querySelector("ol");
+      if (!list) return;
+      var items = Array.prototype.slice.call(list.children), key = "hx-check:" + location.pathname, done = {};
+      try { done = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch (e) { done = {}; }
+      var bar = document.createElement("div"); bar.className = "ck-bar";
+      var text = document.createElement("span"); text.className = "ck-text"; text.setAttribute("aria-live", "polite");
+      var track = document.createElement("span"); track.className = "ck-track";
+      var fill = document.createElement("i"); track.appendChild(fill); bar.append(text, track); box.prepend(bar);
+      var paint = function (fresh) {
+        var n = items.filter(function (_, k) { return done[k]; }).length, all = n === items.length;
+        text.textContent = all ? "All " + n + " done: you planned and built a website with Claude Code."
+          : n + " of " + items.length + " done";
+        fill.style.width = (100 * n / items.length) + "%";
+        if (all && fresh && !box.classList.contains("is-done")) burst(bar);
+        box.classList.toggle("is-done", all);
+      };
+      items.forEach(function (li, k) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "ck";
+        b.setAttribute("aria-label", "Item " + (k + 1) + " done"); b.setAttribute("aria-pressed", String(!!done[k]));
+        b.addEventListener("click", function () {
+          done[k] = done[k] ? 0 : 1; b.setAttribute("aria-pressed", String(!!done[k]));
+          try { localStorage.setItem(key, JSON.stringify(done)); } catch (e) {}
+          paint(true);
+        });
+        li.prepend(b);
+      });
+      paint(false);
+    });
+
+    // "Your turn" and "Next time": the two kinds of task, as labels.
+    each(".ws2 p > strong:first-child", function (s) {
+      if (s.previousSibling && s.previousSibling.nodeType === 3 && s.previousSibling.data.trim()) return;
+      var t = s.textContent.trim();
+      if (/^Your turn\b/.test(t)) s.parentNode.classList.add("hx-turn");
+      else if (/^Next time\b/.test(t)) s.parentNode.classList.add("hx-next");
+    });
+
+    // Links to other sites: Base.astro, for the whole site (Frank, 18 Nov 2026: "ganze seite").
+
+    // Each picture starts to move when it scrolls into view.
+    var targets = document.querySelectorAll(".ws2 .hx, .ws2 .habit-cards, .ws2 p.hx-turn");
+    var seen = function (el) { el.classList.add("is-in"); el.dispatchEvent(new CustomEvent("hx-in")); };
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { seen(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.35 });
+      Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+    } else {
+      Array.prototype.forEach.call(targets, seen);
+    }
+  })();
+</script>

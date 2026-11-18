@@ -9,7 +9,7 @@
         } catch {}
       })();
     </script><style>.body[data-astro-cid-omsmup2h]{border-top:1px solid var(--rule);padding-block:1.5rem 2rem}.page-head[data-astro-cid-omsmup2h] .label[data-astro-cid-omsmup2h] a[data-astro-cid-omsmup2h]{color:var(--ink-muted);text-decoration:none}.page-head[data-astro-cid-omsmup2h] .label[data-astro-cid-omsmup2h] a[data-astro-cid-omsmup2h]:hover{color:var(--accent)}
-</style><link rel="stylesheet" href="/_astro/Base.DGuNAx12.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/" aria-current="page">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><header class="page-head" data-astro-cid-omsmup2h><p class="label" data-astro-cid-omsmup2h><a href="/projects/" data-astro-cid-omsmup2h>Code</a></p><h1 data-astro-cid-omsmup2h>.rego</h1><p data-astro-cid-omsmup2h>Linear regression with Shapley and Owen decomposition of R-squared.</p></header><article class="prose body" data-astro-cid-omsmup2h><h2 id="purpose">Purpose</h2>
+</style><link rel="stylesheet" href="/_astro/Base.-WlJp7LX.css"></head><body><a class="visually-hidden" href="#main">Skip to content</a><div class="shell"><header class="masthead"><a class="masthead__name" href="/">Frank Huettner</a><nav class="nav" aria-label="Primary"><a href="/">about</a><a href="/publications/">research</a><a href="/projects/" aria-current="page">code</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"></path></svg></button></nav></header><main id="main"><header class="page-head" data-astro-cid-omsmup2h><p class="label" data-astro-cid-omsmup2h><a href="/projects/" data-astro-cid-omsmup2h>Code</a></p><h1 data-astro-cid-omsmup2h>.rego</h1><p data-astro-cid-omsmup2h>Linear regression with Shapley and Owen decomposition of R-squared.</p></header><article class="prose body" data-astro-cid-omsmup2h><h2 id="purpose">Purpose</h2>
 <p><code>rego</code> is a <a href="http://www.stata.com/">Stata</a> module that decomposes R² (share of
 explained variance) of an OLS model into contributions of (groups of) regressor
 variables with the help of Shapley or Owen values. By using “groups” of variables
@@ -70,6 +70,30 @@ fit according to Shapley and Owen values.” <em>Electronic Journal of Statistic
         const open = btn.getAttribute("aria-expanded") === "true";
         btn.setAttribute("aria-expanded", String(!open));
         panel.hidden = open;
+      });
+
+      // Links to other sites open in a new tab and say so (Frank, 18 Nov 2026: "links to external sites should be
+      // marked as such and open in a new tab", on the whole site; "fuß ohne"): links in the page's content, not
+      // those at its foot. Lucide's external-link icon after the text (global.css, a.ext-link) and, for screen
+      // readers, the words. huettner.io is this site under its own name. Here at the end of the page, so that links
+      // that a page's own script makes (its cards, its quizzes) get it too.
+      document.querySelectorAll("main a[href]").forEach((a) => {
+        if (a.classList.contains("ext-link")) return;
+        let url;
+        try {
+          url = new URL(a.getAttribute("href"), location.href);
+        } catch {
+          return;
+        }
+        if (!/^https?:$/.test(url.protocol) || url.host === location.host) return;
+        if (/(^|\.)huettner\.io$/.test(url.hostname) || url.hostname === "frankhuettner.github.io") return;
+        a.target = "_blank";
+        a.rel = [...new Set([...a.rel.split(/\s+/).filter(Boolean), "noopener", "noreferrer"])].join(" ");
+        a.classList.add("ext-link");
+        const sr = document.createElement("span");
+        sr.className = "visually-hidden";
+        sr.textContent = " (opens in a new tab)";
+        a.append(sr);
       });
 
       document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
