@@ -34,7 +34,17 @@ In the course, there is nothing new to install: you only update kingo-pod.
 
 - **Deadline:** **Monday, 23 November**, before the lecture at 10:50.
 - **You need, in the course:**
-  - your kingo-pod, updated (<span class="cmd-i cmd-i-t">`./kingo update`</span>) and running: <span class="cmd-i cmd-i-t">`./kingo status`</span> shows it, <span class="cmd-i cmd-i-t">`./kingo up`</span> starts it;
+  - your kingo-pod, updated and running. Paste this line into your terminal: it updates kingo-pod and starts it.
+    <div class="cmd cmd-terminal">
+
+    ```
+    cd ~/kingo-pod && ./kingo update
+    ```
+
+    </div>
+
+    Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.24 or higher, or 1.5.23 or higher with
+    Kingo 1.5.
   - Claude Code, as you set it up in the last homework (<span class="cmd-i cmd-i-t">`./kingo claude`</span>);
   - your team's project: the Langflow flow and the n8n workflow you work on.
 - **New here, without the course?** You can do this homework too, and you need less: open the two boxes below.
