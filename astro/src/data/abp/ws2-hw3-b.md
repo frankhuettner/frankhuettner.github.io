@@ -32,9 +32,9 @@ in the work.
 
 </div>
 
-**Your turn: plan one small thing.** Here you only plan it; you do not build it. The thing: a short page for a new
-member of your team, which says what your project does, which flow does what, and how to try it. The plan also says
-how you will know that the page is done.
+**Your turn: plan one small thing.** Here you only plan it; you do not build it. The thing you want: a short webpage
+for a new member of your team, which says what your project does, which flow does what, and how to try it out. The
+plan shall also say how you will know that the creation of the webpage is complete.
 
 <details class="more">
 <summary>New here? Plan a page about a team of yours</summary>
