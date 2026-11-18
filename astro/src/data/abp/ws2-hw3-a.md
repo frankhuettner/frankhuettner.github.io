@@ -126,11 +126,11 @@ model, one for each of its jobs, kingo put GLM 5.3 Flash. In the course, your Op
 models: after <span class="cmd-i cmd-i-c">`/model`</span> and another name, Claude Code shows an error. To go back, type <span class="cmd-i cmd-i-c">`/model z-ai/glm-5.3-flash`</span> in
 Claude Code, or start <span class="cmd-i cmd-i-t">`./kingo claude`</span> again in your terminal.
 
-**If you have a Claude Pro or Max subscription, you can change the model with `--login`,** in the course too: then
-Claude Code uses Anthropic's models, and your Claude subscription pays. Type <span class="cmd-i cmd-i-c">`/model`</span> in Claude Code and pick one.
+**If you have a Claude Pro or Max subscription, you can use it with <span class="cmd-i cmd-i-t">`./kingo claude --login`</span>:** then Claude Code uses
+Anthropic's models, and your Claude subscription pays. Type <span class="cmd-i cmd-i-c">`/model`</span> in Claude Code and pick one.
 
 <details class="more">
-<summary>Later: another model, or another API</summary>
+<summary>Beyond OpenRouter and Anthropic subscription: using other APIs</summary>
 
 **With a key that may use other models,** for example your own key or one at work, type <span class="cmd-i cmd-i-c">`/model`</span> and the model's
 name in Claude Code. You find the name, its ID, on the model's page at [openrouter.ai/models](https://openrouter.ai/models), under
