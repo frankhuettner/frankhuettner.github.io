@@ -179,74 +179,118 @@ gets a copy of its own, “so changes don’t collide”. kingo-pod: <span class
 <h3 id="14-give-a-project-a-key-of-its-own">14. Give a project a key of its own</h3>
 <p>So far, all your sessions pay with one OpenRouter key. On openrouter.ai, you see one sum for everything: the course,
 your website, and every other project.</p>
-<p>Give a project a key of its own. This gives you two things:</p>
+<p>Give a project a key of its own. This gives you three things:</p>
 <ul>
 <li><strong>You see what this project costs.</strong> OpenRouter counts for each key what it used.</li>
 <li><strong>The project gets a credit limit of its own.</strong> When Claude Code goes in circles in this project, it stops at
 that amount, and the credit of your other key stays.</li>
+<li><strong>The project can use another provider.</strong> A provider is the company, or the program, that runs the model. In the
+course, the provider is OpenRouter. A project with a key of its own can use another one, for example Anthropic’s
+API: Anthropic is the company that makes Claude Code and the Claude models.</li>
 </ul>
-<p><strong>Your turn: a key with the name <code>website</code>, for your first website.</strong></p>
+<p><strong>Your turn: a key with the name <code>website</code>, for your first website.</strong> Pick one provider, and follow its lines.</p>
 <details class="more newhere">
 <summary>New here? What is different for you in this step</summary>
 <ul>
-<li>
-<p>You use your Claude subscription, with <code>--login</code>? Then this step is not for you: <code>--key</code> needs an OpenRouter
-account with credit. You can read it, and skip the rest.</p>
-</li>
-<li>
-<p>You have no folder <code>~/projects/my-first-project</code>? Then take your practice folder in 2:</p>
-<div class="cmd cmd-terminal">
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/practice --key website</span></span></code></pre>
-</div>
-</li>
-<li>
-<p>Below, <span class="cmd-i cmd-i-t"><code>kc --key website</code></span> is the start for the course. You do not need it.</p>
-</li>
+<li>You use your Claude subscription, with <code>--login</code>? A subscription does not pay for a key: a key is paid per use, at
+OpenRouter or at Anthropic’s API. Without such an account, read this step, and skip the rest.</li>
+<li>You have no folder <code>~/projects/my-first-project</code>? Then take your practice folder in 2: write
+<code>~/projects/practice</code> in its place.</li>
+<li>Below, <span class="cmd-i cmd-i-t"><code>kc --key website</code></span> is the start for the course. You do not need it.</li>
 </ul>
 </details>
 <ol>
 <li>
-<p>Make the key. Open openrouter.ai in your browser, and sign in. Open <strong>Settings</strong>, then <strong>Keys</strong>, and make a new
-key. Name it <code>website</code>, and give it a small credit limit. Copy the key: OpenRouter shows it only once.</p>
+<p>Make the key, in your browser.</p>
+<ul>
+<li><strong>OpenRouter:</strong> open openrouter.ai, and sign in. Open <strong>Settings</strong>, then <strong>Keys</strong>, and make a new key. Name it
+<code>website</code>, and give it a small credit limit.</li>
+<li><strong>Anthropic’s API:</strong> open platform.claude.com, and sign in. Open <strong>API keys</strong>, and click <strong>Create key</strong>. Name it
+<code>website</code>, and choose one workspace for it, for example Default: kingo needs a key for one workspace. The API is
+paid per use, with credit of its own: a Claude Pro or Max subscription does not pay for it.</li>
+</ul>
+<p>Copy the key: you see it only once.</p>
 </li>
 <li>
-<p>Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then start Claude Code for your website,
-with <code>--key</code> and the name of the key:</p>
+<p>Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then start Claude Code for your website, with
+<code>--key</code> and the name of the key. With an OpenRouter key:</p>
 <div class="cmd cmd-terminal">
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key website</span></span></code></pre>
 </div>
-<p>The name is for kingo: small letters, digits and <code>-</code>. It can be any name, but the same name as on openrouter.ai
-is the easiest to remember. You did not make the short commands of <a href="/abp/ws2/hw3-e/">Part E</a>? Then go into <code>~/kingo-pod</code> first, and
-start it with <span class="cmd-i cmd-i-t"><code>./kingo claude --in ~/projects/my-first-project --key website</code></span>.</p>
+<p>With a key for Anthropic’s API, say the provider too:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key website --provider anthropic</span></span></code></pre>
+</div>
+<p>The name is for kingo: small letters, digits and <code>-</code>. It can be any name, but the same name as on the provider’s
+website is the easiest to remember. You did not make the short commands of <a href="/abp/ws2/hw3-e/">Part E</a>? Then go into <code>~/kingo-pod</code>
+first, and write <span class="cmd-i cmd-i-t"><code>./kingo claude --in</code></span> in place of <span class="cmd-i cmd-i-t"><code>kc</code></span>.</p>
 </li>
 <li>
-<p>kingo asks: <code>Paste the OpenRouter key "website"</code>. Paste the key that you copied in 1, and press <strong>Enter</strong>. kingo
-keeps it with your other keys, outside the sandbox.</p>
+<p>kingo asks for the key: <code>Paste the OpenRouter key "website"</code>, or <code>Paste the Anthropic API key "website"</code>. Paste
+the key that you copied in 1, and press <strong>Enter</strong>. kingo keeps it with your other keys, outside the sandbox.</p>
 </li>
 <li>
-<p>Look at the lines before Claude Code starts. kingo says which key pays:
-<code>Claude Code's model is paid with your OpenRouter key "website"</code>.</p>
+<p>Look at the lines before Claude Code starts. kingo says where the model comes from:</p>
+<ul>
+<li><strong>OpenRouter:</strong> <code>Claude Code's model is paid with your OpenRouter key "website"</code>. The model is the course’s,
+as before.</li>
+<li><strong>Anthropic’s API:</strong> <code>Claude Code's model comes from Anthropic's API, paid with your key "website"</code>, and
+<code>The model: Claude Code picks one of Anthropic's</code>. Type <span class="cmd-i cmd-i-c"><code>/model</code></span> in Claude Code to pick another one.</li>
+</ul>
 </li>
 <li>
-<p>Ask Claude Code something, for example: “What is in this folder?” Then look at <strong>Keys</strong> on openrouter.ai again:
-the key <code>website</code> shows what it used.</p>
+<p>Ask Claude Code something, for example: “What is in this folder?” Then look at your key in the browser again: on
+openrouter.ai, <strong>Keys</strong> shows what the key <code>website</code> used.</p>
 </li>
 <li>
-<p>Type <span class="cmd-i cmd-i-c"><code>/exit</code></span>, and paste the line of 2 again. This time, kingo does not ask: it has the key of this name.</p>
+<p>Type <span class="cmd-i cmd-i-c"><code>/exit</code></span>, and start again with the short line:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key website</span></span></code></pre>
+</div>
+<p>This time, kingo does not ask. It kept the key under this name, and the provider with it: the short line is
+enough for Anthropic’s API too.</p>
 </li>
 </ol>
-<p>Three more things to know:</p>
+<p>Four more things to know:</p>
 <ul>
 <li><strong>Without <code>--key</code>, nothing changed.</strong> Start Claude Code as before, and your first OpenRouter key pays, as before.</li>
-<li><strong><code>--key</code> works in the course too.</strong> <span class="cmd-i cmd-i-t"><code>kc --key website</code></span> starts Claude Code for the course, paid with the key
-<code>website</code>. Your flows in Langflow keep the key that they have.</li>
-<li><strong>Not with <code>--login</code>.</strong> <code>--login</code> uses your Claude subscription, and <code>--key</code> an OpenRouter key: kingo takes one
-of the two.</li>
+<li><strong><code>--key</code> works in the course too.</strong> <span class="cmd-i cmd-i-t"><code>kc --key website</code></span> starts Claude Code for the course, with the key <code>website</code>.
+Your flows in Langflow keep the key that they have.</li>
+<li><strong>One name, one provider.</strong> The name <code>website</code> now belongs to its provider. For a key at another provider, take
+another name, for example <code>website-api</code>.</li>
+<li><strong>Not with <code>--login</code>.</strong> <code>--login</code> uses your Claude subscription, and <code>--key</code> a key that is paid per use: kingo
+takes one of the two.</li>
 </ul>
+<details class="more">
+<summary>Another model, a model on your own laptop, or another provider</summary>
+<p><strong>Another model.</strong> <code>--model</code> and the ID of a model go with <code>--key</code>. kingo keeps the model with the name, like the
+provider. With Anthropic’s API, for example:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key website --model claude-sonnet-5-5</span></span></code></pre>
+</div>
+<p>With an OpenRouter key, the ID is the one on the model’s page on openrouter.ai. In the course, your OpenRouter key
+works only for the course’s models.</p>
+<p><strong>A model on your own laptop.</strong> Ollama is a program that runs models on your laptop. It needs no key: the name
+stands for the provider and the model. Start Ollama first. Then, with a model that you have in Ollama:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/practice --key local --provider ollama --model qwen3.5</span></span></code></pre>
+</div>
+<p>For Claude Code, Ollama asks for a model with a context window of 64,000 tokens or more.</p>
+<p><strong>Another provider.</strong> It works when the provider offers Anthropic’s Messages API, the format that Claude Code
+speaks. Give its address, the one that the provider names for <code>ANTHROPIC_BASE_URL</code>, and a model:</p>
+<div class="cmd cmd-terminal">
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/practice --key work --provider https://llm.example.com/anthropic --model big-model</span></span></code></pre>
+</div>
+<p>We tested these two ways with a stand-in for the provider, not with a real Ollama or a real provider.</p>
+<p><em>From kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--provider</code> and <code>--model</code>. Ollama’s page
+<a href="https://docs.ollama.com/integrations/claude-code">Claude Code</a>: “64k+ context window”.</em></p>
+</details>
 <p>Done: your website has a key of its own, with its own costs and its own limit.</p>
 <p><strong>Next time.</strong> When you start a project that may cost more than a little, give it a key of its own first.</p>
-<p><em>From kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--key</code>. OpenRouter’s page on
-<a href="https://openrouter.ai/docs/api/reference/limits">limits</a>: “Per-key credit limits”, and what each key used.</em></p>
+<p><em>From kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--key</code> and <code>--provider</code>. OpenRouter’s page on
+<a href="https://openrouter.ai/docs/api/reference/limits">limits</a>: “Per-key credit limits”, and what each key used.
+Anthropic’s page <a href="https://platform.claude.com/docs/en/manage-claude/authentication">Authentication</a>: “Create and use
+a key”, and “Select a workspace”.</em></p>
 <p><a href="#step-14">Stuck? Help for step 14</a></p>
 <details class="more help" id="help">
 <summary>If something goes wrong</summary>
@@ -315,7 +359,19 @@ of the two.</li>
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>unknown option '--key'</code></td><td>Your kingo-pod is older than <code>--key</code>. Paste <span class="cmd-i cmd-i-t"><code>kingo update</code></span>, or <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update</code></span>, and start again. New here? Paste <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git pull</code></span>.</td></tr><tr><td><code>OpenRouter did not accept the key "website"</code></td><td>kingo deleted this key, and no other. Check it on openrouter.ai (Settings, Keys), or make a new one. Then start again with <code>--key website</code>: kingo asks for the key.</td></tr><tr><td>You want another key under the name <code>website</code></td><td>kingo keeps the key in a file. Delete this file: paste <code>rm ~/.config/kingo/openrouter-website.key</code> into your terminal. Then start again with <code>--key website</code>: kingo asks for the key.</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>unknown option '--key'</code>, or <code>unknown option '--provider'</code></td><td>Your kingo-pod is older than this step. Paste <span class="cmd-i cmd-i-t"><code>kingo update</code></span>, or <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update</code></span>, and start again. New here? Paste <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git pull</code></span>.</td></tr><tr><td><code>OpenRouter did not accept the key "website"</code>, or <code>Anthropic did not accept the key "website"</code></td><td>kingo deleted this key, and no other. Check it on the provider’s website (openrouter.ai: Settings, Keys; platform.claude.com: API keys), or make a new one. Then start again with <code>--key website</code>: kingo asks for the key.</td></tr><tr><td>With Anthropic’s API, Claude Code shows an error that names <code>anthropic-workspace-id</code></td><td>Your key is not for one workspace. On platform.claude.com, make a new key, and choose one workspace for it. Paste <code>rm ~/.config/kingo/key-website.key</code> into your terminal, and start again with <code>--key website</code>: kingo asks for the key.</td></tr><tr><td><code>The key "website" is for OpenRouter, not for Anthropic's API</code></td><td>A name belongs to one provider. Take another name for the other provider, for example <code>--key website-api --provider anthropic</code>.</td></tr><tr><td><code>Ollama does not answer on this laptop</code></td><td>Start Ollama, then start again. On Windows, Ollama must run in Ubuntu, where kingo runs.</td></tr><tr><td>You want another key under the name <code>website</code></td><td>kingo keeps the key in a file. Delete this file. For an OpenRouter key, paste <code>rm ~/.config/kingo/openrouter-website.key</code> into your terminal; for another provider, <code>rm ~/.config/kingo/key-website.key</code>. Then start again with <code>--key website</code>: kingo asks for the key.</td></tr></tbody></table>
 </details></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#12-give-claude-code-one-more-folder">12. Give Claude Code one more folder</a></li><li class="ws2-toc__item--3"><a href="#13-work-in-two-sessions-at-once">13. Work in two sessions at once</a></li><li class="ws2-toc__item--3"><a href="#14-give-a-project-a-key-of-its-own">14. Give a project a key of its own</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
