@@ -54,9 +54,9 @@ of your company.</li>
 <table><thead><tr><th>What</th><th>Where it is set</th><th>Whose file</th></tr></thead><tbody><tr><td><strong>The model</strong> Claude Code asks for</td><td><code>kingo-pod/claude/.claude/settings.json</code></td><td>yours: kingo writes it once and never again</td></tr><tr><td><strong>The provider</strong> the request goes to, and <strong>the key</strong> it is paid with</td><td>the sandbox profile: <code>kingo-pod/setup/claude/nono-profile-base.json</code></td><td>kingo’s: every <code>./kingo update</code> brings a new copy</td></tr><tr><td><strong>Your additions</strong> to the sandbox profile</td><td><code>kingo-pod/my-nono-profile.json</code></td><td>yours: kingo reads it and never changes it</td></tr></tbody></table>
 <p>Claude Code itself never sees a key. The sandbox (nono) keeps your key in a file outside everything Claude Code can
 read, and puts it into each request on the way out. Inside the sandbox, the key is a stand-in.</p>
-<p><strong>Another OpenRouter key, for one start:</strong> <code>./kingo claude --key work</code> pays with your OpenRouter key named <code>work</code>,
+<p><strong>Another OpenRouter key, for one start:</strong> <code>./kingo claude --key website</code> pays with your OpenRouter key named <code>website</code>,
 for example one that may use other models. kingo asks for this key at the first start and keeps it with your other
-keys, outside the sandbox. Start without <code>--key</code>, and the course’s key pays again. No line with <code>--key</code> in
+keys, outside the sandbox. Start without <code>--key</code>, and your first OpenRouter key pays again. No line with <code>--key</code> in
 <code>./kingo claude help</code>? Run <code>./kingo update</code> first.</p>
 <p><strong>A key for another provider, for one start:</strong> <code>./kingo claude --key api --provider anthropic</code> takes a key for
 Anthropic’s API under the name <code>api</code>. The last part of this page shows it.</p>
@@ -121,15 +121,15 @@ The file <code>kingo-pod/setup/claude/nono-profile-login.json</code> shows how t
 <p>The first lines of Claude Code show the model. It is one of Anthropic’s now, for example Sonnet. Type <code>/model</code> in
 Claude Code to pick another one.</p>
 <div class="warn" markdown="1">
-<p>Run one session with <code>--login</code> at a time. Two at once can break the login. If Claude Code says that you are not
-logged in, type <code>./kingo claude logout</code> and start again.</p>
+<p>Run one session with <code>--login</code> at a time: kingo starts no second one, because two at once can break the login. If
+Claude Code says that you are not logged in, type <code>./kingo claude logout</code> and start again.</p>
 </div>
 <h3 id="go-back-1">Go back</h3>
 <p>Start without <code>--login</code>: <code>./kingo claude</code> is the course’s again, with GLM 5.3 Flash and your OpenRouter key. The two
 do not disturb each other. To end the login on this laptop:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo claude logout</span></span></code></pre>
 <h2 id="use-anthropics-api-or-another-provider">Use Anthropic’s API, or another provider</h2>
-<p>A provider is the service that runs the model: OpenRouter, Anthropic, or a server of your company. Claude Code speaks
+<p>A provider is the service that Claude Code sends the conversation to: OpenRouter, Anthropic, or a server of your company. Claude Code speaks
 to it in one format, the Messages API of Anthropic. Every provider that offers this format works.</p>
 <p>A model on your own laptop can work, too: Ollama, a program that runs models on your laptop, offers this format.
 For Claude Code, Ollama asks for a context window of 64,000 tokens or more
@@ -143,14 +143,14 @@ keys, Create key), and choose one workspace for it. Claude Code then picks one o
 in Claude Code switches. To name the model yourself, add <code>--model</code> and its ID, for example
 <code>--model claude-sonnet-5-5</code>.</p>
 <p>kingo keeps the provider and the model with the name. The next time, <code>./kingo claude --key api</code> is enough. Start
-without <code>--key</code>, and the course’s model and key are back.</p>
+without <code>--key</code>, and the course’s model and your first OpenRouter key are back.</p>
 <p>Two more providers work the same way:</p>
 <ul>
 <li><strong>Ollama, on your laptop:</strong> <code>./kingo claude --key local --provider ollama --model qwen3.5</code>. No key. Start Ollama
 first.</li>
-<li><strong>Another provider:</strong> <code>./kingo claude --key work --provider https://llm.example.com/anthropic --model big-model</code>.
-The address is the one that the provider names for <code>ANTHROPIC_BASE_URL</code>. An address that ends in <code>/v1</code> loses this
-ending, and kingo says so: Claude Code adds <code>/v1/messages</code> itself.</li>
+<li><strong>Another provider:</strong> <code>./kingo claude --key work --provider https://yourtrustedkey.example.com --model big-model</code>.
+The address is the one that the provider names for <code>ANTHROPIC_BASE_URL</code>. An address that ends in <code>/v1</code> or in
+<code>/v1/messages</code> loses this ending, and kingo says so: Claude Code adds <code>/v1/messages</code> itself.</li>
 </ul>
 <p><strong>Your keys without a start.</strong> <code>./kingo claude key add api --provider anthropic</code> asks for the key and keeps it, and
 starts no Claude Code. <code>./kingo claude key list</code> shows your names, each with its provider and its model, and never a
@@ -158,7 +158,8 @@ key. <code>./kingo claude key remove api</code> deletes a name. <code>./kingo cl
 the place of your first one. Two things go with <code>key add</code> only: <code>--context</code> and a number of tokens, when the model of
 a provider holds fewer than 200,000 tokens, and <code>--ca</code> and a file, when a provider signs with a certificate of its
 own.</p>
-<p>We tested Ollama and another provider with a stand-in for the provider, not with a real one. Step by step, for a
+<p>We tested the three ways with a stand-in for the provider: not yet with a real key of Anthropic, a real Ollama, or
+a real provider. Step by step, for a
 project of your own: <a href="https://huettner.io/abp/ws2/hw3-optional/#14-give-a-project-a-key-of-its-own">step 14 of the homework until 23 Nov</a>.</p>
 <div class="warn" markdown="1">
 <p>No line with <code>--provider</code> in <code>./kingo claude help</code>? Run <code>./kingo update</code> first: <code>--provider</code> needs kingo-pod 1.4.26
