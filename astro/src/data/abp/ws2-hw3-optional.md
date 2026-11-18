@@ -254,6 +254,24 @@ Give a project a key of its own. This gives you two things:
 
 **Your turn: a key with the name `website`, for your first website.**
 
+<details class="more">
+<summary>New here? What is different for you in this step</summary>
+
+- You use your Claude subscription, with `--login`? Then this step is not for you: `--key` needs an OpenRouter
+  account with credit. You can read it, and skip the rest.
+- You have no folder `~/projects/my-first-project`? Then take your practice folder in 2:
+  <div class="cmd cmd-terminal">
+
+  ```
+  kc ~/projects/practice --key website
+  ```
+
+  </div>
+
+- Below, <span class="cmd-i cmd-i-t">`kc --key website`</span> is the start for the course. You do not need it.
+
+</details>
+
 1. Make the key. Open openrouter.ai in your browser, and sign in. Open **Settings**, then **Keys**, and make a new
    key. Name it `website`, and give it a small credit limit. Copy the key: OpenRouter shows it only once.
 2. Is Claude Code still running in your terminal? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then start Claude Code for your website,
