@@ -201,15 +201,23 @@ Two more providers work the same way:
 - **Ollama, on your laptop:** `./kingo claude --key local --provider ollama --model qwen3.5`. No key. Start Ollama
   first.
 - **Another provider:** `./kingo claude --key work --provider https://llm.example.com/anthropic --model big-model`.
-  The address is the one that the provider names for `ANTHROPIC_BASE_URL`.
+  The address is the one that the provider names for `ANTHROPIC_BASE_URL`. An address that ends in `/v1` loses this
+  ending, and kingo says so: Claude Code adds `/v1/messages` itself.
+
+**Your keys without a start.** `./kingo claude key add api --provider anthropic` asks for the key and keeps it, and
+starts no Claude Code. `./kingo claude key list` shows your names, each with its provider and its model, and never a
+key. `./kingo claude key remove api` deletes a name. `./kingo claude key add --first` puts another OpenRouter key in
+the place of your first one. Two things go with `key add` only: `--context` and a number of tokens, when the model of
+a provider holds fewer than 200,000 tokens, and `--ca` and a file, when a provider signs with a certificate of its
+own.
 
 We tested Ollama and another provider with a stand-in for the provider, not with a real one. Step by step, for a
 project of your own: [step 14 of the homework until 23 Nov](https://huettner.io/abp/ws2/hw3-optional/#14-give-a-project-a-key-of-its-own).
 
 <div class="warn" markdown="1">
 
-No line with `--provider` in `./kingo claude help`? Run `./kingo update` first: it needs kingo-pod 1.4.26 or higher,
-or 1.5.25 or higher with Kingo 1.5.
+No line with `--provider` in `./kingo claude help`? Run `./kingo update` first: `--provider` needs kingo-pod 1.4.26
+or higher (1.5.25 with Kingo 1.5), and `./kingo claude key` needs 1.4.27 or higher (1.5.26 with Kingo 1.5).
 
 </div>
 
