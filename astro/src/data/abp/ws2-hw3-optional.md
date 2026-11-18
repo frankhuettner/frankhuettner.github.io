@@ -3,8 +3,8 @@ title: "Homework until 23 Nov, optional: More room for Claude Code"
 ---
 
 
-You do not need this part for the course. It is for the day when one folder, one session or one key is not enough
-any more: then you know that there is a way, and where to find it.
+You do not need this part for the course. It is for the day when one folder, one session or one API key is not
+enough any more: then you know that there is a way, and where to find it.
 
 ### 12. Give Claude Code one more folder
 
