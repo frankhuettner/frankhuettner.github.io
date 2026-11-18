@@ -104,10 +104,9 @@ You need no n8n, no Langflow and no Podman: Claude Code works in a folder of you
 
    </div>
 
-4. **A way to pay for the model.** Either an OpenRouter key of your own: OpenRouter passes what Claude Code sends on
-   to the model, and bills it to your key. On [openrouter.ai](https://openrouter.ai), make an account and add
-   credits. Then open Settings, then Keys, make a key, and give it a credit limit: the key stops at that amount. Or a
-   Claude Pro or Max subscription: then you need no key.
+4. **An OpenRouter key of your own.** OpenRouter passes what Claude Code sends on to the model, and bills it to
+   your key. On [openrouter.ai](https://openrouter.ai), make an account and add credits. Then open Settings, then
+   Keys, make a key, and give it a credit limit: the key stops at that amount.
 
 **Your first start.** Make a folder to practise in, and start Claude Code there. Paste:
 
@@ -125,8 +124,23 @@ it, and press **Enter**. You do not see the key as you paste it: that is on purp
 which Claude Code looks at the pages that it writes. In Ubuntu, kingo may ask to install a few packages for the
 browser: press **Enter**, and type your Linux password.
 
-With a Claude subscription, start with `--login`, and kingo asks for no key:
-<span class="cmd-i cmd-i-t">`./kingo claude --login --in ~/projects/practice`</span>. Then you log in to Claude, once:
+kingo asks for nothing else here: no key of n8n, and nothing about mail. Only the start for the course,
+<span class="cmd-i cmd-i-t">`./kingo claude`</span> without `--in`, asks for more: an API key of n8n, and it needs n8n and Langflow running. You can
+skip that for this homework. And you can do it later: the first <span class="cmd-i cmd-i-t">`./kingo claude`</span> without `--in` asks then, and
+[steps 3 and 4 of the last homework](/abp/ws2/hw2-a/#3-make-a-key-in-n8n) show how.
+
+You also have a Claude Pro or Max subscription? Then you can let it pay for the model. Start with `--login`:
+
+<div class="cmd cmd-terminal">
+
+```
+cd ~/kingo-pod && ./kingo claude --login --in ~/projects/practice
+```
+
+</div>
+
+
+Then you log in to Claude, once:
 [Use your Claude subscription](/abp/ws2/s2-model/#use-your-claude-subscription) shows how.
 
 Claude Code then asks you to pick a theme, and whether you trust the files in this folder: choose **Yes**, it is your
@@ -139,10 +153,10 @@ says otherwise:
 - where you start Claude Code with <span class="cmd-i cmd-i-t">`./kingo claude`</span>, start it with <span class="cmd-i cmd-i-t">`./kingo claude --in ~/projects/practice`</span>;
 - where it says your course folder, `~/kingo-pod/claude`, take your folder `~/projects/practice`.
 
-*From Anthropic's [Advanced setup](https://code.claude.com/docs/en/setup#install-claude-code), OpenRouter's
+<span class="src">From Anthropic's [Advanced setup](https://code.claude.com/docs/en/setup#install-claude-code), OpenRouter's
 [FAQ](https://openrouter.ai/docs/faq#how-do-i-get-started-with-openrouter) and its page on
 [limits](https://openrouter.ai/docs/api/reference/limits), and kingo-pod's guides for
-[Mac](https://huettner.io/kingo-pod/mac/) and [Windows](https://huettner.io/kingo-pod/windows/).*
+[Mac](https://huettner.io/kingo-pod/mac/) and [Windows](https://huettner.io/kingo-pod/windows/).</span>
 
 [Stuck? Help for new readers](/abp/ws2/hw3-a/#step-1)
 
@@ -184,7 +198,7 @@ your way:
 
 <figure class="hx hx-try" data-out="{&quot;~&quot;: {&quot;pwd&quot;: &quot;/home/anna&quot;, &quot;ls&quot;: &quot;kingo-pod&quot;}, &quot;~/kingo-pod&quot;: {&quot;pwd&quot;: &quot;/home/anna/kingo-pod&quot;, &quot;ls&quot;: &quot;backups  bundles.sha256  claude  CLAUDE.md  cloudbeaver  compose.yml  docs  jupyterhub  kingo  langflow  LICENSE  mail  PLAN-NATIVE-STACK.md  postgres-init  README.md  setup  shared  site  VERSION&quot;}}" aria-label="A terminal for practice"><div class="hx-term"><div class="hx-term__bar"><span class="dots"><i></i><i></i><i></i></span><em>Terminal for practice: nothing runs on your laptop</em></div><ol class="hx-try__log" aria-live="polite"><li class="you"><span class="pr">anna@laptop:~&#36;</span>pwd</li><li>/home/anna</li><li class="you"><span class="pr">anna@laptop:~&#36;</span>ls</li><li>kingo-pod</li></ol><div class="hx-term__keys hx-try__keys" role="group" aria-label="Commands to try"><button type="button" data-cmd="pwd"><code>pwd</code></button><button type="button" data-cmd="ls"><code>ls</code></button><button type="button" data-cmd="cd ~/kingo-pod"><code>cd ~/kingo-pod</code></button><button type="button" data-cmd="cd"><code>cd</code></button><button type="button" data-cmd="clear"><code>clear</code></button></div></div><figcaption>Click a command. Before the dollar sign, the terminal shows the folder that it is in: <code>~</code> is your home folder.</figcaption></figure>
 
-*From Apple's [Open new Terminal windows and tabs](https://support.apple.com/guide/terminal/trmlb20c7888/mac) and
-Microsoft's [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/).*
+<span class="src">From Apple's [Open new Terminal windows and tabs](https://support.apple.com/guide/terminal/trmlb20c7888/mac) and
+Microsoft's [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/).</span>
 
 **Ready? [Start with Part A · The model and the facts →](/abp/ws2/hw3-a/)**

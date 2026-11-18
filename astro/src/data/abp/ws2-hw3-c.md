@@ -90,7 +90,7 @@ Done: you know when to press Esc, and what to ask then.
 **Next time.** In your next longer task, watch the first minute. Press **Esc** once and ask what Claude Code is
 doing. Then write "continue".
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#steer-the-session): steer the session.*
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#steer-the-session): steer the session.</span>
 
 ### 7. Start fresh: after two failed tries, and for a new task
 
@@ -188,10 +188,10 @@ Done: you know how to start fresh, and how to keep what you learned.
 
 **Next time.** Before your next new task, type <span class="cmd-i cmd-i-c">`/clear`</span>.
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#steer-the-session):
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#steer-the-session):
 steer the session, and [keep cost and context down](https://code.claude.com/docs/en/best-practices#keep-cost-and-context-down);
 <span class="cmd-i cmd-i-c">`/resume`</span>: its page on [commands](https://code.claude.com/docs/en/commands); its notes:
-[How Claude remembers your project](https://code.claude.com/docs/en/memory#storage-location).*
+[How Claude remembers your project](https://code.claude.com/docs/en/memory#storage-location).</span>
 
 ### 8. Work on a copy where there is no undo
 
@@ -256,9 +256,9 @@ Done: you know where <span class="cmd-i cmd-i-c">`/rewind`</span> is your undo, 
 
 **Next time.** For your next risky idea, start your prompt with: "Make a copy of … and change only the copy."
 
-*From Anthropic's [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works#undo-changes-with-checkpoints):
+<span class="src">From Anthropic's [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works#undo-changes-with-checkpoints):
 "Actions that affect remote systems (databases, APIs, deployments) can't be checkpointed", and its page on
 [checkpointing](https://code.claude.com/docs/en/checkpointing#limitations). That Langflow and n8n are such places
-comes from how kingo-pod works.*
+comes from how kingo-pod works.</span>
 
 **Next: [Part D · A project of your own →](/abp/ws2/hw3-d/)**

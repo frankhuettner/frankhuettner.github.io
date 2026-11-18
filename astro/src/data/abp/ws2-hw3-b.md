@@ -133,8 +133,8 @@ do that in step 10.
 
 <figure class="hx hx-plan" aria-label="Plan first, then build"><ol class="hx-stages"><li style="--i:0"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9.5 8.5a2.5 2.5 0 0 1 4.9.7c0 1.6-2.4 2-2.4 3.3"/><path d="M12 15h.01"/></svg></span><b>Interview</b><span>Claude Code asks, you answer</span></li><li style="--i:1"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg></span><b>plan.md</b><span>the answers, in a file</span></li><li style="--i:2"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></span><b>/clear</b><span>the conversation goes, the file stays</span></li><li style="--i:3"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><b>Build</b><span>from plan.md, until it is done</span></li></ol><div class="hx-plan__track" aria-hidden="true"><span class="talk"><i></i><i></i><i></i></span><span class="doc"><code>plan.md</code></span></div><figcaption>The bubbles are your conversation with Claude Code. <code>/clear</code> empties the conversation; <code>plan.md</code> stays, because it is a file.</figcaption></figure>
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#brainstorm-with-claude-first):
-brainstorm with Claude first; on plan mode: [permission modes](https://code.claude.com/docs/en/permission-modes).*
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#brainstorm-with-claude-first):
+brainstorm with Claude first; on plan mode: [permission modes](https://code.claude.com/docs/en/permission-modes).</span>
 
 [Stuck? Help for step 3](#step-3)
 
@@ -220,7 +220,7 @@ Done: you can tell Claude Code's finish line from yours.
 **Next time.** Add two sentences to your next prompt: "You are done when …", with one input and what should come
 out, and "Show me what you ran and what came out."
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#give-claude-a-check-to-run): give Claude a check to run, and ask for evidence.*
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#give-claude-a-check-to-run): give Claude a check to run, and ask for evidence.</span>
 
 ### 5. Tell Claude Code what it cannot see
 
@@ -305,7 +305,7 @@ Done: you turned "Fix the reply." into a prompt that tells Claude Code what it c
 **Next time.** In your next prompt, write what went wrong with one example, and the full name of the file, flow or
 workflow.
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#write-a-specific-prompt): write a specific prompt.*
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#write-a-specific-prompt): write a specific prompt.</span>
 
 **Next: [Part C · Stay in control →](/abp/ws2/hw3-c/)**
 

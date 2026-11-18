@@ -155,9 +155,9 @@ write them into a file `settings.json`, under `"env"`: kingo did that for the mo
   Flash takes more than 1,000,000: so the tool shortens a long conversation earlier, and each step after that costs
   less.
 
-*From Anthropic's pages on [environment variables](https://code.claude.com/docs/en/env-vars) and on
+<span class="src">From Anthropic's pages on [environment variables](https://code.claude.com/docs/en/env-vars) and on
 [the context window of a model it does not know](https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id),
-and OpenRouter's guide [Claude Code integration](https://openrouter.ai/docs/guides/coding-agents/claude-code-integration).*
+and OpenRouter's guide [Claude Code integration](https://openrouter.ai/docs/guides/coding-agents/claude-code-integration).</span>
 
 </details>
 
@@ -166,12 +166,12 @@ Done: you know who answers you, where your words go, and who pays.
 **Next time.** When you start Claude Code somewhere new, read its first lines: which model works there, and who
 pays?
 
-*From Anthropic's [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works#the-agentic-loop):
+<span class="src">From Anthropic's [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works#the-agentic-loop):
 "models that reason and tools that act", and its pages on [model configuration](https://code.claude.com/docs/en/model-config)
 and [commands](https://code.claude.com/docs/en/commands). The price and the context window of GLM 5.3 Flash are from
 [OpenRouter](https://openrouter.ai/z-ai/glm-5.3-flash), 18 Nov 2026. What OpenRouter keeps: its pages on
 [data collection](https://openrouter.ai/docs/guides/privacy/data-collection) and
-[provider logging](https://openrouter.ai/docs/guides/privacy/provider-logging).*
+[provider logging](https://openrouter.ai/docs/guides/privacy/provider-logging).</span>
 
 [Stuck? Help for step 1](#step-1)
 
@@ -288,7 +288,7 @@ the four steps below, and read on at **For any project**.
    - Ubuntu also sees your files in Windows: the drive `C:` is the folder `/mnt/c`. Still, keep your work in Ubuntu,
      under `~`, as this homework does: Microsoft advises to avoid working in Windows folders from within WSL.
 
-   *From Microsoft's [Working across file systems](https://learn.microsoft.com/en-us/windows/wsl/filesystems).*
+   <span class="src">From Microsoft's [Working across file systems](https://learn.microsoft.com/en-us/windows/wsl/filesystems).</span>
 
    </details>
 
@@ -352,12 +352,12 @@ Four tips for such a file:
 **Next time.** When you correct Claude Code twice on the same thing, ask it: "Write this into AGENTS.md, below
 `# Your team's rules`." From then on, it reads it at every start.
 
-*From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#tell-claude-what-it-cant-see):
+<span class="src">From Anthropic's [best practices for Claude Code](https://code.claude.com/docs/en/best-practices#tell-claude-what-it-cant-see):
 tell Claude what it can't see (the limits of a sandbox are such a thing), and
 [keep CLAUDE.md short](https://code.claude.com/docs/en/best-practices#keep-claude-md-short); on `AGENTS.md`:
 [How Claude remembers your project](https://code.claude.com/docs/en/memory#agents-md) and OpenCode's page on
 [instructions](https://opencode.ai/docs/instructions/). Pin to Quick access: Microsoft's
-[File Explorer in Windows](https://support.microsoft.com/en-us/help/4028316).*
+[File Explorer in Windows](https://support.microsoft.com/en-us/help/4028316).</span>
 
 [Stuck? Help for step 2](#step-2)
 

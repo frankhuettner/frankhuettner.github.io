@@ -188,7 +188,7 @@ in Claude Code. A shorter way to start comes in [Part E](/abp/ws2/hw3-e/).
 
 </div>
 
-*From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--in` and on <span class="cmd-i cmd-i-t">`./kingo shortcuts`</span>.*
+<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--in` and on <span class="cmd-i cmd-i-t">`./kingo shortcuts`</span>.</span>
 
 [Stuck? Help for step 10](#step-10)
 

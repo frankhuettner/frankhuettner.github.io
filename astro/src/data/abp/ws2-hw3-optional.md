@@ -151,12 +151,12 @@ that runs the model? What Claude Code reads goes into the conversation, and with
 **Next time.** When Claude Code needs files from elsewhere, copy them in, or start it with `--read` and the smallest
 folder that holds them.
 
-*From nono's page on [Claude Code](https://nono.sh/docs/cli/clients/claude#overriding-profile-settings): "add extra
+<span class="src">From nono's page on [Claude Code](https://nono.sh/docs/cli/clients/claude#overriding-profile-settings): "add extra
 directory access", and from its
 [security model](https://nono.sh/docs/cli/internals/security-model#capability-expansion-and-irreversibility): a
 program in the sandbox "cannot expand its own kernel policy". Anthropic's page on
 [permissions](https://code.claude.com/docs/en/permissions#working-directories): working directories and <span class="cmd-i cmd-i-c">`/add-dir`</span>.
-kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>.*
+kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>.</span>
 
 [Stuck? Help for step 12](#step-12)
 
@@ -239,8 +239,8 @@ Done: two sessions at once, each with its own thing.
 
 **Next time.** When you work in two sessions at once, give each its own folder or its own flow.
 
-*From Anthropic's page [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees): each session
-gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--login`.*
+<span class="src">From Anthropic's page [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees): each session
+gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--login`.</span>
 
 [Stuck? Help for step 13](#step-13)
 
@@ -378,8 +378,8 @@ kc ~/projects/practice --key work --provider https://llm.example.com/anthropic -
 
 We tested these two ways with a stand-in for the provider, not with a real Ollama or a real provider.
 
-*From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--provider` and `--model`. Ollama's page
-[Claude Code](https://docs.ollama.com/integrations/claude-code): "64k+ context window".*
+<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--provider` and `--model`. Ollama's page
+[Claude Code](https://docs.ollama.com/integrations/claude-code): "64k+ context window".</span>
 
 </details>
 
@@ -387,10 +387,10 @@ Done: your website has a key of its own, with its own costs and its own limit.
 
 **Next time.** When you start a project that may cost more than a little, give it a key of its own first.
 
-*From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key` and `--provider`. OpenRouter's page on
+<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key` and `--provider`. OpenRouter's page on
 [limits](https://openrouter.ai/docs/api/reference/limits): "Per-key credit limits", and what each key used.
 Anthropic's page [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication): "Create and use
-a key", and "Select a workspace".*
+a key", and "Select a workspace".</span>
 
 [Stuck? Help for step 14](#step-14)
 

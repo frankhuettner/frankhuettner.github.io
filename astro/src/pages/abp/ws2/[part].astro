@@ -512,6 +512,18 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     margin-bottom: 0;
   }
 
+  /* The lines that name the sources of a step, "From Anthropic's ...": smaller and grey (Frank, 19 Nov 2026). */
+  .ws2 .src {
+    font-size: 0.82em;
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+
+  .ws2 .src a,
+  .ws2 .src code {
+    color: inherit;
+  }
+
   /* The help at the end of a part of hw3, folded (Frank, 18 Nov 2026): its title reads like a heading. */
   .ws2 details.more.help {
     margin-top: 2.4rem;

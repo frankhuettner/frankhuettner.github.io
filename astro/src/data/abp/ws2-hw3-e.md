@@ -192,7 +192,7 @@ the file: Ubuntu could not read it any more.
 
 To take them out again: <span class="cmd-i cmd-i-t">`./kingo shortcuts remove`</span>, in your kingo-pod folder.
 
-*From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo shortcuts help`</span>.*
+<span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo shortcuts help`</span>.</span>
 
 [Stuck? Help for step 11](#step-11)
 
