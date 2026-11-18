@@ -368,7 +368,6 @@ Find your step.
 |---|---|
 | New here: kingo says `n8n and Langflow must be running first` | That is the start for the course. Start Claude Code in your folder: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude --in ~/projects/practice`</span>. |
 | New here: kingo says `Claude Code is not installed`, or `python3 is missing` | Paste the line that kingo names after it, then start again. |
-| After <span class="cmd-i cmd-i-c">`/exit`</span>, nono writes `Sandbox denial: … paths blocked` and `Fix flags` | That is the fence at work: Claude Code looked at places outside it, for example your own `~/.claude` and the keychain of your Mac, and nono said no. Claude Code works without them. Add none of these flags: they would open the fence. |
 | After <span class="cmd-i cmd-i-c">`/model`</span> and a name, Claude Code shows an error | In the course, your key works only for the course's models. Type <span class="cmd-i cmd-i-c">`/model z-ai/glm-5.3-flash`</span> to go back. With a key that may use other models, check the name on the model's page, and that the model supports tools and images: `No endpoints found …` means that OpenRouter found no server for this model that takes your request, for example because the model reads only text and the conversation holds a picture. |
 
 #### Step 2

@@ -37,15 +37,15 @@ for a new member of your team, which says what your project does, which flow doe
 plan shall also say how you will know that the creation of the webpage is complete.
 
 <details class="more">
-<summary>New here? Plan a page about a team of yours</summary>
+<summary>New here? Plan a webpage about a team of yours</summary>
 
-You have no team project of the course. So plan a page about a team or a group that you are in, at work or
+You have no team project of the course. So plan a webpage about a team or a group that you are in, at work or
 elsewhere. Start Claude Code in your folder `~/projects/practice`, and paste this prompt in place of the one in 1:
 
 <div class="cmd cmd-claude">
 
 ```
-I want a short page for a new member of my team: what we do, who does what, and how to start. I have not thought it through yet. Interview me until you could write a plan, then write the plan to plan.md. End the plan with how we will know that the page is done. Do not build anything yet.
+I want a short webpage for a new member of my team: what we do, who does what, and how to start. I have not thought it through yet. Interview me until you could write a plan, then write the plan to plan.md. End the plan with how we will know that the webpage is complete. Do not build anything yet.
 ```
 
 </div>
@@ -80,7 +80,7 @@ cd ~/projects/practice && notepad.exe plan.md
    <div class="cmd cmd-claude">
 
    ```
-   I want a short page for a new member of my team: what our project does, which flow does what, and how to try it. I have not thought it through yet. Interview me until you could write a plan, then write the plan to plan.md. End the plan with how we will know that the page is done. Do not build anything yet.
+   I want a short webpage for a new member of my team: what our project does, which flow does what, and how to try it out. I have not thought it through yet. Interview me until you could write a plan, then write the plan to plan.md. End the plan with how we will know that the webpage is complete. Do not build anything yet.
    ```
 
    </div>
@@ -105,7 +105,7 @@ cd ~/projects/practice && notepad.exe plan.md
 
    </div>
 
-   Does its end say how you will know that the page is done? Is something missing or wrong? Tell Claude Code, and
+   Does its end say how you will know that the webpage is complete? Is something missing or wrong? Tell Claude Code, and
    let it change `plan.md`.
 
 <details class="more">
