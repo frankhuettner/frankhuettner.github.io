@@ -57,7 +57,7 @@ In the course, there is nothing new to install: you only update kingo-pod.
 
     </div>
 
-    Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.24 or higher, or 1.5.23 or higher with
+    Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.27 or higher, or 1.5.26 or higher with
     Kingo 1.5.
   - Claude Code, set up as in the last homework: installed with its sandbox
     ([step 2](/abp/ws2/hw2-a/#2-install-claude-code-and-its-sandbox)), with a key in n8n

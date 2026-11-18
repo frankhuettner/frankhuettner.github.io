@@ -204,11 +204,11 @@ Claude Code cannot.
 
 </div>
 
-In kingo-pod, kingo gives Claude Code such facts. Indeed, it writes them into your course folder at every start of
-<span class="cmd-i cmd-i-t">`./kingo claude`</span>. **Your turn:** see them.
+In kingo-pod, kingo gives Claude Code such facts. Indeed, it writes them into your course folder,
+`~/kingo-pod/claude`, at every start of <span class="cmd-i cmd-i-t">`./kingo claude`</span>. **Your turn:** see them.
 
 <details class="more newhere">
-<summary>New here? Look at what kingo writes into the startup file for the course</summary>
+<summary>New here? Look at the facts that kingo writes for the course</summary>
 
 With `--in`, kingo writes no file into your folder: these facts are about n8n and Langflow, which you do not have.
 But kingo-pod holds the files that kingo writes for the course, in the folder `~/kingo-pod/setup/claude`. On a Mac,

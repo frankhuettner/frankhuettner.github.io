@@ -127,8 +127,8 @@ example, the nine habits, one card each, that come in one after the other. On th
    </div>
 
    Answer its questions: you decide who the page is for, what it shows, and how it moves. When Claude Code asks
-   what the habits are, copy them from [Your habits on one page](/abp/ws2/hw3-e/#your-habits-on-one-page), at the end of this
-   homework.
+   what the habits are, copy them from [Your habits on one page](/abp/ws2/hw3-e/#your-habits-on-one-page), at the end of
+   [Part E](/abp/ws2/hw3-e/).
 2. **Start fresh, then build, with a finish line** (steps 7 and 4). Type:
    <div class="cmd cmd-claude">
 

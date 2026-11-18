@@ -40,9 +40,9 @@ Three files decide how Claude Code runs in kingo-pod. Each has one job.
 Claude Code itself never sees a key. The sandbox (nono) keeps your key in a file outside everything Claude Code can
 read, and puts it into each request on the way out. Inside the sandbox, the key is a stand-in.
 
-**Another OpenRouter key, for one start:** `./kingo claude --key work` pays with your OpenRouter key named `work`,
+**Another OpenRouter key, for one start:** `./kingo claude --key website` pays with your OpenRouter key named `website`,
 for example one that may use other models. kingo asks for this key at the first start and keeps it with your other
-keys, outside the sandbox. Start without `--key`, and the course's key pays again. No line with `--key` in
+keys, outside the sandbox. Start without `--key`, and your first OpenRouter key pays again. No line with `--key` in
 `./kingo claude help`? Run `./kingo update` first.
 
 **A key for another provider, for one start:** `./kingo claude --key api --provider anthropic` takes a key for
@@ -156,8 +156,8 @@ Claude Code to pick another one.
 
 <div class="warn" markdown="1">
 
-Run one session with `--login` at a time. Two at once can break the login. If Claude Code says that you are not
-logged in, type `./kingo claude logout` and start again.
+Run one session with `--login` at a time: kingo starts no second one, because two at once can break the login. If
+Claude Code says that you are not logged in, type `./kingo claude logout` and start again.
 
 </div>
 
@@ -172,7 +172,7 @@ cd ~/kingo-pod && ./kingo claude logout
 
 ## Use Anthropic's API, or another provider
 
-A provider is the service that runs the model: OpenRouter, Anthropic, or a server of your company. Claude Code speaks
+A provider is the service that Claude Code sends the conversation to: OpenRouter, Anthropic, or a server of your company. Claude Code speaks
 to it in one format, the Messages API of Anthropic. Every provider that offers this format works.
 
 A model on your own laptop can work, too: Ollama, a program that runs models on your laptop, offers this format.
@@ -194,15 +194,15 @@ in Claude Code switches. To name the model yourself, add `--model` and its ID, f
 `--model claude-sonnet-5-5`.
 
 kingo keeps the provider and the model with the name. The next time, `./kingo claude --key api` is enough. Start
-without `--key`, and the course's model and key are back.
+without `--key`, and the course's model and your first OpenRouter key are back.
 
 Two more providers work the same way:
 
 - **Ollama, on your laptop:** `./kingo claude --key local --provider ollama --model qwen3.5`. No key. Start Ollama
   first.
-- **Another provider:** `./kingo claude --key work --provider https://llm.example.com/anthropic --model big-model`.
-  The address is the one that the provider names for `ANTHROPIC_BASE_URL`. An address that ends in `/v1` loses this
-  ending, and kingo says so: Claude Code adds `/v1/messages` itself.
+- **Another provider:** `./kingo claude --key work --provider https://yourtrustedkey.example.com --model big-model`.
+  The address is the one that the provider names for `ANTHROPIC_BASE_URL`. An address that ends in `/v1` or in
+  `/v1/messages` loses this ending, and kingo says so: Claude Code adds `/v1/messages` itself.
 
 **Your keys without a start.** `./kingo claude key add api --provider anthropic` asks for the key and keeps it, and
 starts no Claude Code. `./kingo claude key list` shows your names, each with its provider and its model, and never a
@@ -211,7 +211,8 @@ the place of your first one. Two things go with `key add` only: `--context` and 
 a provider holds fewer than 200,000 tokens, and `--ca` and a file, when a provider signs with a certificate of its
 own.
 
-We tested Ollama and another provider with a stand-in for the provider, not with a real one. Step by step, for a
+We tested the three ways with a stand-in for the provider: not yet with a real key of Anthropic, a real Ollama, or
+a real provider. Step by step, for a
 project of your own: [step 14 of the homework until 23 Nov](https://huettner.io/abp/ws2/hw3-optional/#14-give-a-project-a-key-of-its-own).
 
 <div class="warn" markdown="1">
