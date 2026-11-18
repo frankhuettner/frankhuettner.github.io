@@ -130,7 +130,7 @@ Claude Code, or start <span class="cmd-i cmd-i-t">`./kingo claude`</span> again 
 Anthropic's models, and your Claude subscription pays. Type <span class="cmd-i cmd-i-c">`/model`</span> in Claude Code and pick one.
 
 <details class="more">
-<summary>If you use Claude Code without kingo: the names of the four settings</summary>
+<summary>If you use Claude Code without kingo: where to find the settings</summary>
 
 Outside kingo, you set the four settings yourself. Claude Code reads them from environment variables. You can also
 write them into a file `settings.json`, under `"env"`: kingo did that for the model names, for the course in
