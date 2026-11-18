@@ -124,10 +124,18 @@ it, and press **Enter**. You do not see the key as you paste it: that is on purp
 which Claude Code looks at the pages that it writes. In Ubuntu, kingo may ask to install a few packages for the
 browser: press **Enter**, and type your Linux password.
 
-kingo asks for nothing else here: no key of n8n, and nothing about mail. Only the start for the course,
-<span class="cmd-i cmd-i-t">`./kingo claude`</span> without `--in`, asks for more: an API key of n8n, and it needs n8n and Langflow running. You can
-skip that for this homework. And you can do it later: the first <span class="cmd-i cmd-i-t">`./kingo claude`</span> without `--in` asks then, and
-[steps 3 and 4 of the last homework](/abp/ws2/hw2-a/#3-make-a-key-in-n8n) show how.
+kingo asks for nothing else here: no key of n8n, and no mailbox. Both belong to the setup of the course, and you can
+skip them for this homework:
+
+- **A key of n8n.** Only the start for the course asks for it: <span class="cmd-i cmd-i-t">`./kingo claude`</span> without `--in`. That start also
+  needs n8n and Langflow running.
+- **A mailbox.** No start of Claude Code asks for it. It is for the mail AI assistant of the course, and only the
+  command <span class="cmd-i cmd-i-t">`./kingo mail`</span> sets it up.
+
+You can do both later, whenever you like: your practice folder and your OpenRouter key stay as they are. The pages
+of the course show how. [kingo-pod's guide](https://huettner.io/kingo-pod/) installs n8n and Langflow,
+[the preparatory homework](/abp/ws2/hw/) sets up the mailbox, and
+[steps 3 and 4 of the last homework](/abp/ws2/hw2-a/#3-make-a-key-in-n8n) show the first start for the course.
 
 You also have a Claude Pro or Max subscription? Then you can let it pay for the model. Start with `--login`:
 

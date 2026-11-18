@@ -2452,6 +2452,13 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
   }
   .ws2 p.hx-turn > strong:first-child { background: var(--bp-person); color: #fff; }
   .ws2 p.hx-next > strong:first-child { border: 1.5px solid var(--bp-person); color: var(--bp-person); }
+  /* Code inside the blue label ("a key with the name `website`") takes the label's colours: the site's white box
+     behind code made it white on white (Frank, 19 Nov 2026: "not readable"). */
+  .ws2 p.hx-turn > strong:first-child code {
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.16);
+    color: inherit;
+  }
 
   /* A burst of colour where something was solved (the script adds it to the page, outside .ws2). */
   .hx-burst { position: absolute; z-index: 60; width: 0; height: 0; pointer-events: none; }
