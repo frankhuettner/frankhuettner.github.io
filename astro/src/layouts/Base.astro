@@ -132,6 +132,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         panel.hidden = open;
       });
 
+      // Links to other sites open in a new tab and say so (Frank, 18 Nov 2026: "links to external sites should be
+      // marked as such and open in a new tab", on the whole site; "fuß ohne"): links in the page's content, not
+      // those at its foot. Lucide's external-link icon after the text (global.css, a.ext-link) and, for screen
+      // readers, the words. huettner.io is this site under its own name. Here at the end of the page, so that links
+      // that a page's own script makes (its cards, its quizzes) get it too.
+      document.querySelectorAll("main a[href]").forEach((a) => {
+        if (a.classList.contains("ext-link")) return;
+        let url;
+        try {
+          url = new URL(a.getAttribute("href"), location.href);
+        } catch {
+          return;
+        }
+        if (!/^https?:$/.test(url.protocol) || url.host === location.host) return;
+        if (/(^|\.)huettner\.io$/.test(url.hostname) || url.hostname === "frankhuettner.github.io") return;
+        a.target = "_blank";
+        a.rel = [...new Set([...a.rel.split(/\s+/).filter(Boolean), "noopener", "noreferrer"])].join(" ");
+        a.classList.add("ext-link");
+        const sr = document.createElement("span");
+        sr.className = "visually-hidden";
+        sr.textContent = " (opens in a new tab)";
+        a.append(sr);
+      });
+
       document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
         const root = document.documentElement;
         const current = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");

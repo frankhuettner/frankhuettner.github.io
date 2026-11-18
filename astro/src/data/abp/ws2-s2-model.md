@@ -9,7 +9,8 @@ You need this page only if you want another model. The course works with the set
 
 There are three ways. Take the one that fits you:
 
-- **Another model at OpenRouter.** You keep your key and change one name.
+- **Another model at OpenRouter,** later, with a key that may use other models: you change one name. The course's
+  key works only for the course's models.
 - **Your Claude subscription.** You have Claude Pro or Max: Claude Code uses it, with Anthropic's models.
 - **Anthropic's API, or another provider.** For example Claude Sonnet 5.5 with an Anthropic API key, or a server
   of your company.
@@ -39,9 +40,23 @@ Three files decide how Claude Code runs in kingo-pod. Each has one job.
 Claude Code itself never sees a key. The sandbox (nono) keeps your key in a file outside everything Claude Code can
 read, and puts it into each request on the way out. Inside the sandbox, the key is a stand-in.
 
+**Another OpenRouter key, for one start:** `./kingo claude --key work` pays with your OpenRouter key named `work`,
+for example one that may use other models. kingo asks for this key at the first start and keeps it with your other
+keys, outside the sandbox. Start without `--key`, and the course's key pays again. No line with `--key` in
+`./kingo claude help`? Run `./kingo update` first.
+
 ## Use another model at OpenRouter
 
-Your key stays the same. Only the name of the model changes.
+<div class="warn" markdown="1">
+
+**Not with the course's key.** kingo set GLM 5.3 Flash in all six places where Claude Code names a model, and in the
+course, your OpenRouter key works only for the course's models: after a change here, Claude Code shows an error. To
+change the model in the course, use your Claude subscription (see below). The steps here are for later, with a key
+that may use other models, for example at work.
+
+</div>
+
+With such a key, only the name of the model changes.
 
 ### 1. Pick a model
 
@@ -50,13 +65,15 @@ title, for example `z-ai/glm-5.3-flash`.
 
 <div class="warn" markdown="1">
 
-Check two things on the model's page before you take it. **Tools:** Claude Code works by calling tools; a model
-without tool use cannot run a command or write a file. **Images:** `look` shows Claude Code a picture of a page it
-wrote; a model that takes only text cannot see it.
+Check four things on the model's page before you take it. **Tools:** they are how the model asks Claude Code to run
+a command or write a file; a model without them can only write text. **Images:** `look` shows Claude Code a picture
+of a page it wrote. Once the conversation holds a picture, a model that takes only text stops with the error
+`No endpoints found that support image input`. **Context:** 200,000 tokens or more. kingo tells Claude Code that a
+conversation may grow that long; with a smaller context window, a long conversation fails before Claude Code shortens
+it. **Price:** per million tokens, in and out. A bigger model often costs more. Give your key a credit limit on
+openrouter.ai (Settings, Keys): the key then stops at that amount.
 
 </div>
-
-A bigger model costs more for each request. The price is on the same page.
 
 ### 2. Put the ID into the settings
 
@@ -107,7 +124,8 @@ writes the course's settings again.
 ## Use your Claude subscription
 
 Do you have a Claude subscription (Pro or Max)? Then Claude Code in kingo-pod can use it. You get Anthropic's models,
-your subscription pays, and Claude Code needs no OpenRouter key.
+and your subscription pays for them. For the course, kingo still needs your OpenRouter key, the one of your flows in
+Langflow: with it, Claude Code can try the models of your flows.
 
 ### 1. Start with `--login`
 
@@ -153,6 +171,10 @@ cd ~/kingo-pod && ./kingo claude logout
 
 A provider is the service that runs the model: OpenRouter, Anthropic, or a server of your company. Claude Code speaks
 to it in one format, the Messages API of Anthropic. Every provider that offers this format works.
+
+A model on your own laptop can work, too: Ollama, a program that runs models on your laptop, offers this format.
+For Claude Code, Ollama asks for a context window of 64,000 tokens or more
+([Ollama's page on Claude Code](https://docs.ollama.com/integrations/claude-code)). We did not test it in kingo.
 
 You change three things: the key, the route, and the settings. The example is Anthropic's own API, with Claude
 Sonnet 5.5.

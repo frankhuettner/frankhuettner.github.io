@@ -56,6 +56,13 @@ const LABELS: Record<string, string> = {
   "s2-team-c": "Team C · K-Motor",
   "s2-model": "Change the model",
   s3: "23 November",
+  hw3: "Homework until 23 Nov",
+  "hw3-a": "Part A · The model and the facts",
+  "hw3-b": "Part B · Ask well",
+  "hw3-c": "Part C · Stay in control",
+  "hw3-d": "Part D · A project of your own",
+  "hw3-e": "Part E · Shorter commands",
+  "hw3-optional": "Optional · More room for Claude Code",
 };
 const ORDER = Object.keys(LABELS);
 const rank = (p: string) => (ORDER.includes(p) ? ORDER.indexOf(p) : ORDER.length);
@@ -1037,7 +1044,7 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     });
     Array.prototype.forEach.call(list.children, function (li) {
       var btn = document.createElement("button"); btn.type = "button"; btn.innerHTML = li.innerHTML;
-      var right = li.hasAttribute("data-right");
+      var right = li.hasAttribute("data-right"); if (right) btn.setAttribute("data-right", "");   // the hw3 block lights it up after a wrong choice
       btn.addEventListener("click", function () {
         Array.prototype.forEach.call(options.children, function (b) { b.classList.remove("right", "wrong"); });
         btn.classList.add(right ? "right" : "wrong");
@@ -1121,7 +1128,7 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       for (var k = order.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = order[k]; order[k] = order[j]; order[j] = t; }
       if (order.length > 1 && order.every(function (v, i) { return v === i; })) order.push(order.shift());
       order.forEach(function (i) { pool.appendChild(chip(i)); });
-      pool.hidden = false; check.hidden = false; show.hidden = false; again.hidden = true; status.textContent = "Drag each answer to its piece. Or click an answer, then its row.";
+      pool.hidden = false; check.hidden = false; show.hidden = false; again.hidden = true; status.textContent = "Drag each answer to its row. Or click an answer, then its row.";
     }
     check.addEventListener("click", function () {
       var right = 0;
@@ -1136,4 +1143,1773 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     again.addEventListener("click", start);
     start();
   });
+</script>
+
+
+
+
+
+<style is:global>
+  /* The pictures of hw3, the homework until 23 November (Frank, 17 Nov 2026: "make it visually more pleasing, add
+     some animations; improve the questions ... differentiate the models"). The HTML comes from the course repo's
+     system/hw3_figures.py, class "hx". Colours as on the slides: blue you, orange the model (the brain), slate
+     Claude Code (the tool). Motion only where the reader has not asked for less of it. */
+  .ws2-guide {
+    --hx-tool: #334155;
+    --hx-tool-soft: #f1f5f9;
+    --hx-ok: #15803d;
+    --hx-ok-soft: #eefaf2;
+    --hx-no: #b91c1c;
+    --hx-no-soft: #fdecec;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .ws2-guide {
+      --hx-tool: #cbd5e1;
+      --hx-tool-soft: #1e2530;
+      --hx-ok: #4ade80;
+      --hx-ok-soft: #14261b;
+      --hx-no: #f87171;
+      --hx-no-soft: #2e1717;
+    }
+  }
+
+  :root[data-theme="dark"] .ws2-guide {
+    --hx-tool: #cbd5e1;
+    --hx-tool-soft: #1e2530;
+    --hx-ok: #4ade80;
+    --hx-ok-soft: #14261b;
+    --hx-no: #f87171;
+    --hx-no-soft: #2e1717;
+  }
+
+  .ws2 .hx {
+    container-type: inline-size;
+    margin: 1.6rem 0 1.9rem;
+  }
+
+  .ws2 .hx figcaption {
+    margin-top: 0.8rem;
+    text-align: center;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .ws2 .hx .person { --c: var(--bp-person); --c-soft: var(--bp-person-soft); }
+  .ws2 .hx .brain { --c: var(--bp-brain); --c-soft: var(--bp-brain-soft); }
+  .ws2 .hx .tool { --c: var(--hx-tool); --c-soft: var(--hx-tool-soft); }
+
+  .ws2 .hx-ico {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 2px solid var(--c, currentColor);
+    border-radius: 50%;
+    background: var(--c-soft, transparent);
+    color: var(--c, currentColor);
+  }
+
+  .ws2 .hx-ico svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ws2 .hx code {
+    border: 0;
+    padding: 0;
+    background: none;
+  }
+
+  /* A switch of two: which model, which finish line. Without the script both texts show. */
+  .ws2 .hx-switch {
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    border: 1px solid var(--rule-soft);
+    border-radius: 999px;
+    background: var(--bg);
+  }
+
+  .ws2 .hx-switch button {
+    font: inherit;
+    font-size: var(--step--1);
+    padding: 0.22rem 0.8rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .ws2 .hx-switch button[aria-pressed="true"] {
+    background: var(--c, var(--bp-person));
+    color: #fff;
+  }
+
+  .ws2 .hx-switch button code { color: inherit; background: none; }
+  .hx-js .ws2 .hx-pick:not(.on) { display: none; }
+  .ws2 .hx-pick.on { animation: hx-fade 0.35s ease-out; }
+
+  /* Step 1: you, the tool, the brain. A pulse goes to the model and comes back. */
+  .ws2 .hx-model__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2.4rem minmax(0, 1fr) 2.4rem minmax(0, 1.3fr);
+    align-items: center;
+  }
+
+  .ws2 .hx-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    height: 100%;
+    padding: 0.9rem 0.7rem;
+    border: 1.5px solid var(--c);
+    border-radius: var(--radius);
+    background: var(--c-soft);
+    text-align: center;
+  }
+
+  .ws2 .hx-card > b { color: var(--ink); }
+
+  .ws2 .hx-card > span:not(.hx-ico) {
+    font-size: var(--step--1);
+    line-height: 1.35;
+    color: var(--ink-muted);
+  }
+
+  .ws2 .hx-card .hx-switch { margin-top: 0.35rem; }
+
+  .ws2 .hx-card .hx-pick {
+    margin: 0.45rem 0 0;
+    font-size: var(--step--1);
+    line-height: 1.4;
+  }
+
+  .ws2 .hx-wire {
+    position: relative;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--rule) 0 5px, transparent 5px 9px);
+  }
+
+  .ws2 .hx-wire i {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bp-person);
+    opacity: 0;
+  }
+
+  .ws2 .hx-wire--late i { background: var(--hx-tool); }
+
+  @container (max-width: 34rem) {
+    .ws2 .hx-model__row { grid-template-columns: minmax(0, 1fr); }
+    .ws2 .hx-wire { width: 2px; height: 1.4rem; margin: 0 auto; background: repeating-linear-gradient(180deg, var(--rule) 0 5px, transparent 5px 9px); }
+    .ws2 .hx-wire i { display: none; }
+  }
+
+  /* Step 2: the five files, one pulling in the next, and the model's view filling up. */
+  .ws2 .hx-start {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .ws2 .hx-start figcaption { grid-column: 1 / -1; margin-top: 0; }
+
+  .ws2 .hx-files {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ws2 .hx-files li {
+    --c: var(--hx-tool);
+    --c-soft: var(--hx-tool-soft);
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.6rem;
+    align-items: center;
+    margin: 0;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius-sm);
+    background: var(--bg-soft);
+  }
+
+  .ws2 .hx-files li .hx-ico { grid-row: 1 / span 2; width: 1.9rem; height: 1.9rem; border-width: 1.5px; }
+  .ws2 .hx-files li .hx-ico svg { width: 1rem; height: 1rem; }
+  .ws2 .hx-files li > code { font-weight: 600; }
+  .ws2 .hx-files li > span:last-child { font-size: var(--step--1); line-height: 1.35; color: var(--ink-muted); }
+  .ws2 .hx-files li:nth-child(2) { margin-left: 1.3rem; }
+  .ws2 .hx-files li:nth-child(n + 3) { margin-left: 2.6rem; }
+
+  .ws2 .hx-files li:nth-child(n + 2)::before {
+    content: "@";
+    position: absolute;
+    left: -1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 700;
+    color: var(--bp-brain);
+  }
+
+  .ws2 .hx-start__view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.9rem;
+    border: 1.5px dashed var(--bp-brain);
+    border-radius: var(--radius);
+    background: var(--bp-brain-soft);
+  }
+
+  .ws2 .hx-start__view b { color: var(--ink); line-height: 1.3; }
+  .ws2 .hx-start__view span { margin-bottom: 0.4rem; font-size: var(--step--1); color: var(--ink-muted); }
+
+  .ws2 .hx-start__view i {
+    display: block;
+    width: calc(100% - var(--i) * 11%);
+    height: 0.6rem;
+    border-radius: 3px;
+    background: var(--bp-brain);
+    transform-origin: left;
+  }
+
+  @container (max-width: 34rem) {
+    .ws2 .hx-start { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* Step 3: interview, plan.md, /clear, build. The talk fades at /clear; plan.md travels on. */
+  .ws2 .hx-stages {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ws2 .hx-stages li {
+    --c: var(--bp-person);
+    --c-soft: var(--bp-person-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .ws2 .hx-stages li:nth-child(2) { --c: var(--hx-tool); --c-soft: var(--hx-tool-soft); }
+  .ws2 .hx-stages li:nth-child(3) { --c: var(--bp-mail); --c-soft: var(--bp-mail-soft); }
+  .ws2 .hx-stages li:nth-child(4) { --c: var(--hx-ok); --c-soft: var(--hx-ok-soft); }
+  .ws2 .hx-stages li:nth-child(2) b,
+  .ws2 .hx-stages li:nth-child(3) b { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; }
+  .ws2 .hx-stages li > span:last-child { font-size: var(--step--1); line-height: 1.35; color: var(--ink-muted); }
+
+  .ws2 .hx-plan__track {
+    position: relative;
+    height: 2.1rem;
+    margin: 0.7rem 12.5% 0;
+    border-top: 2px dashed var(--rule-soft);
+  }
+
+  .ws2 .hx-plan__track .talk {
+    position: absolute;
+    top: 0.35rem;
+    left: 0;
+    display: flex;
+    gap: 3px;
+    transform: translateX(-50%);
+  }
+
+  .ws2 .hx-plan__track .talk i {
+    width: 0.9rem;
+    height: 0.7rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.1rem;
+    background: var(--bp-person);
+    opacity: 0.55;
+  }
+
+  .ws2 .hx-plan__track .doc {
+    position: absolute;
+    top: 0.3rem;
+    left: 33.3%;
+    padding: 0.1rem 0.45rem;
+    border: 1.5px solid var(--hx-tool);
+    border-radius: 0.3rem;
+    background: var(--bg);
+    font-size: 0.75rem;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  @container (max-width: 30rem) {
+    .ws2 .hx-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1rem; }
+    .ws2 .hx-plan__track { display: none; }
+  }
+
+  /* Step 4: work, check, fix, as a ring; with its own finish line the dot stops at the check. */
+  .ws2 .hx-loop .hx-switch { --c: var(--bp-person); }
+
+  .ws2 .hx-loop__body {
+    display: grid;
+    grid-template-columns: 11.5rem minmax(0, 1fr);
+    gap: 1.4rem;
+    align-items: center;
+    margin-top: 0.9rem;
+  }
+
+  .ws2 .hx-ring {
+    position: relative;
+    width: 9rem;
+    height: 9rem;
+    margin: 1rem auto;
+    border: 2px dashed var(--rule);
+    border-radius: 50%;
+  }
+
+  .ws2 .hx-ring .n,
+  .ws2 .hx-ring .exit {
+    position: absolute;
+    padding: 0.1rem 0.5rem;
+    border: 1.5px solid var(--c);
+    border-radius: 999px;
+    background: var(--c-soft);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    transition: opacity 0.3s;
+  }
+
+  .ws2 .hx-ring .n1 { --c: var(--bp-brain); --c-soft: var(--bp-brain-soft); left: 50%; top: 0; }
+  .ws2 .hx-ring .n2 { --c: var(--bp-person); --c-soft: var(--bp-person-soft); left: 93.3%; top: 75%; }
+  .ws2 .hx-ring .n3 { --c: var(--hx-tool); --c-soft: var(--hx-tool-soft); left: 6.7%; top: 75%; }
+  .ws2 .hx-ring .exit { --c: var(--bp-mail); --c-soft: var(--bp-mail-soft); left: 93.3%; top: 103%; }
+  .ws2 .hx-loop[data-mode="line"] .hx-ring .exit { opacity: 0; }
+  .ws2 .hx-loop[data-mode="none"] .hx-ring .n3 { opacity: 0.35; }
+
+  .ws2 .hx-ring .dot {
+    position: absolute;
+    left: calc(50% - 6px);
+    top: calc(50% - 6px);
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background: var(--bp-brain);
+    transform: rotate(0deg) translateY(-4.5rem);
+  }
+
+  .ws2 .hx-loop__text p { margin: 0; }
+
+  @container (max-width: 30rem) {
+    .ws2 .hx-loop__body { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* Step 6: the replay of our test run, a terminal, and a key to stop it. */
+  .ws2 .hx-term {
+    --t-bg: #0d131a;
+    --t-bar: #17202a;
+    --t-ink: #d7dee7;
+    --t-mute: #808b98;
+    --t-you: #8fb1ff;
+    --t-hot: #ff9a52;
+    overflow: hidden;
+    border: 1px solid #263240;
+    border-radius: var(--radius);
+    background: var(--t-bg);
+    color: var(--t-ink);
+    box-shadow: 0 14px 34px -18px rgb(0 0 0 / 0.55);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.79rem;
+  }
+
+  .ws2 .hx-term__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--t-bar);
+    color: var(--t-mute);
+  }
+
+  .ws2 .hx-term__bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: calc(var(--p, 0) * 100%);
+    background: var(--t-hot);
+    transition: width 0.4s;
+  }
+
+  .ws2 .hx-term__bar .dots { display: flex; gap: 0.35rem; }
+  .ws2 .hx-term__bar .dots i { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: #ff5f57; }
+  .ws2 .hx-term__bar .dots i:nth-child(2) { background: #febc2e; }
+  .ws2 .hx-term__bar .dots i:nth-child(3) { background: #28c840; }
+  .ws2 .hx-term__bar em { font-style: normal; font-size: 0.74rem; }
+
+  .ws2 .hx-term__log {
+    height: 19rem;
+    margin: 0;
+    padding: 0.9rem 1rem 0.4rem;
+    overflow-y: auto;
+    list-style: none;
+    counter-reset: rep;
+  }
+
+  .ws2 .hx-term__log li {
+    display: grid;
+    grid-template-columns: 1.3rem minmax(0, 1fr);
+    margin: 0 0 0.6rem;
+    line-height: 1.5;
+  }
+
+  .hx-js .ws2 .hx-term__log li:not(.on) { display: none; }
+  .ws2 .hx-term__log li s { text-decoration: none; }
+  .ws2 .hx-term__log li.you { color: var(--t-you); }
+  .ws2 .hx-term__log li.think { color: var(--t-mute); font-style: italic; padding-left: 0.2rem; }
+  .ws2 .hx-term__log li.end { color: var(--t-hot); }
+  .ws2 .hx-term__log li.zh em { display: block; margin-top: 0.1rem; color: var(--t-mute); font-style: normal; font-family: var(--font-sans, system-ui); font-size: 0.74rem; }
+  .ws2 .hx-term__log li.rep { counter-increment: rep; }
+  .hx-js .ws2 .hx-term__log:not(:has(li.on))::before { content: "Press \201CPlay the replay\201D to watch our test run."; color: var(--t-mute); }
+
+  .ws2 .hx-term.is-done li.rep > span,
+  .ws2 .hx-term.is-stopped li.rep > span {
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
+    border-radius: 0.2rem;
+    background: rgb(255 154 82 / 0.13);
+    box-shadow: inset 2px 0 0 var(--t-hot);
+  }
+
+  .ws2 .hx-term.is-done li.rep > span::after,
+  .ws2 .hx-term.is-stopped li.rep > span::after {
+    content: "  ↻ the same thing, " counter(rep) " of 4";
+    color: var(--t-hot);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .ws2 .hx-term.is-done li.zh > span,
+  .ws2 .hx-term.is-stopped li.zh > span { box-shadow: inset 2px 0 0 var(--t-you); padding-left: 0.4rem; margin-left: -0.4rem; }
+
+  .ws2 .hx-term__keys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.65rem 0.8rem;
+    border-top: 1px solid #222c38;
+    background: #111922;
+  }
+
+  .ws2 .hx-term__keys button {
+    font: inherit;
+    font-family: var(--font-sans, system-ui);
+    font-size: 0.85rem;
+    padding: 0.38rem 0.85rem;
+    border: 1px solid #3a4756;
+    border-radius: 0.45rem;
+    background: #1c2733;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .ws2 .hx-term__keys .hx-esc { box-shadow: 0 3px 0 #05080b; }
+  .ws2 .hx-term__keys .hx-esc:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 #05080b; }
+  .ws2 .hx-term__keys .hx-esc:disabled { opacity: 0.4; cursor: default; }
+
+  .ws2 .hx-term__keys kbd {
+    margin-right: 0.35rem;
+    padding: 0.02rem 0.35rem;
+    border: 1px solid #5b6878;
+    border-radius: 0.3rem;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  .ws2 .hx-term__keys .hx-play { background: transparent; color: var(--t-ink); }
+  .ws2 .hx-term__keys .hx-more { background: transparent; color: var(--t-mute); border-style: dashed; }
+
+  .ws2 .hx-term__note {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-top: 3px solid var(--bp-person);
+    background: var(--bp-person-soft);
+    color: var(--ink);
+    font-family: var(--font-sans, system-ui);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .ws2 .hx-term__note:empty { display: none; }
+
+  /* The sign before a box (Frank, 18 Nov 2026: "clarify when something goes into terminal and when into claude with
+     a symbol before the line"; later: "$ means terminal, ✨ means model"): a dollar sign for the terminal, Lucide's
+     sparkles in the model's orange for Claude Code. hw3_figures.signs() puts the box into <div class="cmd cmd-…">.
+     The sign is CSS, not text in the box, so the Copy button (pre.innerText) leaves it out, and so does a mouse that
+     selects the line. */
+  .ws2 {
+    --hx-sparkles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3Cpath d='M20 2v4'/%3E%3Cpath d='M22 4h-4'/%3E%3Ccircle cx='4' cy='20' r='2'/%3E%3C/svg%3E");
+  }
+
+  .ws2 div.cmd pre {
+    position: relative;
+    padding-left: 2.6rem !important;
+  }
+
+  .ws2 div.cmd pre::before {
+    position: absolute;
+    left: 1.1rem;
+    top: 1rem;
+    font: inherit;
+    font-weight: 700;
+    color: var(--ink-muted);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ws2 div.cmd-terminal pre::before {
+    content: "$";
+  }
+
+  .ws2 div.cmd-claude pre::before {
+    content: "";
+    width: 1.05em;
+    height: 1.05em;
+    margin-top: 0.2em;
+    background-color: var(--bp-brain);
+    -webkit-mask: var(--hx-sparkles) center / contain no-repeat;
+    mask: var(--hx-sparkles) center / contain no-repeat;
+  }
+
+  .ws2 div.cmd-claude pre { box-shadow: inset 3px 0 0 var(--bp-brain); }
+
+  /* The same signs before a command in a sentence (Frank, 18 Nov 2026: "type /model z-ai/glm-5.3-flash; at the next
+     start of ./kingo claude, does not visually distinguish"). hw3_figures.signs() gives such code the class
+     cmd-i-t (the terminal) or cmd-i-c (Claude Code), on a span around the code; a path or a file name stays plain. */
+  .ws2 .cmd-i > code::before {
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ws2 .cmd-i-t > code::before {
+    content: "$";
+    margin-right: 0.3em;
+    font-weight: 700;
+    color: var(--ink-muted);
+  }
+
+  .ws2 .cmd-i-c > code {
+    background: var(--bp-brain-soft);
+  }
+
+  .ws2 .cmd-i-c > code::before {
+    content: "";
+    display: inline-block;
+    width: 0.95em;
+    height: 0.95em;
+    margin-right: 0.25em;
+    vertical-align: -0.12em;
+    background-color: var(--bp-brain);
+    -webkit-mask: var(--hx-sparkles) center / contain no-repeat;
+    mask: var(--hx-sparkles) center / contain no-repeat;
+  }
+
+  /* Step 1: the first lines of Claude Code, a still terminal without a Copy button (Frank, 17 Nov 2026: copying
+     them "makes little sense"). */
+  .ws2 .hx-term--still { max-width: 34rem; margin: 0 auto; }
+
+  .ws2 .hx-banner__lines {
+    padding: 0.85rem 1.1rem;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.55;
+    font-size: 0.82rem;
+  }
+
+  .ws2 .hx-banner__lines .logo { color: #d97757; }
+  .ws2 .hx-banner__lines b { color: #fff; }
+
+  .ws2 .hx-banner__lines mark {
+    padding: 0 0.2rem;
+    border-radius: 0.2rem;
+    background: rgb(255 154 82 / 0.16);
+    box-shadow: inset 0 -2px 0 var(--t-hot);
+    color: #fff;
+  }
+
+  /* Step 6: how often Claude Code got lost in our three tests (Frank, 18 Nov 2026: the bars of the run times were
+     "not convincing"). One card per test, one mark per time; the cards stack on a narrow screen. */
+  .ws2 .hx-det .hx-det__head { margin: 0 0 0.8rem; text-align: left; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+
+  .ws2 .hx-det__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ws2 .hx-det__cards > li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+
+  .ws2 .hx-det__cards > li.hot { border-color: var(--bp-brain); box-shadow: inset 0 3px 0 var(--bp-brain); }
+  .ws2 .hx-det .t { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+  .ws2 .hx-det .t b { font-size: 0.95rem; color: var(--ink); }
+  .ws2 .hx-det .t span { font-size: var(--step--1); font-variant-numeric: tabular-nums; color: var(--ink-muted); white-space: nowrap; }
+  .ws2 .hx-det .who { margin-top: -0.35rem; font-size: var(--step--1); line-height: 1.35; color: var(--ink-muted); }
+  .ws2 .hx-det__cards ul { display: grid; gap: 0.5rem; margin: 0.15rem 0 0; padding: 0; list-style: none; }
+  .ws2 .hx-det__cards ul li { display: grid; gap: 0.2rem; margin: 0; font-size: var(--step--1); line-height: 1.4; color: var(--ink); }
+  .ws2 .hx-det .marks { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+  .ws2 .hx-det .marks:empty { display: none; }
+  .ws2 .hx-det .mk { display: inline-grid; width: 1.15rem; height: 1.15rem; color: var(--ink); }
+  .ws2 .hx-det .hot .mk { color: var(--bp-brain); }
+  .ws2 .hx-det .mk svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ws2 .hx-det .end { display: flex; align-items: center; gap: 0.35rem; margin: auto 0 0; padding-top: 0.45rem; border-top: 1px solid var(--rule-soft); font-size: var(--step--1); font-weight: 600; }
+  .ws2 .hx-det .end .hx-ico { width: 1.1rem; height: 1.1rem; border: 0; background: none; color: inherit; }
+  .ws2 .hx-det .end .hx-ico svg { width: 100%; height: 100%; stroke-width: 2; }
+  .ws2 .hx-det .end.ok { color: var(--hx-ok); }
+  .ws2 .hx-det .end.no { color: var(--hx-no); }
+  .ws2 .hx-det .hx-det__foot { margin: 0.7rem 0 0; font-size: var(--step--1); color: var(--ink-muted); }
+
+  @media (max-width: 760px) {
+    .ws2 .hx-det__cards { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* Step 7: what the model reads again at every step. */
+  .ws2 .hx-ctx {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .ws2 .hx-ctx__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; font-size: var(--step--1); }
+  .ws2 .hx-ctx__head b { color: var(--ink); }
+  .ws2 .hx-ctx__head span { color: var(--ink-muted); }
+
+  .ws2 .hx-ctx__blocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    min-height: 2.6rem;
+    margin: 0.6rem 0;
+    padding: 3px;
+    border: 1.5px solid var(--rule);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    list-style: none;
+  }
+
+  .ws2 .hx-ctx__blocks li {
+    margin: 0;
+    padding: 0.28rem 0.55rem;
+    border: 1px solid var(--c);
+    border-radius: 4px;
+    background: var(--c-soft);
+    font-size: var(--step--1);
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .ws2 .hx-ctx__blocks .start { --c: var(--hx-tool); --c-soft: var(--hx-tool-soft); }
+  .ws2 .hx-ctx__blocks .you { --c: var(--bp-person); --c-soft: var(--bp-person-soft); }
+  .ws2 .hx-ctx__blocks .bad { --c: var(--hx-no); --c-soft: var(--hx-no-soft); }
+  .ws2 .hx-ctx__blocks .fresh { --c: var(--hx-ok); --c-soft: var(--hx-ok-soft); }
+  .ws2 .hx-ctx__keys { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .ws2 .hx-ctx__keys button,
+  .ws2 .hx-term__keys button,
+  .ws2 .quiz.sort .sq-bar button {
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .ws2 .hx-ctx__keys button,
+  .ws2 .quiz.sort .sq-bar button {
+    font: inherit;
+    font-size: var(--step--1);
+    padding: 0.35rem 0.8rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .ws2 .hx-ctx__keys button:hover,
+  .ws2 .quiz.sort .sq-bar button:hover { border-color: var(--bp-person); transform: translateY(-1px); }
+  .ws2 .hx-ctx__keys button code { color: inherit; }
+  .ws2 .hx-ctx__say { margin: 0.55rem 0 0; font-size: var(--step--1); }
+
+  /* Step 8: /rewind on the files of your folder, and on Langflow and n8n. */
+  .ws2 .hx-rewind {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .ws2 .hx-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.9rem 0.8rem;
+    border: 1.5px solid var(--c);
+    border-radius: var(--radius);
+    background: var(--c-soft);
+    text-align: center;
+  }
+
+  .ws2 .hx-zone.ok { --c: var(--hx-ok); --c-soft: var(--hx-ok-soft); }
+  .ws2 .hx-zone.no { --c: var(--bp-muscle); --c-soft: var(--bp-muscle-soft); }
+  .ws2 .hx-zone > b { color: var(--ink); }
+  .ws2 .hx-zone > span:not(.hx-ico) { font-size: var(--step--1); color: var(--ink-muted); }
+  .ws2 .hx-zone strong { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--step--1); color: var(--ink); }
+  .ws2 .hx-zone strong .hx-ico { width: 1.6rem; height: 1.6rem; border-width: 1.5px; }
+  .ws2 .hx-zone strong .hx-ico svg { width: 0.9rem; height: 0.9rem; }
+  .ws2 .hx-zone.no strong em { font-style: normal; color: var(--hx-no); }
+
+  .ws2 .hx-tl {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 78%;
+    margin: 0.9rem auto 0.5rem;
+    padding-top: 0.35rem;
+    border-top: 2px solid var(--rule);
+  }
+
+  .ws2 .hx-tl i { position: relative; font-style: normal; font-size: 0.72rem; color: var(--ink-muted); }
+
+  .ws2 .hx-tl i::before {
+    content: "";
+    position: absolute;
+    top: -0.68rem;
+    left: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    margin-left: -0.275rem;
+    border-radius: 50%;
+    background: var(--c);
+  }
+
+  .ws2 .hx-tl u {
+    position: absolute;
+    top: -0.95rem;
+    right: -0.15rem;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .ws2 .hx-tl em {
+    position: absolute;
+    top: -1.2rem;
+    right: 22%;
+    width: 3px;
+    height: 1.4rem;
+    border-radius: 2px;
+    background: var(--hx-no);
+  }
+
+  @container (max-width: 30rem) {
+    .ws2 .hx-rewind { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* A real case from our tests: the model it came from, in the corner. */
+  .ws2 .case {
+    margin: 1.2rem 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--rule-soft);
+    border-left: 4px solid var(--bp-brain);
+    border-radius: var(--radius-sm);
+    background: var(--bg-soft);
+  }
+
+  .ws2 .case::before {
+    content: attr(data-model);
+    float: right;
+    margin: -0.15rem -0.3rem 0.4rem 0.8rem;
+    padding: 0.1rem 0.55rem;
+    border: 1px solid var(--bp-brain);
+    border-radius: 999px;
+    background: var(--bp-brain-soft);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* The case of step 4: who said what, one step a line, with room between (Frank, 18 Nov 2026: "use more space"). */
+  .ws2 .case ol { margin: 1rem 0 0; padding-left: 1.4rem; }
+  .ws2 .case ol > li { margin: 0 0 1.4rem; }
+  .ws2 .case ol > li > p { margin: 0 0 0.6rem; }
+  .ws2 .case blockquote { margin: 0.6rem 0 0.6rem; }
+  .ws2 .case > :first-child { margin-top: 0; }
+  .ws2 .case > :last-child { margin-bottom: 0; }
+
+  /* A sort quiz: <div class="quiz sort"> around a table; its second column names the boxes. */
+  .ws2 .quiz.sort .sq-pool {
+    min-height: 2.6rem;
+    margin: 0.6rem 0;
+    padding: 0.4rem;
+    border: 1px dashed currentColor;
+    border-radius: var(--radius);
+  }
+
+  .ws2 .quiz.sort .sq-bins {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .ws2 .quiz.sort .sq-bin {
+    min-height: 6.5rem;
+    padding: 0.5rem;
+    border: 2px dashed var(--c);
+    border-radius: var(--radius);
+    background: var(--bg);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .ws2 .quiz.sort .sq-bin:nth-child(1) { --c: var(--hx-tool); --c-soft: var(--hx-tool-soft); }
+  .ws2 .quiz.sort .sq-bin:nth-child(2) { --c: var(--bp-brain); --c-soft: var(--bp-brain-soft); }
+  .ws2 .quiz.sort .sq-bin.over { background: var(--c-soft); }
+
+  .ws2 .quiz.sort .sq-bin > b {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    font-size: var(--step--1);
+  }
+
+  .ws2 .quiz.sort .sq-bin > b::before {
+    content: "";
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 2px solid var(--c);
+    border-radius: 50%;
+    background: var(--c-soft);
+  }
+
+  .ws2 .quiz.sort .sq-chip {
+    display: inline-block;
+    margin: 0.2rem;
+    padding: 0.3rem 0.65rem;
+    border: 1.5px solid var(--rule-soft);
+    border-radius: 0.45rem;
+    background: var(--bg-soft);
+    color: var(--ink);
+    font-size: 0.92em;
+    line-height: 1.35;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .ws2 .quiz.sort .sq-chip:hover { transform: translateY(-1px); border-color: var(--bp-person); }
+  .ws2 .quiz.sort .sq-chip.picked { outline: 2px solid var(--bp-person); }
+  .ws2 .quiz.sort .sq-chip.right { border-color: var(--hx-ok); }
+  .ws2 .quiz.sort .sq-chip.right::after { content: " ✓"; font-weight: 700; color: var(--hx-ok); }
+  .ws2 .quiz.sort .sq-chip.wrong { border-color: var(--hx-no); }
+  .ws2 .quiz.sort .sq-chip.wrong::after { content: " ✗"; font-weight: 700; color: var(--hx-no); }
+  .ws2 .quiz.sort .sq-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.6rem 0 0; }
+
+  @container (max-width: 26rem) {
+    .ws2 .quiz.sort .sq-bins { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .ws2 .quiz.sort { container-type: inline-size; }
+
+  /* The habits on one page as cards; the table stays for the page without the script. */
+  .ws2 .habit-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0.7rem;
+    margin: 1rem 0 1.4rem;
+    padding: 0;
+    list-style: none;
+    counter-reset: habit;
+  }
+
+  .ws2 .habit-cards li {
+    position: relative;
+    margin: 0;
+    padding: 0.85rem 0.9rem 0.8rem 3rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    counter-increment: habit;
+  }
+
+  .ws2 .habit-cards li::before {
+    content: counter(habit);
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--bp-person);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .ws2 .habit-cards b { display: block; line-height: 1.3; color: var(--ink); }
+  .ws2 .habit-cards .gain { display: block; margin-top: 0.3rem; font-size: var(--step--1); line-height: 1.4; }
+  .ws2 .habit-cards .src { display: block; margin-top: 0.45rem; font-size: 0.74rem; color: var(--ink-muted); }
+
+  /* ---- More to click, more motion (Frank, 18 Nov 2026: "animationen einfügen wenn möglich. mehr click-erlebnisse.
+     die quizze noch interactiver und mit animation"). ---- */
+  .ws2 .hx-i {
+    width: 1em;
+    height: 1em;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -0.14em;
+  }
+
+  /* The practice terminal, before step 1. */
+  .ws2 .hx-try .hx-term { max-width: 46rem; margin: 0 auto; }
+  .ws2 .hx-try__log {
+    min-height: 8.5rem;
+    max-height: 15rem;
+    margin: 0;
+    padding: 0.9rem 1rem 0.5rem;
+    overflow-y: auto;
+    list-style: none;
+  }
+  .ws2 .hx-try__log li { margin: 0 0 0.25rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+  .ws2 .hx-try__log li.hint { color: var(--t-mute); font-style: italic; }
+  .ws2 .hx-try__log .pr { margin-right: 0.5rem; color: #7ee787; }
+  .ws2 .hx-try__log li.typing::after { content: "▍"; margin-left: 1px; color: var(--t-mute); }
+  .ws2 .hx-try__keys button code { padding: 0; border: 0; background: none; color: inherit; }
+
+  /* The four settings, step 1: the way from the tool through OpenRouter to the model. */
+  .ws2 .hx-set { text-align: center; }
+  .ws2 .hx-set__path {
+    display: grid;
+    grid-template-columns: auto minmax(2rem, 1fr) auto minmax(2rem, 1fr) auto;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 1.1rem 0 0.9rem;
+  }
+  .ws2 .hx-set__node {
+    display: grid;
+    justify-items: center;
+    gap: 0.2rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    background: var(--bg);
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .ws2 .hx-set__node b { font-size: var(--step--1); }
+  .ws2 .hx-set__node span { font-size: 0.72rem; color: var(--ink-muted); }
+  .ws2 .hx-set__node.router { --c: #0f766e; --c-soft: #e3f4f1; }
+  .ws2 .hx-set__wire { position: relative; height: 4px; border-radius: 2px; background: var(--rule-soft); transition: background-color 0.3s; }
+  .ws2 .hx-set__wire .pkt {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 0.4rem);
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-top: -0.4rem;
+    border-radius: 50%;
+    background: var(--bp-person);
+    opacity: 0;
+  }
+  .ws2 .hx-set__wire .pkt .key {
+    position: absolute;
+    left: 50%;
+    bottom: 0.95rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-left: -0.52rem;
+    color: #b45309;
+    opacity: 0;
+  }
+  .ws2 .hx-set__ctx {
+    display: grid;
+    grid-template-columns: auto minmax(4rem, 1fr) auto;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 30rem;
+    margin: 0 auto 0.6rem;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .ws2 .hx-set__ctx i { position: relative; height: 0.6rem; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+  .ws2 .hx-set__ctx i::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 35%; background: var(--bp-brain); }
+  .ws2 .hx-set[data-mode="name"] .brain,
+  .ws2 .hx-set[data-mode="key"] .router,
+  .ws2 .hx-set[data-mode="url"] .router,
+  .ws2 .hx-set[data-mode="ctx"] .tool { border-color: var(--c); box-shadow: 0 0 0 4px var(--c-soft); transform: translateY(-2px); }
+  .ws2 .hx-set[data-mode="url"] .hx-set__wire,
+  .ws2 .hx-set[data-mode="key"] .hx-set__wire { background: color-mix(in srgb, var(--bp-person) 40%, var(--rule-soft)); }
+  .ws2 .hx-set[data-mode="url"] .pkt,
+  .ws2 .hx-set[data-mode="key"] .pkt { opacity: 1; }
+  .ws2 .hx-set[data-mode="key"] .pkt .key { opacity: 1; }
+  .ws2 .hx-set[data-mode="ctx"] .hx-set__ctx { opacity: 1; color: var(--ink); }
+  .ws2 .hx-set .hx-pick { max-width: 40rem; margin: 0.4rem auto 0; }
+  @container (max-width: 34rem) {
+    .ws2 .hx-set__path { grid-template-columns: 1fr; }
+    .ws2 .hx-set__node { justify-self: center; min-width: 12rem; }
+    .ws2 .hx-set__wire { justify-self: center; width: 4px; height: 1.8rem; }
+    .ws2 .hx-set__wire .pkt { top: calc(50% - 0.4rem); left: 50%; margin: 0 0 0 -0.4rem; }
+    .ws2 .hx-set__wire .pkt .key { left: 1rem; bottom: auto; top: -0.1rem; margin: 0; }
+  }
+
+  /* The prompt builder, step 5. */
+  .ws2 .hx-build__keys { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem; margin-bottom: 0.8rem; }
+  .ws2 .hx-build__keys button {
+    font: inherit;
+    font-size: var(--step--1);
+    padding: 0.3rem 0.85rem;
+    border: 1px dashed var(--bp-person);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--bp-person);
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .ws2 .hx-build__keys button:hover { transform: translateY(-1px); }
+  .ws2 .hx-build__keys button[aria-pressed="true"] { border-style: solid; background: var(--bp-person); color: #fff; }
+  .ws2 .hx-build__prompt {
+    position: relative;
+    padding: 0.9rem 1rem 0.9rem 2.6rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--bg);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+  .ws2 .hx-build__prompt::before { content: ""; position: absolute; left: 1.1rem; top: 1.05rem; width: 1.05em; height: 1.05em; background-color: var(--bp-brain); -webkit-mask: var(--hx-sparkles) center / contain no-repeat; mask: var(--hx-sparkles) center / contain no-repeat; }
+  .ws2 .hx-build__prompt p { margin: 0; }
+  .ws2 .hx-build__prompt ol { margin: 0; padding: 0; list-style: none; }
+  .ws2 .hx-build__prompt li { margin: 0.4rem 0 0; }
+  .ws2 .hx-build__prompt li b {
+    display: inline-block;
+    margin-right: 0.35rem;
+    padding: 0 0.4rem;
+    border-radius: 0.3rem;
+    background: var(--bp-person-soft);
+    color: var(--bp-person);
+    font-family: inherit;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: 0.12em;
+  }
+  .hx-js .ws2 .hx-build__prompt li:not(.on) { display: none; }
+  .ws2 .hx-build__meter {
+    display: grid;
+    grid-template-columns: auto minmax(4rem, 1fr) auto;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+  }
+  .ws2 .hx-build__meter i { height: 0.55rem; border-radius: 999px; background: var(--rule-soft); overflow: hidden; }
+  .ws2 .hx-build__meter u { display: block; height: 100%; width: calc(100% - var(--n, 0) * 25%); background: var(--bp-brain); transition: width 0.5s ease; }
+  .ws2 .hx-build.is-done .hx-build__prompt { border-color: var(--hx-ok); box-shadow: 0 0 0 4px var(--hx-ok-soft); }
+  .ws2 .hx-build.is-done .hx-build__meter em { color: var(--hx-ok); font-weight: 600; }
+
+  /* Where Claude Code may read and write, step 9. */
+  .ws2 .hx-box { text-align: center; }
+  .ws2 .hx-tree {
+    margin: 1rem 0 0.6rem;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-align: left;
+  }
+  .ws2 .hx-tree li {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0.55rem 0.8rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .ws2 .hx-tree li:first-child { border-top: 0; }
+  .ws2 .hx-tree li > .hx-i { color: var(--ink-muted); }
+  .ws2 .hx-tree code { font-size: 0.8rem; }
+  .ws2 .hx-tree small { color: var(--ink-muted); font-size: 0.75rem; }
+  .ws2 .hx-tree .acc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.12rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+  .ws2 .hx-tree .acc.write { background: var(--hx-ok-soft); color: var(--hx-ok); }
+  .ws2 .hx-tree .acc.read { background: var(--bp-person-soft); color: var(--bp-person); }
+  .ws2 .hx-tree .acc.none { background: var(--hx-tool-soft); color: var(--ink-muted); }
+  .hx-js .ws2 .hx-box[data-mode="course"] .acc.in,
+  .hx-js .ws2 .hx-box[data-mode="in"] .acc.course { display: none; }
+  html:not(.hx-js) .ws2 .hx-tree .acc.course::before { content: "./kingo claude:"; }
+  html:not(.hx-js) .ws2 .hx-tree .acc.in::before { content: "--in:"; }
+  .ws2 .hx-box .hx-pick { max-width: 40rem; margin: 0.4rem auto 0; }
+  /* What /add-dir changes, and what a start with --read changes, step 12: the same tree, other buttons. */
+  .hx-js .ws2 .hx-fence[data-mode="adddir"] .acc.start,
+  .hx-js .ws2 .hx-fence[data-mode="start"] .acc.adddir { display: none; }
+  html:not(.hx-js) .ws2 .hx-fence .acc.adddir::before { content: "/add-dir:"; }
+  html:not(.hx-js) .ws2 .hx-fence .acc.start::before { content: "--read:"; }
+  @container (max-width: 34rem) {
+    .ws2 .hx-tree li { grid-template-columns: auto minmax(0, 1fr) auto; }
+    .ws2 .hx-tree li > small { grid-column: 2 / -1; grid-row: 2; }
+  }
+
+  /* The website's five steps, step 10: tick each one off; the bar fills (kept in this browser). */
+  .ws2 .ck-bar {
+    display: grid;
+    grid-template-columns: auto minmax(4rem, 1fr);
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0.4rem 0 0.8rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+  .ws2 .ck-track { height: 0.5rem; border-radius: 999px; background: var(--rule-soft); overflow: hidden; }
+  .ws2 .ck-track i { display: block; width: 0; height: 100%; background: var(--hx-ok); transition: width 0.5s ease; }
+  .ws2 .checklist.is-done .ck-text { color: var(--hx-ok); font-weight: 600; }
+  .hx-js .ws2 .checklist > ol { padding-left: 0; list-style: none; counter-reset: ck; }
+  .hx-js .ws2 .checklist > ol > li { position: relative; padding-left: 2.7rem; counter-increment: ck; }
+  .ws2 .checklist .ck {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.9rem;
+    height: 1.9rem;
+    padding: 0;
+    border: 2px solid var(--bp-person);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--bp-person);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .ws2 .checklist .ck::before { content: counter(ck); }
+  .ws2 .checklist .ck:hover { transform: scale(1.07); }
+  .ws2 .checklist .ck[aria-pressed="true"] { border-color: var(--hx-ok); background: var(--hx-ok); color: #fff; }
+  .ws2 .checklist .ck[aria-pressed="true"]::before { content: "✓"; }
+
+  /* The quizzes: a mark on the answer you clicked, a hint at the right one after a wrong one, a row of dots for the
+     quizzes of the page, a green edge when solved. */
+  .ws2 .quiz { transition: border-color 0.4s; }
+  .ws2 .quiz.is-solved { border-left-color: var(--hx-ok, #15803d); }
+  .ws2 .qz-dots { display: flex; align-items: center; gap: 0.32rem; margin-bottom: 0.5rem; font-size: 0.7rem; color: var(--ink-muted); }
+  .ws2 .qz-dots span { margin-right: 0.3rem; }
+  .ws2 .qz-dots i {
+    width: 0.62rem;
+    height: 0.62rem;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+  }
+  .ws2 .qz-dots i.me { border-color: var(--bp-person); opacity: 1; }
+  .ws2 .qz-dots i.on { border-color: var(--hx-ok, #15803d); background: var(--hx-ok, #15803d); opacity: 1; }
+  .ws2 .quiz .quiz-options button { transition: transform 0.15s; }
+  .ws2 .quiz .quiz-options button:hover { transform: translateY(-1px); }
+  .ws2 .quiz .quiz-options button.right::after { content: " ✓"; font-weight: 700; color: var(--hx-ok, #15803d); }
+  .ws2 .quiz .quiz-options button.wrong::after { content: " ✗"; font-weight: 700; color: var(--hx-no, #b91c1c); }
+  .ws2 .quiz .quiz-options button.hx-hint { outline: 3px dashed var(--hx-ok, #15803d); outline-offset: -1px; }
+
+  /* "Your turn" (do it now) and "Next time" (a habit for later) as labels that the eye finds. */
+  .ws2 p.hx-turn > strong:first-child,
+  .ws2 p.hx-next > strong:first-child {
+    display: inline-block;
+    margin-right: 0.25rem;
+    padding: 0.02rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.93em;
+  }
+  .ws2 p.hx-turn > strong:first-child { background: var(--bp-person); color: #fff; }
+  .ws2 p.hx-next > strong:first-child { border: 1.5px solid var(--bp-person); color: var(--bp-person); }
+
+  /* A burst of colour where something was solved (the script adds it to the page, outside .ws2). */
+  .hx-burst { position: absolute; z-index: 60; width: 0; height: 0; pointer-events: none; }
+  .hx-burst i {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--c);
+    animation: hx-burst 0.85s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
+  }
+
+  /* The motion. Each picture moves once it scrolls into view (class is-in from the script). */
+  @keyframes hx-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @keyframes hx-pulse {
+    0% { left: 0; opacity: 0; }
+    8% { opacity: 1; }
+    40% { left: calc(100% - 10px); opacity: 1; }
+    48%, 56% { left: calc(100% - 10px); opacity: 0; }
+    62% { opacity: 1; }
+    92% { left: 0; opacity: 1; }
+    100% { left: 0; opacity: 0; }
+  }
+  @keyframes hx-think { 0%, 30%, 100% { box-shadow: 0 0 0 0 transparent; } 45% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--c) 22%, transparent); } }
+  @keyframes hx-in-left { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+  @keyframes hx-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes hx-stage { 0%, 16%, 100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; } 6% { transform: scale(1.14); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 20%, transparent); } }
+  @keyframes hx-talk { 0%, 4% { opacity: 0; transform: translate(-50%, 4px); } 12%, 52% { opacity: 1; transform: translate(-50%, 0); } 60%, 100% { opacity: 0; transform: translate(-50%, -6px); } }
+  @keyframes hx-doc { 0%, 24% { left: 33.3%; opacity: 0; } 30% { left: 33.3%; opacity: 1; } 56% { left: 66.6%; opacity: 1; } 80%, 94% { left: 100%; opacity: 1; } 100% { left: 100%; opacity: 0; } }
+  @keyframes hx-orbit { from { transform: rotate(0deg) translateY(-4.5rem); } to { transform: rotate(360deg) translateY(-4.5rem); } }
+  @keyframes hx-half { 0% { transform: rotate(0deg) translateY(-4.5rem); opacity: 1; } 45%, 80% { transform: rotate(120deg) translateY(-4.5rem); opacity: 1; } 100% { transform: rotate(120deg) translateY(-4.5rem); opacity: 0; } }
+  @keyframes hx-stop { 0%, 40% { box-shadow: 0 0 0 0 transparent; } 55% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 30%, transparent); } 80%, 100% { box-shadow: 0 0 0 0 transparent; } }
+  @keyframes hx-type { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+  @keyframes hx-glow { 0%, 100% { box-shadow: 0 3px 0 #05080b, 0 0 0 0 rgb(255 154 82 / 0); } 50% { box-shadow: 0 3px 0 #05080b, 0 0 0 5px rgb(255 154 82 / 0.28); } }
+  @keyframes hx-glow-mark { 0%, 100% { background: rgb(255 154 82 / 0.16); } 50% { background: rgb(255 154 82 / 0.45); } }
+  @keyframes hx-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+  @keyframes hx-out { to { opacity: 0; transform: translateY(-8px) scale(0.7); } }
+  @keyframes hx-back { 0%, 12% { right: -0.15rem; } 55%, 78% { right: calc(100% - 0.85rem); } 100% { right: -0.15rem; } }
+  @keyframes hx-bounce { 0%, 20% { right: -0.15rem; } 38% { right: 18%; } 46% { right: 13%; } 52% { right: 17%; } 70%, 100% { right: -0.15rem; } }
+  @keyframes hx-shake { 0%, 36%, 56%, 100% { transform: none; } 42% { transform: translateX(-2px); } 48% { transform: translateX(2px); } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ws2 .hx-model.is-in .hx-wire i { animation: hx-pulse 3.4s ease-in-out infinite; }
+    .ws2 .hx-model.is-in .hx-wire--late i { animation-delay: 0.6s; }
+    .ws2 .hx-model.is-in .brain > .hx-ico { animation: hx-think 3.4s ease-in-out infinite; animation-delay: 0.2s; }
+
+    .ws2 .hx-start .hx-files li { opacity: 0; }
+    .ws2 .hx-start.is-in .hx-files li { animation: hx-in-left 0.5s ease-out forwards; animation-delay: calc(var(--i) * 0.38s); }
+    .ws2 .hx-start .hx-start__view i { transform: scaleX(0); }
+    .ws2 .hx-start.is-in .hx-start__view i { animation: hx-grow 0.5s ease-out forwards; animation-delay: calc(var(--i) * 0.38s + 0.25s); }
+
+    .ws2 .hx-plan.is-in .hx-stages .hx-ico { animation: hx-stage 7s ease-in-out infinite; animation-delay: calc(var(--i) * 1.75s); }
+    .ws2 .hx-plan .hx-plan__track .talk,
+    .ws2 .hx-plan .hx-plan__track .doc { opacity: 0; }
+    .ws2 .hx-plan.is-in .hx-plan__track .talk { animation: hx-talk 7s ease-in-out infinite; }
+    .ws2 .hx-plan.is-in .hx-plan__track .doc { animation: hx-doc 7s ease-in-out infinite; }
+
+    .ws2 .hx-loop.is-in[data-mode="line"] .dot { animation: hx-orbit 3.6s linear infinite; }
+    .ws2 .hx-loop.is-in[data-mode="none"] .dot { animation: hx-half 3.2s ease-in-out infinite; }
+    .ws2 .hx-loop.is-in[data-mode="none"] .exit { animation: hx-stop 3.2s ease-in-out infinite; }
+
+    .ws2 .hx-term__log li.on { animation: hx-type 0.35s ease-out; }
+    .ws2 .hx-banner.is-in mark { animation: hx-glow-mark 1.4s ease-in-out 2; animation-delay: 0.4s; }
+    .ws2 .hx-term__keys .hx-esc:not(:disabled) { animation: hx-glow 1.8s ease-in-out infinite; }
+
+    .ws2 .hx-det .mk { opacity: 0; }
+    .ws2 .hx-det.is-in .mk { animation: hx-pop 0.35s ease-out forwards; animation-delay: calc(0.2s + var(--i) * 0.5s + var(--k) * 0.12s); }
+
+    .ws2 .hx-ctx__blocks li.new { animation: hx-pop 0.35s ease-out; }
+    .ws2 .hx-ctx__blocks li.out { animation: hx-out 0.4s ease-in forwards; animation-delay: calc(var(--k, 0) * 40ms); }
+
+    .ws2 .hx-rewind.is-in .ok .hx-tl u { animation: hx-back 4s ease-in-out infinite; }
+    .ws2 .hx-rewind.is-in .no .hx-tl u { animation: hx-bounce 4s ease-in-out infinite; }
+    .ws2 .hx-rewind.is-in .no .hx-tl em { animation: hx-shake 4s ease-in-out infinite; }
+
+    .ws2 .habit-cards li { opacity: 0; }
+    .ws2 .habit-cards.is-in li { animation: hx-fade 0.45s ease-out forwards; animation-delay: calc(var(--i) * 0.07s); }
+  }
+  /* The motion of the new parts (18 Nov 2026), again only where the reader has not asked for less of it. */
+  @keyframes hx-burst { from { transform: none; opacity: 1; } to { transform: translate(var(--x), var(--y)) rotate(200deg) scale(0.5); opacity: 0; } }
+  @keyframes hx-yes { 0% { transform: scale(1); } 35% { transform: scale(1.05); } 100% { transform: scale(1); } }
+  @keyframes hx-no { 0%, 100% { transform: none; } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+  @keyframes hx-hint { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--hx-ok, #15803d) 30%, transparent); } }
+  @keyframes hx-nudge { 0%, 100% { transform: none; } 30% { transform: scale(1.12) rotate(-2deg); } 60% { transform: scale(0.97); } }
+  @keyframes hx-ride-x { 0% { left: 0; opacity: 0; } 15%, 85% { opacity: 1; } 100% { left: calc(100% - 0.8rem); opacity: 0; } }
+  @keyframes hx-ride-y { 0% { top: 0; opacity: 0; } 15%, 85% { opacity: 1; } 100% { top: calc(100% - 0.8rem); opacity: 0; } }
+  @keyframes hx-fill { 0% { width: 8%; } 68%, 76% { width: 98%; } 86%, 100% { width: 24%; } }
+  @keyframes hx-caret { 50% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ws2 .hx-try__log li.typing::after { animation: hx-caret 0.8s steps(1) infinite; }
+    .ws2 .hx-try__log li.out { animation: hx-type 0.3s ease-out; }
+    .ws2 .hx-set.is-in[data-mode="url"] .pkt,
+    .ws2 .hx-set.is-in[data-mode="key"] .pkt { animation: hx-ride-x 1.9s ease-in-out infinite; }
+    .ws2 .hx-set.is-in .hx-set__wire.two .pkt { animation-delay: 0.95s; }
+    .ws2 .hx-set.is-in[data-mode="name"] .brain > .hx-ico { animation: hx-think 2.6s ease-in-out infinite; }
+    .ws2 .hx-set.is-in[data-mode="ctx"] .hx-set__ctx i::before { animation: hx-fill 3.4s ease-in-out infinite; }
+    .ws2 .hx-set .hx-pick.on { animation: hx-fade 0.35s ease-out; }
+    .ws2 .hx-build__prompt li.on { animation: hx-type 0.4s ease-out; }
+    .hx-js .ws2 .hx-box .acc { animation: hx-pop 0.35s ease-out backwards; animation-delay: calc(var(--i, 0) * 70ms); }
+    .ws2 .checklist .ck[aria-pressed="true"] { animation: hx-pop 0.35s ease-out; }
+    .ws2 .quiz .quiz-options button.right { animation: hx-yes 0.5s ease-out; }
+    .ws2 .quiz .quiz-options button.wrong { animation: hx-no 0.45s ease-in-out; }
+    .ws2 .quiz .quiz-options button.hx-hint { animation: hx-hint 1.1s ease-in-out 2; }
+    .ws2 .quiz .quiz-answer:not([hidden]),
+    .ws2 .quiz .quiz-verdict:not([hidden]) { animation: hx-fade 0.4s ease-out; }
+    .ws2 .quiz.match td.ma-right,
+    .ws2 .quiz.match td.mr-right,
+    .ws2 .quiz.sort .sq-chip.right { animation: hx-yes 0.5s ease-out; }
+    .ws2 .quiz.match td.ma-wrong,
+    .ws2 .quiz.match td.mr-wrong,
+    .ws2 .quiz.sort .sq-chip.wrong { animation: hx-no 0.45s ease-in-out; }
+    .ws2 .qz-dots i.on { animation: hx-pop 0.35s ease-out; }
+    .ws2 p.hx-turn.is-in > strong:first-child { animation: hx-nudge 0.9s ease-out 0.2s; }
+    @container (max-width: 34rem) {
+      .ws2 .hx-set.is-in[data-mode="url"] .pkt,
+      .ws2 .hx-set.is-in[data-mode="key"] .pkt { animation-name: hx-ride-y; }
+    }
+  }
+</style>
+
+<script is:inline>
+  // hw3's pictures and the sort quiz (Frank, 17 Nov 2026). Without this script every picture shows all its text at
+  // once and the sort quiz stays a table, with the answers.
+  (function () {
+    document.documentElement.classList.add("hx-js");
+    var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var each = function (sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); };
+
+    // A switch of two: the course's model or Claude (step 1), its own finish line or yours (step 4).
+    each(".ws2 .hx-model, .ws2 .hx-loop, .ws2 .hx-set, .ws2 .hx-box", function (fig) {
+      var buttons = fig.querySelectorAll(".hx-switch button"), picks = fig.querySelectorAll(".hx-pick");
+      var key = function (b) { return b.dataset.pick || b.dataset.mode; };
+      var pick = function (v) {
+        Array.prototype.forEach.call(buttons, function (b) { b.setAttribute("aria-pressed", String(key(b) === v)); });
+        Array.prototype.forEach.call(picks, function (p) { p.classList.toggle("on", p.dataset.for === v); });
+        fig.dataset.mode = v;
+      };
+      Array.prototype.forEach.call(buttons, function (b) { b.addEventListener("click", function () { pick(key(b)); }); });
+      pick(key(buttons[0]));
+    });
+
+    // The replay of our test run (step 6): one line after the other; Esc, the button or the key, stops it.
+    each(".ws2 .hx-term", function (t) {
+      var log = t.querySelector(".hx-term__log");
+      if (!log) return;   // the first lines of Claude Code (step 1): a still picture
+      var lines = Array.prototype.slice.call(log.children);
+      var bar = t.querySelector(".hx-term__bar"), esc = t.querySelector(".hx-esc"), play = t.querySelector(".hx-play");
+      var note = t.querySelector(".hx-term__note"), keys = t.querySelector(".hx-term__keys");
+      var more = document.createElement("button"); more.type = "button"; more.className = "hx-more";
+      more.textContent = "Show what came next"; more.hidden = true; keys.appendChild(more);
+      var shown = 0, timer = null, running = false;
+      var show = function (n) {
+        shown = n;
+        lines.forEach(function (l, k) { l.classList.toggle("on", k < n); });
+        log.scrollTop = log.scrollHeight;
+        bar.style.setProperty("--p", String(n / lines.length));
+      };
+      var reps = function () { return lines.filter(function (l) { return l.classList.contains("rep") && l.classList.contains("on"); }).length; };
+      var end = function (pressed) {
+        clearTimeout(timer); running = false; esc.disabled = true; play.textContent = "Play again";
+        t.classList.add(pressed ? "is-stopped" : "is-done");
+        more.hidden = !pressed || shown >= lines.length;
+        var n = reps();
+        note.textContent = pressed
+          ? (n === 0 ? "You pressed Esc early. That is fine: a question costs you only a minute. "
+             : n === 1 ? "You pressed Esc after the first marked line. Good: after it, Claude Code said the same thing three more times, each time a little differently. "
+             : "You pressed Esc after Claude Code had said the same thing " + n + " times (marked). Good that you stopped it. ")
+            + "Now ask Claude Code what it is trying, and why the last try did not work. In our test, nobody pressed Esc: Claude Code went on for 23 minutes."
+          : "Nobody pressed Esc: Claude Code went on for 23 minutes. It said the same thing four times (marked), switched to Chinese, and wrote its last report in Chinese too. Press Play again, and stop it where you would.";
+      };
+      var tick = function () {
+        show(shown + 1);
+        if (shown >= lines.length) return end(false);
+        var last = lines[shown - 1].classList;
+        timer = setTimeout(tick, last.contains("think") ? 1200 : last.contains("you") ? 1000 : 2000);
+      };
+      var start = function () {
+        clearTimeout(timer); t.classList.remove("is-done", "is-stopped"); note.textContent = ""; more.hidden = true;
+        show(0); running = true; esc.disabled = false; play.textContent = "Start again"; tick();
+      };
+      esc.addEventListener("click", function () { if (running) end(true); });
+      play.addEventListener("click", start);
+      more.addEventListener("click", function () { show(lines.length); more.hidden = true; t.classList.remove("is-stopped"); t.classList.add("is-done"); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && running) { e.preventDefault(); end(true); } });
+      t.addEventListener("hx-in", function () { if (!calm && !running && shown === 0) start(); });
+    });
+
+    // What the model reads at every step (step 7): a third correction adds to it, /clear empties it.
+    each(".ws2 .hx-ctx", function (fig) {
+      var list = fig.querySelector(".hx-ctx__blocks"), say = fig.querySelector(".hx-ctx__say");
+      var original = list.innerHTML, tries = 2, cleared = false;
+      var add = function (cls, text) {
+        var li = document.createElement("li"); li.className = cls + " new"; li.textContent = text; list.appendChild(li);
+      };
+      fig.querySelector('[data-act="more"]').addEventListener("click", function () {
+        if (cleared) { list.innerHTML = original; tries = 2; cleared = false; }
+        tries += 1; add("bad", "Try " + tries + " ✗"); add("you", "Correction");
+        say.textContent = "Now the model reads " + tries + " failed tries at every step. And on your OpenRouter key, every step sends all of it again.";
+      });
+      fig.querySelector('[data-act="clear"]').addEventListener("click", function () {
+        if (cleared) return;
+        var old = Array.prototype.slice.call(list.querySelectorAll("li:not(.start)"));
+        old.forEach(function (li, k) { li.style.setProperty("--k", String(k)); li.classList.add("out"); });
+        setTimeout(function () {
+          old.forEach(function (li) { li.remove(); });
+          add("fresh", "One new prompt, with what you learned");
+        }, calm ? 0 : 420 + old.length * 40);
+        cleared = true;
+        say.textContent = "A fresh start: the model gets the start files again, and the failed tries are gone. Press the other button to start over.";
+      });
+    });
+
+    // The habits on one page as cards (the table stays, hidden, for the reader without styles).
+    each(".ws2 .habits table", function (table) {
+      var ol = document.createElement("ol"); ol.className = "habit-cards";
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (tr, i) {
+        var li = document.createElement("li"); li.style.setProperty("--i", String(i));
+        var b = document.createElement("b"); b.innerHTML = tr.children[0].innerHTML;
+        var gain = document.createElement("span"); gain.className = "gain"; gain.innerHTML = tr.children[1].innerHTML;
+        var src = document.createElement("span"); src.className = "src"; src.innerHTML = "Source: " + tr.children[2].innerHTML;
+        li.append(b, gain, src); ol.appendChild(li);
+      });
+      table.before(ol); table.hidden = true;
+    });
+
+    // The sort quiz: the cards wait above the boxes, shuffled; drag each into its box, or click it, then the box.
+    each(".ws2 .quiz.sort", function (box) {
+      var table = box.querySelector("table");
+      if (!table) return;
+      var rows = Array.prototype.map.call(table.querySelectorAll("tbody tr"), function (tr) {
+        return { html: tr.children[0].innerHTML, bin: tr.children[1].textContent.trim() };
+      });
+      var names = [];
+      rows.forEach(function (r) { if (names.indexOf(r.bin) < 0) names.push(r.bin); });
+      var pool = document.createElement("div"); pool.className = "sq-pool";
+      var bins = document.createElement("div"); bins.className = "sq-bins";
+      var bar = document.createElement("div"); bar.className = "sq-bar";
+      var check = document.createElement("button"); check.type = "button"; check.textContent = "Check my answers";
+      var solve = document.createElement("button"); solve.type = "button"; solve.textContent = "Show the solution";
+      var again = document.createElement("button"); again.type = "button"; again.textContent = "Try again";
+      var status = document.createElement("span"); status.setAttribute("aria-live", "polite");
+      bar.append(check, solve, again, status);
+      var picked = null;
+      var zones = names.map(function (name) {
+        var z = document.createElement("div"); z.className = "sq-bin"; z.dataset.bin = name;
+        var head = document.createElement("b"); head.textContent = name; z.appendChild(head);
+        z.addEventListener("click", function () { if (picked) put(picked, z); });
+        z.addEventListener("dragover", function (e) { e.preventDefault(); z.classList.add("over"); });
+        z.addEventListener("dragleave", function () { z.classList.remove("over"); });
+        z.addEventListener("drop", function (e) {
+          e.preventDefault(); z.classList.remove("over");
+          var c = box.querySelector('.sq-chip[data-i="' + e.dataTransfer.getData("text/plain") + '"]');
+          if (c) put(c, z);
+        });
+        bins.appendChild(z); return z;
+      });
+      var put = function (c, where) {
+        fly(c, where); c.classList.remove("picked", "right", "wrong"); picked = null; status.textContent = "";
+      };
+      var chip = function (i) {
+        var c = document.createElement("span"); c.className = "sq-chip"; c.innerHTML = rows[i].html; c.dataset.i = String(i);
+        c.draggable = true; c.tabIndex = 0;
+        c.addEventListener("dragstart", function (e) { e.dataTransfer.setData("text/plain", String(i)); });
+        c.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (c.parentNode !== pool) { put(c, pool); return; }
+          picked = picked === c ? null : c;
+          Array.prototype.forEach.call(box.querySelectorAll(".sq-chip"), function (o) { o.classList.toggle("picked", o === picked); });
+        });
+        c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); c.click(); } });
+        return c;
+      };
+      var start = function () {
+        pool.innerHTML = ""; zones.forEach(function (z) { Array.prototype.forEach.call(z.querySelectorAll(".sq-chip"), function (c) { c.remove(); }); });
+        var order = rows.map(function (_, i) { return i; });
+        for (var k = order.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = order[k]; order[k] = order[j]; order[j] = t; }
+        order.forEach(function (i) { pool.appendChild(chip(i)); });
+        pool.hidden = false; check.hidden = false; solve.hidden = false; again.hidden = true;
+        status.textContent = "Drag each card into its box. Or click a card, then its box.";
+      };
+      check.addEventListener("click", function () {
+        var right = 0, placed = 0, wrong = [];
+        zones.forEach(function (z) {
+          Array.prototype.forEach.call(z.querySelectorAll(".sq-chip"), function (c) {
+            placed++; var ok = rows[+c.dataset.i].bin === z.dataset.bin;
+            c.classList.toggle("right", ok); c.classList.toggle("wrong", !ok); if (ok) right++; else wrong.push(c);
+          });
+        });
+        if (right === rows.length) {
+          status.textContent = "All " + rows.length + " right. Well done!";
+          pool.hidden = true; check.hidden = true; solve.hidden = true; again.hidden = false;
+          burst(bins); solved(box);
+          return;
+        }
+        status.textContent = right + " of " + rows.length + " right." +
+          (wrong.length ? " The wrong ones go back to the top: try them again." : "") +
+          (placed < rows.length ? " " + (rows.length - placed) + " still to sort." : "");
+        setTimeout(function () {
+          wrong.forEach(function (c) { if (c.classList.contains("wrong")) { c.classList.remove("wrong"); fly(c, pool); } });
+        }, calm ? 700 : 1100);
+      });
+      solve.addEventListener("click", function () {
+        Array.prototype.forEach.call(box.querySelectorAll(".sq-chip"), function (c) {
+          var z = zones[names.indexOf(rows[+c.dataset.i].bin)]; fly(c, z); c.classList.remove("picked", "wrong"); c.classList.add("right");
+        });
+        check.hidden = true; solve.hidden = true; again.hidden = false; status.textContent = "";
+        setTimeout(function () { pool.hidden = true; }, calm ? 0 : 360);
+      });
+      again.addEventListener("click", start);
+      table.before(pool); table.before(bins); table.before(bar); table.hidden = true;
+      start();
+    });
+
+    // ---- More to click, more motion (Frank, 18 Nov 2026). ----
+
+    // A burst of colour where something was solved; none for readers who asked for less motion.
+    function burst(el) {
+      if (calm || !el || !el.getBoundingClientRect) return;
+      var r = el.getBoundingClientRect(), host = document.createElement("span");
+      host.className = "hx-burst"; host.setAttribute("aria-hidden", "true");
+      host.style.left = (r.left + r.width / 2 + window.scrollX) + "px";
+      host.style.top = (r.top + r.height / 2 + window.scrollY) + "px";
+      for (var k = 0; k < 16; k++) {
+        var p = document.createElement("i"), a = k / 16 * 2 * Math.PI + Math.random() * 0.4, d = 38 + Math.random() * 48;
+        p.style.setProperty("--x", Math.round(Math.cos(a) * d) + "px");
+        p.style.setProperty("--y", Math.round(Math.sin(a) * d) + "px");
+        p.style.setProperty("--c", ["#ff6c0f", "#2563eb", "#15803d", "#f5b301"][k % 4]);
+        host.appendChild(p);
+      }
+      document.body.appendChild(host);
+      setTimeout(function () { host.remove(); }, 1000);
+    }
+
+    // Move an element to its new place, and let it fly there from where it was.
+    function fly(el, where) {
+      var a = el.isConnected ? el.getBoundingClientRect() : null;
+      where.appendChild(el);
+      if (calm || !a || !el.animate) return;
+      var b = el.getBoundingClientRect();
+      el.animate([{ transform: "translate(" + (a.left - b.left) + "px, " + (a.top - b.top) + "px)" }, { transform: "none" }],
+        { duration: 340, easing: "cubic-bezier(0.2, 0.7, 0.3, 1)" });
+    }
+
+    // The quizzes of a page: a row of dots in each, one per quiz, filled when it is solved (kept in this browser).
+    var quizzes = Array.prototype.slice.call(document.querySelectorAll(".ws2 .quiz"));
+    var qkey = "hx-quiz:" + location.pathname, qdone = {};
+    try { qdone = JSON.parse(localStorage.getItem(qkey) || "{}") || {}; } catch (e) { qdone = {}; }
+    function paintDots() {
+      quizzes.forEach(function (q) {
+        Array.prototype.forEach.call(q.querySelectorAll(".qz-dots i"), function (dot, k) { dot.classList.toggle("on", !!qdone[k]); });
+        q.classList.toggle("is-solved", !!qdone[q.dataset.qi]);
+      });
+    }
+    function solved(q) {
+      if (!q || q.dataset.qi === undefined) return;
+      var first = !qdone[q.dataset.qi];
+      qdone[q.dataset.qi] = 1;
+      try { localStorage.setItem(qkey, JSON.stringify(qdone)); } catch (e) {}
+      paintDots();
+      if (first) burst(q.querySelector(".qz-dots i.me"));
+    }
+    quizzes.forEach(function (q, i) {
+      q.dataset.qi = String(i);
+      if (quizzes.length < 2) return;
+      var row = document.createElement("div"); row.className = "qz-dots";
+      var lab = document.createElement("span"); lab.textContent = "Quiz " + (i + 1) + " of " + quizzes.length + " on this page";
+      row.appendChild(lab);
+      quizzes.forEach(function (_, k) {
+        var dot = document.createElement("i"); dot.setAttribute("aria-hidden", "true"); if (k === i) dot.className = "me"; row.appendChild(dot);
+      });
+      q.prepend(row);
+    });
+    paintDots();
+
+    // A choice quiz: right gives a burst; after a wrong choice, the right answer lights up.
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest(".ws2 .quiz-options button") : null;
+      if (!b) return;
+      var opts = b.parentNode, q = b.closest(".quiz");
+      Array.prototype.forEach.call(opts.children, function (o) { o.classList.remove("hx-hint"); });
+      if (b.hasAttribute("data-right")) { burst(b); solved(q); return; }
+      b.style.animation = "none"; void b.offsetWidth; b.style.animation = "";
+      var r = opts.querySelector("[data-right]");
+      if (r) setTimeout(function () { if (!r.classList.contains("right")) r.classList.add("hx-hint"); }, 500);
+    });
+
+    // A match quiz: a burst when all are right (its own script writes "All … right").
+    each(".ws2 .quiz.match", function (q) {
+      var bar = q.querySelector(".ma-bar");
+      if (!bar || !window.MutationObserver) return;
+      var was = false;
+      new MutationObserver(function () {
+        var now = /All \d+ right/.test(bar.textContent);
+        if (now && !was) { burst(bar); solved(q); }
+        was = now;
+      }).observe(bar, { subtree: true, childList: true, characterData: true });
+    });
+
+    // The terminal for practice (before step 1): a click types the command, then Ubuntu's answer appears. As in a
+    // real terminal, a new line with the folder waits after each command. cd answers nothing, so a hint says what
+    // changed (Frank, 18 Nov 2026: "after cd and after cd ~/kingo-pod, nothing is happening").
+    each(".ws2 .hx-try", function (fig) {
+      var log = fig.querySelector(".hx-try__log"), out;
+      try { out = JSON.parse(fig.dataset.out); } catch (e) { return; }
+      var cwd = "~", busy = false, wait;
+      var line = function (cls, text) {
+        var li = document.createElement("li"); if (cls) li.className = cls; if (text) li.textContent = text;
+        log.appendChild(li); log.scrollTop = log.scrollHeight; return li;
+      };
+      var prompt = function () {
+        var pr = document.createElement("span");
+        pr.className = "pr"; pr.textContent = "anna@laptop:" + cwd + "$";
+        wait = line("you typing"); wait.appendChild(pr);
+      };
+      var named = function (f) { return f === "~" ? "~, your home folder" : f; };
+      log.innerHTML = "";
+      line("hint", "Click a command below.");
+      prompt();
+      var run = function (cmd) {
+        if (busy) return;
+        busy = true;
+        Array.prototype.forEach.call(log.querySelectorAll(".hint"), function (h) { h.remove(); });
+        var li = wait, typed = document.createTextNode(""), k = 0;
+        li.appendChild(typed);
+        var step = function () {
+          if (!calm && k < cmd.length) { typed.data += cmd.charAt(k++); setTimeout(step, 45); return; }
+          typed.data = cmd; li.classList.remove("typing");
+          if (cmd === "clear") log.innerHTML = "";
+          else if (cmd === "cd" || cmd === "cd ~/kingo-pod") {
+            var to = cmd === "cd" ? "~" : "~/kingo-pod";
+            line("hint", "cd shows nothing: it only changes the folder. " + (to === cwd
+              ? "The folder stays " + named(to) + ": you were in it already."
+              : "Before the dollar sign, you now see " + named(to) + "."));
+            cwd = to;
+          }
+          else if (out[cwd] && out[cwd][cmd]) line("out", out[cwd][cmd]);
+          prompt();
+          busy = false;
+        };
+        setTimeout(step, calm ? 0 : 120);
+      };
+      Array.prototype.forEach.call(fig.querySelectorAll(".hx-try__keys button"), function (b) {
+        b.addEventListener("click", function () { run(b.dataset.cmd); });
+      });
+    });
+
+    // The prompt builder (step 5): each button adds one piece; the bar shows how much is left to guess.
+    each(".ws2 .hx-build", function (fig) {
+      var buttons = Array.prototype.slice.call(fig.querySelectorAll(".hx-build__keys button"));
+      var say = fig.querySelector(".hx-build__meter em"), words = ["a lot", "still a lot", "less", "little", "almost nothing"];
+      var paint = function (fresh) {
+        var n = buttons.filter(function (b) { return b.getAttribute("aria-pressed") === "true"; }).length;
+        fig.style.setProperty("--n", String(n));
+        say.textContent = words[Math.min(n, words.length - 1)];
+        var all = n === buttons.length;
+        if (all && fresh && !fig.classList.contains("is-done")) burst(fig.querySelector(".hx-build__prompt"));
+        fig.classList.toggle("is-done", all);
+      };
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var on = b.getAttribute("aria-pressed") !== "true";
+          b.setAttribute("aria-pressed", String(on));
+          b.textContent = (on ? "✓ " : "+ ") + b.textContent.slice(2);
+          var li = fig.querySelector('.hx-build__prompt li[data-k="' + b.dataset.k + '"]');
+          if (li) li.classList.toggle("on", on);
+          paint(true);
+        });
+      });
+      paint(false);
+    });
+
+    // The website's five steps (step 10): tick each one off; all five give a burst (kept in this browser).
+    each(".ws2 .checklist", function (box) {
+      var list = box.querySelector("ol");
+      if (!list) return;
+      var items = Array.prototype.slice.call(list.children), key = "hx-check:" + location.pathname, done = {};
+      try { done = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch (e) { done = {}; }
+      var bar = document.createElement("div"); bar.className = "ck-bar";
+      var text = document.createElement("span"); text.className = "ck-text"; text.setAttribute("aria-live", "polite");
+      var track = document.createElement("span"); track.className = "ck-track";
+      var fill = document.createElement("i"); track.appendChild(fill); bar.append(text, track); box.prepend(bar);
+      var paint = function (fresh) {
+        var n = items.filter(function (_, k) { return done[k]; }).length, all = n === items.length;
+        text.textContent = all ? "All " + n + " done: you planned and built a website with Claude Code."
+          : n + " of " + items.length + " done";
+        fill.style.width = (100 * n / items.length) + "%";
+        if (all && fresh && !box.classList.contains("is-done")) burst(bar);
+        box.classList.toggle("is-done", all);
+      };
+      items.forEach(function (li, k) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "ck";
+        b.setAttribute("aria-label", "Item " + (k + 1) + " done"); b.setAttribute("aria-pressed", String(!!done[k]));
+        b.addEventListener("click", function () {
+          done[k] = done[k] ? 0 : 1; b.setAttribute("aria-pressed", String(!!done[k]));
+          try { localStorage.setItem(key, JSON.stringify(done)); } catch (e) {}
+          paint(true);
+        });
+        li.prepend(b);
+      });
+      paint(false);
+    });
+
+    // "Your turn" and "Next time": the two kinds of task, as labels.
+    each(".ws2 p > strong:first-child", function (s) {
+      if (s.previousSibling && s.previousSibling.nodeType === 3 && s.previousSibling.data.trim()) return;
+      var t = s.textContent.trim();
+      if (/^Your turn\b/.test(t)) s.parentNode.classList.add("hx-turn");
+      else if (/^Next time\b/.test(t)) s.parentNode.classList.add("hx-next");
+    });
+
+    // Links to other sites: Base.astro, for the whole site (Frank, 18 Nov 2026: "ganze seite").
+
+    // Each picture starts to move when it scrolls into view.
+    var targets = document.querySelectorAll(".ws2 .hx, .ws2 .habit-cards, .ws2 p.hx-turn");
+    var seen = function (el) { el.classList.add("is-in"); el.dispatchEvent(new CustomEvent("hx-in")); };
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { seen(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.35 });
+      Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+    } else {
+      Array.prototype.forEach.call(targets, seen);
+    }
+  })();
 </script>

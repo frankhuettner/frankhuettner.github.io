@@ -25,6 +25,8 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   asks the mailbox, a better search flow, the team's rules. For the afternoon, one page per team:
   [A · KSMC](/abp/ws2/s2-team-a/), [B · Kgoda](/abp/ws2/s2-team-b/), [C · K-Motor](/abp/ws2/s2-team-c/). And
   [how to change the model that Claude Code uses](/abp/ws2/s2-model/).
+- [Homework until 23 November](/abp/ws2/hw3/): get more out of Claude Code, with nine habits and a small website of
+  your own. It also works without the course's setup.
 - 23 November: to follow.
 
 ## Downloads
