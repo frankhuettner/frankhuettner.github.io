@@ -8,8 +8,25 @@ title: "Homework until 23 Nov, Part E: Shorter commands"
 So far, you went into `~/kingo-pod` before each start of Claude Code. After this step, two letters start it, from any
 folder: <span class="cmd-i cmd-i-t">`kc`</span>.
 
-**Your turn.** New here? In 4, <span class="cmd-i cmd-i-t">`kingo status`</span> needs n8n and Langflow: type <span class="cmd-i cmd-i-t">`kingo version`</span> in its place, which shows
-the version of your kingo-pod. Skip 5: <span class="cmd-i cmd-i-t">`kc`</span> alone starts Claude Code for the course.
+**Your turn.**
+
+<details class="more">
+<summary>New here? What is different for you in 4 and 5</summary>
+
+In 4, <span class="cmd-i cmd-i-t">`kingo status`</span> needs n8n and Langflow. Paste this line in its place: it shows the version of your kingo-pod.
+
+<div class="cmd cmd-terminal">
+
+```
+kingo version
+```
+
+</div>
+
+
+Skip 5: <span class="cmd-i cmd-i-t">`kc`</span> alone starts Claude Code for the course.
+
+</details>
 
 1. Go into your kingo-pod folder. Paste this line into your terminal:
    <div class="cmd cmd-terminal">
