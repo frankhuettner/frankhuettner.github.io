@@ -226,6 +226,22 @@ its own thing: its own folder, its own flow or workflow. Both should change one 
 
 </div>
 
+<details class="more">
+<summary>Do you use Git? Two sessions in one repository</summary>
+
+Two sessions in one repository share more than the files: they share the branch, and each commit and each push.
+So one session may commit or push the half-done work of the other.
+
+- **The simple rule:** only one session commits and pushes. The other one only reads, or works in another folder.
+- **Two tasks in one repository at the same time?** Give each session a worktree. A worktree is a second folder of
+  the same repository, with its own files and its own branch. Each session changes only its own folder. When both
+  are done, you bring the two branches together, as with any branch.
+
+<span class="src">From Anthropic's page [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees): the page
+also shows how to start one.</span>
+
+</details>
+
 **With your OpenRouter key: as many as you like.** You can start Claude Code in three tabs, in four, or in more:
 open one more terminal tab, and start it there with <span class="cmd-i cmd-i-t">`kc`</span> and a folder. Each session is a conversation of its own:
 it does not know what you said in the other tabs. All of them pay with your one OpenRouter key, and you pay for each

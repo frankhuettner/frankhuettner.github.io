@@ -240,22 +240,49 @@ the four steps below, and read on at **For any project**.
 
 </details>
 
-1. Start Claude Code. Is it running already? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then paste this line into your terminal: it updates
-   kingo-pod and starts Claude Code.
+1. Start Claude Code. Is it running already? Type <span class="cmd-i cmd-i-c">`/exit`</span> first. Then paste this line into your terminal. It updates
+   kingo-pod, checks that the facts have arrived (you see the names of three files), and starts Claude Code.
    <div class="cmd cmd-terminal">
 
    ```
-   cd ~/kingo-pod && ./kingo update && ./kingo claude
+   cd ~/kingo-pod && ./kingo update && ls setup/claude/info-for-ai && ./kingo claude
    ```
 
    </div>
 
-   Before Claude Code starts, kingo says which files of your course folder it wrote: the first time, `AGENTS.md` and
-   three files in the folder `info-for-ai`. Do you start Claude Code with `--login`? Then kingo asks for your
-   OpenRouter key if it does not have it yet: paste the key that your flows in Langflow use. With it, Claude Code can
-   try the models of your flows.
-2. Open your course folder, `~/kingo-pod/claude`: there Claude Code works for the course. Open a second terminal tab
-   ([how](/abp/ws2/hw3/#your-terminal-in-short)). On a Mac, paste this line:
+   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B3261E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg> Got an error? Expand the hints below. Otherwise, move on to the next step.
+
+   <details class="more">
+   <summary>Claude Code does not start, and the last line says "No such file or directory"?</summary>
+
+   Then your kingo-pod is still an older one: <span class="cmd-i cmd-i-t">`./kingo update`</span> could not bring its newest files. The line stops on
+   purpose before Claude Code, because the older kingo-pod writes no folder `info-for-ai`. Here is what to do:
+
+   1. Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t">`./kingo update`</span>. Find the line that starts with `WARN:`. It says why
+      the update did not come through.
+   2. Do what that line says:
+      - `could not reach GitHub (no network?)`: check that your laptop is online. Then paste the line above again.
+      - `this folder has local changes`: a file of kingo-pod itself was changed. Paste
+        <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git checkout -- .`</span>: this line undoes the change. Your course folder, your flows and your
+        workflows stay as they are. Then paste the line above again.
+      - `Send this message to your instructor`: send it, with the lines around it. Until the answer comes, start
+        Claude Code with <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude`</span>, skip 2, 3 and 4 below, and read on at **For any project**.
+   3. It worked when you see the names of three files, `kingo-pod.md`, `langflow.md` and `n8n.md`, and then Claude
+      Code starts.
+
+   </details>
+
+   <details class="more">
+   <summary>Do you start Claude Code with --login?</summary>
+
+   Then kingo asks for your OpenRouter key if it does not have it yet: paste the key that your flows in Langflow use.
+   With it, Claude Code can try the models of your flows.
+
+   </details>
+
+2. Open your course folder, `~/kingo-pod/claude`: there Claude Code works for the course. Is Claude Code still
+   running? Type <span class="cmd-i cmd-i-c">`/exit`</span> first: the lines below go into your terminal, not into Claude Code. On a Mac, paste this
+   line:
    <div class="cmd cmd-terminal">
 
    ```
@@ -382,7 +409,8 @@ Find your step.
 |---|---|
 | `No such file or directory` for `~/kingo-pod/claude` | Claude Code never started in the course folder. Do [step 4 of the last homework](/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys) first. |
 | You see no `AGENTS.md` in the course folder | Same as above: start Claude Code once with <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude`</span>, then <span class="cmd-i cmd-i-c">`/exit`</span>. |
-| There is no folder `info-for-ai` in your course folder | kingo-pod is not up to date yet. Paste this line into your terminal again: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update && ./kingo claude`</span>. |
+| <span class="cmd-i cmd-i-t">`open`</span> or <span class="cmd-i cmd-i-t">`explorer.exe`</span> opens no window, or Claude Code answers the line | You pasted the line into Claude Code. Type <span class="cmd-i cmd-i-c">`/exit`</span>, then paste the line again. |
+| There is no folder `info-for-ai` in your course folder, or <span class="cmd-i cmd-i-t">`ls`</span> says `No such file or directory` for it | New here? You have no course folder: the facts are in `~/kingo-pod/setup/claude/info-for-ai`, as the box in step 2 says. In the course, type <span class="cmd-i cmd-i-c">`/exit`</span> and paste the first line of step 2 again: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update && ls setup/claude/info-for-ai && ./kingo claude`</span>. Claude Code does not start? Open the box under that line. |
 | kingo says that your `AGENTS.md` has no heading "# Your team's rules" | Open `AGENTS.md`, and write the line `# Your team's rules` above your team's rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t">`./kingo claude`</span> again. |
 | kingo says that it moved lines below `# Your team's rules` | They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in `~/kingo-pod/backups/course-files/`. |
 | <span class="cmd-i cmd-i-t">`./kingo claude`</span> (or <span class="cmd-i cmd-i-t">`./kingo claude --login`</span>) asks for your OpenRouter key, and you do not have it any more | In the course, paste the key that Yanbo gave you. You cannot find it, or you want a key of your own? On openrouter.ai, make an account and add credits. Then open Settings, then Keys, make a key, and paste it. |

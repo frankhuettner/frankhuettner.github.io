@@ -109,14 +109,14 @@ you told Claude Code what was wrong, and the replies still start with "Dear Sir"
 
 **Type <span class="cmd-i cmd-i-c">`/clear`</span>.** <span class="cmd-i cmd-i-c">`/clear`</span> empties the conversation. Without it, the model reads the whole conversation again at
 every step, also the two tries that failed. A third correction only adds to them. After <span class="cmd-i cmd-i-c">`/clear`</span>, one new prompt that
-holds what you learned works better almost every time. Your files stay as they are. Try both buttons in the
-picture below.
+holds what you learned works better almost every time. Your files stay as they are. The picture below visualizes
+this (try both buttons):
+
+<figure class="hx hx-ctx" aria-label="What the model reads at every step"><div class="hx-ctx__head"><b>What the model reads again at every step</b><span>room in the course: 200,000 tokens</span></div><ol class="hx-ctx__blocks"><li class="start">AGENTS.md + facts</li><li class="you">Your prompt</li><li class="bad">Try 1 ✗</li><li class="you">Correction</li><li class="bad">Try 2 ✗</li><li class="you">Correction</li></ol><div class="hx-ctx__keys"><button type="button" data-act="more">A third correction</button><button type="button" data-act="clear"><code>/clear</code> and one new prompt</button></div><p class="hx-ctx__say" aria-live="polite">Every step, the model reads all of this again: also the two tries that failed.</p></figure>
 
 </details>
 
 </div>
-
-<figure class="hx hx-ctx" aria-label="What the model reads at every step"><div class="hx-ctx__head"><b>What the model reads again at every step</b><span>room in the course: 200,000 tokens</span></div><ol class="hx-ctx__blocks"><li class="start">AGENTS.md + facts</li><li class="you">Your prompt</li><li class="bad">Try 1 ✗</li><li class="you">Correction</li><li class="bad">Try 2 ✗</li><li class="you">Correction</li></ol><div class="hx-ctx__keys"><button type="button" data-act="more">A third correction</button><button type="button" data-act="clear"><code>/clear</code> and one new prompt</button></div><p class="hx-ctx__say" aria-live="polite">Every step, the model reads all of this again: also the two tries that failed.</p></figure>
 
 **Your turn: watch the number.** Start Claude Code as in step 1, if it is not running.
 
