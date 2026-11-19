@@ -2,7 +2,7 @@
 title: "Homework until 16 Nov: setup and build with Claude Code"
 ---
 
-## Your goal of this HW
+## Your goals for this homework
 
 - **Claude Code runs on your laptop and is well-configured.**
 

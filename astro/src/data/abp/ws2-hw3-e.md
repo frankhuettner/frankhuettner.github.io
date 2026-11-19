@@ -3,8 +3,7 @@ title: "Homework until 23 Nov, Part E: Shorter commands"
 ---
 
 
-A small part, with a gain at every start: after this part, two letters start Claude Code, from any folder. No
-more <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ...`</span>
+A small part, with a gain at every start: no more <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ...`</span> before Claude Code.
 
 ### 11. Start Claude Code with one short command
 
