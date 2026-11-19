@@ -249,19 +249,43 @@ the four steps below, and read on at <strong>For any project</strong>.</p>
 </details>
 <ol>
 <li>
-<p>Start Claude Code. Is it running already? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then paste this line into your terminal: it updates
-kingo-pod and starts Claude Code.</p>
+<p>Start Claude Code. Is it running already? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first. Then paste this line into your terminal. It updates
+kingo-pod, checks that the facts have arrived (you see the names of three files), and starts Claude Code.</p>
 <div class="cmd cmd-terminal">
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ./kingo claude</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ls setup/claude/info-for-ai &#x26;&#x26; ./kingo claude</span></span></code></pre>
 </div>
-<p>Before Claude Code starts, kingo says which files of your course folder it wrote: the first time, <code>AGENTS.md</code> and
-three files in the folder <code>info-for-ai</code>. Do you start Claude Code with <code>--login</code>? Then kingo asks for your
-OpenRouter key if it does not have it yet: paste the key that your flows in Langflow use. With it, Claude Code can
-try the models of your flows.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B3261E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg> Got an error? Expand the hints below. Otherwise, move on to the next step.</p>
+<details class="more">
+<summary>Claude Code does not start, and the last line says "No such file or directory"?</summary>
+<p>Then your kingo-pod is still an older one: <span class="cmd-i cmd-i-t"><code>./kingo update</code></span> could not bring its newest files. The line stops on
+purpose before Claude Code, because the older kingo-pod writes no folder <code>info-for-ai</code>. Here is what to do:</p>
+<ol>
+<li>Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t"><code>./kingo update</code></span>. Find the line that starts with <code>WARN:</code>. It says why
+the update did not come through.</li>
+<li>Do what that line says:
+<ul>
+<li><code>could not reach GitHub (no network?)</code>: check that your laptop is online. Then paste the line above again.</li>
+<li><code>this folder has local changes</code>: a file of kingo-pod itself was changed. Paste
+<span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git checkout -- .</code></span>: this line undoes the change. Your course folder, your flows and your
+workflows stay as they are. Then paste the line above again.</li>
+<li><code>Send this message to your instructor</code>: send it, with the lines around it. Until the answer comes, start
+Claude Code with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, skip 2, 3 and 4 below, and read on at <strong>For any project</strong>.</li>
+</ul>
+</li>
+<li>It worked when you see the names of three files, <code>kingo-pod.md</code>, <code>langflow.md</code> and <code>n8n.md</code>, and then Claude
+Code starts.</li>
+</ol>
+</details>
+<details class="more">
+<summary>Do you start Claude Code with --login?</summary>
+<p>Then kingo asks for your OpenRouter key if it does not have it yet: paste the key that your flows in Langflow use.
+With it, Claude Code can try the models of your flows.</p>
+</details>
 </li>
 <li>
-<p>Open your course folder, <code>~/kingo-pod/claude</code>: there Claude Code works for the course. Open a second terminal tab
-(<a href="/abp/ws2/hw3/#your-terminal-in-short">how</a>). On a Mac, paste this line:</p>
+<p>Open your course folder, <code>~/kingo-pod/claude</code>: there Claude Code works for the course. Is Claude Code still
+running? Type <span class="cmd-i cmd-i-c"><code>/exit</code></span> first: the lines below go into your terminal, not into Claude Code. On a Mac, paste this
+line:</p>
 <div class="cmd cmd-terminal">
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>open ~/kingo-pod/claude</span></span></code></pre>
 </div>
@@ -397,7 +421,11 @@ tell Claude what it can’t see (the limits of a sandbox are such a thing), and
 
 
 
-<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code> for <code>~/kingo-pod/claude</code></td><td>Claude Code never started in the course folder. Do <a href="/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys">step 4 of the last homework</a> first.</td></tr><tr><td>You see no <code>AGENTS.md</code> in the course folder</td><td>Same as above: start Claude Code once with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, then <span class="cmd-i cmd-i-c"><code>/exit</code></span>.</td></tr><tr><td>There is no folder <code>info-for-ai</code> in your course folder</td><td>kingo-pod is not up to date yet. Paste this line into your terminal again: <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ./kingo claude</code></span>.</td></tr><tr><td>kingo says that your <code>AGENTS.md</code> has no heading ”# Your team’s rules”</td><td>Open <code>AGENTS.md</code>, and write the line <code># Your team's rules</code> above your team’s rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> again.</td></tr><tr><td>kingo says that it moved lines below <code># Your team's rules</code></td><td>They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in <code>~/kingo-pod/backups/course-files/</code>.</td></tr><tr><td><span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> (or <span class="cmd-i cmd-i-t"><code>./kingo claude --login</code></span>) asks for your OpenRouter key, and you do not have it any more</td><td>In the course, paste the key that Yanbo gave you. You cannot find it, or you want a key of your own? On openrouter.ai, make an account and add credits. Then open Settings, then Keys, make a key, and paste it.</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td><code>No such file or directory</code> for <code>~/kingo-pod/claude</code></td><td>Claude Code never started in the course folder. Do <a href="/abp/ws2/hw2-a/#4-start-claude-code-and-give-it-its-keys">step 4 of the last homework</a> first.</td></tr><tr><td>You see no <code>AGENTS.md</code> in the course folder</td><td>Same as above: start Claude Code once with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, then <span class="cmd-i cmd-i-c"><code>/exit</code></span>.</td></tr><tr><td><span class="cmd-i cmd-i-t"><code>open</code></span> or <span class="cmd-i cmd-i-t"><code>explorer.exe</code></span> opens no window, or Claude Code answers the line</td><td>You pasted the line into Claude Code. Type <span class="cmd-i cmd-i-c"><code>/exit</code></span>, then paste the line again.</td></tr><tr><td>There is no folder <code>info-for-ai</code> in your course folder, or <span class="cmd-i cmd-i-t"><code>ls</code></span> says <code>No such file or directory</code> for it</td><td>New here? You have no course folder: the facts are in <code>~/kingo-pod/setup/claude/info-for-ai</code>, as the box in step 2 says. In the course, type <span class="cmd-i cmd-i-c"><code>/exit</code></span> and paste the first line of step 2 again: <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo update &#x26;&#x26; ls setup/claude/info-for-ai &#x26;&#x26; ./kingo claude</code></span>. Claude Code does not start? Open the box under that line.</td></tr><tr><td>kingo says that your <code>AGENTS.md</code> has no heading ”# Your team’s rules”</td><td>Open <code>AGENTS.md</code>, and write the line <code># Your team's rules</code> above your team’s rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> again.</td></tr><tr><td>kingo says that it moved lines below <code># Your team's rules</code></td><td>They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in <code>~/kingo-pod/backups/course-files/</code>.</td></tr><tr><td><span class="cmd-i cmd-i-t"><code>./kingo claude</code></span> (or <span class="cmd-i cmd-i-t"><code>./kingo claude --login</code></span>) asks for your OpenRouter key, and you do not have it any more</td><td>In the course, paste the key that Yanbo gave you. You cannot find it, or you want a key of your own? On openrouter.ai, make an account and add credits. Then open Settings, then Keys, make a key, and paste it.</td></tr></tbody></table>
 </details></article></div><nav class="ws2-toc ws2-toc--rail" aria-label="On this page"><p class="label">On this page</p><ul><li class="ws2-toc__item--3"><a href="#1-know-the-model-inside-claude-code-here-glm-53-flash">1. Know the model inside Claude Code (here: GLM 5.3 Flash)</a></li><li class="ws2-toc__item--3"><a href="#2-give-claude-code-the-facts-of-your-setup">2. Give Claude Code the facts of your setup</a></li></ul></nav></div></main><footer class="site-foot"><span>© 2026 Frank Huettner</span><span><a href="https://github.com/frankhuettner">GitHub</a> ·<a href="https://orcid.org/0000-0002-5489-1334">ORCID</a> ·<a href="/rss.xml">RSS</a> · <a href="https://huettner-private.dawn-darkness-5c7f.workers.dev/" rel="nofollow">private</a> · <a href="https://huettner-admin.dawn-darkness-5c7f.workers.dev/" rel="nofollow">admin</a></span></footer></div><script>
       // Abstract / BibTeX disclosures on publication entries.
       document.addEventListener("click", (event) => {
