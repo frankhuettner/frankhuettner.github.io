@@ -89,7 +89,7 @@ prompt.</li>
 say?” Then type <span class="cmd-i cmd-i-c"><code>/context</code></span> again: the number grew.</li>
 <li>Type <span class="cmd-i cmd-i-c"><code>/clear</code></span>, and then <span class="cmd-i cmd-i-c"><code>/context</code></span>: back at the start.</li>
 </ol>
-<p>A long conversation has two more costs:</p>
+<p>A long conversation has two costs:</p>
 <ul>
 <li><strong>It costs money.</strong> Every step sends the whole conversation again. On your OpenRouter key, you pay for all of it,
 at every step; with <code>--login</code>, it uses up your subscription’s limits faster.</li>
@@ -186,7 +186,7 @@ assistant at once.</li>
 </div>
 <p>Look at the end of <code>plan.md</code> (step 3 shows how to open it). Then type <span class="cmd-i cmd-i-c"><code>/rewind</code></span>, pick your prompt about the joke, and
 choose <strong>Restore code</strong>. Look again: the joke is gone, and the rest of <code>plan.md</code> is as before.</p>
-<p><strong>Can Claude Code put it back?</strong> Ask it, for example: “Put the flow back as it was before your change.” Claude Code
+<p><strong>Can Claude Code put a flow back?</strong> Ask it, for example: “Put the flow back as it was before your change.” Claude Code
 knows from the conversation what it changed. Here, it also has backups: <code>AGENTS.md</code> asks it to save a flow or a
 workflow in <code>backups/</code> before it changes it, and kingo saves all your flows and workflows at every start of
 <span class="cmd-i cmd-i-t"><code>./kingo claude</code></span>. That can work, but not for sure.</p>

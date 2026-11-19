@@ -177,11 +177,15 @@ your OpenRouter key.</p>
 gets a copy of its own, “so changes don’t collide”. kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--login</code>.</span></p>
 <p><a href="#step-13">Stuck? Help for step 13</a></p>
 <h3 id="14-give-a-project-a-key-of-its-own">14. Give a project a key of its own</h3>
-<p>So far, all your sessions pay with one OpenRouter key. On openrouter.ai, you see one sum for everything: the course,
-your website, and every other project.</p>
-<p>kingo has one command to change that. You start Claude Code as you know it, and you add <code>--key</code> and a name:
-<span class="cmd-i cmd-i-t"><code>kc ~/projects/my-first-project --key website</code></span>. Then the key with the name <code>website</code> pays for this session, and not
-your first key. Before Claude Code starts, kingo says so:
+<p>So far, all your sessions pay with one OpenRouter key. In the course, it is the key that Yanbo gave you. One key
+means one credit and one sum for everything: the course, your website, and every other project.</p>
+<p><strong>Make a key of your own.</strong> The key from Yanbo is for the course. For a project of your own, make your own key: then
+you see on openrouter.ai what the project costs, and you set its limit yourself. On
+<a href="https://openrouter.ai">openrouter.ai</a>, make an account and add credits. Then open Settings, then Keys, make a key,
+and give it a credit limit: the key stops at that amount. You pay for these credits yourself, so this is your choice.</p>
+<p>kingo has one command to give a project such a key. You start Claude Code as you know it, and you add <code>--key</code> and a
+name: <span class="cmd-i cmd-i-t"><code>kc ~/projects/my-first-project --key website</code></span>. Then the key with the name <code>website</code> pays for this session,
+and not your first key. Before Claude Code starts, kingo says so:
 <code>Claude Code's model is paid with your OpenRouter key "website"</code>. This gives you three things:</p>
 <ul>
 <li><strong>You see what this project costs.</strong> OpenRouter counts for each key what it used.</li>
@@ -281,8 +285,9 @@ the examples, and try none.</li>
 <li><span class="cmd-i cmd-i-t"><code>kc --key website</code></span>, without a folder, is the start for the course. You do not need it.</li>
 </ul>
 </details>
-<p><strong>Example 1: a key for Anthropic’s API.</strong> You have a key from platform.claude.com. It must be a key for one
-workspace: kingo cannot use a key for all workspaces.</p>
+<p><strong>Example 1: a key for Anthropic’s API.</strong> You have a key from platform.claude.com. A workspace is a part of your
+account there that keeps the use of one project apart; every account has one, the Default Workspace. You choose
+the workspace when you make a key. The key must be for one workspace: kingo cannot use a key for all workspaces.</p>
 <div class="cmd cmd-terminal">
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>kc ~/projects/my-first-project --key api --provider anthropic --model sonnet</span></span></code></pre>
 </div>
@@ -325,7 +330,8 @@ or a real provider.</p>
 <p><span class="src">From kingo-pod: <span class="cmd-i cmd-i-t"><code>./kingo claude help</code></span>, its lines on <code>--key</code>, <code>--provider</code>, <code>--model</code> and <code>key</code>. OpenRouter’s page on
 <a href="https://openrouter.ai/docs/api/reference/limits">limits</a>: “Per-key credit limits”, and what each key used.
 Anthropic’s pages <a href="https://platform.claude.com/docs/en/manage-claude/authentication">Authentication</a>: “Select a
-workspace”; <a href="https://code.claude.com/docs/en/model-config">Model configuration</a>: the names <code>sonnet</code>, <code>opus</code> and
+workspace”; <a href="https://platform.claude.com/docs/en/manage-claude/workspaces">Workspaces</a>: “Every organization has a
+Default Workspace”; <a href="https://code.claude.com/docs/en/model-config">Model configuration</a>: the names <code>sonnet</code>, <code>opus</code> and
 <code>haiku</code>, and that Claude Code with the Anthropic API “defaults to Opus 5.5”;
 <a href="https://code.claude.com/docs/en/costs">Manage costs effectively</a>: subscribers “have usage included in their
 subscription”, and “Sonnet handles most coding tasks well and costs less than Opus”;
