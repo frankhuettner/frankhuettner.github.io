@@ -256,19 +256,20 @@ the four steps below, and read on at **For any project**.
    <summary>Claude Code does not start, and the last line says "No such file or directory"?</summary>
 
    Then your kingo-pod is still an older one: <span class="cmd-i cmd-i-t">`./kingo update`</span> could not bring its newest files. The line stops on
-   purpose before Claude Code, because the older kingo-pod writes no folder `info-for-ai`. Here is what to do:
+   purpose before Claude Code, because the older kingo-pod writes no folder `info-for-ai`.
 
-   1. Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t">`./kingo update`</span>. Find the line that starts with `WARN:`. It says why
-      the update did not come through.
-   2. Do what that line says:
-      - `could not reach GitHub (no network?)`: check that your laptop is online. Then paste the line above again.
-      - `this folder has local changes`: a file of kingo-pod itself was changed. Paste
-        <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git checkout -- .`</span>: this line undoes the change. Your course folder, your flows and your
-        workflows stay as they are. Then paste the line above again.
-      - `Send this message to your instructor`: send it, with the lines around it. Until the answer comes, start
-        Claude Code with <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude`</span>, skip 2, 3 and 4 below, and read on at **For any project**.
-   3. It worked when you see the names of three files, `kingo-pod.md`, `langflow.md` and `n8n.md`, and then Claude
-      Code starts.
+   Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t">`./kingo update`</span>. Find the line that starts with `WARN:`. It says why
+   the update did not come through. Do what that line says:
+
+   - `could not reach GitHub (no network?)`: check that your laptop is online. Then repeat step 1.
+   - `this folder has local changes`: a file of kingo-pod itself was changed. Paste
+     <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && git checkout -- .`</span>: this line undoes the change. Your course folder, your flows and your
+     workflows stay as they are. Then repeat step 1.
+   - `Send this message to your instructor`: send it, with the lines around it. Until the answer comes, start Claude
+     Code with <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo claude`</span>, skip 2, 3 and 4 below, and read on at **For any project**.
+
+   It worked when you see the names of three files, `kingo-pod.md`, `langflow.md` and `n8n.md`, and then Claude Code
+   starts.
 
    </details>
 
