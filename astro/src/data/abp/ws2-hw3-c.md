@@ -127,7 +127,7 @@ picture below.
    say?" Then type <span class="cmd-i cmd-i-c">`/context`</span> again: the number grew.
 3. Type <span class="cmd-i cmd-i-c">`/clear`</span>, and then <span class="cmd-i cmd-i-c">`/context`</span>: back at the start.
 
-A long conversation has two more costs:
+A long conversation has two costs:
 
 - **It costs money.** Every step sends the whole conversation again. On your OpenRouter key, you pay for all of it,
   at every step; with `--login`, it uses up your subscription's limits faster.
@@ -241,7 +241,7 @@ Add a short joke about kimchi to the end of plan.md.
 Look at the end of `plan.md` (step 3 shows how to open it). Then type <span class="cmd-i cmd-i-c">`/rewind`</span>, pick your prompt about the joke, and
 choose **Restore code**. Look again: the joke is gone, and the rest of `plan.md` is as before.
 
-**Can Claude Code put it back?** Ask it, for example: "Put the flow back as it was before your change." Claude Code
+**Can Claude Code put a flow back?** Ask it, for example: "Put the flow back as it was before your change." Claude Code
 knows from the conversation what it changed. Here, it also has backups: `AGENTS.md` asks it to save a flow or a
 workflow in `backups/` before it changes it, and kingo saves all your flows and workflows at every start of
 <span class="cmd-i cmd-i-t">`./kingo claude`</span>. That can work, but not for sure.

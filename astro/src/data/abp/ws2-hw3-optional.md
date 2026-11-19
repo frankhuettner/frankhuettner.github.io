@@ -246,12 +246,17 @@ gets a copy of its own, "so changes don't collide". kingo-pod: <span class="cmd-
 
 ### 14. Give a project a key of its own
 
-So far, all your sessions pay with one OpenRouter key. On openrouter.ai, you see one sum for everything: the course,
-your website, and every other project.
+So far, all your sessions pay with one OpenRouter key. In the course, it is the key that Yanbo gave you. One key
+means one credit and one sum for everything: the course, your website, and every other project.
 
-kingo has one command to change that. You start Claude Code as you know it, and you add `--key` and a name:
-<span class="cmd-i cmd-i-t">`kc ~/projects/my-first-project --key website`</span>. Then the key with the name `website` pays for this session, and not
-your first key. Before Claude Code starts, kingo says so:
+**Make a key of your own.** The key from Yanbo is for the course. For a project of your own, make your own key: then
+you see on openrouter.ai what the project costs, and you set its limit yourself. On
+[openrouter.ai](https://openrouter.ai), make an account and add credits. Then open Settings, then Keys, make a key,
+and give it a credit limit: the key stops at that amount. You pay for these credits yourself, so this is your choice.
+
+kingo has one command to give a project such a key. You start Claude Code as you know it, and you add `--key` and a
+name: <span class="cmd-i cmd-i-t">`kc ~/projects/my-first-project --key website`</span>. Then the key with the name `website` pays for this session,
+and not your first key. Before Claude Code starts, kingo says so:
 `Claude Code's model is paid with your OpenRouter key "website"`. This gives you three things:
 
 - **You see what this project costs.** OpenRouter counts for each key what it used.
@@ -321,8 +326,9 @@ examples 2 and 3, write your own model and your own address into the line before
 
 </details>
 
-**Example 1: a key for Anthropic's API.** You have a key from platform.claude.com. It must be a key for one
-workspace: kingo cannot use a key for all workspaces.
+**Example 1: a key for Anthropic's API.** You have a key from platform.claude.com. A workspace is a part of your
+account there that keeps the use of one project apart; every account has one, the Default Workspace. You choose
+the workspace when you make a key. The key must be for one workspace: kingo cannot use a key for all workspaces.
 
 <div class="cmd cmd-terminal">
 
@@ -393,7 +399,8 @@ or a real provider.
 <span class="src">From kingo-pod: <span class="cmd-i cmd-i-t">`./kingo claude help`</span>, its lines on `--key`, `--provider`, `--model` and `key`. OpenRouter's page on
 [limits](https://openrouter.ai/docs/api/reference/limits): "Per-key credit limits", and what each key used.
 Anthropic's pages [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication): "Select a
-workspace"; [Model configuration](https://code.claude.com/docs/en/model-config): the names `sonnet`, `opus` and
+workspace"; [Workspaces](https://platform.claude.com/docs/en/manage-claude/workspaces): "Every organization has a
+Default Workspace"; [Model configuration](https://code.claude.com/docs/en/model-config): the names `sonnet`, `opus` and
 `haiku`, and that Claude Code with the Anthropic API "defaults to Opus 5.5";
 [Manage costs effectively](https://code.claude.com/docs/en/costs): subscribers "have usage included in their
 subscription", and "Sonnet handles most coding tasks well and costs less than Opus";

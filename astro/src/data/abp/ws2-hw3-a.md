@@ -121,8 +121,8 @@ everything that Claude Code read, for example files and mails from your database
 to OpenRouter and on to a server that runs the model; with `--login`, it goes to Anthropic. OpenRouter keeps your prompts
 only if you switch that on, and the company that runs the model has its own rules.
 
-- **In your team's project:** its data goes out to the data centers in the same way when Claude Code reads it as when
-  your Langflow flows send it to a model. This is okay: the data is synthetic, made up for the course.
+- **In your team's project:** when Claude Code reads its data, the data goes to the server of the model, just as
+  when your Langflow flows send it there. This is okay: the data is synthetic, made up for the course.
 - **At work:** let Claude Code read company or customer data only when you may send that data to every company that
   gets it: the company that runs the model, and any service in between, such as OpenRouter.
 
@@ -385,6 +385,6 @@ Find your step.
 | There is no folder `info-for-ai` in your course folder | kingo-pod is not up to date yet. Paste this line into your terminal again: <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ./kingo update && ./kingo claude`</span>. |
 | kingo says that your `AGENTS.md` has no heading "# Your team's rules" | Open `AGENTS.md`, and write the line `# Your team's rules` above your team's rules, or at the end of the file. Then start <span class="cmd-i cmd-i-t">`./kingo claude`</span> again. |
 | kingo says that it moved lines below `# Your team's rules` | They were above the heading, where kingo writes its own part. Now they are right below the heading: check them there. The file as it was is in `~/kingo-pod/backups/course-files/`. |
-| <span class="cmd-i cmd-i-t">`./kingo claude`</span> (or <span class="cmd-i cmd-i-t">`./kingo claude --login`</span>) asks for your OpenRouter key, and you do not have it any more | Make a new key on openrouter.ai (Settings, Keys) and paste it. |
+| <span class="cmd-i cmd-i-t">`./kingo claude`</span> (or <span class="cmd-i cmd-i-t">`./kingo claude --login`</span>) asks for your OpenRouter key, and you do not have it any more | In the course, paste the key that Yanbo gave you. You cannot find it, or you want a key of your own? On openrouter.ai, make an account and add credits. Then open Settings, then Keys, make a key, and paste it. |
 
 </details>

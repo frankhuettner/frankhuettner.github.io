@@ -17,7 +17,7 @@ not in the course. Maybe you have n8n and Langflow, but you did not do the last 
 a project of your own. You can do this homework too: wherever you see a box or a line <strong>New here?</strong>,
 always open it, and do what it says.</p>
 
-## Your goal of this HW
+## Your goals for this homework
 
 - **You know which LLM works inside Claude Code, what that changes for you, and how you can change it.** An LLM
   (large language model) is an AI that reads and writes text; ChatGPT runs on one, too. From here on, we call it "the
@@ -57,7 +57,7 @@ In the course, there is nothing new to install: you only update kingo-pod.
 
     </div>
 
-    Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.27 or higher, or 1.5.26 or higher with
+    Near the end, it says `Stack updated — kingo-pod` and the version: 1.4.28 or higher, or 1.5.27 or higher with
     Kingo 1.5.
   - Claude Code, set up as in the last homework: installed with its sandbox
     ([step 2](/abp/ws2/hw2-a/#2-install-claude-code-and-its-sandbox)), with a key in n8n

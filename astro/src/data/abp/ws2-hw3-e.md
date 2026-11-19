@@ -3,7 +3,7 @@ title: "Homework until 23 Nov, Part E: Shorter commands"
 ---
 
 
-A small part, with a gain at every start: after this exercise, two letters start Claude Code, from any folder. No
+A small part, with a gain at every start: after this part, two letters start Claude Code, from any folder. No
 more <span class="cmd-i cmd-i-t">`cd ~/kingo-pod && ...`</span>
 
 ### 11. Start Claude Code with one short command
@@ -120,7 +120,7 @@ went into `~/kingo-pod` first. Without `./`, i.e. if you type just <span class="
 it looks up the name in its address book, a list of where its programs are. The word `claude` in <span class="cmd-i cmd-i-t">`./kingo claude`</span> tells
 kingo what to do: start Claude Code.
 
-Now that we ran `~/kingo-pod/kingo shortcuts`, the short command <span class="cmd-i cmd-i-t">`kingo`</span> needs no `./` and works from any folder:
+Now that you ran <span class="cmd-i cmd-i-t">`./kingo shortcuts`</span>, the short command <span class="cmd-i cmd-i-t">`kingo`</span> needs no `./` and works from any folder:
 kingo wrote into this address book where it lives. Likewise for <span class="cmd-i cmd-i-t">`kc`</span>.
 
 </details>
