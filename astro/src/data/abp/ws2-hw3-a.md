@@ -355,8 +355,8 @@ the four steps below, and read on at **For any project**.
 
 **What stays, and what kingo writes.** kingo writes everything above `# Your team's rules` anew at every start, and
 the three files in `info-for-ai` too. So your team's rules go below the heading: there they stay. Did a line of your own
-land above the heading? kingo moves it below the heading and says so. The file as it was, kingo keeps in
-`~/kingo-pod/backups/course-files/`.
+land above the heading? kingo moves it below the heading and says so. kingo keeps a copy of the file as it
+was in `~/kingo-pod/backups/course-files/`.
 
 Done. At every start, the tool now loads these five files, its start files, and gives them to the model, before your
 first prompt:

@@ -177,48 +177,44 @@ to it in one format, the Messages API of Anthropic. Every provider that offers t
 
 A model on your own laptop can work, too: Ollama, a program that runs models on your laptop, offers this format.
 For Claude Code, Ollama asks for a context window of 64,000 tokens or more
-([Ollama's page on Claude Code](https://docs.ollama.com/integrations/claude-code)). We did not test it with a real
-Ollama.
+([Ollama's page on Claude Code](https://docs.ollama.com/integrations/claude-code)).
 
-### The short way: `--key` and `--provider`
+### The short way: `kingo key add`
 
-With a new kingo-pod, one line does it. The example is Anthropic's own API, with a key under the name `api`:
+With a new kingo-pod, one line adds a key, and kingo asks for all that it needs:
 
 ```
-cd ~/kingo-pod && ./kingo claude --key api --provider anthropic
+cd ~/kingo-pod && ./kingo key add
 ```
 
-kingo asks for your Anthropic API key and keeps it outside the sandbox. Make the key on platform.claude.com (API
-keys, Create key), and choose one workspace for it. Claude Code then picks one of Anthropic's models, and `/model`
-in Claude Code switches. To name the model yourself, add `--model` and its ID, for example
-`--model claude-sonnet-5-5`.
+kingo asks for a name, for example `api`. Then for the provider: `2` is Anthropic's API. Then for the model, for
+example `sonnet` (with Enter alone, Claude Code picks one of Anthropic's models, and `/model` in Claude Code
+switches). Last, it asks for the key, and you do not see it as you paste it. kingo keeps all of it outside the
+sandbox. Make the key on platform.claude.com (API keys, Create key), and choose one workspace for it.
 
-kingo keeps the provider and the model with the name. The next time, `./kingo claude --key api` is enough. Start
-without `--key`, and the course's model and your first OpenRouter key are back.
+Then start Claude Code with the name:
 
-Two more providers work the same way:
+```
+cd ~/kingo-pod && ./kingo claude --key api
+```
 
-- **Ollama, on your laptop:** `./kingo claude --key local --provider ollama --model qwen3.5`. No key. Start Ollama
-  first.
-- **Another provider:** `./kingo claude --key work --provider https://yourtrustedkey.example.com --model big-model`.
-  The address is the one that the provider names for `ANTHROPIC_BASE_URL`. An address that ends in `/v1` or in
-  `/v1/messages` loses this ending, and kingo says so: Claude Code adds `/v1/messages` itself.
+Start without `--key`, and the course's model and your first OpenRouter key are back.
 
-**Your keys without a start.** `./kingo claude key add api --provider anthropic` asks for the key and keeps it, and
-starts no Claude Code. `./kingo claude key list` shows your names, each with its provider and its model, and never a
-key. `./kingo claude key remove api` deletes a name. `./kingo claude key add --first` puts another OpenRouter key in
-the place of your first one. Two things go with `key add` only: `--context` and a number of tokens, when the model of
-a provider holds fewer than 200,000 tokens, and `--ca` and a file, when a provider signs with a certificate of its
-own.
+Two more providers work the same way. Answer `3` for Ollama on your laptop: it needs no key, and you start Ollama
+first. Or answer `4` for another provider, by the address that it names for `ANTHROPIC_BASE_URL`. An address that
+ends in `/v1` or in `/v1/messages` loses this ending, and kingo says so: Claude Code adds `/v1/messages` itself.
 
-We tested the three ways with a stand-in for the provider: not yet with a real key of Anthropic, a real Ollama, or
-a real provider. Step by step, for a
-project of your own: [step 14 of the homework until 23 Nov](https://huettner.io/abp/ws2/hw3-optional/#14-give-a-project-a-key-of-its-own).
+**Your keys.** `./kingo key list` shows your names, each with its provider and its model, and never a key's secret.
+`./kingo key remove` asks which name to delete. `./kingo key add --first` puts another OpenRouter key in the place of
+your first one. For a script, `key add` also takes it all in one line: `./kingo key help` shows how.
+
+Step by step:
+[step 14 of the homework until 23 Nov](https://huettner.io/abp/ws2/hw3-optional/#14-use-other-api-keys-for-claude-code).
 
 <div class="warn" markdown="1">
 
-No line with `--provider` in `./kingo claude help`? Run `./kingo update` first: `--provider` needs kingo-pod 1.4.26
-or higher (1.5.25 with Kingo 1.5), and `./kingo claude key` needs 1.4.27 or higher (1.5.26 with Kingo 1.5).
+`./kingo key add` says `unknown command 'key'`? Run `./kingo update` first: `kingo key` needs kingo-pod 1.4.31 or
+higher (1.5.30 with Kingo 1.5).
 
 </div>
 
