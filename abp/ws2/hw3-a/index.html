@@ -258,23 +258,19 @@ kingo-pod, checks that the facts have arrived (you see the names of three files)
 <details class="more">
 <summary>Claude Code does not start, and the last line says "No such file or directory"?</summary>
 <p>Then your kingo-pod is still an older one: <span class="cmd-i cmd-i-t"><code>./kingo update</code></span> could not bring its newest files. The line stops on
-purpose before Claude Code, because the older kingo-pod writes no folder <code>info-for-ai</code>. Here is what to do:</p>
-<ol>
-<li>Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t"><code>./kingo update</code></span>. Find the line that starts with <code>WARN:</code>. It says why
-the update did not come through.</li>
-<li>Do what that line says:
+purpose before Claude Code, because the older kingo-pod writes no folder <code>info-for-ai</code>.</p>
+<p>Scroll up in your terminal to the lines of <span class="cmd-i cmd-i-t"><code>./kingo update</code></span>. Find the line that starts with <code>WARN:</code>. It says why
+the update did not come through. Do what that line says:</p>
 <ul>
-<li><code>could not reach GitHub (no network?)</code>: check that your laptop is online. Then paste the line above again.</li>
+<li><code>could not reach GitHub (no network?)</code>: check that your laptop is online. Then repeat step 1.</li>
 <li><code>this folder has local changes</code>: a file of kingo-pod itself was changed. Paste
 <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; git checkout -- .</code></span>: this line undoes the change. Your course folder, your flows and your
-workflows stay as they are. Then paste the line above again.</li>
-<li><code>Send this message to your instructor</code>: send it, with the lines around it. Until the answer comes, start
-Claude Code with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, skip 2, 3 and 4 below, and read on at <strong>For any project</strong>.</li>
+workflows stay as they are. Then repeat step 1.</li>
+<li><code>Send this message to your instructor</code>: send it, with the lines around it. Until the answer comes, start Claude
+Code with <span class="cmd-i cmd-i-t"><code>cd ~/kingo-pod &#x26;&#x26; ./kingo claude</code></span>, skip 2, 3 and 4 below, and read on at <strong>For any project</strong>.</li>
 </ul>
-</li>
-<li>It worked when you see the names of three files, <code>kingo-pod.md</code>, <code>langflow.md</code> and <code>n8n.md</code>, and then Claude
-Code starts.</li>
-</ol>
+<p>It worked when you see the names of three files, <code>kingo-pod.md</code>, <code>langflow.md</code> and <code>n8n.md</code>, and then Claude Code
+starts.</p>
 </details>
 <details class="more">
 <summary>Do you start Claude Code with --login?</summary>
