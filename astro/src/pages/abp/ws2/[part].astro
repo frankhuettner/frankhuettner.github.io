@@ -27,7 +27,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 // 13 Nov 2026: Part A in two pages, and the kimchi mail as "Recommended" (Frank: "vielleicht in zwei teile teilen?",
 // "mach jetzigen part B recommended").
 // 16 November like 9 November, block by block, then one page per team and the page on Claude Code's model (Frank,
-// 15 Nov 2026: "dann die materialien auf meine website laden").
+// 15 Nov 2026: "dann die materialien auf meine website laden"). 23 November task by task, after the homework
+// until 23 Nov (prepared 22 Nov 2026: "vorbereiten, aber nicht hochladen"; "'Homework until 23 Nov' vor '23 November'").
 const LABELS: Record<string, string> = {
   hw: "Homework",
   "hw-a": "Part A · Mailbox",
@@ -55,7 +56,6 @@ const LABELS: Record<string, string> = {
   "s2-team-b": "Team B · Kgoda",
   "s2-team-c": "Team C · K-Motor",
   "s2-model": "Change the model",
-  s3: "23 November",
   hw3: "Homework until 23 Nov",
   "hw3-a": "Part A · The model and the facts",
   "hw3-b": "Part B · Ask well",
@@ -63,6 +63,12 @@ const LABELS: Record<string, string> = {
   "hw3-d": "Part D · A project of your own",
   "hw3-e": "Part E · Shorter commands",
   "hw3-optional": "Optional · More room for Claude Code",
+  s3: "23 November",
+  "s3-task-0": "Task 0 · Your n8n workflow",
+  "s3-task-1": "Task 1 · Your pass rate",
+  "s3-task-1b": "Task 1 · Check and improve",
+  "s3-task-2": "Task 2 · On whose computers",
+  "s3-task-3": "Task 3 · An AI as judge (optional)",
 };
 const ORDER = Object.keys(LABELS);
 const rank = (p: string) => (ORDER.includes(p) ? ORDER.indexOf(p) : ORDER.length);
@@ -471,6 +477,95 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     margin: 0.4rem 0;
   }
 
+  /* A quiz with several right answers (<div class="quiz multi">): one box to tick per option, one below the other. */
+  .ws2 .quiz .quiz-picks {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.6rem 0;
+  }
+
+  .ws2 .quiz .quiz-picks button {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .ws2 .quiz .quiz-picks .tick {
+    flex: none;
+    width: 1.05em;
+    height: 1.05em;
+    margin-top: 0.2em;
+    border: 2px solid currentColor;
+    border-radius: 0.25em;
+    display: grid;
+    place-items: center;
+    font-size: 0.9em;
+    line-height: 1;
+  }
+
+  .ws2 .quiz .quiz-picks button[aria-pressed="true"] .tick {
+    background: var(--bp-person);
+    border-color: var(--bp-person);
+    color: var(--bp-person-soft);
+  }
+
+  .ws2 .quiz .quiz-picks button[aria-pressed="true"] .tick::before {
+    content: "✓";
+    font-weight: 700;
+  }
+
+  .ws2 .quiz .quiz-picks button.right {
+    outline: 3px solid var(--hx-ok, #15803d);
+    outline-offset: -1px;
+  }
+
+  .ws2 .quiz .quiz-picks button.wrong {
+    outline: 3px solid var(--hx-no, #b91c1c);
+    outline-offset: -1px;
+  }
+
+  .ws2 .quiz .quiz-picks button.right::after,
+  .ws2 .quiz .quiz-picks button.wrong::after {
+    margin-left: auto;
+    padding-left: 0.6rem;
+    font-weight: 700;
+  }
+
+  .ws2 .quiz .quiz-picks button.right::after { content: "✓"; color: var(--hx-ok, #15803d); }
+  .ws2 .quiz .quiz-picks button.wrong::after { content: "✗"; color: var(--hx-no, #b91c1c); }
+  .ws2 .quiz.multi-done .quiz-picks button { cursor: default; }
+
+  .ws2 .quiz .quiz-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.8rem;
+    margin: 0.6rem 0;
+  }
+
+  .ws2 .quiz .quiz-check {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--bp-person);
+    background: var(--bp-person);
+    color: var(--bp-person-soft);
+    cursor: pointer;
+  }
+
+  .ws2 .quiz .quiz-say {
+    font-weight: 600;
+  }
+
   /* Small print in the workbooks (Frank, 7 Nov 2026: "bla bla ... bitte sehr klein machen"): what helps, not what to
      type. The course repo's Markdown writes it as <div class="fine"> and <small>. */
   .ws2 .fine,
@@ -674,6 +769,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     --bp-person-soft: #eff5ff;
     --bp-mail: #6b7280;
     --bp-mail-soft: #f6f7f8;
+    --bp-no: #b42318;
+    --bp-no-soft: #fde8e1;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -688,6 +785,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       --bp-person-soft: #18213a;
       --bp-mail: #a3a3a8;
       --bp-mail-soft: #26272a;
+      --bp-no: #f0957c;
+      --bp-no-soft: #2a1715;
     }
   }
 
@@ -702,6 +801,8 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     --bp-person-soft: #18213a;
     --bp-mail: #a3a3a8;
     --bp-mail-soft: #26272a;
+      --bp-no: #f0957c;
+    --bp-no-soft: #2a1715;
   }
 
   .ws2 .bp {
@@ -761,6 +862,32 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     border-radius: 50%;
     background: var(--c-soft);
     vertical-align: -0.05rem;
+  }
+
+  /* s3 (22 Nov 2026, Frank: "visualisierungen im workbook"): the test bench in five stops, and the three ways
+     with what runs where. The zip's copy: n8n-workshop/system/figures.css. */
+  .ws2 .bp .ok { --c: var(--bp-db); --c-soft: var(--bp-db-soft); }
+  .ws2 .bp .no { --c: var(--bp-no); --c-soft: var(--bp-no-soft); }
+  .ws2 .bp-path.s5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .ws2 .bp-way3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
+  .ws2 .bp-way { display: grid; gap: 0.45rem; align-content: start; }
+  .ws2 .bp-way > b { font-size: 0.95rem; color: var(--ink); }
+  .ws2 .bp-sub { margin-top: -0.3rem; font-size: 0.8rem; color: var(--ink-muted); }
+  .ws2 .bp-zone { display: flex; flex-wrap: wrap; gap: 0.35rem; align-content: flex-start; min-height: 5.4rem;
+    padding: 0.5rem; border-radius: var(--radius); font-size: 0.8rem; }
+  .ws2 .bp-zone em { flex-basis: 100%; font-style: normal; font-size: 0.72rem; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--ink-muted); }
+  .ws2 .bp-zone i { font-style: normal; color: var(--ink-muted); }
+  .ws2 .bp-zone.out { border: 1.5px dashed var(--rule-soft); }
+  .ws2 .bp-zone.in { border: 1.5px solid var(--bp-person); background: var(--bp-person-soft); }
+  .ws2 .bp-chip { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+    border: 1.5px solid var(--c); border-radius: 999px; background: var(--c-soft); color: var(--ink); }
+  .ws2 .bp-chip .bp-disc { width: 1.5rem; height: 1.5rem; border-width: 1.5px; }
+  .ws2 .bp-chip .bp-disc svg { width: 0.9rem; height: 0.9rem; }
+  @container (max-width: 36rem) {
+    .ws2 .bp-path.s5 { grid-template-columns: minmax(0, 1fr); }
+    .ws2 .bp-way3 { grid-template-columns: minmax(0, 1fr); }
+    .ws2 .bp-zone { min-height: 0; }
   }
 
   /* The path of one mail: eight stops on a dashed line. */
@@ -1116,7 +1243,7 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
   // that the Markdown keeps in a <details> (Frank, 13 Nov 2026: "1. B", buttons on the site, the fold elsewhere).
   document.querySelectorAll(".ws2 .quiz").forEach(function (quiz) {
     var list = quiz.querySelector("ul"), fold = quiz.querySelector("details");
-    if (!list || !fold || !list.querySelector("li[data-right]")) return;
+    if (quiz.classList.contains("multi") || !list || !fold || !list.querySelector("li[data-right]")) return;
     var options = document.createElement("div"); options.className = "quiz-options";
     var verdict = document.createElement("p"); verdict.className = "quiz-verdict"; verdict.hidden = true;
     var answer = document.createElement("div"); answer.className = "quiz-answer"; answer.hidden = true;
@@ -1135,6 +1262,51 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       options.appendChild(btn);
     });
     list.replaceWith(options); fold.replaceWith(verdict); verdict.after(answer);
+  });
+
+  // A quiz with several right answers: <div class="quiz multi">, the right ones as li data-right. Each option becomes a
+  // box to tick; "Check my answers" marks each choice green (right) or red (change it), until all are right. Then the
+  // fold with the why opens (Frank, 22 Nov 2026: "give examples as a multiple select"). Without this script the list and
+  // the fold stay as they are.
+  document.querySelectorAll(".ws2 .quiz.multi").forEach(function (quiz) {
+    var list = quiz.querySelector("ul"), fold = quiz.querySelector("details");
+    if (!list || !list.querySelector("li[data-right]")) return;
+    var picks = document.createElement("div"); picks.className = "quiz-picks";
+    var bar = document.createElement("div"); bar.className = "quiz-bar";
+    var check = document.createElement("button"); check.type = "button"; check.className = "quiz-check"; check.textContent = "Check my answers";
+    var say = document.createElement("span"); say.className = "quiz-say"; say.setAttribute("aria-live", "polite");
+    say.textContent = "Tick every answer that counts as right. Then check.";
+    bar.appendChild(check); bar.appendChild(say);
+    var boxes = Array.prototype.map.call(list.children, function (li) {
+      var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = '<span class="tick" aria-hidden="true"></span><span>' + li.innerHTML + "</span>";
+      b.dataset.right = li.hasAttribute("data-right") ? "1" : "0";
+      b.addEventListener("click", function () {
+        if (quiz.classList.contains("multi-done")) return;
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+        b.classList.remove("right", "wrong");
+      });
+      picks.appendChild(b);
+      return b;
+    });
+    check.addEventListener("click", function () {
+      var good = 0;
+      if (fold) fold.hidden = false;   // the why, after the first check (as the site's other quizzes)
+      boxes.forEach(function (b) {
+        var ok = (b.getAttribute("aria-pressed") === "true") === (b.dataset.right === "1");
+        b.classList.remove("right", "wrong"); void b.offsetWidth; b.classList.add(ok ? "right" : "wrong"); if (ok) good++;
+      });
+      if (good === boxes.length) {
+        say.textContent = "All " + boxes.length + " right." + (fold ? " The why is below." : "");
+        quiz.classList.add("multi-done"); check.hidden = true;
+        if (fold) fold.open = true;
+        quiz.dispatchEvent(new CustomEvent("quiz-solved", { bubbles: true }));
+      } else {
+        say.textContent = good + " of " + boxes.length + " right. Green: your choice is right. Red: change it, then check again.";
+      }
+    });
+    list.replaceWith(picks); picks.after(bar);
+    if (fold) fold.hidden = true;
   });
 </script>
 
@@ -2576,8 +2748,11 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
     .ws2 .hx-build__prompt li.on { animation: hx-type 0.4s ease-out; }
     .hx-js .ws2 .hx-box .acc { animation: hx-pop 0.35s ease-out backwards; animation-delay: calc(var(--i, 0) * 70ms); }
     .ws2 .checklist .ck[aria-pressed="true"] { animation: hx-pop 0.35s ease-out; }
-    .ws2 .quiz .quiz-options button.right { animation: hx-yes 0.5s ease-out; }
-    .ws2 .quiz .quiz-options button.wrong { animation: hx-no 0.45s ease-in-out; }
+    .ws2 .quiz .quiz-options button.right,
+    .ws2 .quiz .quiz-picks button.right { animation: hx-yes 0.5s ease-out; }
+    .ws2 .quiz .quiz-options button.wrong,
+    .ws2 .quiz .quiz-picks button.wrong { animation: hx-no 0.45s ease-in-out; }
+    .ws2 .quiz .quiz-picks button[aria-pressed="true"] .tick { animation: hx-pop 0.3s ease-out; }
     .ws2 .quiz .quiz-options button.hx-hint { animation: hx-hint 1.1s ease-in-out 2; }
     .ws2 .quiz .quiz-answer:not([hidden]),
     .ws2 .quiz .quiz-verdict:not([hidden]) { animation: hx-fade 0.4s ease-out; }
@@ -2860,6 +3035,13 @@ const toc = (headings as { depth: number; slug: string; text: string }[]).filter
       b.style.animation = "none"; void b.offsetWidth; b.style.animation = "";
       var r = opts.querySelector("[data-right]");
       if (r) setTimeout(function () { if (!r.classList.contains("right")) r.classList.add("hx-hint"); }, 500);
+    });
+
+    // A quiz with several right answers: its own script says when all are right.
+    document.addEventListener("quiz-solved", function (e) {
+      var q = e.target.closest ? e.target.closest(".ws2 .quiz") : null;
+      if (!q) return;
+      burst(q.querySelector(".quiz-say") || q); solved(q);
     });
 
     // A match quiz: a burst when all are right (its own script writes "All … right").

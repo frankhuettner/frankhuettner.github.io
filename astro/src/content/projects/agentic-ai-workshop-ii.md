@@ -27,7 +27,8 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   [how to change the model that Claude Code uses](/abp/ws2/s2-model/).
 - [Homework until 23 November](/abp/ws2/hw3/): get more out of Claude Code, with nine habits and a small website of
   your own. It also works without the course's setup.
-- 23 November: to follow.
+- [23 November](/abp/ws2/s3/): the workbook of the third morning, task by task: measure your pass rate with the
+  test bench, and decide on whose computers your system runs. Optional: let an AI judge free text.
 
 ## Downloads
 
@@ -38,3 +39,5 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   team's coding agent.
 - [`ws2_s2.zip`](/abp/ws2/ws2_s2.zip): the workbook, the slides and the team pages of 16 November, with the n8n
   workflows, Langflow flows and data tables of the afternoon.
+- [`ws2_s3.zip`](/abp/ws2/ws2_s3.zip): the workbook of 23 November, the test bench with its test mails (five for
+  Triage, five for Draft Reply with the judge), and the two Triage flows.
