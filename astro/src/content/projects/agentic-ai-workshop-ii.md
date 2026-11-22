@@ -39,5 +39,5 @@ Langflow thinks, n8n does the work, and the student says OK. Everything runs on 
   team's coding agent.
 - [`ws2_s2.zip`](/abp/ws2/ws2_s2.zip): the workbook, the slides and the team pages of 16 November, with the n8n
   workflows, Langflow flows and data tables of the afternoon.
-- [`ws2_s3.zip`](/abp/ws2/ws2_s3.zip): the workbook of 23 November, the test bench with its test mails (five for
-  Triage, five for Draft Reply with the judge), and the two Triage flows.
+- [`ws2_s3.zip`](/abp/ws2/ws2_s3.zip): the workbook and the slides of 23 November, the test bench with its test
+  mails (five for Triage, five for Draft Reply with the judge), and the two Triage flows.
