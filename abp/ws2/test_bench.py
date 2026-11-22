@@ -409,7 +409,7 @@ button.second{background:#fff;color:#1F3864;box-shadow:inset 0 0 0 1.6px #1F3864
 .rate small.ci{color:#124633;font-weight:800}
 .verdict{border-radius:12px;padding:10px 14px;font-size:14.5px;margin:10px 0} .verdict b{font-size:16px}
 .verdict.up{background:#e3f1e8;color:#124633} .verdict.down{background:#fde8e1;color:#8f1d12}
-.verdict.none{background:#eef1f4;color:#24303f} ul.how{margin:6px 0;padding-left:1.1em;font-size:13.5px}
+.verdict.none{background:#eef1f4;color:#24303f} ul.how,ol.how{margin:6px 0;padding-left:1.4em;font-size:13.5px} ol.how li{margin:3px 0}
 .bars{display:grid;gap:6px;min-width:300px} .bar{display:grid;grid-template-columns:56px 1fr 52px;gap:8px;align-items:center;font-size:13px}
 .bar span{height:16px;background:#e3e7ec;border-radius:5px;overflow:hidden} .bar span i{display:block;height:100%;background:#124633}
 table{border-collapse:collapse;width:100%;background:#fff;border-radius:12px;overflow:hidden}
@@ -595,6 +595,12 @@ def pct(a, b):
 Z95 = 1.96
 T95 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365, 8: 2.306, 9: 2.262, 10: 2.228,
        12: 2.179, 15: 2.131, 20: 2.086, 25: 2.060, 30: 2.042, 40: 2.021, 60: 2.000, 120: 1.980}   # t, 97.5 %
+# The interval of a change only from 20 test cases in both tests, and only with some spread (Frank, 23 Nov 2026: "z = 1,96
+# klingt nach normalverteilung -- bei drei wiederholungen ist das mutig", then "ja, ja, sofort"). Our simulation of 23 Nov
+# (GLM's 140 Triage cases as true chances, 3 runs, 20,000 draws): the change interval held in 57 % of the draws with 5 cases,
+# 82 % with 10, 95 % with 20; with few cases, all differences are often equal, so the spread is 0 and the interval has no
+# width. The Wilson interval of the pass rate held from 5 cases on (95 to 97 %).
+MIN_CHANGE_CASES = 20
 
 
 def shares(t):
@@ -617,12 +623,15 @@ def rate_range(t):
 
 def change_range(a, b):
     """(change, low, high) from a to b, as shares: the mean of the differences case by case over the cases of both,
-    with the t distribution; None with fewer than 2 such cases."""
+    with the t distribution; low and high are None with fewer than MIN_CHANGE_CASES such cases or without spread;
+    None without any such case."""
     sa, sb = shares(a), shares(b)
     d = [sb[cid] - sa[cid] for cid in sa if cid in sb]
-    if len(d) < 2:
+    if not d:
         return None
     m = sum(d) / len(d)
+    if len(d) < MIN_CHANGE_CASES or statistics.pstdev(d) == 0:
+        return m, None, None
     half = T95[max(k for k in T95 if k <= len(d) - 1)] * statistics.stdev(d) / math.sqrt(len(d))
     return m, max(-1.0, m - half), min(1.0, m + half)
 
@@ -635,12 +644,21 @@ def range_txt(r):
     return f"{round(100 * r[0])}–{round(100 * r[1])} %"
 
 
-RANGE_HOW = (
-    '<ul class="how"><li>Each test case counts once: its runs are averaged, because the runs of one case are not '
-    'independent of each other.</li>'
-    '<li>The pass rate: the Wilson interval over the test cases.</li>'
-    '<li>The change between two tests: the difference case by case, with the t distribution.</li>'
-    '<li>It holds for mails like your test cases. More test cases make the interval narrower; more runs help less.</li></ul>'
+RANGE_HOW = (   # with examples (Frank, 23 Nov 2026: "sätze wie 'n die Zahl der Fälle, nicht der Antworten' ergeben nur mit beispiel sinn")
+    '<p><b>How we compute the interval</b></p><ol class="how">'
+    '<li>Each test case gets one score: its share of right runs. Example: if ID 30 ran 3 times and was right twice, its '
+    'score is 2 of 3, or 0.67.</li>'
+    '<li>The pass rate is the mean of these scores. Example: 5 test cases with the scores 1, 1, 0.67, 1 and 0 give 73 %.</li>'
+    '<li>The interval counts test cases, not answers. 5 test cases with 3 runs each are 15 answers, but only 5 different '
+    'mails, and the same mail tends to get the same answer. Counting 15 answers would make the interval too narrow. For '
+    'the example: 32 to 94 % (the Wilson interval).</li>'
+    '<li>A change between two tests compares each test case with itself: its score in the second test minus its score '
+    'in the first. The interval of the change comes from these differences (with the t distribution).</li>'
+    '<li>More test cases make an interval much narrower; more runs help less. The interval holds for mails like your '
+    'test cases.</li>'
+    f'<li>How far you can trust it: in our check with the 140 Triage test mails, the interval of the pass rate held from 5 '
+    f'test cases on: it contained the true pass rate about 95 times in 100. The interval of a change needs about '
+    f'{MIN_CHANGE_CASES} test cases, so with fewer the test bench shows none.</li></ol>'
     '<p class="muted">Source: Anthropic, <a href="https://www.anthropic.com/research/statistical-approach-to-model-evals" '
     'target="_blank" rel="noopener">A statistical approach to model evaluations</a> ↗ (19 Nov 2024).</p>')
 
@@ -1003,7 +1021,13 @@ def render_compare(a, b, cases, axes):
                 f'<small>{sum(r["ok"] for r in res)} of {len(res)} answers right{all_txt}</small></div></div>')
 
     ch = change_range(a, b)
-    if ch:
+    if ch and ch[1] is None:
+        m = ch[0]
+        why = (f"Too few test cases for an interval: at least {MIN_CHANGE_CASES} (here {len(both)})."
+               if len(both) < MIN_CHANGE_CASES else
+               "Every test case changed by the same amount, so there is no spread to compute an interval from.")
+        verdict = f'<p class="verdict none"><b>Change: {points(m)}</b> · {why}</p>'
+    elif ch:
         m, lo, hi = ch
         word, cls = (("measurably better", "up") if lo > 0 else ("measurably worse", "down") if hi < 0 else
                      ("no measurable difference", "none"))
