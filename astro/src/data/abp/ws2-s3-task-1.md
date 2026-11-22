@@ -143,7 +143,7 @@ say little. This is why your own test needs more cases.
    Make a copy of my Langflow flow MY FLOW and call it "MY FLOW - field". In the copy, let every answer end with one line of JSON with the field result, for example {"result": "yes"}. Change nothing else, and do not change the original. Then tell me the endpoint name of the copy.
    ```
 4. Start with about ten cases. You can add more later. More cases make the confidence interval narrower, and 30 cases
-   are a good aim.
+   are a good aim. To say whether a change is bigger than chance, the tab **Compare** needs at least 20.
 5. Every Langflow flow has an address, for example `http://localhost:7860/api/v1/run/my-flow`. The last part of this
    address, here `my-flow`, is the **endpoint name** of the flow. Paste this request into Claude Code, but do not press
    Enter yet:

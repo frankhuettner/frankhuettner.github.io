@@ -96,8 +96,9 @@ cases on both versions of your flow.
    under **A name for the full test**. Then click **Full test**.
 4. When the test is done, open the tab **Compare**. Pick `demo day` under **Before** and `today` under **After**. The
    tab shows which cases got better and which got worse. It also says whether the change is bigger than chance:
-   *measurably better*, *measurably worse*, or *no measurable difference*. With few test cases, "no measurable
-   difference" is normal, and it is not a failure.
+   *measurably better*, *measurably worse*, or *no measurable difference*. This needs at least 20 test cases in both
+   tests. With fewer, the tab shows the change and says *Too few test cases for an interval*. That is normal, and it is
+   not a failure.
 5. In the tab **Run**, type your own endpoint name under **Flow** again, so that your next test uses your current flow.
 
 If you no longer have your Demo Day flow, your test `today` is your starting point.
