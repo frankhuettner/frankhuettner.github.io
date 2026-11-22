@@ -157,13 +157,10 @@ say little. This is why your own test needs more cases.
 7. Claude Code now lists your flows with their endpoint names. Tell Claude Code which flow your test cases are for,
    and write down its endpoint name.
 
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> **Would you rather let Claude Code build a test bench for you?** That also works, as long as Claude
-Code keeps the script, so that you can run the same test again. Paste this request into Claude Code, and add the
-endpoint name of your flow at the end:
-
-```
-Build me a test bench for my Langflow flow, with my test cases in test/cases.csv: every case three times, a new session for every call (so that no case sees another case's chat). Keep the script in test/, every answer in test/results/, and a report as an HTML page, test/report.html. Write test/README.md: what the script checks, the exact command to run it again, the model and the date. Do not change my flow or the test cases. My flow:
-```
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> **Would you rather let Claude Code build a test bench for you?** That also works. Use the habits
+from your homework until 23 November: let Claude Code plan first, and say what "done" looks like. Done means that
+every test case runs three times, each call in a new session, every answer is kept, and a README says what the
+script checks and the exact command to run it again. Then you can run the same test again later.
 
 ### Start the test bench on your flow, and make a quick check
 

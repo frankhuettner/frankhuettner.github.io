@@ -39,9 +39,10 @@ You need two Langflow flows from your homework before 9 November: **Draft Reply 
 3. Reload <http://localhost:8765> in your browser, and click **Quick check**. The test bench now sends the first three
    mails to Draft Reply, once each, and the judge grades each draft. When it is done, the page shows the tab
    **Results**.
-4. In the tab **Results**, each square shows the judge's grade, for example `grade 4`. Click a square. A window opens
-   with the mail and, below it, the expected answer: the reply that Kaminski really sent. Click **Read the answers**.
-   For each run, you see the judge's grade and its reason, and below them the draft.
+4. In the tab **Results**, a square is green when the judge gave a grade of 4 or more, and light red when it did not.
+   Click a square. A window opens with the mail and, below it, the expected answer: the reply that Kaminski really
+   sent. Above the answers, you see the grades, for example `grade 4`. Click **Read the answers**. For each run, you
+   see the judge's grade and its reason, and below them the draft.
 5. Click the tab **Run**. Under **A name for the full test**, type `judge`, and click **Full test**. The test bench
    now sends all five mails to Draft Reply, three times each.
 
