@@ -168,7 +168,8 @@ script checks and the exact command to run it again. Then you can run the same t
 <p>In the bench terminal, press Ctrl+C to stop the test bench. Then paste this command, but do not press Enter yet.
 Replace <code>my-flow</code> with your endpoint name, and then press Enter:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd ~/kingo-pod/claude/test &#x26;&#x26; python3 test_bench.py --flow my-flow</span></span></code></pre>
-<p>Because this command has no <code>--cases</code>, the test bench uses the file <code>cases.csv</code>, which Claude Code saved for you.</p>
+<p>Because this command has no <code>--cases</code>, the test bench uses the file <code>cases.csv</code>, which Claude Code saved for you.
+To see every option of the test bench, with one sentence each, run <code>python3 test_bench.py --help</code>.</p>
 </li>
 <li>
 <p>Reload <a href="http://localhost:8765">http://localhost:8765</a> in your browser, and click <strong>Quick check</strong>. The test bench now sends your first

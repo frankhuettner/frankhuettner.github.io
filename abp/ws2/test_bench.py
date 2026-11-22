@@ -13,6 +13,7 @@ A quick check shows in a minute that the bench reads your flow right; the full t
 22 Nov 2026: "standardmäßig einen kurzen test fahren (den langen mit --full flag oder so ähnlich)"). Quick checks
 appear in Results and Errors, not in All tests and Compare.
   python3 test_bench.py --report            only report.html again, from the tests stored in results/
+  python3 test_bench.py --help              every option, with one sentence each
 
 Above the tabs you pick the test, and the test to compare it with; with several flows or models, two filters narrow
 both lists. Each tab shows what matters first; the rest opens with a click (a fold), and a click on a case opens its
@@ -1513,21 +1514,30 @@ def serve(args, cases):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--flow", default="enron-triage", help="the flow: the name in its address, or its id")
+    # every option with a sentence (Frank, 23 Nov 2026: "sind die flags (was heißt --field?) dokumentiert?")
+    ap = argparse.ArgumentParser(description=" ".join(__doc__.split("\n\n")[0].split()) + " Without --run or --report, it "
+                                 "opens its page. More at the top of this file.")
+    ap.add_argument("--flow", default="enron-triage", help="the flow to test: the endpoint name, the last part of its "
+                                                           "address (.../api/v1/run/NAME), or its id")
     ap.add_argument("--model", default="", help="run the flow with this model instead of its own, for this test "
                                                 "(an OpenRouter model, for example anthropic/claude-haiku-5.5)")
-    ap.add_argument("--cases", default=str(HERE / "cases.csv"))
-    ap.add_argument("--field", default="", help="compare this field of a JSON answer with expected (Triage: action)")
+    ap.add_argument("--cases", default=str(HERE / "cases.csv"), help="the CSV file with the test cases, with the "
+                                                                      "columns id, input and expected (default: cases.csv)")
+    ap.add_argument("--field", default="", help="read only this field of the JSON in each answer: a case is right when "
+                                                "the field equals expected (big and small letters the same). Without "
+                                                "--field, every piece of expected must be in the answer. Triage: "
+                                                "--field action")
     ap.add_argument("--judge", default="", help="let this judge flow grade every answer against expected, 1 to 5, "
-                                                "right from 4 (for free text; for example enron-judge)")
+                                                "right from 4 (for free text; for example enron-judge); not with --field")
     ap.add_argument("--judge-context", default="", help="with --judge: your own setting for the judge, instead of its own")
-    ap.add_argument("--runs", type=int, default=3)
+    ap.add_argument("--runs", type=int, default=3, help="how often each case runs in the full test (default 3)")
     ap.add_argument("--parallel", type=int, default=PARALLEL, help=f"calls at the same time (default {PARALLEL}; 1: one "
                                                                      "after the other)")
-    ap.add_argument("--name", default="test", help="a name for this test, for example today or v2")
-    ap.add_argument("--out", type=Path, default=HERE / "results")
-    ap.add_argument("--port", type=int, default=8765)
+    ap.add_argument("--name", default="today", help="with --run --full: a name for the test, for example today or v2 "
+                                                     "(default: today)")
+    ap.add_argument("--out", type=Path, default=HERE / "results", help="the folder for the results, one JSON file per "
+                                                                       "test (default: results); report.html goes next to it")
+    ap.add_argument("--port", type=int, default=8765, help="the port of the page (default 8765)")
     ap.add_argument("--run", action="store_true", help="a quick check without the page (the first 3 cases, once); "
                                                        "with --full the full test; then write report.html")
     ap.add_argument("--full", action="store_true", help="with --run: every case, --runs times")
