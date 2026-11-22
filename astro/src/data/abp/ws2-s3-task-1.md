@@ -172,6 +172,7 @@ script checks and the exact command to run it again. Then you can run the same t
    ```
 
    Because this command has no `--cases`, the test bench uses the file `cases.csv`, which Claude Code saved for you.
+   To see every option of the test bench, with one sentence each, run `python3 test_bench.py --help`.
 2. Reload <http://localhost:8765> in your browser, and click **Quick check**. The test bench now sends your first
    three test cases to your flow, once each. When it is done, the page shows the tab **Results**.
 3. In the tab **Results**, each test case is a square. A square is green when the answer was right, and light red when
