@@ -246,6 +246,8 @@ def check(case, answer, field):
     if answer is None:
         return False, "no answer"
     if field:
+        if not str(case.get("expected") or "").strip():   # "" == "" would pass (code review, 23 Nov 2026)
+            return False, "no expected answer in this case"
         try:
             got = field_of(answer, field)
         except ValueError:
@@ -319,6 +321,8 @@ def run_test(flow, cases, runs, field, name, cases_file, out_dir, model="", quic
         if nodes and answer is not None and want_of(case, "").strip():
             ok, grade, got, jsec = judge_answer(judge, nodes, case, answer, headers, judge_context)
             row.update(grade=grade, judge_seconds=round(jsec, 1))
+            if grade is None:   # the judge failed or gave no grade: not the flow's fault (code review, 23 Nov 2026)
+                row["judge_failed"] = True
         else:
             ok, got = check(case, answer, field)
         row.update(ok=ok, got=error or got)
@@ -335,6 +339,8 @@ def run_test(flow, cases, runs, field, name, cases_file, out_dir, model="", quic
         pool.shutdown(wait=False, cancel_futures=True)   # after Ctrl+C or an error: no new calls
         with lock:
             test["results"] = [rows[k] for k in sorted(rows)]   # in the order of the runs and the cases
+        if len(test["results"]) < runs * len(cases):   # stopped (Ctrl+C or an error): not a whole test
+            test["stopped"] = f'after {len(test["results"])} of {runs * len(cases)} answers'
         test["finished"] = datetime.now().isoformat(timespec="seconds")
         out_dir.mkdir(exist_ok=True)
         path = out_dir / f"{test['started'].replace(':', '-')}-{re.sub(r'[^A-Za-z0-9_-]+', '-', name)}.json"
@@ -357,9 +363,11 @@ def load_cases(path):
     for i, c in enumerate(cases, 1):
         cid = (c.get("id") or "").strip() or str(i)
         if cid in seen:   # two cases with one id would merge into one (code review, 22 Nov 2026)
-            seen[cid] += 1
-            print(f"Note: two test cases have the id {cid}. The second one is now {cid}-{seen[cid]}.")
-            cid = f"{cid}-{seen[cid]}"
+            old = cid
+            while cid in seen:   # the new id must be free too (code review, 23 Nov 2026)
+                seen[old] += 1
+                cid = f"{old}-{seen[old]}"
+            print(f"Note: two test cases have the id {old}. The second one is now {cid}.")
         seen.setdefault(cid, 1)
         c["id"] = cid
         if not str(want_of(c, "")).strip():
@@ -377,7 +385,7 @@ def load_tests(out_dir):
             t = json.loads(p.read_text())
         except (OSError, ValueError):
             continue
-        if isinstance(t, dict) and isinstance(t.get("results"), list) and "name" in t and "runs" in t:
+        if isinstance(t, dict) and t.get("results") and isinstance(t["results"], list) and "name" in t and "runs" in t:
             tests.append(t)
     return tests
 
@@ -877,12 +885,18 @@ def failed_note(res):
     """A warning when calls failed: Langflow gave no answer (an HTTP error, a timeout). They count as wrong, so the pass
     rate is too low (code review, 22 Nov 2026)."""
     failed = [r for r in res if r.get("answer") is None]
+    judged = [r for r in res if r.get("judge_failed")]
+    out = ""
+    if judged:
+        out += (f'<div class="card" style="border-color:#f3b8a8;margin-top:12px"><b>{len(judged)} of {len(res)} answers '
+                f'got no grade from the judge,</b> for example: {esc(str(judged[0].get("got", ""))[:120])}. They count as '
+                'wrong, so this pass rate is too low. Check that the judge flow runs, then run the test again.</div>')
     if not failed:
-        return ""
+        return out
     return (f'<div class="card" style="border-color:#f3b8a8;margin-top:12px"><b>{len(failed)} of {len(res)} calls failed:'
             f'</b> Langflow gave no answer, for example {esc(str(failed[0].get("got", ""))[:120])}. They count as wrong, so '
             'this pass rate is too low. Check that Langflow runs and that your laptop stays awake, then run the test '
-            'again.</div>')
+            'again.</div>') + out
 
 
 def render_results(t, cases):
@@ -916,7 +930,8 @@ def render_results(t, cases):
             f'<div class="card"><div class="big">'
             f'<div class="rate">{pct(right, len(res))}<small>{right} of {len(res)} answers right · {n} cases × {runs} runs</small>'
             + (f'<small class="ci">A quick check: {n} cases, once. Your pass rate comes from the full test.</small></div>'
-               if t.get("quick") else f'<small class="ci">95 % confidence interval: {range_txt(rng)}</small></div>')
+               if t.get("quick") else f'<small class="ci">Stopped {esc(t["stopped"])}: not in All tests and Compare.</small></div>'
+            if t.get("stopped") else f'<small class="ci">95 % confidence interval: {range_txt(rng)}</small></div>')
             + f'<div class="bars">{bars}</div>'
             f'<div class="muted">{every_txt}median {statistics.median(secs) if secs else 0:.1f} s per call<br/>'
             f'slowest {max(secs) if secs else 0:.1f} s</div></div></div>'
@@ -1003,13 +1018,17 @@ def render_compare(a, b, cases, axes):
         differs.append(f"the flow: {flow_label(a)}, then {flow_label(b)}")
     if model_of(a) != model_of(b):
         differs.append(f"the model: {model_of(a)}, then {model_of(b)}")
+    check_of = lambda t: (f'the judge {t["judge"]["flow"]}' + (" with its own setting" if t["judge"].get("context") else "")
+                          if t.get("judge") else f'the field {t["field"]}' if t.get("field") else "the text check")
+    if check_of(a) != check_of(b):   # another check is another measure (code review, 23 Nov 2026)
+        differs.append(f"the check: {check_of(a)}, then {check_of(b)}")
     if places:
         differs.append(f"the prompt, in {places} place" + ("s" if places > 1 else ""))
     elif prompt_of(a) and prompt_of(b) and prompt_of(a) != prompt_of(b):
         differs.append(f"the prompt: {prompt_of(a)}, then {prompt_of(b)}")
     known = (a.get("target") or a.get("method")) and (b.get("target") or b.get("method"))
     differs_txt = ("What differs: " + "; ".join(differs) + "." if differs else
-                   "The same flow, model and prompt: the difference comes from the runs." if known else "")
+                   "The same flow, model, prompt and check: the difference comes from the runs." if known else "")
     rows = "".join(
         f'<tr data-case="{esc(cid)}"><td><b>{esc(cid)}</b> {esc(title(cid))}</td><td>{esc(short(want_of(info.get(cid, {}), b.get("field"))))}</td>'
         f'<td class="c" data-v="{1 if cid in better else 0}">{"<span class=" + chr(34) + "ok" + chr(34) + ">better</span>" if cid in better else "<span class=" + chr(34) + "no" + chr(34) + ">worse</span>"}</td>'
@@ -1209,7 +1228,7 @@ def run_form(s):
     judge_txt = (f'Judge: every answer goes to the flow <b>{esc(s["judge"])}</b>, which gives a grade from 1 to 5; '
                  f'{JUDGE_PASS} or more counts as right. Each case costs two calls.<br/>' if s.get("judge") else "")
     if STATE["running"]:
-        out.append(f'<div class="card" style="margin-top:14px"><b>Running: {esc(STATE["name"])}</b> · {STATE["done"]} of {STATE["total"]} calls'
+        out.append(f'<div class="card" style="margin-top:14px"><b>Running: {esc(STATE["name"])}</b> · {STATE["done"]} of {STATE["total"]} answers'
                    f'<div class="prog"><i style="width:{100 * STATE["done"] / max(STATE["total"], 1):.0f}%"></i></div>'
                    f'<span class="muted">This page reloads by itself. You can close it; the test runs on.</span></div>')
         return "".join(out)
@@ -1352,7 +1371,7 @@ def render_page(tests, cases, form=True, settings=None, names=None):
     same = [t for t in tests if t["results"] and {r["case"] for r in t["results"]} <= ids]
     keys = {id(t): f"t{i}" for i, t in enumerate(same)}
     key = lambda t: keys[id(t)]
-    full = [t for t in same if not t.get("quick")]   # All tests and Compare: no quick checks
+    full = [t for t in same if not t.get("quick") and not t.get("stopped")]   # All tests and Compare: whole tests only
     pair = pick_pair(full, names)
     sel_t = (pair[1] if names and pair else same[-1]) if same else None   # Results and Errors
     sel_b = pair[0] if pair else (full[-2] if len(full) >= 2 else (full[-1] if full else None))   # Compare: before
@@ -1439,8 +1458,10 @@ def serve(args, cases):
     def run_in_background(*a):
         try:
             run_test(*a)
-        except BaseException:   # SystemExit from a missing key or a model the bench cannot set: STATE["error"] says it
+        except SystemExit:   # a missing key, a model or judge the bench cannot use: STATE["error"] says it
             pass
+        except Exception as e:   # anything else: say it on the page (code review, 23 Nov 2026)
+            STATE["error"] = f"The test stopped: {type(e).__name__}: {e}"[:300]
         finally:
             STATE["running"] = False
 
@@ -1519,8 +1540,12 @@ def main():
         return serve(args, cases)
     if args.run:
         name = args.name if args.full else "quick check"
-        t = run_test(args.flow, cases, args.runs, args.field, name, args.cases, args.out, args.model, not args.full,
-                     args.judge, args.judge_context, args.parallel)
+        try:
+            t = run_test(args.flow, cases, args.runs, args.field, name, args.cases, args.out, args.model, not args.full,
+                         args.judge, args.judge_context, args.parallel)
+        except KeyboardInterrupt:   # the stopped test is stored; do not wait for the calls still running
+            print("\nTest stopped. What was done is stored in", args.out, flush=True)
+            os._exit(1)
         right = sum(r["ok"] for r in t["results"])
         print(f"{name}: {right} of {len(t['results'])} right, per run: " +
               ", ".join(str(sum(r["ok"] for r in t["results"] if r["run"] == k)) for k in range(1, t["runs"] + 1))
