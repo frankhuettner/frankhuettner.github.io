@@ -54,12 +54,13 @@ Claude Code: if one kind of data must stay inside your company, write air-gapped
 
 ### Try a small model that your company could run itself (optional)
 
-An **open model** is a model that anyone can download and run. A small open model, such as **Qwen3.6-35B-A3B**, runs
-on one **DGX Spark**, a small AI computer from NVIDIA that costs about 5,000 USD. Your test bench shows whether your
-flow still works with such a model.
+An **open model** is a model that anyone can download and run. A small open model, such as **gpt-oss-20b** from
+OpenAI, needs only 16 GB of memory, so it can run on a single computer in the company
+([OpenAI, Introducing gpt-oss](https://openai.com/index/introducing-gpt-oss/)). Your test bench
+shows whether your flow still works with such a model.
 
 1. Wait until no other test is running. Then, in the tab **Run** of the test bench, type your endpoint name under **Flow**,
-   type `qwen/qwen3.6-35b-a3b` under **Model**, and type `small model` under **A name for the full test**. Click
+   type `openai/gpt-oss-20b` under **Model**, and type `small model` under **A name for the full test**. Click
    **Full test**. The test bench uses the small model only for this test, and your flow in Langflow stays as it is.
 2. When the test is done, open the tab **Compare**. Pick `today` under **Before** and `small model` under **After**.
 3. In the tab **Run**, empty the field **Model** again, so that your next test uses the model of your flow.
@@ -70,15 +71,15 @@ copy of your flow that uses the small model. Send this request to Claude Code, a
 with the name of your flow, as Langflow shows it:
 
 ```
-Make a copy of my Langflow flow MY FLOW and call it "MY FLOW - small model". In the copy, use the model qwen/qwen3.6-35b-a3b through OpenRouter, and change nothing else. Do not change the original. Then tell me the endpoint name of the copy.
+Make a copy of my Langflow flow MY FLOW and call it "MY FLOW - small model". In the copy, use the model openai/gpt-oss-20b through OpenRouter, and change nothing else. Do not change the original. Then tell me the endpoint name of the copy.
 ```
 
 Then test the copy. In the tab **Run**, type its endpoint name under **Flow**, leave the field **Model** empty, type `small model` under
 **A name for the full test**, and click **Full test**.
 
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> **What we found on 21 November.** We tested the flow Triage with five test mails and three runs,
-and both models ran through OpenRouter. GLM 5.3 Flash, the model of the flow Triage, got 12 of 15 answers right and took 11 seconds per call.
-Qwen3.6-35B-A3B got 8 of 15 answers right and took 19 seconds per call. Five test mails are not many, so your own
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> **What we found on 23 November.** We tested the flow Triage with five test mails and three runs,
+and both models ran through OpenRouter. GLM 5.3 Flash, the model of the flow Triage, got 10 of 15 answers right and took 9 seconds per call.
+gpt-oss-20b got 9 of 15 answers right and took 4 seconds per call. Five test mails are not many, so your own
 test cases will tell you more.
 
 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> **You know whether your company could run the model itself.**
@@ -92,7 +93,7 @@ We recommend: online / partly self-hosted / air-gapped, for our company.
 Our reason:
 What changes in our system (for example, Gmail becomes the company's own mail server):
 What we ask management to approve (for example, a server in the company for n8n, Langflow and the database):
-With the small model Qwen3.6-35B-A3B, which our company could run itself (if you tried it): __ % instead of __ %
+With the small model gpt-oss-20b, which our company could run itself (if you tried it): __ % instead of __ %
 ```
 
 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6C0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:.3em"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"/><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"/><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"/></svg> **You have your paragraph for management.** On 7 December, it answers the question of what management must approve.
